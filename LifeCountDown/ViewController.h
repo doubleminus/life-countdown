@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConfigViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <ConfigViewDelegate> {
+    NSTimer *secondTimer;
+    NSString *path, *bundle;
+    NSInteger seconds;
+    bool timerStarted;
+}
+
+@property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *youAreLabel, *countdownLabel;
+@property (strong, nonatomic) NSDictionary* viewDict;
+
+-(IBAction)setUserInfo;
 
 @end
