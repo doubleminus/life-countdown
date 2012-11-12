@@ -18,7 +18,6 @@ NSDate *birthDate;
 @synthesize cancelButton = _cancelButton;
 @synthesize genderToggle = _genderToggle;
 @synthesize dobPicker = _dobPicker;
-@synthesize isMale = _isMale;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,23 +40,12 @@ NSDate *birthDate;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"isMale? %d", _isMale);
 
-    if (_isMale)
-        [self.genderToggle setSelectedSegmentIndex:0];
-    else
-        [self.genderToggle setSelectedSegmentIndex:1];
+    [self readPlist];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    // Set default date in UIDatePicker
-    NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
-    [myFormatter setDateFormat:@"yyyyMMdd"];
-
-    NSDate *defaultPickDate = [myFormatter dateFromString:@"19700101"];
-    [_dobPicker setDate:defaultPickDate];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -79,11 +67,9 @@ NSDate *birthDate;
 
     if ([self.genderToggle selectedSegmentIndex] == 0) {
         gender = @"m";
-        _isMale = YES;
     }
     else {
         gender = @"f";
-        _isMale = NO;
     }
 
     if (birthDate != nil && gender != nil) {
@@ -94,6 +80,55 @@ NSDate *birthDate;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)readPlist {
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // Get path to documents directory from the list.
+    path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
+
+    if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+        _viewDict = (NSDictionary *)[NSPropertyListSerialization
+                                     propertyListFromData:plistXML
+                                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                     format:&format
+                                     errorDescription:&errorDesc];
+        if (!_viewDict) {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        else {
+            // If we have ALL of the values we need, display info to user.
+            if ([_viewDict objectForKey:@"infoDict"] != nil) {
+                NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
+
+                if (nsDict != nil) {
+                    NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
+                    [myFormatter setDateFormat:@"yyyyMMdd"];
+
+                    // Birthdate has already been set, so set our datepicker
+                    if ([nsDict objectForKey:@"birthDate"] != nil) {
+                        //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
+                        NSString *bdayStr = [myFormatter stringFromDate:[nsDict objectForKey:@"birthDate"]];
+
+                        [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
+
+                        if ([nsDict objectForKey:@"gender"] != nil) {
+                            if ([[nsDict objectForKey:@"gender"]isEqualToString:@"m"])
+                                [_genderToggle setSelectedSegmentIndex:0];
+                            else
+                                [_genderToggle setSelectedSegmentIndex:1];
+                        }
+                    }
+                    // Otherwise, fall back on default date of January 1, 1970
+                    else {
+                        NSDate *defaultPickDate = [myFormatter dateFromString:@"19700101"];
+                        [_dobPicker setDate:defaultPickDate];
+                    }
+                }
+            }
+        }
+    }
+}
 
 /*****  BEGIN BUTTON METHODS  *****/
 - (IBAction)cancelPressed {

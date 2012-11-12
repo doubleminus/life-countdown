@@ -39,17 +39,6 @@ NSNumberFormatter *formatter;
     // Important to set the viewcontroller's delegate to be self
     enterInfo.delegate = self;
 
-    if (_viewDict != nil && [_viewDict objectForKey:@"gender"] != nil) {
-        if ([[_viewDict objectForKey:@"gender"] isEqualToString:@"m"]) {
-            enterInfo.isMale = YES;
-            NSLog(@"isMale set to YES");
-        }
-        else {
-            enterInfo.isMale = NO;
-            NSLog(@"isMale set to NO");
-        }
-    }
-
     // Now present the view controller to the user
     [self presentViewController:enterInfo animated:true completion:NULL];
 }
@@ -109,11 +98,10 @@ NSNumberFormatter *formatter;
     NSError *error;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // Get path to your documents directory from the list.
     path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
     //NSLog(@"path in createplistpath: %@", path);
 
     // Our plist exists, just read it.
-    if ([fileMgr fileExistsAtPath:path]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         //NSLog(@"Plist file exists");
         [self readPlist];
     }
@@ -121,7 +109,7 @@ NSNumberFormatter *formatter;
     else {
         //NSLog(@"no plist!!");
         bundle = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"]; // Get a path to your plist created manually in Xcode
-        [fileMgr copyItemAtPath:bundle toPath:path error:&error]; // Copy this plist to your documents directory.
+        [[NSFileManager defaultManager] copyItemAtPath:bundle toPath:path error:&error]; // Copy this plist to your documents directory.
         [self setUserInfo];
     }
 }

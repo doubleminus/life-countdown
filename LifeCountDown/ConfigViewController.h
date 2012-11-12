@@ -16,16 +16,17 @@
 @end
 
 @interface ConfigViewController : UIViewController {
+    NSString *path;
     bool ageIsSet;
     IBOutlet UITextField *amountTextField;
     id<ConfigViewDelegate> delegate;
 }
 
+@property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (nonatomic, assign) id delegate;
-@property (nonatomic, assign) bool isMale;
 
 - (IBAction)cancelPressed;
 - (IBAction)savePressed;
