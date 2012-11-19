@@ -17,7 +17,6 @@
 
 @interface ConfigViewController : UIViewController {
     NSString *path;
-    bool ageIsSet;
     IBOutlet UITextField *amountTextField;
     id<ConfigViewDelegate> delegate;
 }

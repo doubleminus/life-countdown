@@ -21,10 +21,6 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    if (!ageIsSet) {
-        _cancelButton.hidden = YES;
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +37,8 @@ NSDate *birthDate;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    //[self deletePlist];
+    _cancelButton.hidden = YES;
     [self readPlist];
 }
 
@@ -65,21 +63,23 @@ NSDate *birthDate;
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
 
-    if ([self.genderToggle selectedSegmentIndex] == 0) {
+    if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"m";
-    }
-    else {
+    else
         gender = @"f";
-    }
 
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
                                                                             forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
+        if (personInfo != nil)
+            [self writePlist:personInfo];
     }
 
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+/**** BEGIN PLIST METHODS ****/
 - (void)readPlist {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -109,10 +109,11 @@ NSDate *birthDate;
                     if ([nsDict objectForKey:@"birthDate"] != nil) {
                         //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
                         NSString *bdayStr = [myFormatter stringFromDate:[nsDict objectForKey:@"birthDate"]];
-
                         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
 
                         if ([nsDict objectForKey:@"gender"] != nil) {
+                            _cancelButton.hidden = NO;
+
                             if ([[nsDict objectForKey:@"gender"]isEqualToString:@"m"])
                                 [_genderToggle setSelectedSegmentIndex:0];
                             else
@@ -130,6 +131,46 @@ NSDate *birthDate;
     }
 }
 
+- (void)writePlist:(NSDictionary*)infoDict {
+    NSString *error;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
+
+    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: infoDict, nil]
+                                                          forKeys:[NSArray arrayWithObjects: @"infoDict", nil]];
+    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
+
+    if(plistData) {
+        [plistData writeToFile:plistPath atomically:YES];
+        //NSLog(@"file written to path: %@", path);
+    }
+    /*else {
+     NSLog(@"Error in writing to file: %@", error);
+     }*/
+}
+
+- (void)deletePlist {
+    // For error information
+    NSError *error;
+
+    // Create file manager
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+
+    // Point to Document directory
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
+
+    // Attempt to delete the file at filePath2
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
+        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    }
+
+    // Show contents of Documents directory
+    //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+}
+/**** END PLIST METHODS ****/
+
+
 /*****  BEGIN BUTTON METHODS  *****/
 - (IBAction)cancelPressed {
     [self dismissModalViewControllerAnimated:YES];
@@ -137,14 +178,13 @@ NSDate *birthDate;
 
 - (IBAction)savePressed {
     [self updateAge:nil];
-
+    
     // Check to see if anyone is listening...
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
         // ...then send the delegate function with the amount entered by the user
         [_delegate displayUserInfo:personInfo];
     }
 
-    ageIsSet = YES;
     [self dismissModalViewControllerAnimated:YES];
 }
 /*****  END BUTTON METHODS  *****/

@@ -40,12 +40,10 @@ NSCalendarUnit unitFlags;
 // Calculates number of years to live based on user-entered criteria
 - (void)calcYearBase:(NSDictionary*)completedDict {
     if (completedDict != nil && [completedDict objectForKey:@"gender"] != nil) {
-        if ([[completedDict objectForKey:@"gender"] isEqualToString:@"m"]) {
+        if ([[completedDict objectForKey:@"gender"] isEqualToString:@"m"])
             yearBase = MALE_AGE_START;
-        }
-        else if ([[completedDict objectForKey:@"gender"] isEqualToString:@"f"]) {
+        else if ([[completedDict objectForKey:@"gender"] isEqualToString:@"f"])
             yearBase = FEMALE_AGE_START;
-        }
 
         futureAgeStr = [NSString stringWithFormat:@"You will be...%d", yearBase];
     }
@@ -76,7 +74,7 @@ NSCalendarUnit unitFlags;
         comps.calendar = calendar; // Set its calendar to our Gregorian calendar
         [comps setDay:[bdayComp day]];
         [comps setMonth:[bdayComp month]];
-        [comps setYear:[bdayComp year] + MALE_AGE_START];
+        [comps setYear:[bdayComp year] + yearBase];
 
         // Now obtain the number of seconds from our static starting point, comps, and now
         secondsInt = [[calendar dateFromComponents:comps] timeIntervalSinceNow];

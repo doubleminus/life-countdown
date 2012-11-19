@@ -22,14 +22,14 @@ NSNumberFormatter *formatter;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    // Check to see if we already have an age value set in our plist
-    //[self deletePlist];
-    [self verifyPlist];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // Check to see if we already have an age value set in our plist
+    //[self deletePlist];
+    [self verifyPlist];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -45,7 +45,6 @@ NSNumberFormatter *formatter;
 
 #pragma mark displayUserInfo Delegate function
 
-// Display the amount in the text field
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
@@ -64,7 +63,7 @@ NSNumberFormatter *formatter;
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
 
-        [self writePlist:infoDictionary];
+        //  [self writePlist:infoDictionary];
 
         // Calculate total # of seconds to begin counting down
         seconds = [dateUtil secondsInt];
@@ -144,6 +143,7 @@ NSNumberFormatter *formatter;
     }
 }
 
+/*
 - (void)writePlist:(NSDictionary*)infoDict {
     NSString *error;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -157,9 +157,9 @@ NSNumberFormatter *formatter;
         [plistData writeToFile:plistPath atomically:YES];
         //NSLog(@"file written to path: %@", path);
     }
-    /*else {
+    else {
         NSLog(@"Error in writing to file: %@", error);
-    }*/
+    }
 }
 
 - (void)deletePlist {
@@ -181,7 +181,7 @@ NSNumberFormatter *formatter;
      // Show contents of Documents directory
      //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
-/**** END PLIST METHODS ****/
+**** END PLIST METHODS ****/
 
 
 - (void)didReceiveMemoryWarning {
