@@ -63,8 +63,6 @@ NSNumberFormatter *formatter;
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
 
-        //  [self writePlist:infoDictionary];
-
         // Calculate total # of seconds to begin counting down
         seconds = [dateUtil secondsInt];
 
@@ -142,46 +140,7 @@ NSNumberFormatter *formatter;
         }
     }
 }
-
-/*
-- (void)writePlist:(NSDictionary*)infoDict {
-    NSString *error;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
-
-    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: infoDict, nil]
-                                                          forKeys:[NSArray arrayWithObjects: @"infoDict", nil]];
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
-
-    if(plistData) {
-        [plistData writeToFile:plistPath atomically:YES];
-        //NSLog(@"file written to path: %@", path);
-    }
-    else {
-        NSLog(@"Error in writing to file: %@", error);
-    }
-}
-
-- (void)deletePlist {
-     // For error information
-     NSError *error;
-
-     // Create file mana ger
-     NSFileManager *fileMgr = [NSFileManager defaultManager];
-
-     // Point to Document directory
-     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-     NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
-
-     // Attempt to delete the file at filePath2
-     if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
-         NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-     }
-
-     // Show contents of Documents directory
-     //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
-}
-**** END PLIST METHODS ****/
+/**** END PLIST METHODS ****/
 
 
 - (void)didReceiveMemoryWarning {

@@ -39,6 +39,7 @@ NSDate *birthDate;
 
     //[self deletePlist];
     _cancelButton.hidden = YES;
+    _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
 }
 
@@ -165,7 +166,7 @@ NSDate *birthDate;
         //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
     }
 
-    // Show contents of Documents directory
+    // Show contents of Documents directory for debugging purposes
     //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 /**** END PLIST METHODS ****/
