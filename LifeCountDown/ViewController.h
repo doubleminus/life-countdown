@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *youAreLabel, *countdownLabel;
 @property (strong, nonatomic) NSDictionary* viewDict;
+@property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 
 -(IBAction)setUserInfo;
 

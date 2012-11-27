@@ -21,6 +21,8 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
 }
 
 - (void)didReceiveMemoryWarning {

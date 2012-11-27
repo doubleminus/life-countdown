@@ -28,6 +28,7 @@
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
+		2EE43CFF166336BE007F0FD5 /* blk_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EE43CFE166336BE007F0FD5 /* blk_tile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
+		2EE43CFE166336BE007F0FD5 /* blk_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blk_tile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2EE43CFE166336BE007F0FD5 /* blk_tile.png */,
 				2E2104A0151ED7BB00D0B523 /* LifeCountDown-Info.plist */,
 				2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */,
 				2E2104A4151ED7BB00D0B523 /* main.m */,
@@ -252,6 +255,7 @@
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */,
+				2EE43CFF166336BE007F0FD5 /* blk_tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,8 +17,10 @@
 @synthesize youAreLabel = _youAreLabel;
 @synthesize countdownLabel = _countdownLabel;
 @synthesize viewDict = _viewDict;
+@synthesize percentLabel = _percentLabel;
 
 NSNumberFormatter *formatter;
+float totalSecondsFl;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -28,8 +30,8 @@ NSNumberFormatter *formatter;
     [super viewDidLoad];
 
     // Check to see if we already have an age value set in our plist
-    //[self deletePlist];
     [self verifyPlist];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -63,8 +65,10 @@ NSNumberFormatter *formatter;
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
 
-        // Calculate total # of seconds to begin counting down
+        // Calculate estimated total # of seconds to begin counting down
         seconds = [dateUtil secondsInt];
+        totalSecondsFl = [dateUtil totalSecondsFloat];
+
 
         if (!timerStarted) {
             [self updateTimer];
@@ -85,6 +89,12 @@ NSNumberFormatter *formatter;
     seconds -= 1;
 
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithInt:seconds]];
+    
+    // Calculate estimated percentage of life remaining
+    float percentRemaining = (seconds / totalSecondsFl) * 100.0;
+    NSLog(@"percent remaining: %@", [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining]);
+    _percentLabel.text = [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining];
+
     timerStarted = YES;
 }
 /****  END USER INFORMATION METHODS  ****/
@@ -148,6 +158,7 @@ NSNumberFormatter *formatter;
 }
 
 - (void)viewDidUnload {
+    [self setPercentLabel:nil];
     [self setCountdownLabel:nil];
     [self setYouAreLabel:nil];
     [self setAgeLabel:nil];

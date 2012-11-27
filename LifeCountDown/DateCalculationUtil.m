@@ -17,6 +17,7 @@ NSCalendarUnit unitFlags;
 @synthesize birthDate;
 @synthesize futureAgeStr;
 @synthesize secondsInt;
+@synthesize totalSecondsFloat;
 @synthesize currentAgeDateComp;
 @synthesize yearBase;
 
@@ -40,10 +41,14 @@ NSCalendarUnit unitFlags;
 // Calculates number of years to live based on user-entered criteria
 - (void)calcYearBase:(NSDictionary*)completedDict {
     if (completedDict != nil && [completedDict objectForKey:@"gender"] != nil) {
-        if ([[completedDict objectForKey:@"gender"] isEqualToString:@"m"])
+        if ([[completedDict objectForKey:@"gender"] isEqualToString:@"m"]) {
             yearBase = MALE_AGE_START;
-        else if ([[completedDict objectForKey:@"gender"] isEqualToString:@"f"])
+            totalSecondsFloat = ((((365.25 * MALE_AGE_START) * 24) * 60) * 60);
+        }
+        else if ([[completedDict objectForKey:@"gender"] isEqualToString:@"f"]) {
             yearBase = FEMALE_AGE_START;
+            totalSecondsFloat = ((((365.25 * FEMALE_AGE_START) * 24) * 60) * 60);
+        }
 
         futureAgeStr = [NSString stringWithFormat:@"You will be...%d", yearBase];
     }
