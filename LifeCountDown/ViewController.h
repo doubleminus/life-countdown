@@ -12,7 +12,7 @@
 @interface ViewController : UIViewController <ConfigViewDelegate> {
     NSTimer *secondTimer;
     NSString *path, *bundle;
-    NSInteger seconds;
+    double seconds;
     bool timerStarted;
 }
 

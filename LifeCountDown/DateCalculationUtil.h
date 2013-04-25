@@ -12,11 +12,11 @@
 @property (strong, nonatomic) NSDate *birthDate;
 @property (strong, nonatomic) NSString *futureAgeStr;
 @property (strong, nonatomic) NSDateComponents *currentAgeDateComp;
-@property NSInteger secondsInt, yearBase;
-@property float totalSecondsFloat;
+@property NSInteger yearBase;
+@property double secondsDub, totalSecondsDub;
 
 // Constructor
 - (DateCalculationUtil*) initWithDict:(NSDictionary*)myDict;
-- (void)calculateRemainingMinutes;
+- (void)calculateSeconds:(NSDate*)dateArg;
 
 @end

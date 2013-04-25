@@ -97,7 +97,7 @@ NSDate *birthDate;
                                      format:&format
                                      errorDescription:&errorDesc];
         if (!_viewDict) {
-            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+            //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
         }
         else {
             // If we have ALL of the values we need, display info to user.
@@ -169,7 +169,7 @@ NSDate *birthDate;
     }
 
     // Show contents of Documents directory for debugging purposes
-    //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+    // NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 /**** END PLIST METHODS ****/
 
@@ -181,7 +181,7 @@ NSDate *birthDate;
 
 - (IBAction)savePressed {
     [self updateAge:nil];
-    
+
     // Check to see if anyone is listening...
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
         // ...then send the delegate function with the amount entered by the user

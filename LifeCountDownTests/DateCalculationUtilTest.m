@@ -5,109 +5,107 @@
 
 #import "DateCalculationUtilTest.h"
 #import "DateCalculationUtil.h"
+#import "ViewController.h"
 
 @implementation DateCalculationUtilTest
 
 // Get number of seconds in 10 years. Make negative in order to determine age. 31,557,600 sec/yr X 10 = 315,576,000
-NSInteger const SECS = ((((365.25 * 10) * 24) * 60) * -60);
+double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
 
 // Test female age calculation
 - (void)testFemaleAgeCalc {
     NSString *gender = @"f";
     Boolean stringsEqual = NO;
+    //NSLog(@"SEC_CONST constant: %f", SECS);
 
-    // Create birthdate now, always making it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SECS];
+    // Create birthdate, setting it 10 years prior to the current date
+    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
 
     NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
                                                                forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
+
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
     NSString *expected = @"You will be...81";
     NSString *result = [testDateUtil futureAgeStr];
-    NSLog(@"result string: %@", result);
 
     if ([expected isEqualToString:result]) stringsEqual = YES;
     STAssertTrue(stringsEqual, @"Gender is female, so expiry date should default to 81.");
+    stringsEqual = NO; // flip Boolean back for continued use during test
 
-    // So our subject is 10 years old and female. They should have 71 years from right now to live.
-    // Let's manually calculate 71 years in seconds. 
-    NSTimeInterval remSeconds = ((((365.25 * 71) * 24) * 60) * 60);
-    NSInteger secResult = remSeconds - SECS;
-    NSLog(@"secResult UPPER: %d", secResult);
-    NSLog(@"dateUtil secondsInt UPPER: %d", [testDateUtil secondsInt]);
-    STAssertEquals(secResult, [testDateUtil secondsInt], @"Remaining seconds should match.");
+    // Our subject is 10 years old and female. They should have 71 years to live if their expiry age is 81.
+    // Let's manually calculate 71 years in seconds.
+    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:81];
+    double utilSeconds = [testDateUtil secondsDub];
 
-    // Now let's switch gender to male to see if this change is reflected in our age estimates
+    // Cast to string for easier comparison
+    NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
+    NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
+
+    STAssertEqualObjects(strVal1, strVal2, @"equal");
+    
+    // Verify that percentage label calculates and displays correctly
+ /*    ViewController *testCont = [[ViewController alloc] init];
+    [testCont displayUserInfo:testDictionary];
+
+    double secsUsed = ((((365.25 * 10) * 24) * 60) * 60);
+    double totalSeconds = remSeconds + secsUsed;
+
+   float percnt = (secsUsed / totalSeconds) * 100.0;
+    expected = [NSString stringWithFormat:@"%.2f%% of your life remaining", percnt];
+
+    NSLog(@" $$$$ EXPECTED: %@", expected);
+    NSLog(@" $$$$ LABEL: %@", testCont.percentLabel.text);
+
+    if ([expected isEqualToString:testCont.percentLabel.text]) stringsEqual = YES;
+    STAssertTrue(stringsEqual, @"Percentage string should be correct."); */
+
+    // Switch gender to male and keep birthdate the same, to see change in age estimate.
     gender = @"m";
 
-    // Update our dictionary with new gender value
+    // Update dictionary with new gender value
     testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
-    // Recalculate our dates via our date util
+    // Recalculate our dates via date util
     testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
-    // Update our expected String
+    // Update expected String
     expected = @"You will be...78";
     result = [testDateUtil futureAgeStr];
     //NSLog(@"result string: %@", result);
 
     if ([expected isEqualToString:result]) stringsEqual = YES;
     STAssertTrue(stringsEqual, @"Gender is now female, so expiry date should default to 78.");
+
+    // Now check that calculation for seconds remaining in life is correct
+    remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:78];
+    utilSeconds = [testDateUtil secondsDub];
+
+    // Cast to string for easier comparison
+    strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
+    strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
+
+    STAssertEqualObjects(strVal1, strVal2, @"equal");
 }
 
-// Test male age calculation
-- (void)testMaleAgeCalc {
-    NSString *gender = @"m";
-    Boolean stringsEqual = NO;
-
-    // Create birthdate now, always making it 10 years prior to the current date
-    NSDate *birthDate2 = [NSDate dateWithTimeIntervalSinceNow:SECS];
-
-    NSDictionary *testDictionary2 = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate2, gender, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
-    DateCalculationUtil *testDateUtil2 = [[DateCalculationUtil alloc] initWithDict:testDictionary2];
-
-    STAssertEquals(birthDate2, [testDateUtil2 birthDate], @"Ensure birthdate was assigned correctly.");
-
-    NSString *expected = @"You will be...78";
-    NSString *result = [testDateUtil2 futureAgeStr];
-    NSLog(@"result string: %@", result);
-
-    if ([expected isEqualToString:result]) stringsEqual = YES;
-    STAssertTrue(stringsEqual, @"Gender is male, so expiry date should default to 78.");
-
-    // So our subject is 10 years old and male. They should have 68 years from right now to live.
-    // Let's manually calculate 68 years in seconds.
-    NSTimeInterval remSeconds = ((((365.25 * 68) * 24) * 60) * 60);
-    NSInteger secResult = remSeconds - SECS ;
-    NSLog(@"remSeconds LOWER: %f", remSeconds);
-    NSLog(@"secResult LOWER: %d", secResult);
-    NSLog(@"[testDateUtil secondsInt] LOWER: %d", [testDateUtil2 secondsInt]);
-    STAssertEquals(secResult, [testDateUtil2 secondsInt], @"Remaining seconds should match.");
-
-    // Now let's switch the gender to female to see if this change is reflected in our age estimates
-    gender = @"f";
-
-    // Update our dictionary with new gender value
-    testDictionary2 = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate2, gender, nil]
-                                                 forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
-    // Recalculate our dates via our date util
-    testDateUtil2 = [[DateCalculationUtil alloc] initWithDict:testDictionary2];
-
-    STAssertEquals(birthDate2, [testDateUtil2 birthDate], @"Ensure birthdate was assigned correctly.");
-
-    // Update our expected String
-    expected = @"You will be...81";
-    result = [testDateUtil2 futureAgeStr];
-    //NSLog(@"result string: %@", result);
-
-    if ([expected isEqualToString:result]) stringsEqual = YES;
-    STAssertTrue(stringsEqual, @"Gender is now female, so expiry date should default to 81.");
+/* Helper method to calculate remaining seconds to test against */
+-(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(NSInteger)bAge {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
+    NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *newComp = [calendar components:unitFlags fromDate:bDate];
+   
+    NSDateComponents *comps = [[NSDateComponents alloc] init]; // Obtain empty date components to set, so we have a static starting point
+    comps.calendar = calendar; // Set its calendar to our Gregorian calendar
+    [comps setDay:[newComp day]];
+    [comps setMonth:[newComp month]];
+    [comps setYear:[newComp year] + bAge];
+    
+    return [[calendar dateFromComponents:comps] timeIntervalSinceNow];
 }
 
 @end

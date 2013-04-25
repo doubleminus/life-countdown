@@ -7,7 +7,7 @@
 //
 
 #import "LifeCountDownTests.h"
-#import "ConfigViewController.h"
+#import "ViewController.h"
 
 @implementation LifeCountDownTests
 
@@ -24,7 +24,11 @@
 }
 
 - (void)testExample {
-    //STFail(@"Unit tests are not implemented yet in LifeCountDownTests");
+    ViewController *vc = [[ViewController alloc] init];
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
+    
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:path], @"We should have no plist yet");
 }
 
 @end

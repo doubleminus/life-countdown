@@ -10,4 +10,6 @@
 
 @interface DateCalculationUtilTest : SenTestCase
 
+-(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(NSInteger)bAge;
+
 @end

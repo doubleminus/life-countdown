@@ -20,7 +20,7 @@
 @synthesize percentLabel = _percentLabel;
 
 NSNumberFormatter *formatter;
-float totalSecondsFl;
+double totalSecondsDub;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -30,6 +30,7 @@ float totalSecondsFl;
     [super viewDidLoad];
 
     // Check to see if we already have an age value set in our plist
+    //[self deletePlist];
     [self verifyPlist];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
 }
@@ -56,19 +57,21 @@ float totalSecondsFl;
         _youAreLabel.text = @"You are...";
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [formatter setGeneratesDecimalNumbers:NO];
+        [formatter setMaximumFractionDigits:0];
 
         if ([dateUtil currentAgeDateComp] != nil)
             currentAgeDateComp = [dateUtil currentAgeDateComp];
 
-        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
+        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month],
+                                 [currentAgeDateComp day]];
 
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
 
         // Calculate estimated total # of seconds to begin counting down
-        seconds = [dateUtil secondsInt];
-        totalSecondsFl = [dateUtil totalSecondsFloat];
-
+        seconds = [dateUtil secondsDub];
+        totalSecondsDub = [dateUtil totalSecondsDub]; // Used for calculate percent of life remaining
 
         if (!timerStarted) {
             [self updateTimer];
@@ -86,14 +89,13 @@ float totalSecondsFl;
 }
 
 - (void)updateTimer {
-    seconds -= 1;
+    seconds -= 1.0;
+    _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
 
-    _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithInt:seconds]];
-    
     // Calculate estimated percentage of life remaining
-    float percentRemaining = (seconds / totalSecondsFl) * 100.0;
-    NSLog(@"percent remaining: %@", [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining]);
-    _percentLabel.text = [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining];
+    double percentRemaining = (seconds / totalSecondsDub) * 100.0;
+    //NSLog(@"percent remaining: %@", [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining]);
+    _percentLabel.text = [NSString stringWithFormat:@"%.8f%% of your life remaining", percentRemaining];
 
     timerStarted = YES;
 }
@@ -103,7 +105,9 @@ float totalSecondsFl;
 /****  BEGIN PLIST METHODS  ****/
 - (void)verifyPlist {
     NSError *error;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // Get path to your documents directory from the list.
+
+    // Get path to your documents directory from the list.
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
     //NSLog(@"path in createplistpath: %@", path);
 
@@ -149,6 +153,26 @@ float totalSecondsFl;
             [self setUserInfo];
         }
     }
+}
+
+- (void)deletePlist {
+    // For error information
+    NSError *error;
+
+    // Create file manager
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+
+    // Point to Document directory
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
+
+    // Attempt to delete the file at filePath2
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
+        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    }
+
+    // Show contents of Documents directory for debugging purposes
+    //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 /**** END PLIST METHODS ****/
 
