@@ -29,5 +29,6 @@
 
 - (IBAction)cancelPressed;
 - (IBAction)savePressed;
+- (void)deletePlist;
 
 @end

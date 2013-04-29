@@ -165,7 +165,7 @@ NSDate *birthDate;
 
     // Attempt to delete the file at filePath2
     if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
-        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
     }
 
     // Show contents of Documents directory for debugging purposes
@@ -187,8 +187,6 @@ NSDate *birthDate;
         // ...then send the delegate function with the amount entered by the user
         [_delegate displayUserInfo:personInfo];
     }
-
-    [self dismissModalViewControllerAnimated:YES];
 }
 /*****  END BUTTON METHODS  *****/
 

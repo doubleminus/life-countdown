@@ -8,6 +8,7 @@
 
 #import "LifeCountDownTests.h"
 #import "ViewController.h"
+#import "ConfigViewController.h"
 
 @implementation LifeCountDownTests
 
@@ -25,10 +26,11 @@
 
 - (void)testExample {
     ViewController *vc = [[ViewController alloc] init];
+    [vc verifyPlist];
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
+    NSString *testPath = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
     
-    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:path], @"We should have no plist yet");
+    STAssertEqualObjects(testPath, [vc getPath], @"Ensure path is set correctly");    
 }
 
 @end

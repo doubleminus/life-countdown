@@ -38,14 +38,20 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     // Our subject is 10 years old and female. They should have 71 years to live if their expiry age is 81.
     // Let's manually calculate 71 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:81];
-    double utilSeconds = [testDateUtil secondsDub];
+    double utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
-    STAssertEqualObjects(strVal1, strVal2, @"equal");
+    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
     
+    // Calculate the total seconds in a person's life who lives to 81
+    double totalSecondsInLife = ((((365.25 * 81) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+    
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife],
+                  @"Total seconds in life should equal util calculation");
+
     // Verify that percentage label calculates and displays correctly
  /*    ViewController *testCont = [[ViewController alloc] init];
     [testCont displayUserInfo:testDictionary];
@@ -83,13 +89,19 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
 
     // Now check that calculation for seconds remaining in life is correct
     remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:78];
-    utilSeconds = [testDateUtil secondsDub];
+    utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
     strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
     STAssertEqualObjects(strVal1, strVal2, @"equal");
+    
+    // Calculate the total seconds in a person's life who lives to 78
+    totalSecondsInLife = ((((365.25 * 78) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+    
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife],
+                   @"Total seconds in life should equal util calculation");
 }
 
 /* Helper method to calculate remaining seconds to test against */

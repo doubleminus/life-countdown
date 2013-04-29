@@ -24,14 +24,14 @@ double totalSecondsDub;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
 }
 
@@ -70,8 +70,8 @@ double totalSecondsDub;
             _ageLabel.text = [dateUtil futureAgeStr];
 
         // Calculate estimated total # of seconds to begin counting down
-        seconds = [dateUtil secondsDub];
-        totalSecondsDub = [dateUtil totalSecondsDub]; // Used for calculate percent of life remaining
+        seconds = [dateUtil secondsRemaining];
+        totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
         if (!timerStarted) {
             [self updateTimer];
@@ -174,6 +174,11 @@ double totalSecondsDub;
     // Show contents of Documents directory for debugging purposes
     //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
+
+- (NSString*)getPath {
+    return self->path;
+}
+
 /**** END PLIST METHODS ****/
 
 

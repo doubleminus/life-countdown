@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 
--(IBAction)setUserInfo;
+- (IBAction)setUserInfo;
+- (NSString*)getPath;
+- (void)verifyPlist;
 
 @end

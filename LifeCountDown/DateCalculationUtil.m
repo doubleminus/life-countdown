@@ -16,8 +16,8 @@ NSCalendarUnit unitFlags;
 
 @synthesize birthDate;
 @synthesize futureAgeStr;
-@synthesize secondsDub;
-@synthesize totalSecondsDub;
+@synthesize secondsRemaining;
+@synthesize totalSecondsInLife;
 @synthesize currentAgeDateComp;
 @synthesize yearBase;
 
@@ -43,11 +43,11 @@ NSCalendarUnit unitFlags;
     if (completedDict != nil && [completedDict objectForKey:@"gender"] != nil) {
         if ([[completedDict objectForKey:@"gender"] isEqualToString:@"m"]) {
             yearBase = MALE_AGE_START;
-            totalSecondsDub = ((((365.25 * MALE_AGE_START) * 24) * 60) * 60);
+            totalSecondsInLife = ((((365.25 * MALE_AGE_START) * 24) * 60) * 60);
         }
         else if ([[completedDict objectForKey:@"gender"] isEqualToString:@"f"]) {
             yearBase = FEMALE_AGE_START;
-            totalSecondsDub = ((((365.25 * FEMALE_AGE_START) * 24) * 60) * 60);
+            totalSecondsInLife = ((((365.25 * FEMALE_AGE_START) * 24) * 60) * 60);
         }
 
         futureAgeStr = [NSString stringWithFormat:@"You will be...%d", yearBase];
@@ -82,7 +82,7 @@ NSCalendarUnit unitFlags;
         [comps setYear:[bdayComp year] + yearBase];
 
         // Now obtain the number of seconds from our static starting point, comps, and now
-        secondsDub = [[calendar dateFromComponents:comps] timeIntervalSinceNow];
+        secondsRemaining = [[calendar dateFromComponents:comps] timeIntervalSinceNow];
     }
 }
 

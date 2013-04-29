@@ -13,7 +13,7 @@
 @property (strong, nonatomic) NSString *futureAgeStr;
 @property (strong, nonatomic) NSDateComponents *currentAgeDateComp;
 @property NSInteger yearBase;
-@property double secondsDub, totalSecondsDub;
+@property double secondsRemaining, totalSecondsInLife;
 
 // Constructor
 - (DateCalculationUtil*) initWithDict:(NSDictionary*)myDict;
