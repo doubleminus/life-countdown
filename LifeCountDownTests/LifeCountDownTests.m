@@ -9,6 +9,7 @@
 #import "LifeCountDownTests.h"
 #import "ViewController.h"
 #import "ConfigViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LifeCountDownTests
 
@@ -29,7 +30,7 @@
     [vc verifyPlist];
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *testPath = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-    
+
     STAssertEqualObjects(testPath, [vc getPath], @"Ensure path is set correctly");    
 }
 

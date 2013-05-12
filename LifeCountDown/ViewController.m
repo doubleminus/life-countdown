@@ -8,16 +8,9 @@
 
 #import "ViewController.h"
 #import "DateCalculationUtil.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ViewController
-
-@synthesize currentAgeLabel = _currentAgeLabel;
-@synthesize dateLabel = _dateLabel;
-@synthesize ageLabel = _ageLabel;
-@synthesize youAreLabel = _youAreLabel;
-@synthesize countdownLabel = _countdownLabel;
-@synthesize viewDict = _viewDict;
-@synthesize percentLabel = _percentLabel;
 
 NSNumberFormatter *formatter;
 double totalSecondsDub;
@@ -33,6 +26,23 @@ double totalSecondsDub;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
+
+    // Set button Text Color
+    [infoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [infoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    // Set button Background Color
+    CAGradientLayer *btnGradient = [CAGradientLayer layer];
+    btnGradient.frame = infoBtn.bounds;
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
+                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
+                          nil];
+    [infoBtn.layer insertSublayer:btnGradient atIndex:0];
+    
+    // Round button corners
+    CALayer *btnLayer = [infoBtn layer];
+    [btnLayer setMasksToBounds:YES];
+    [btnLayer setCornerRadius:5.0f];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -94,8 +104,7 @@ double totalSecondsDub;
 
     // Calculate estimated percentage of life remaining
     double percentRemaining = (seconds / totalSecondsDub) * 100.0;
-    //NSLog(@"percent remaining: %@", [NSString stringWithFormat:@"%.10f percent of your life remaining", percentRemaining]);
-    _percentLabel.text = [NSString stringWithFormat:@"%.8f%% of your life remaining", percentRemaining];
+    _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
 
     timerStarted = YES;
 }
@@ -187,6 +196,9 @@ double totalSecondsDub;
 }
 
 - (void)viewDidUnload {
+    infoBtn = nil;
+    detailsLabel = nil;
+    detailView = nil;
     [self setPercentLabel:nil];
     [self setCountdownLabel:nil];
     [self setYouAreLabel:nil];

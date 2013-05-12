@@ -8,21 +8,46 @@
 
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ConfigViewController
 NSDictionary *personInfo;
 NSString *gender;
 NSDate *birthDate;
 
-@synthesize delegate = _delegate;
-@synthesize cancelButton = _cancelButton;
-@synthesize genderToggle = _genderToggle;
-@synthesize dobPicker = _dobPicker;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
+    [self.view addSubview:self->contentView];
+    ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
+
+    contentView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
+
+    [scroller setScrollEnabled:YES];
+    [scroller setContentSize:CGSizeMake(320,700)];
+    [scroller setContentOffset:CGPointMake(0,0) animated:NO];
+
+    NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
+
+    for(UIButton *btn in buttons) {
+        // Set the button Text Color
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+
+        // Draw a custom gradient
+        CAGradientLayer *btnGradient = [CAGradientLayer layer];
+        btnGradient.frame = btn.bounds;
+        btnGradient.colors = [NSArray arrayWithObjects:
+                              (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
+                              (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
+                              nil];
+        [btn.layer insertSublayer:btnGradient atIndex:0];
+
+        // Round button corners
+        CALayer *btnLayer = [btn layer];
+        [btnLayer setMasksToBounds:YES];
+        [btnLayer setCornerRadius:5.0f];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,17 +55,22 @@ NSDate *birthDate;
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
+    scroller = nil;
+    saveBtn = nil;
+    cancelBtn = nil;
+    cancelBtn = nil;
+    contentView = nil;
+    self->contentView = nil;
     [self setDobPicker:nil];
-    [self setCancelButton:nil];
     [self setGenderToggle:nil];
+    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     //[self deletePlist];
-    _cancelButton.hidden = YES;
+    cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
 }
@@ -115,7 +145,7 @@ NSDate *birthDate;
                         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
 
                         if ([nsDict objectForKey:@"gender"] != nil) {
-                            _cancelButton.hidden = NO;
+                            cancelBtn.hidden = NO;
 
                             if ([[nsDict objectForKey:@"gender"]isEqualToString:@"m"])
                                 [_genderToggle setSelectedSegmentIndex:0];
@@ -164,11 +194,10 @@ NSDate *birthDate;
     NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
 
     // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
         NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-    }
 
-    // Show contents of Documents directory for debugging purposes
+    // Show contents of Documents directory for debugging
     // NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 /**** END PLIST METHODS ****/
@@ -184,7 +213,7 @@ NSDate *birthDate;
 
     // Check to see if anyone is listening...
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
-        // ...then send the delegate function with the amount entered by the user
+        // ...then send the delegate function with amount entered by the user
         [_delegate displayUserInfo:personInfo];
     }
 }

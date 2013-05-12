@@ -45,10 +45,10 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
-    
+
     // Calculate the total seconds in a person's life who lives to 81
     double totalSecondsInLife = ((((365.25 * 81) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
-    
+
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife],
                   @"Total seconds in life should equal util calculation");
 
@@ -71,7 +71,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     // Switch gender to male and keep birthdate the same, to see change in age estimate.
     gender = @"m";
 
-    // Update dictionary with new gender value
+    // Update dictionary with new gender
     testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
     // Recalculate our dates via date util

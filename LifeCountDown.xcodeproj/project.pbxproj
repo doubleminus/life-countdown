@@ -26,6 +26,7 @@
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
+		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2ECF59CC16672BB100820589 /* blk_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ECF59CB16672BB100820589 /* blk_tile.png */; };
@@ -66,6 +67,7 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
+		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateCalculationUtilTest.h; path = LifeCountDownTests/DateCalculationUtilTest.h; sourceTree = SOURCE_ROOT; };
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */,
 				2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
 				2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */,
 				2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */,
@@ -100,6 +103,7 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
+				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
 				2E21049E151ED7BB00D0B523 /* LifeCountDown */,
 				2E2104BC151ED7BB00D0B523 /* LifeCountDownTests */,

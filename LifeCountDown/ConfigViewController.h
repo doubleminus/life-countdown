@@ -18,13 +18,15 @@
 @interface ConfigViewController : UIViewController {
     NSString *path;
     IBOutlet UITextField *amountTextField;
-    id<ConfigViewDelegate> delegate;
+    IBOutlet UIView *contentView;
+    __weak IBOutlet UIScrollView *scroller;
+    __weak IBOutlet UIButton *cancelBtn;
+    __weak IBOutlet UIButton *saveBtn;
 }
 
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (nonatomic, assign) id delegate;
 
 - (IBAction)cancelPressed;
