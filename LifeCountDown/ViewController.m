@@ -45,6 +45,21 @@ double totalSecondsDub;
     [btnLayer setCornerRadius:5.0f];
 }
 
+- (IBAction)unhideComponents:(id)sender {
+    if (infoBtn.hidden && _currentAgeLabel.hidden && _youAreLabel.hidden && _ageLabel.hidden) {
+        infoBtn.hidden = NO;
+        _currentAgeLabel.hidden = NO;
+        _youAreLabel.hidden = NO;
+        _ageLabel.hidden = NO;
+    }
+    else {
+        infoBtn.hidden = YES;
+        _currentAgeLabel.hidden = YES;
+        _youAreLabel.hidden = YES;
+        _ageLabel.hidden = YES;
+    }
+}
+
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo {
     ConfigViewController* enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
@@ -198,7 +213,6 @@ double totalSecondsDub;
 - (void)viewDidUnload {
     infoBtn = nil;
     detailsLabel = nil;
-    detailView = nil;
     [self setPercentLabel:nil];
     [self setCountdownLabel:nil];
     [self setYouAreLabel:nil];

@@ -14,7 +14,6 @@
     NSString *path, *bundle;
     double seconds;
     bool timerStarted;
-    __weak IBOutlet UIView *detailView;
     __weak IBOutlet UILabel *detailsLabel;
     __weak IBOutlet UIButton *infoBtn;
 }
@@ -25,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 
 - (IBAction)setUserInfo;
+- (IBAction)unhideComponents:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
 

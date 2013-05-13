@@ -27,6 +27,8 @@ NSDate *birthDate;
     [scroller setContentSize:CGSizeMake(320,700)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
 
+    scroller.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
     for(UIButton *btn in buttons) {
