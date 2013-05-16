@@ -42,7 +42,6 @@
 						<string key="NSFrame">{{87, 402}, {147, 28}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="786333789"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -137,6 +136,7 @@
 						<string key="NSFrame">{{45, 135}, {230, 36}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="893955677"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -158,6 +158,7 @@
 						<string key="NSFrame">{{151, 196}, {18, 19}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="989723341"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -217,6 +218,7 @@
 						<string key="NSFrame">{{20, 350}, {276, 44}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1052591886"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -258,7 +260,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="786333789"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">10</int>
 					<object class="NSImage" key="NSImage">
@@ -4717,6 +4719,14 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">iButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="893955677"/>
+					</object>
+					<int key="connectionID">63</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">setUserInfo</string>
 						<reference key="source" ref="1052591886"/>
@@ -4727,12 +4737,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">unhideComponents:</string>
+						<string key="label">toggleComponents:</string>
 						<reference key="source" ref="893955677"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">62</int>
+					<int key="connectionID">64</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4761,11 +4771,11 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<reference ref="1053701925"/>
 							<reference ref="786333789"/>
 							<reference ref="686550588"/>
-							<reference ref="893955677"/>
 							<reference ref="1052591886"/>
 							<reference ref="989723341"/>
 							<reference ref="402407234"/>
 							<reference ref="354573670"/>
+							<reference ref="893955677"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -4830,7 +4840,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">62</int>
+			<int key="maxID">64</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4839,15 +4849,15 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="setUserInfo">id</string>
-						<string key="unhideComponents:">id</string>
+						<string key="toggleComponents:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="setUserInfo">
 							<string key="name">setUserInfo</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="unhideComponents:">
-							<string key="name">unhideComponents:</string>
+						<object class="IBActionInfo" key="toggleComponents:">
+							<string key="name">toggleComponents:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -4857,6 +4867,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="currentAgeLabel">UILabel</string>
 						<string key="dateLabel">UILabel</string>
 						<string key="detailsLabel">UILabel</string>
+						<string key="iButton">UIButton</string>
 						<string key="infoBtn">UIButton</string>
 						<string key="percentLabel">UILabel</string>
 						<string key="youAreLabel">UILabel</string>
@@ -4881,6 +4892,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="IBToOneOutletInfo" key="detailsLabel">
 							<string key="name">detailsLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="iButton">
+							<string key="name">iButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="infoBtn">
 							<string key="name">infoBtn</string>

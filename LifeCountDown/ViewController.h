@@ -16,6 +16,7 @@
     bool timerStarted;
     __weak IBOutlet UILabel *detailsLabel;
     __weak IBOutlet UIButton *infoBtn;
+    __weak IBOutlet UIButton *iButton;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel;
@@ -24,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 
 - (IBAction)setUserInfo;
-- (IBAction)unhideComponents:(id)sender;
+- (IBAction)toggleComponents:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
 

@@ -21,7 +21,7 @@ NSDate *birthDate;
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
 
-    contentView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
+    contentView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]];
 
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,700)];
@@ -31,7 +31,7 @@ NSDate *birthDate;
 
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
-    for(UIButton *btn in buttons) {
+    for (UIButton *btn in buttons) {
         // Set the button Text Color
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
@@ -62,7 +62,6 @@ NSDate *birthDate;
     cancelBtn = nil;
     cancelBtn = nil;
     contentView = nil;
-    self->contentView = nil;
     [self setDobPicker:nil];
     [self setGenderToggle:nil];
     [super viewDidUnload];

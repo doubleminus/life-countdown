@@ -25,7 +25,7 @@ double totalSecondsDub;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]];
 
     // Set button Text Color
     [infoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -45,18 +45,13 @@ double totalSecondsDub;
     [btnLayer setCornerRadius:5.0f];
 }
 
-- (IBAction)unhideComponents:(id)sender {
+/* Toggle between showing and displaying components, when iButton is touched */
+- (IBAction)toggleComponents:(id)sender {
     if (infoBtn.hidden && _currentAgeLabel.hidden && _youAreLabel.hidden && _ageLabel.hidden) {
-        infoBtn.hidden = NO;
-        _currentAgeLabel.hidden = NO;
-        _youAreLabel.hidden = NO;
-        _ageLabel.hidden = NO;
+        [self showComponents];
     }
     else {
-        infoBtn.hidden = YES;
-        _currentAgeLabel.hidden = YES;
-        _youAreLabel.hidden = YES;
-        _ageLabel.hidden = YES;
+        [self hideComponents];
     }
 }
 
@@ -88,8 +83,7 @@ double totalSecondsDub;
         if ([dateUtil currentAgeDateComp] != nil)
             currentAgeDateComp = [dateUtil currentAgeDateComp];
 
-        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month],
-                                 [currentAgeDateComp day]];
+        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
 
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
@@ -205,12 +199,30 @@ double totalSecondsDub;
 
 /**** END PLIST METHODS ****/
 
+- (void)didRotateFromInterfaceOrientation {
+    iButton.hidden = YES;
+}
+
+- (void)hideComponents {
+    infoBtn.hidden = YES;
+    _currentAgeLabel.hidden = YES;
+    _youAreLabel.hidden = YES;
+    _ageLabel.hidden = YES;
+}
+
+- (void)showComponents {
+    infoBtn.hidden = NO;
+    _currentAgeLabel.hidden = NO;
+    _youAreLabel.hidden = NO;
+    _ageLabel.hidden = NO;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload {
+    iButton = nil;
     infoBtn = nil;
     detailsLabel = nil;
     [self setPercentLabel:nil];
