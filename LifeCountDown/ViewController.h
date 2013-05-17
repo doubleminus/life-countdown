@@ -15,6 +15,7 @@
     double seconds;
     bool timerStarted;
     __weak IBOutlet UILabel *detailsLabel;
+    __weak IBOutlet UILabel *secdsLifeRemLabel;
     __weak IBOutlet UIButton *infoBtn;
     __weak IBOutlet UIButton *iButton;
 }
