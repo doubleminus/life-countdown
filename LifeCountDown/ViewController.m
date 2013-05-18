@@ -211,17 +211,12 @@ double totalSecondsDub;
         
         _countdownLabel.frame = CGRectMake(45,65,230,36);
         secdsLifeRemLabel.frame = CGRectMake(56,101,208,21);
-
-      //  [self moveComponents:_countdownLabel coordinate1:45 coordinate2:135];
-      //  [self moveComponents:secdsLifeRemLabel coordinate1:56 coordinate2:101];
     }
     // Adjust label locations in landscapeRight orientation
     else if (interfaceOrientation == 3) {
         iButton.hidden = YES;
         [self hideComponents];
 
-     //   [self moveComponents:_countdownLabel coordinate1:140 coordinate2:125];
-      //  [self moveComponents:secdsLifeRemLabel coordinate1:130 coordinate2:160];
         _countdownLabel.frame = CGRectMake(130,115,230,36);
         secdsLifeRemLabel.frame = CGRectMake(140,150,208,21);
     }
@@ -229,14 +224,10 @@ double totalSecondsDub;
     else if (interfaceOrientation == 4) {
         iButton.hidden = YES;
         [self hideComponents];
-        
+
         _countdownLabel.frame = CGRectMake(130,115,230,36);
         secdsLifeRemLabel.frame = CGRectMake(140,150,208,21);
     }
-}
-
-- (void)moveComponents:(UILabel*)mvLbl coordinate1:(NSInteger)crd1 coordinate2:(NSInteger)crd2 {
-    mvLbl.frame = CGRectMake(crd1,crd1, [mvLbl.text sizeWithFont:mvLbl.font].width,[mvLbl.text sizeWithFont:mvLbl.font].height);
 }
 
 - (void)hideComponents {

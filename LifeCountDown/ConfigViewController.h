@@ -28,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (nonatomic, assign) id delegate;
+@property (weak, nonatomic) IBOutlet UISlider *daySlider;
+@property (weak, nonatomic) IBOutlet UILabel *daysLbl;
 
 - (IBAction)cancelPressed;
 - (IBAction)savePressed;

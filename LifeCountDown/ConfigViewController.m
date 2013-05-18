@@ -64,6 +64,8 @@ NSDate *birthDate;
     contentView = nil;
     [self setDobPicker:nil];
     [self setGenderToggle:nil];
+    [self setDaySlider:nil];
+    [self setDaysLbl:nil];
     [super viewDidUnload];
 }
 
@@ -98,9 +100,9 @@ NSDate *birthDate;
     birthDate = [_dobPicker date];
 
     if ([self.genderToggle selectedSegmentIndex] == 0)
-        gender = @"m";
-    else
         gender = @"f";
+    else
+        gender = @"m";
 
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
@@ -112,6 +114,11 @@ NSDate *birthDate;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)sliderChanged:(id)sender {
+    _daySlider = (UISlider *)sender;
+    NSInteger val = lround(_daySlider.value);
+    _daysLbl.text = [NSString stringWithFormat:@"%d",val];
+}
 
 /**** BEGIN PLIST METHODS ****/
 - (void)readPlist {
@@ -148,7 +155,7 @@ NSDate *birthDate;
                         if ([nsDict objectForKey:@"gender"] != nil) {
                             cancelBtn.hidden = NO;
 
-                            if ([[nsDict objectForKey:@"gender"]isEqualToString:@"m"])
+                            if ([[nsDict objectForKey:@"gender"]isEqualToString:@"f"])
                                 [_genderToggle setSelectedSegmentIndex:0];
                             else
                                 [_genderToggle setSelectedSegmentIndex:1];

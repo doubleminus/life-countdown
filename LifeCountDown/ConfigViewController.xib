@@ -17,6 +17,7 @@
 			<string>IBUILabel</string>
 			<string>IBUIScrollView</string>
 			<string>IBUISegmentedControl</string>
+			<string>IBUISlider</string>
 			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -46,7 +47,6 @@
 						<string key="NSFrameSize">{320, 554}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="52594898"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -4498,17 +4498,57 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="832603231">
 							<string key="name">STHeitiSC-Light</string>
 							<string key="family">Heiti SC</string>
 							<int key="traits">0</int>
 							<double key="pointSize">17</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="281730109">
 							<string key="NSName">STHeitiSC-Light</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUILabel" id="820062540">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{70, 498}, {180, 21}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">Days Exercise/Week:</string>
+						<reference key="IBUITextColor" ref="1029780900"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<reference key="IBUIFontDescription" ref="832603231"/>
+						<reference key="IBUIFont" ref="281730109"/>
+					</object>
+					<object class="IBUILabel" id="188488164">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{247, 498}, {180, 21}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">0</string>
+						<reference key="IBUITextColor" ref="1029780900"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<reference key="IBUIFontDescription" ref="832603231"/>
+						<reference key="IBUIFont" ref="281730109"/>
 					</object>
 					<object class="IBUILabel" id="871628317">
 						<reference key="NSNextResponder" ref="1070870486"/>
@@ -4516,6 +4556,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="NSFrame">{{28, 20}, {307, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="52594898"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4588,17 +4629,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUISegmentedControl" id="516814913">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{57, 342}, {207, 44}}</string>
+						<string key="NSFrame">{{57, 338}, {207, 44}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="327982492"/>
+						<reference key="NSNextKeyView" ref="241318612"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBNumberOfSegments">2</int>
 						<array key="IBSegmentTitles">
-							<string>Male</string>
 							<string>Female</string>
+							<string>Male</string>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentWidths">
 							<real value="0.0"/>
@@ -4672,10 +4713,58 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="IBUIFontDescription" ref="257816407"/>
 						<reference key="IBUIFont" ref="632162384"/>
 					</object>
+					<object class="IBUISegmentedControl" id="241318612">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{48, 415}, {225, 44}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="200906629"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBNumberOfSegments">2</int>
+						<int key="IBSelectedSegmentIndex">0</int>
+						<array key="IBSegmentTitles">
+							<string>Nonsmoker</string>
+							<string>Smoker</string>
+						</array>
+						<array class="NSMutableArray" key="IBSegmentWidths">
+							<real value="0.0"/>
+							<real value="0.0"/>
+						</array>
+						<array class="NSMutableArray" key="IBSegmentEnabledStates">
+							<boolean value="YES"/>
+							<boolean value="YES"/>
+						</array>
+						<array class="NSMutableArray" key="IBSegmentContentOffsets">
+							<string>{0, 0}</string>
+							<string>{0, 0}</string>
+						</array>
+						<array class="NSMutableArray" key="IBSegmentImages">
+							<reference ref="4"/>
+							<reference ref="4"/>
+						</array>
+					</object>
+					<object class="IBUISlider" id="200906629">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{68, 527}, {184, 23}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="327982492"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<float key="IBUIMaxValue">7</float>
+					</object>
 				</array>
 				<string key="NSFrameSize">{320, 719}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="871628317"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="81662628"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -4744,6 +4833,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<int key="connectionID">42</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">daySlider</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="200906629"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">daysLbl</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="188488164"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">savePressed</string>
 						<reference key="source" ref="318350747"/>
@@ -4768,6 +4873,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">sliderChanged:</string>
+						<reference key="source" ref="200906629"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">73</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4810,9 +4924,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="871628317"/>
 							<reference ref="52594898"/>
 							<reference ref="263129815"/>
-							<reference ref="516814913"/>
 							<reference ref="327982492"/>
 							<reference ref="318350747"/>
+							<reference ref="241318612"/>
+							<reference ref="516814913"/>
+							<reference ref="820062540"/>
+							<reference ref="200906629"/>
+							<reference ref="188488164"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -4846,6 +4964,26 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="object" ref="871628317"/>
 						<reference key="parent" ref="1070870486"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">64</int>
+						<reference key="object" ref="241318612"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">66</int>
+						<reference key="object" ref="200906629"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">68</int>
+						<reference key="object" ref="820062540"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">70</int>
+						<reference key="object" ref="188488164"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -4863,12 +5001,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<integer value="1" key="64.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
+				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4878,6 +5021,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cancelPressed">id</string>
 						<string key="savePressed">id</string>
+						<string key="sliderChanged:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancelPressed">
@@ -4888,11 +5032,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string key="name">savePressed</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="sliderChanged:">
+							<string key="name">sliderChanged:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="amountTextField">UITextField</string>
 						<string key="cancelBtn">UIButton</string>
 						<string key="contentView">UIView</string>
+						<string key="daySlider">UISlider</string>
+						<string key="daysLbl">UILabel</string>
 						<string key="dobPicker">UIDatePicker</string>
 						<string key="genderToggle">UISegmentedControl</string>
 						<string key="saveBtn">UIButton</string>
@@ -4910,6 +5060,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<object class="IBToOneOutletInfo" key="contentView">
 							<string key="name">contentView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="daySlider">
+							<string key="name">daySlider</string>
+							<string key="candidateClassName">UISlider</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="daysLbl">
+							<string key="name">daysLbl</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="dobPicker">
 							<string key="name">dobPicker</string>
