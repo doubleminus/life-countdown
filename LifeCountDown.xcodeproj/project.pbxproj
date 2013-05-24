@@ -30,6 +30,7 @@
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E8F663D1741EBED00CAE131 /* blk_tile-drk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F663C1741EBED00CAE131 /* blk_tile-drk.png */; };
+		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */,
 				2E2104B7151ED7BB00D0B523 /* SenTestingKit.framework in Frameworks */,
 				2E2104B8151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
 				2E2104B9151ED7BB00D0B523 /* Foundation.framework in Frameworks */,

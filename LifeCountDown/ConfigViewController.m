@@ -12,7 +12,7 @@
 
 @implementation ConfigViewController
 NSDictionary *personInfo;
-NSString *gender;
+NSString *gender, *smokeStatus;
 NSDate *birthDate;
 
 - (void)viewDidLoad {
@@ -66,6 +66,7 @@ NSDate *birthDate;
     [self setGenderToggle:nil];
     [self setDaySlider:nil];
     [self setDaysLbl:nil];
+    [self setSmokeToggle:nil];
     [super viewDidUnload];
 }
 
@@ -103,10 +104,16 @@ NSDate *birthDate;
         gender = @"f";
     else
         gender = @"m";
+    
+    if ([self.smokeToggle selectedSegmentIndex] == 0)
+        smokeStatus = @"nonsmoker";
+    else
+        smokeStatus = @"smoker";
+    
 
     if (birthDate != nil && gender != nil) {
-        personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, nil]
-                                                                            forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", nil]];
+        personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, smokeStatus, nil]
+                                                                            forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", @"smokeStatus", nil]];
         if (personInfo != nil)
             [self writePlist:personInfo];
     }
@@ -159,6 +166,11 @@ NSDate *birthDate;
                                 [_genderToggle setSelectedSegmentIndex:0];
                             else
                                 [_genderToggle setSelectedSegmentIndex:1];
+                            
+                            if ([[nsDict objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
+                                [_smokeToggle setSelectedSegmentIndex:0];
+                            else
+                                [_smokeToggle setSelectedSegmentIndex:1];
                         }
                     }
                     // Otherwise, fall back on default date of January 1, 1970
