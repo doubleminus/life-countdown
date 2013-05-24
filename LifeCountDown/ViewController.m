@@ -15,12 +15,16 @@
 NSNumberFormatter *formatter;
 double totalSecondsDub;
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad {
@@ -74,7 +78,6 @@ double totalSecondsDub;
 
     if (infoDictionary != nil) {
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
-        _youAreLabel.text = @"You are...";
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setGeneratesDecimalNumbers:NO];

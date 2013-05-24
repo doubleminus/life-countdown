@@ -29,7 +29,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
-    NSString *expected = @"You will be...81";
+    NSString *expected = @"Your estimated final age: 81";
     NSString *result = [testDateUtil futureAgeStr];
 
     if ([expected isEqualToString:result]) stringsEqual = YES;
@@ -81,7 +81,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
     // Update expected String
-    expected = @"You will be...78";
+    expected = @"Your estimated final age: 78";
     result = [testDateUtil futureAgeStr];
     //NSLog(@"result string: %@", result);
 
@@ -124,7 +124,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
-    NSString *expected = @"You will be...71"; // 81-10 to reflect 10 less years lived due to smoking
+    NSString *expected = @"Your estimated final age: 71"; // 81-10 to reflect 10 less years lived due to smoking
     NSString *result = [testDateUtil futureAgeStr];
     
     if ([expected isEqualToString:result]) stringsEqual = YES;
@@ -168,7 +168,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
-    NSString *expected = @"You will be...81";
+    NSString *expected = @"Your estimated final age: 81";
     NSString *result = [testDateUtil futureAgeStr];
     
     if ([expected isEqualToString:result]) stringsEqual = YES;
@@ -212,7 +212,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
-    NSString *expected = @"You will be...68"; // 78-10 to reflect 10 less years lived due to smoking
+    NSString *expected = @"Your estimated final age: 68"; // 78-10 to reflect 10 less years lived due to smoking
     NSString *result = [testDateUtil futureAgeStr];
     
     if ([expected isEqualToString:result]) stringsEqual = YES;
@@ -256,7 +256,7 @@ double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
-    NSString *expected = @"You will be...78";
+    NSString *expected = @"Your estimated final age: 78";
     NSString *result = [testDateUtil futureAgeStr];
     
     if ([expected isEqualToString:result]) stringsEqual = YES;
