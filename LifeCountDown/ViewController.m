@@ -51,12 +51,10 @@ double totalSecondsDub;
 
 /* Toggle between showing and displaying components, when iButton is touched */
 - (IBAction)toggleComponents:(id)sender {
-    if (infoBtn.hidden && _currentAgeLabel.hidden && _ageLabel.hidden) {
+    if (infoBtn.hidden && _currentAgeLabel.hidden && _ageLabel.hidden)
         [self showComponents];
-    }
-    else {
-        [self hideComponents];
-    }
+    else
+        [self handlePortrait];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -202,42 +200,40 @@ double totalSecondsDub;
 
 /**** END PLIST METHODS ****/
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
 
-    if (interfaceOrientation == 1) {
-        iButton.hidden = NO;
-        [self hideComponents];
-        _percentLabel.hidden = NO;
-        
-        _countdownLabel.frame = CGRectMake(45,65,230,36);
-        secdsLifeRemLabel.frame = CGRectMake(56,101,208,21);
-    }
+    if (interfaceOrientation == 1)
+        [self handlePortrait];
     // Adjust label locations in landscapeRight orientation
-    else if (interfaceOrientation == 3) {
-        iButton.hidden = YES;
-        [self hideComponents];
-
-        _countdownLabel.frame = CGRectMake(130,115,230,36);
-        secdsLifeRemLabel.frame = CGRectMake(140,150,208,21);
-    }
+    else if (interfaceOrientation == 3)
+        [self handleLandscape];
     // Adjust label locations in landscapeLeft orientation
-    else if (interfaceOrientation == 4) {
-        iButton.hidden = YES;
-        [self hideComponents];
-
-        _countdownLabel.frame = CGRectMake(130,115,230,36);
-        secdsLifeRemLabel.frame = CGRectMake(140,150,208,21);
-    }
+    else if (interfaceOrientation == 4)
+        [self handleLandscape];
 }
 
-- (void)hideComponents {
+- (void)handlePortrait {
+    _percentLabel.hidden = NO;
+    iButton.hidden = NO;
+    infoBtn.hidden = YES;
+    _currentAgeLabel.hidden = YES;
+    _ageLabel.hidden = YES;
+    
+    _countdownLabel.frame = CGRectMake(45,53,230,52);
+    secdsLifeRemLabel.frame = CGRectMake(56,101,208,21);
+}
+
+- (void)handleLandscape {
+    iButton.hidden = YES;
     infoBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
+
+    _countdownLabel.frame = CGRectMake(130,110,230,52);
+    secdsLifeRemLabel.frame = CGRectMake(140,155,208,21);
 }
 
 - (void)showComponents {
