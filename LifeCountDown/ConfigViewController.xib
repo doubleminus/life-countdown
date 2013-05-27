@@ -4532,13 +4532,13 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<reference key="IBUIFontDescription" ref="832603231"/>
 						<reference key="IBUIFont" ref="281730109"/>
 					</object>
-					<object class="IBUILabel" id="10157087">
+					<object class="IBUILabel" id="268049505">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{116, 409}, {84, 21}}</string>
+						<string key="NSFrame">{{118, 408}, {84, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="334208843"/>
+						<reference key="NSNextKeyView" ref="915449618"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4752,10 +4752,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIMaxValue">7</float>
 					</object>
-					<object class="IBUISwitch" id="334208843">
+					<object class="IBUISwitch" id="915449618">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{105, 438}, {94, 27}}</string>
+						<string key="NSFrame">{{107, 437}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="820062540"/>
@@ -4858,7 +4858,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">smokeSwitch</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="334208843"/>
+						<reference key="destination" ref="915449618"/>
 					</object>
 					<int key="connectionID">78</int>
 				</object>
@@ -4940,12 +4940,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="263129815"/>
 							<reference ref="516814913"/>
 							<reference ref="820062540"/>
-							<reference ref="10157087"/>
 							<reference ref="200906629"/>
-							<reference ref="334208843"/>
 							<reference ref="327982492"/>
 							<reference ref="318350747"/>
 							<reference ref="188488164"/>
+							<reference ref="268049505"/>
+							<reference ref="915449618"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -4996,12 +4996,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">76</int>
-						<reference key="object" ref="334208843"/>
+						<reference key="object" ref="915449618"/>
 						<reference key="parent" ref="1070870486"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">77</int>
-						<reference key="object" ref="10157087"/>
+						<reference key="object" ref="268049505"/>
 						<reference key="parent" ref="1070870486"/>
 					</object>
 				</array>

@@ -69,7 +69,6 @@ NSDate *birthDate;
     [self setSmokeSwitch:nil];
     [self setThumbTintColor:nil];
     [self setOnTintColor:nil];
-    [self setTintColor:nil];
     [super viewDidUnload];
 }
 

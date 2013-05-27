@@ -53,7 +53,7 @@ NSCalendarUnit unitFlags;
             yearBase -= 10; // Remove 10 years from life if they smoke
 
         [self calcBaseAgeInSeconds:yearBase];
-        futureAgeStr = [NSString stringWithFormat:@"Your estimated final age: %d", yearBase];
+        futureAgeStr = [NSString stringWithFormat:@"Estimated final age: %d", yearBase];
     }
 }
 

@@ -51,7 +51,7 @@ double totalSecondsDub;
 
 /* Toggle between showing and displaying components, when iButton is touched */
 - (IBAction)toggleComponents:(id)sender {
-    if (infoBtn.hidden && _currentAgeLabel.hidden && _youAreLabel.hidden && _ageLabel.hidden) {
+    if (infoBtn.hidden && _currentAgeLabel.hidden && _ageLabel.hidden) {
         [self showComponents];
     }
     else {
@@ -86,7 +86,7 @@ double totalSecondsDub;
         if ([dateUtil currentAgeDateComp] != nil)
             currentAgeDateComp = [dateUtil currentAgeDateComp];
 
-        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
+        _currentAgeLabel.text = [NSString stringWithFormat:@"Age: %d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
 
         if ([dateUtil futureAgeStr] != nil)
             _ageLabel.text = [dateUtil futureAgeStr];
@@ -236,7 +236,6 @@ double totalSecondsDub;
 - (void)hideComponents {
     infoBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
-    _youAreLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
 }
@@ -244,7 +243,6 @@ double totalSecondsDub;
 - (void)showComponents {
     infoBtn.hidden = NO;
     _currentAgeLabel.hidden = NO;
-    _youAreLabel.hidden = NO;
     _ageLabel.hidden = NO;
     _percentLabel.hidden = NO;
 }
@@ -260,7 +258,6 @@ double totalSecondsDub;
     detailsLabel = nil;
     [self setPercentLabel:nil];
     [self setCountdownLabel:nil];
-    [self setYouAreLabel:nil];
     [self setAgeLabel:nil];
     [self setDateLabel:nil];
     [self setCurrentAgeLabel:nil];
