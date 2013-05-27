@@ -18,6 +18,7 @@
 			<string>IBUIScrollView</string>
 			<string>IBUISegmentedControl</string>
 			<string>IBUISlider</string>
+			<string>IBUISwitch</string>
 			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -4513,9 +4514,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="820062540">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{70, 498}, {180, 21}}</string>
+						<string key="NSFrame">{{70, 497}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="200906629"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4530,12 +4532,35 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<reference key="IBUIFontDescription" ref="832603231"/>
 						<reference key="IBUIFont" ref="281730109"/>
 					</object>
+					<object class="IBUILabel" id="10157087">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{116, 409}, {84, 21}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="334208843"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">Smoker:</string>
+						<reference key="IBUITextColor" ref="1029780900"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">1</int>
+						<reference key="IBUIFontDescription" ref="832603231"/>
+						<reference key="IBUIFont" ref="281730109"/>
+					</object>
 					<object class="IBUILabel" id="188488164">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{247, 498}, {180, 21}}</string>
+						<string key="NSFrame">{{263, 527}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="327982492"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4632,7 +4657,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="NSFrame">{{57, 338}, {207, 44}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="241318612"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -4661,7 +4686,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUIButton" id="327982492">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{123, 600}, {74, 30}}</string>
+						<string key="NSFrame">{{123, 598}, {74, 30}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="318350747"/>
@@ -4695,7 +4720,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUIButton" id="318350747">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{101, 645}, {118, 43}}</string>
+						<string key="NSFrame">{{101, 643}, {118, 43}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -4713,46 +4738,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="IBUIFontDescription" ref="257816407"/>
 						<reference key="IBUIFont" ref="632162384"/>
 					</object>
-					<object class="IBUISegmentedControl" id="241318612">
-						<reference key="NSNextResponder" ref="1070870486"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48, 415}, {225, 44}}</string>
-						<reference key="NSSuperview" ref="1070870486"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="200906629"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBNumberOfSegments">2</int>
-						<int key="IBSelectedSegmentIndex">0</int>
-						<array key="IBSegmentTitles">
-							<string>Nonsmoker</string>
-							<string>Smoker</string>
-						</array>
-						<array class="NSMutableArray" key="IBSegmentWidths">
-							<real value="0.0"/>
-							<real value="0.0"/>
-						</array>
-						<array class="NSMutableArray" key="IBSegmentEnabledStates">
-							<boolean value="YES"/>
-							<boolean value="YES"/>
-						</array>
-						<array class="NSMutableArray" key="IBSegmentContentOffsets">
-							<string>{0, 0}</string>
-							<string>{0, 0}</string>
-						</array>
-						<array class="NSMutableArray" key="IBSegmentImages">
-							<reference ref="4"/>
-							<reference ref="4"/>
-						</array>
-					</object>
 					<object class="IBUISlider" id="200906629">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{68, 527}, {184, 23}}</string>
+						<string key="NSFrame">{{68, 526}, {184, 23}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="327982492"/>
+						<reference key="NSNextKeyView" ref="188488164"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -4760,8 +4752,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<float key="IBUIMaxValue">7</float>
 					</object>
+					<object class="IBUISwitch" id="334208843">
+						<reference key="NSNextResponder" ref="1070870486"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{105, 438}, {94, 27}}</string>
+						<reference key="NSSuperview" ref="1070870486"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="820062540"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<bool key="IBUIOn">YES</bool>
+					</object>
 				</array>
-				<string key="NSFrameSize">{320, 719}</string>
+				<string key="NSFrameSize">{320, 706}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="871628317"/>
@@ -4850,11 +4856,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">smokeToggle</string>
+						<string key="label">smokeSwitch</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="241318612"/>
+						<reference key="destination" ref="334208843"/>
 					</object>
-					<int key="connectionID">74</int>
+					<int key="connectionID">78</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -4932,12 +4938,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="871628317"/>
 							<reference ref="52594898"/>
 							<reference ref="263129815"/>
-							<reference ref="327982492"/>
-							<reference ref="318350747"/>
-							<reference ref="241318612"/>
 							<reference ref="516814913"/>
 							<reference ref="820062540"/>
+							<reference ref="10157087"/>
 							<reference ref="200906629"/>
+							<reference ref="334208843"/>
+							<reference ref="327982492"/>
+							<reference ref="318350747"/>
 							<reference ref="188488164"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -4973,11 +4980,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="parent" ref="1070870486"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">64</int>
-						<reference key="object" ref="241318612"/>
-						<reference key="parent" ref="1070870486"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">66</int>
 						<reference key="object" ref="200906629"/>
 						<reference key="parent" ref="1070870486"/>
@@ -4990,6 +4992,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBObjectRecord">
 						<int key="objectID">70</int>
 						<reference key="object" ref="188488164"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">76</int>
+						<reference key="object" ref="334208843"/>
+						<reference key="parent" ref="1070870486"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">77</int>
+						<reference key="object" ref="10157087"/>
 						<reference key="parent" ref="1070870486"/>
 					</object>
 				</array>
@@ -5009,17 +5021,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<integer value="1" key="64.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="70.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="76.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">74</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5055,7 +5067,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="genderToggle">UISegmentedControl</string>
 						<string key="saveBtn">UIButton</string>
 						<string key="scroller">UIScrollView</string>
-						<string key="smokeToggle">UISegmentedControl</string>
+						<string key="smokeSwitch">UISwitch</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="amountTextField">
@@ -5094,9 +5106,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string key="name">scroller</string>
 							<string key="candidateClassName">UIScrollView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="smokeToggle">
-							<string key="name">smokeToggle</string>
-							<string key="candidateClassName">UISegmentedControl</string>
+						<object class="IBToOneOutletInfo" key="smokeSwitch">
+							<string key="name">smokeSwitch</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

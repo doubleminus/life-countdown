@@ -66,7 +66,10 @@ NSDate *birthDate;
     [self setGenderToggle:nil];
     [self setDaySlider:nil];
     [self setDaysLbl:nil];
-    [self setSmokeToggle:nil];
+    [self setSmokeSwitch:nil];
+    [self setThumbTintColor:nil];
+    [self setOnTintColor:nil];
+    [self setTintColor:nil];
     [super viewDidUnload];
 }
 
@@ -77,6 +80,19 @@ NSDate *birthDate;
     cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
+    
+    UIColor *thumbTintColor =  [[UIColor alloc] initWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f];
+    [thumbTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
+    [[UISwitch appearance] setThumbTintColor:[self thumbTintColor]];
+    
+    UIColor *onTintColor =  [[UIColor alloc] initWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:251.0f / 255.0f alpha:1.0f];
+    [onTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
+    [[UISwitch appearance] setOnTintColor:[self onTintColor]];
+
+    //[_smokeSwitch setOnTintColor:[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:251.0f / 255.0f alpha:1.0f]];
+    //[_smokeSwitch setThumbTintColor:[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f]];
+    [[UISwitch appearance] setOnImage:[UIImage imageNamed:@"yesSwitch"]];
+    [[UISwitch appearance] setOffImage:[UIImage imageNamed:@"noSwitch"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -104,12 +120,11 @@ NSDate *birthDate;
         gender = @"f";
     else
         gender = @"m";
-    
-    if ([self.smokeToggle selectedSegmentIndex] == 0)
+
+    if (!self.smokeSwitch.isOn)
         smokeStatus = @"nonsmoker";
     else
         smokeStatus = @"smoker";
-    
 
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, smokeStatus, nil]
@@ -166,11 +181,11 @@ NSDate *birthDate;
                                 [_genderToggle setSelectedSegmentIndex:0];
                             else
                                 [_genderToggle setSelectedSegmentIndex:1];
-                            
+
                             if ([[nsDict objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
-                                [_smokeToggle setSelectedSegmentIndex:0];
+                                [_smokeSwitch setOn:NO];
                             else
-                                [_smokeToggle setSelectedSegmentIndex:1];
+                                [_smokeSwitch setOn:YES];
                         }
                     }
                     // Otherwise, fall back on default date of January 1, 1970
