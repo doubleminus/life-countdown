@@ -206,11 +206,8 @@ double totalSecondsDub;
 
     if (interfaceOrientation == 1)
         [self handlePortrait];
-    // Adjust label locations in landscapeRight orientation
-    else if (interfaceOrientation == 3)
-        [self handleLandscape];
-    // Adjust label locations in landscapeLeft orientation
-    else if (interfaceOrientation == 4)
+    // Adjust label locations in landscapeRight or Left orientation
+    else if (interfaceOrientation == 3 || interfaceOrientation == 4)
         [self handleLandscape];
 }
 
