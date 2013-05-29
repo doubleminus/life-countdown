@@ -41,15 +41,20 @@ NSCalendarUnit unitFlags;
 
 // Calculates number of years to live based on user-entered criteria
 - (void)calcYearBase:(NSDictionary*)completedDict {
-    NSString* genStr = [completedDict objectForKey:@"gender"];
+    NSString *genStr = [completedDict objectForKey:@"gender"];
     NSString *smokeStr = [completedDict objectForKey:@"smokeStatus"];
+    NSInteger hrsAdd = [[completedDict objectForKey:@"hrsExercise"] integerValue];
 
-    if (genStr != nil) {
+    if (genStr != nil && smokeStr != nil) {
         if ([genStr isEqualToString:@"f"])
             yearBase = FEMALE_AGE_START;
 
         if ([smokeStr isEqualToString:@"smoker"])
             yearBase -= 10; // Remove 10 years from life if they smoke
+
+        // ~7 hours added to your life for each hour of exercise/week
+        hrsGainedPerYear = (hrsAdd * 7) * 52.1775; // Find hours added for each year of working out...
+                                                   // ...later we will multiply this by years remaining
 
         [self calcBaseAgeInSeconds:yearBase];
         futureAgeStr = [NSString stringWithFormat:@"Estimated final age: %d", yearBase];
@@ -75,7 +80,7 @@ NSCalendarUnit unitFlags;
         [self calculateSeconds:birthDate];
 }
 
-// Calculate the user's remaining minutes left to live
+// Calculate the user's remaining seconds left to live
 - (void)calculateSeconds:(NSDate*)dateArg {
 
     if (calendar != nil) {

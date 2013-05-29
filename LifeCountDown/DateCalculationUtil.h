@@ -7,7 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DateCalculationUtil : NSObject
+@interface DateCalculationUtil : NSObject {
+    float hrsGainedPerYear;
+}
 
 @property (strong, nonatomic) NSDate *birthDate;
 @property (strong, nonatomic) NSString *futureAgeStr;

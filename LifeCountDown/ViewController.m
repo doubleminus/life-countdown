@@ -17,7 +17,7 @@ double totalSecondsDub;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
@@ -34,15 +34,15 @@ double totalSecondsDub;
     // Set button Text Color
     [infoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [infoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+
     // Set button Background Color
     CAGradientLayer *btnGradient = [CAGradientLayer layer];
     btnGradient.frame = infoBtn.bounds;
     btnGradient.colors = [NSArray arrayWithObjects:
                           (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
-                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
-                          nil];
+                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
     [infoBtn.layer insertSublayer:btnGradient atIndex:0];
-    
+
     // Round button corners
     CALayer *btnLayer = [infoBtn layer];
     [btnLayer setMasksToBounds:YES];
@@ -69,7 +69,6 @@ double totalSecondsDub;
 }
 
 #pragma mark displayUserInfo Delegate function
-
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
