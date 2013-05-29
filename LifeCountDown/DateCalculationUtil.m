@@ -43,7 +43,6 @@ NSCalendarUnit unitFlags;
 - (void)calcYearBase:(NSDictionary*)completedDict {
     NSString* genStr = [completedDict objectForKey:@"gender"];
     NSString *smokeStr = [completedDict objectForKey:@"smokeStatus"];
-    
 
     if (genStr != nil) {
         if ([genStr isEqualToString:@"f"])
@@ -83,7 +82,7 @@ NSCalendarUnit unitFlags;
         // Obtain date components representing the difference from the user's birthday until now
         NSDateComponents *bdayComp = [calendar components:unitFlags fromDate:dateArg];
         NSDateComponents *comps = [[NSDateComponents alloc] init]; // Obtain empty date components to set, so we have a static starting point
-        comps.calendar = calendar; // Set its calendar to our Gregorian calendar
+        [comps setCalendar:calendar]; // Set its calendar to our Gregorian calendar
         [comps setDay:[bdayComp day]];
         [comps setMonth:[bdayComp month]];
         [comps setYear:[bdayComp year] + yearBase];

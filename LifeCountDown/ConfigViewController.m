@@ -17,22 +17,23 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]]];
 
+    // Scroll view setup
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
-
-    contentView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]];
 
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,700)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
+    [scroller setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
 
-    scroller.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-
+    // Style/skin our buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
     for (UIButton *btn in buttons) {
-        // Set the button Text Color
+        // Set button text color
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
@@ -45,31 +46,11 @@ NSDate *birthDate;
                               nil];
         [btn.layer insertSublayer:btnGradient atIndex:0];
 
-        // Round button corners
+        // Round corners
         CALayer *btnLayer = [btn layer];
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
-    scroller = nil;
-    saveBtn = nil;
-    cancelBtn = nil;
-    cancelBtn = nil;
-    contentView = nil;
-    [self setDobPicker:nil];
-    [self setGenderToggle:nil];
-    [self setDaySlider:nil];
-    [self setDaysLbl:nil];
-    [self setSmokeSwitch:nil];
-    [self setThumbTintColor:nil];
-    [self setOnTintColor:nil];
-    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,6 +87,28 @@ NSDate *birthDate;
     [super viewDidDisappear:animated];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload {
+    scroller = nil;
+    saveBtn = nil;
+    cancelBtn = nil;
+    cancelBtn = nil;
+    contentView = nil;
+    [self setDobPicker:nil];
+    [self setGenderToggle:nil];
+    [self setDaySlider:nil];
+    [self setDaysLbl:nil];
+    [self setSmokeSwitch:nil];
+    [self setThumbTintColor:nil];
+    [self setOnTintColor:nil];
+    plusLbl = nil;
+    [super viewDidUnload];
+}
+
+// Disable landscape orientation
 - (BOOL)shouldAutorotate {
     return NO;
 }
@@ -126,8 +129,10 @@ NSDate *birthDate;
         smokeStatus = @"smoker";
 
     if (birthDate != nil && gender != nil) {
-        personInfo = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: birthDate, gender, smokeStatus, nil]
-                                                                            forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", @"smokeStatus", nil]];
+        personInfo = [NSDictionary dictionaryWithObjects:
+                      [NSArray arrayWithObjects: birthDate, gender, smokeStatus, _daysLbl.text, nil]
+                               forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+
         if (personInfo != nil)
             [self writePlist:personInfo];
     }
@@ -138,7 +143,8 @@ NSDate *birthDate;
 - (IBAction)sliderChanged:(id)sender {
     _daySlider = (UISlider *)sender;
     NSInteger val = lround(_daySlider.value);
-    _daysLbl.text = [NSString stringWithFormat:@"%d",val];
+    _daysLbl.text = [NSString stringWithFormat:@"%d", val];
+    [self togglePlus:val];
 }
 
 /**** BEGIN PLIST METHODS ****/
@@ -164,34 +170,7 @@ NSDate *birthDate;
                 NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
 
                 if (nsDict != nil) {
-                    NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
-                    [myFormatter setDateFormat:@"yyyyMMdd"];
-
-                    // Birthdate has already been set, so set our datepicker
-                    if ([nsDict objectForKey:@"birthDate"] != nil) {
-                        //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
-                        NSString *bdayStr = [myFormatter stringFromDate:[nsDict objectForKey:@"birthDate"]];
-                        [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
-
-                        if ([nsDict objectForKey:@"gender"] != nil) {
-                            cancelBtn.hidden = NO;
-
-                            if ([[nsDict objectForKey:@"gender"]isEqualToString:@"f"])
-                                [_genderToggle setSelectedSegmentIndex:0];
-                            else
-                                [_genderToggle setSelectedSegmentIndex:1];
-
-                            if ([[nsDict objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
-                                [_smokeSwitch setOn:NO];
-                            else
-                                [_smokeSwitch setOn:YES];
-                        }
-                    }
-                    // Otherwise, fall back on default date of January 1, 1970
-                    else {
-                        NSDate *defaultPickDate = [myFormatter dateFromString:@"19700101"];
-                        [_dobPicker setDate:defaultPickDate];
-                    }
+                    [self setupDisplay:nsDict];
                 }
             }
         }
@@ -235,6 +214,53 @@ NSDate *birthDate;
     // NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 /**** END PLIST METHODS ****/
+
+
+// Set our UI component values based on what user entered previously
+- (void)setupDisplay:(NSDictionary*)infoDctnry {
+    NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
+    [myFormatter setDateFormat:@"yyyyMMdd"];
+
+    // Birthdate has already been set, so set our datepicker
+    if ([infoDctnry objectForKey:@"birthDate"] != nil) {
+        //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
+        NSString *bdayStr = [myFormatter stringFromDate:[infoDctnry objectForKey:@"birthDate"]];
+        [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
+
+        if ([infoDctnry objectForKey:@"gender"] != nil) {
+            cancelBtn.hidden = NO;
+
+            // Set Gender in UI
+            if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"])
+                [_genderToggle setSelectedSegmentIndex:0];
+            else
+                [_genderToggle setSelectedSegmentIndex:1];
+
+            // Set whether user is smoker or not
+            if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
+                [_smokeSwitch setOn:NO];
+            else
+                [_smokeSwitch setOn:YES];
+
+            // Set hours of exercise/week
+            [_daysLbl setText: [infoDctnry objectForKey:@"hrsExercise"]];
+            [_daySlider setValue:[_daysLbl.text floatValue]];
+            [self togglePlus:[_daysLbl.text floatValue]];
+        }
+    }
+    // Otherwise, fall back on default date of January 1, 1970
+    else {
+        NSDate *defaultPickDate = [myFormatter dateFromString:@"19700101"];
+        [_dobPicker setDate:defaultPickDate];
+    }
+}
+
+- (void)togglePlus:(NSInteger)fVal {
+    if (fVal <= 20)
+        [plusLbl setHidden:YES];
+    else
+        [plusLbl setHidden:NO];
+}
 
 
 /*****  BEGIN BUTTON METHODS  *****/

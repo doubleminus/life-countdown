@@ -22,6 +22,7 @@
     __weak IBOutlet UIScrollView *scroller;
     __weak IBOutlet UIButton *cancelBtn;
     __weak IBOutlet UIButton *saveBtn;
+    __weak IBOutlet UILabel *plusLbl;
 }
 
 @property (strong, nonatomic) NSDictionary* viewDict;
