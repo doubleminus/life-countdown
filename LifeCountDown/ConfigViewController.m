@@ -243,7 +243,7 @@ NSDate *birthDate;
                 [_smokeSwitch setOn:YES];
 
             // Set hours of exercise/week
-            [_daysLbl setText: [infoDctnry objectForKey:@"hrsExercise"]];
+            [_daysLbl setText:[infoDctnry objectForKey:@"hrsExercise"]];
             [_daySlider setValue:[_daysLbl.text floatValue]];
             [self togglePlus:[_daysLbl.text floatValue]];
         }

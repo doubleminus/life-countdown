@@ -158,7 +158,6 @@
 						<string key="NSFrame">{{151, 196}, {18, 19}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -185,7 +184,7 @@
 					<object class="IBUILabel" id="402407234">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{22, 350}, {276, 44}}</string>
+						<string key="NSFrame">{{11, 338}, {283, 44}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1052591886"/>
@@ -210,7 +209,7 @@
 					<object class="IBUILabel" id="354573670">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{22, 315}, {291, 43}}</string>
+						<string key="NSFrame">{{11, 303}, {298, 43}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="402407234"/>
@@ -228,7 +227,7 @@
 						<int key="IBUINumberOfLines">0</int>
 						<reference key="IBUIFontDescription" ref="620015582"/>
 						<reference key="IBUIFont" ref="470587895"/>
-						<double key="preferredMaxLayoutWidth">291</double>
+						<double key="preferredMaxLayoutWidth">298</double>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -4746,9 +4745,9 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 							<reference ref="686550588"/>
 							<reference ref="1052591886"/>
 							<reference ref="893955677"/>
+							<reference ref="786333789"/>
 							<reference ref="402407234"/>
 							<reference ref="354573670"/>
-							<reference ref="786333789"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

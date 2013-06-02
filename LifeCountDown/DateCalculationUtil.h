@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DateCalculationUtil : NSObject {
+    NSDictionary *diction;
     float hrsGainedPerYear;
 }
 

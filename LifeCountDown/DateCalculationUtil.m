@@ -24,26 +24,28 @@ NSCalendarUnit unitFlags;
 - (DateCalculationUtil*)initWithDict:(NSDictionary*)myDict {
     self = [super init];
 
-    if (myDict != nil) {
+    // Make sure we have our dictionary and crucial birthday value
+    if (myDict != nil && [myDict objectForKey:@"birthDate"] != nil) {
+        diction = myDict;
+        self.birthDate = [diction objectForKey:@"birthDate"];
         yearBase = MALE_AGE_START;
-        [self calcYearBase:myDict];
 
-        if ([myDict objectForKey:@"birthDate"] != nil) {
-            self.birthDate = [myDict objectForKey:@"birthDate"];
+        [self calculateAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get their age
+        [self updateYearBase]; // 2. Adjust our base expected years to live
+        [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
 
-            //NSLog(@"birthDate %@",  birthDate);
-            [self updateAge:birthDate];
-        }
+        if (currentAgeDateComp != nil)
+            [self calculateSeconds:birthDate];
     }
 
     return self;
 }
 
-// Calculates number of years to live based on user-entered criteria
-- (void)calcYearBase:(NSDictionary*)completedDict {
-    NSString *genStr = [completedDict objectForKey:@"gender"];
-    NSString *smokeStr = [completedDict objectForKey:@"smokeStatus"];
-    NSInteger hrsAdd = [[completedDict objectForKey:@"hrsExercise"] integerValue];
+// Updates base number of years to live based on user-entered criteria
+- (void)updateYearBase {
+    NSString *genStr = [diction objectForKey:@"gender"];
+    NSString *smokeStr = [diction objectForKey:@"smokeStatus"];
+    NSInteger hrsAdd = [[diction objectForKey:@"hrsExercise"] integerValue];
 
     if (genStr != nil && smokeStr != nil) {
         if ([genStr isEqualToString:@"f"])
@@ -52,11 +54,19 @@ NSCalendarUnit unitFlags;
         if ([smokeStr isEqualToString:@"smoker"])
             yearBase -= 10; // Remove 10 years from life if they smoke
 
-        // ~7 hours added to your life for each hour of exercise/week
-        hrsGainedPerYear = (hrsAdd * 7) * 52.1775; // Find hours added for each year of working out...
-                                                   // ...later we will multiply this by years remaining
+        // Find # years remaining to live (diff between base years to live and current age in years)
+        NSInteger yearsToLive = yearBase - [currentAgeDateComp year];
 
-        [self calcBaseAgeInSeconds:yearBase];
+        // ~7 hours added to your life for each hour of exercise/week
+        hrsGainedPerYear = (hrsAdd * 6) * 52.1775; // Find hours added for each year of working out...
+
+        NSInteger yearsToAdd = (hrsGainedPerYear * yearsToLive) / 8765;
+        yearBase += yearsToAdd; // Now that we know how many years they have to live, we can add...
+                                // ...years based on weekly exercise habits
+
+        double secondsToAdd = ((hrsGainedPerYear * yearsToLive) * 60) * 60;
+        totalSecondsInLife += secondsToAdd;
+
         futureAgeStr = [NSString stringWithFormat:@"Estimated final age: %d", yearBase];
     }
 }
@@ -66,7 +76,7 @@ NSCalendarUnit unitFlags;
 }
 
 // Determines all age information, via the user-provided birthdate
-- (void)updateAge:(NSDate*)dateArg {
+- (void)calculateAge:(NSDate*)dateArg {
     calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
                     NSMinuteCalendarUnit | NSSecondCalendarUnit;
@@ -75,9 +85,6 @@ NSCalendarUnit unitFlags;
     if (birthDate != nil)
         currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg  toDate:[NSDate date]  options:0];
 
-    // Subtract current age from estimated expiration age, to find years remaining to live
-    if (currentAgeDateComp != nil)
-        [self calculateSeconds:birthDate];
 }
 
 // Calculate the user's remaining seconds left to live
