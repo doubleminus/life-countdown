@@ -9,7 +9,7 @@
 
 @interface DateCalculationUtil : NSObject {
     NSDictionary *diction;
-    float hrsGainedPerYear;
+    float minsGainedPerYear;
 }
 
 @property (strong, nonatomic) NSDate *birthDate;

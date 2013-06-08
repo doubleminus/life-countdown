@@ -57,14 +57,14 @@ NSCalendarUnit unitFlags;
         // Find # years remaining to live (diff between base years to live and current age in years)
         NSInteger yearsToLive = yearBase - [currentAgeDateComp year];
 
-        // ~7 hours added to your life for each hour of exercise/week
-        hrsGainedPerYear = (hrsAdd * 6) * 52.1775; // Find hours added for each year of working out...
+        // ~6 minutes added to your life for each MINUTE of exercise/week
+        minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
 
-        NSInteger yearsToAdd = (hrsGainedPerYear * yearsToLive) / 8765;
+        NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949;
         yearBase += yearsToAdd; // Now that we know how many years they have to live, we can add...
                                 // ...years based on weekly exercise habits
 
-        double secondsToAdd = ((hrsGainedPerYear * yearsToLive) * 60) * 60;
+        double secondsToAdd = (minsGainedPerYear * yearsToLive) * 60;
         totalSecondsInLife += secondsToAdd;
 
         futureAgeStr = [NSString stringWithFormat:@"Estimated final age: %d", yearBase];
