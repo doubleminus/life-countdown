@@ -21,6 +21,10 @@ double totalSecondsDub;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
+
+    // If we return from configView in landscape, then adjust UI components accordingly
+    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
+        [self handleLandscape];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
