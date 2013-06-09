@@ -207,8 +207,9 @@ NSDate *birthDate;
     NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
 
     // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
+        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    }
 
     // Show contents of Documents directory for debugging
     // NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
