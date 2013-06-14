@@ -91,23 +91,6 @@ NSDate *birthDate;
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload {
-    scroller = nil;
-    saveBtn = nil;
-    cancelBtn = nil;
-    cancelBtn = nil;
-    contentView = nil;
-    [self setDobPicker:nil];
-    [self setGenderToggle:nil];
-    [self setDaySlider:nil];
-    [self setDaysLbl:nil];
-    [self setSmokeSwitch:nil];
-    [self setThumbTintColor:nil];
-    [self setOnTintColor:nil];
-    plusLbl = nil;
-    [super viewDidUnload];
-}
-
 // Disable landscape orientation
 - (BOOL)shouldAutorotate {
     return NO;
@@ -279,5 +262,22 @@ NSDate *birthDate;
     }
 }
 /*****  END BUTTON METHODS  *****/
+
+- (void)viewDidUnload {
+    scroller = nil;
+    saveBtn = nil;
+    cancelBtn = nil;
+    cancelBtn = nil;
+    contentView = nil;
+    [self setDobPicker:nil];
+    [self setGenderToggle:nil];
+    [self setDaySlider:nil];
+    [self setDaysLbl:nil];
+    [self setSmokeSwitch:nil];
+    [self setThumbTintColor:nil];
+    [self setOnTintColor:nil];
+    plusLbl = nil;
+    [super viewDidUnload];
+}
 
 @end

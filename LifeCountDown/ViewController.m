@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DateCalculationUtil.h"
+#import "YLProgressBar.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ViewController
@@ -51,6 +52,12 @@ double totalSecondsDub;
     CALayer *btnLayer = [infoBtn layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
+    
+    YLProgressBar *bar = [[YLProgressBar alloc] init];
+    [self.view addSubview:bar];
+
+ //   YLProgressBar *bar = [[YLProgressBar alloc] initWithFrame:CGRectMake(200, 200, 500, 500)];
+  //  [self.view addSubview:bar];
 }
 
 /* Toggle between showing and displaying components, when iButton is touched */
@@ -248,6 +255,7 @@ double totalSecondsDub;
 }
 
 - (void)viewDidUnload {
+    [self setProgressView:nil];
     secdsLifeRemLabel = nil;
     iButton = nil;
     infoBtn = nil;
