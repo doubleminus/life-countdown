@@ -52,12 +52,6 @@ double totalSecondsDub;
     CALayer *btnLayer = [infoBtn layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
-    
-    YLProgressBar *bar = [[YLProgressBar alloc] init];
-    [self.view addSubview:bar];
-
- //   YLProgressBar *bar = [[YLProgressBar alloc] initWithFrame:CGRectMake(200, 200, 500, 500)];
-  //  [self.view addSubview:bar];
 }
 
 /* Toggle between showing and displaying components, when iButton is touched */
@@ -104,7 +98,7 @@ double totalSecondsDub;
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
         if (!timerStarted) {
-            [self updateTimer];
+            [self updateTimerAndBar];
             [self startSecondTimer];
         }
     }
@@ -113,18 +107,31 @@ double totalSecondsDub;
 - (void)startSecondTimer {
     secondTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
                                                    target: self
-                                                 selector: @selector(updateTimer)
+                                                 selector: @selector(updateTimerAndBar)
                                                  userInfo: nil
                                                   repeats: YES];
 }
 
-- (void)updateTimer {
+- (void)updateTimerAndBar {
+    double progAmount, percentRemaining;
     seconds -= 1.0;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
 
-    // Calculate estimated percentage of life remaining
-    double percentRemaining = (seconds / totalSecondsDub) * 100.0;
+    // Set our progress bar's value, based on amount of life remaining
+    progAmount = seconds / totalSecondsDub;
+    [_progressView setProgress:progAmount];
+
+    // Calculate percentage of life remaining
+    percentRemaining = progAmount * 100.0;
     _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
+
+    // Apply color to progress bar based on lifespan
+    if (progAmount >= .66)
+        _progressView.progressTintColor = [UIColor greenColor];
+    else if (progAmount && progAmount > .33)
+        _progressView.progressTintColor = [UIColor yellowColor];
+    else
+    _progressView.progressTintColor = [UIColor redColor];
 
     timerStarted = YES;
 }

@@ -73,12 +73,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     [self initializeProgressBar];
 }
 
 - (void)drawRect:(CGRect)rect {
-    NSLog(@"IN DRAWRECT");
     // Refresh the corner radius value
     self.cornerRadius   = rect.size.height / 2;
 
@@ -169,20 +168,20 @@
         // Draw the white shadow
         [[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.2] set];
         
-        UIBezierPath* shadow        = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0.5, 0, rect.size.width - 1, rect.size.height - 1) 
+        UIBezierPath* shadow = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0.5, 0, rect.size.width - 1, rect.size.height - 1)
                                                           cornerRadius:cornerRadius];
         [shadow stroke];
         
         // Draw the track
         [YLProgressBarColorBackground set];
         
-        UIBezierPath* roundedRect   = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, rect.size.width, rect.size.height-1) cornerRadius:cornerRadius];
+        UIBezierPath* roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, rect.size.width, rect.size.height-1) cornerRadius:cornerRadius];
         [roundedRect fill];
         
         // Draw the inner glow
         [YLProgressBarColorBackgroundGlow set];
         
-        CGMutablePathRef glow       = CGPathCreateMutable();
+        CGMutablePathRef glow = CGPathCreateMutable();
         CGPathMoveToPoint(glow, NULL, cornerRadius, 0);
         CGPathAddLineToPoint(glow, NULL, rect.size.width - cornerRadius, 0);
         CGContextAddPath(context, glow);
@@ -193,7 +192,7 @@
 }
 
 - (void)drawProgressBarWithRect:(CGRect)rect {
-    CGContextRef context        = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
     
     CGContextSaveGState(context); {
