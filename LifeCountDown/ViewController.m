@@ -34,7 +34,7 @@ double totalSecondsDub;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]];
 
     // Set button Text Color
     [infoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -52,6 +52,8 @@ double totalSecondsDub;
     CALayer *btnLayer = [infoBtn layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
+
+    _progressView.frame = CGRectMake(25,160,275,21);
 }
 
 /* Toggle between showing and displaying components, when iButton is touched */
@@ -234,9 +236,10 @@ double totalSecondsDub;
     infoBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
-    
-    _countdownLabel.frame = CGRectMake(45,53,230,52);
-    secdsLifeRemLabel.frame = CGRectMake(56,101,208,21);
+
+    _countdownLabel.frame = CGRectMake(11,20,298,85);
+    secdsLifeRemLabel.frame = CGRectMake(56,90,208,21);
+    _progressView.frame = CGRectMake(25,160,275,21);
 }
 
 - (void)handleLandscape {
@@ -246,8 +249,9 @@ double totalSecondsDub;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
 
-    _countdownLabel.frame = CGRectMake(130,110,230,52);
-    secdsLifeRemLabel.frame = CGRectMake(140,155,208,21);
+    _countdownLabel.frame = CGRectMake(100,70,298,85);
+    secdsLifeRemLabel.frame = CGRectMake(140,135,208,21);
+    _progressView.frame = CGRectMake(60,175,375,21);
 }
 
 - (void)showComponents {

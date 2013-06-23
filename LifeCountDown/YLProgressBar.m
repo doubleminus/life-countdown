@@ -103,9 +103,9 @@
     _progressTintColor = aProgressTintColor;
     const CGFloat* components = CGColorGetComponents(_progressTintColor.CGColor);
     _progressTintColorDark = [UIColor colorWithRed:components[0] / 4.0f
-                                                             green:components[1] / 4.0f
-                                                              blue:components[2] / 4.0f
-                                                             alpha:CGColorGetAlpha(_progressTintColor.CGColor)];
+                                       green:components[1] / 4.0f
+                                       blue:components[2] / 4.0f
+                                       alpha:CGColorGetAlpha(_progressTintColor.CGColor)];
 }
 
 - (UIColor*)progressTintColor {
@@ -142,9 +142,9 @@
 #pragma mark YLProgressBar Private Methods
 
 - (void)initializeProgressBar {
-    self.progressOffset     = 0;
-    self.animationTimer     = nil;
-    self.animated           = YES;
+    self.progressOffset = 0;
+    self.animationTimer = nil;
+    self.animated = YES;
 }
 
 - (UIBezierPath *)stripeWithOrigin:(CGPoint)origin bounds:(CGRect)frame {    

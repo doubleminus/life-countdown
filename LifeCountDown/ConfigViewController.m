@@ -18,7 +18,7 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"blk_tile-drk.png"]]];
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]]];
 
     // Scroll view setup
     [self.view addSubview:self->contentView];

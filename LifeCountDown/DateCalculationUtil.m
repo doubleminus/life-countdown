@@ -60,7 +60,7 @@ NSCalendarUnit unitFlags;
         // ~6 minutes added to your life for each MINUTE of exercise/week
         minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
 
-        NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949;
+        NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949; // Divide by # of minutes in year
         yearBase += yearsToAdd; // Now that we know how many years they have to live, we can add...
                                 // ...years based on weekly exercise habits
 
