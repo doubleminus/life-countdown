@@ -53,8 +53,6 @@
 - (void)drawBackgroundWithRect:(CGRect)rect;
 /** Draw the progress bar. */
 - (void)drawProgressBarWithRect:(CGRect)rect;
-/** Draw the gloss into the given rect. */
-- (void)drawGlossWithRect:(CGRect)rect;
 /** Draw the stipes into the given rect. */
 - (void)drawStripesWithRect:(CGRect)rect;
 
@@ -79,23 +77,22 @@
 
 - (void)drawRect:(CGRect)rect {
     // Refresh the corner radius value
-    self.cornerRadius   = rect.size.height / 2;
+    self.cornerRadius = rect.size.height / 2;
 
     // Compute the progressOffset for the animation
     self.progressOffset = (self.progressOffset > 2 * YLProgressBarSizeStripeWidth - 1) ? 0 : ++self.progressOffset;
 
     // Draw the background track
     [self drawBackgroundWithRect:rect];
-    
+
     if (self.progress > 0) {
         CGRect innerRect = CGRectMake(YLProgressBarSizeInset,
-                                      YLProgressBarSizeInset, 
+                                      YLProgressBarSizeInset,
                                       rect.size.width * self.progress - 2 * YLProgressBarSizeInset, 
                                       rect.size.height - 2 * YLProgressBarSizeInset);
 
-        [self drawProgressBarWithRect:innerRect];
-        [self drawStripesWithRect:innerRect];
-        [self drawGlossWithRect:innerRect];
+        [self drawProgressBarWithRect:innerRect]; // Controls color
+        [self drawStripesWithRect:innerRect]; // Stripes
     }
 }
 
@@ -110,7 +107,7 @@
 
 - (UIColor*)progressTintColor {
     if (!_progressTintColor) {
-        [self setProgressTintColor:[UIColor purpleColor]];
+        [self setProgressTintColor:[UIColor greenColor]];
     }
     return _progressTintColor;
 }
@@ -120,7 +117,7 @@
 
 - (void)setAnimated:(BOOL)_animated {
     animated = _animated;
-    
+
     if (animated) {
         if (self.animationTimer == nil) {
             self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30 
@@ -147,7 +144,7 @@
     self.animated = YES;
 }
 
-- (UIBezierPath *)stripeWithOrigin:(CGPoint)origin bounds:(CGRect)frame {    
+- (UIBezierPath *)stripeWithOrigin:(CGPoint)origin bounds:(CGRect)frame {
     float height = frame.size.height;
     UIBezierPath *rect = [UIBezierPath bezierPath];
 
@@ -167,20 +164,20 @@
     CGContextSaveGState(context); {
         // Draw the white shadow
         [[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.2] set];
-        
+
         UIBezierPath* shadow = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0.5, 0, rect.size.width - 1, rect.size.height - 1)
                                                           cornerRadius:cornerRadius];
         [shadow stroke];
-        
+
         // Draw the track
         [YLProgressBarColorBackground set];
-        
+
         UIBezierPath* roundedRect = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, rect.size.width, rect.size.height-1) cornerRadius:cornerRadius];
         [roundedRect fill];
-        
+
         // Draw the inner glow
         [YLProgressBarColorBackgroundGlow set];
-        
+
         CGMutablePathRef glow = CGPathCreateMutable();
         CGPathMoveToPoint(glow, NULL, cornerRadius, 0);
         CGPathAddLineToPoint(glow, NULL, rect.size.width - cornerRadius, 0);
@@ -210,63 +207,6 @@
         CGContextDrawLinearGradient(context, gradient, CGPointMake(rect.origin.x, rect.origin.y), CGPointMake(rect.origin.x + rect.size.width, rect.origin.y), (kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation));
         
         CGGradientRelease(gradient);
-    }
-
-    CGContextRestoreGState(context);
-    CGColorSpaceRelease(colorSpace);
-}
-
-- (void)drawGlossWithRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGContextSaveGState(context); {
-        // Draw the gloss
-        CGContextSetBlendMode(context, kCGBlendModeOverlay);
-        CGContextBeginTransparencyLayerWithRect(context, CGRectMake(rect.origin.x, rect.origin.y + floorf(rect.size.height) / 2, rect.size.width, floorf(rect.size.height) / 2), NULL); {
-            const CGFloat glossGradientComponents[] = {1.0f, 1.0f, 1.0f, 0.47f, 0.0f, 0.0f, 0.0f, 0.0f};
-            const CGFloat glossGradientLocations[] = {1.0, 0.0};
-            CGGradientRef glossGradient = CGGradientCreateWithColorComponents(colorSpace, glossGradientComponents, glossGradientLocations, (kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation));
-            CGContextDrawLinearGradient(context, glossGradient, CGPointMake(0, 0), CGPointMake(0, rect.size.width), 0);
-            CGGradientRelease(glossGradient);
-        }
-        CGContextEndTransparencyLayer(context);
-        
-        // Draw the gloss's drop shadow
-        CGContextSetBlendMode(context, kCGBlendModeSoftLight);
-        CGContextBeginTransparencyLayer(context, NULL); {
-            CGRect fillRect = CGRectMake(rect.origin.x, rect.origin.y + floorf(rect.size.height / 2), rect.size.width, floorf(rect.size.height / 2));
-            
-            const CGFloat glossDropShadowComponents[] = {0.0f, 0.0f, 0.0f, 0.56f, 0.0f, 0.0f, 0.0f, 0.0f};
-            CGColorRef glossDropShadowColor = CGColorCreate(colorSpace, glossDropShadowComponents);
-            
-            CGContextSaveGState(context); {
-                CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 4, glossDropShadowColor);
-                CGContextFillRect(context, fillRect);
-                CGColorRelease(glossDropShadowColor);
-            }
-            CGContextRestoreGState(context);
-            
-            CGContextSetBlendMode(context, kCGBlendModeClear);   
-            CGContextFillRect(context, fillRect);
-        }
-        CGContextEndTransparencyLayer(context);
-    }
-
-    CGContextRestoreGState(context);
-    UIBezierPath *progressBounds    = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
-    
-    // Draw progress bar glow
-    CGContextSaveGState(context); {
-        CGContextAddPath(context, [progressBounds CGPath]);
-        const CGFloat progressBarGlowComponents[] = {1.0f, 1.0f, 1.0f, 0.12f};
-        CGColorRef progressBarGlowColor = CGColorCreate(colorSpace, progressBarGlowComponents);
-        
-        CGContextSetBlendMode(context, kCGBlendModeOverlay);
-        CGContextSetStrokeColorWithColor(context, progressBarGlowColor);
-        CGContextSetLineWidth(context, 2.0f);
-        CGContextStrokePath(context);
-        CGColorRelease(progressBarGlowColor);
     }
 
     CGContextRestoreGState(context);
