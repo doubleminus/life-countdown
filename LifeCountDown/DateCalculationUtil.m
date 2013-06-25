@@ -57,17 +57,23 @@ NSCalendarUnit unitFlags;
         // Find # years remaining to live (diff between base years to live and current age in years)
         NSInteger yearsToLive = yearBase - [currentAgeDateComp year];
 
-        // ~6 minutes added to your life for each MINUTE of exercise/week
-        minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
+        // ~6 minutes added to your life for each MINUTE of exercise/week if you don't smoke
+        if (![smokeStr isEqualToString:@"smoker"])
+            minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
+        else
+            minsGainedPerYear = ((hrsAdd * 60) * 2) * 52.1775; // And add only 2 minutes/1 minute of exercise if smoker
 
         NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949; // Divide by # of minutes in year
-        yearBase += yearsToAdd; // Now that we know how many years they have to live, we can add...
-                                // ...years based on weekly exercise habits
+        yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
+
+        // Cap the life expectancy to academically accepted estimated max. life span for Americans
+        if (yearBase > 100 && [genStr isEqualToString:@"f"])
+            yearBase = 96;
+        else if (yearBase > 100 && [genStr isEqualToString:@"m"])
+            yearBase = 92;
 
         double secondsToAdd = (minsGainedPerYear * yearsToLive) * 60;
         totalSecondsInLife += secondsToAdd;
-
-        futureAgeStr = [NSString stringWithFormat:@"Estimated final age: %d", yearBase];
     }
 }
 

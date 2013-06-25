@@ -92,12 +92,19 @@ double totalSecondsDub;
 
         _currentAgeLabel.text = [NSString stringWithFormat:@"Age: %d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
 
-        if ([dateUtil futureAgeStr] != nil)
-            _ageLabel.text = [dateUtil futureAgeStr];
-
         // Calculate estimated total # of seconds to begin counting down
         seconds = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
+
+        if ([dateUtil secondsRemaining] > 0) {
+            _ageLabel.text = [NSString stringWithFormat:@"Estimated final age: %d", [dateUtil yearBase]];
+            _progressView.hidden = NO;
+        }
+        // Handle situation where user has exceed life expectancy
+        else {
+            _ageLabel.text = @"";
+            _progressView.hidden = YES;
+        }
 
         if (!timerStarted) {
             [self updateTimerAndBar];
@@ -133,7 +140,7 @@ double totalSecondsDub;
     else if (progAmount && progAmount > .33)
         _progressView.progressTintColor = [UIColor yellowColor];
     else
-    _progressView.progressTintColor = [UIColor redColor];
+        _progressView.progressTintColor = [UIColor redColor];
 
     timerStarted = YES;
 }
@@ -239,7 +246,7 @@ double totalSecondsDub;
 
     _countdownLabel.frame = CGRectMake(11,20,298,85);
     secdsLifeRemLabel.frame = CGRectMake(56,90,208,21);
-    _progressView.frame = CGRectMake(25,160,275,21);
+    _progressView.frame = CGRectMake(30,160,275,21);
 }
 
 - (void)handleLandscape {
@@ -249,9 +256,9 @@ double totalSecondsDub;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
 
-    _countdownLabel.frame = CGRectMake(100,70,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(140,135,208,21);
-    _progressView.frame = CGRectMake(60,175,375,21);
+    _countdownLabel.frame = CGRectMake(95,70,298,85);
+    secdsLifeRemLabel.frame = CGRectMake(145,135,208,21);
+    _progressView.frame = CGRectMake(52,175,375,21);
 }
 
 - (void)showComponents {
