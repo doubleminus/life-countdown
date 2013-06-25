@@ -60,7 +60,7 @@ NSDate *birthDate;
     cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
-    
+
     UIColor *thumbTintColor =  [[UIColor alloc] initWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f];
     [thumbTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
     [[UISwitch appearance] setThumbTintColor:[self thumbTintColor]];
@@ -152,9 +152,8 @@ NSDate *birthDate;
             if ([_viewDict objectForKey:@"infoDict"] != nil) {
                 NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
 
-                if (nsDict != nil) {
+                if (nsDict != nil)
                     [self setupDisplay:nsDict];
-                }
             }
         }
     }
@@ -164,7 +163,6 @@ NSDate *birthDate;
     NSString *error;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
-
     NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: infoDict, nil]
                                                           forKeys:[NSArray arrayWithObjects: @"infoDict", nil]];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
@@ -269,6 +267,7 @@ NSDate *birthDate;
     cancelBtn = nil;
     cancelBtn = nil;
     contentView = nil;
+    plusLbl = nil;
     [self setDobPicker:nil];
     [self setGenderToggle:nil];
     [self setDaySlider:nil];
@@ -276,7 +275,6 @@ NSDate *birthDate;
     [self setSmokeSwitch:nil];
     [self setThumbTintColor:nil];
     [self setOnTintColor:nil];
-    plusLbl = nil;
     [super viewDidUnload];
 }
 

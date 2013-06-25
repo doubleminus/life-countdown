@@ -43,8 +43,7 @@ NSCalendarUnit unitFlags;
 
 // Updates base number of years to live based on user-entered criteria
 - (void)updateYearBase {
-    NSString *genStr = [diction objectForKey:@"gender"];
-    NSString *smokeStr = [diction objectForKey:@"smokeStatus"];
+    NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
     NSInteger hrsAdd = [[diction objectForKey:@"hrsExercise"] integerValue];
 
     if (genStr != nil && smokeStr != nil) {
@@ -61,18 +60,18 @@ NSCalendarUnit unitFlags;
         if (![smokeStr isEqualToString:@"smoker"])
             minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
         else
-            minsGainedPerYear = ((hrsAdd * 60) * 2) * 52.1775; // And add only 2 minutes/1 minute of exercise if smoker
+            minsGainedPerYear = ((hrsAdd * 60) * 3) * 52.1775; // And add only 2 minutes/1 minute of exercise if smoker
 
         NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949; // Divide by # of minutes in year
         yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
         // Cap the life expectancy to academically accepted estimated max. life span for Americans
-        if (yearBase > 100 && [genStr isEqualToString:@"f"])
+        if (yearBase > 96 && [genStr isEqualToString:@"f"])
             yearBase = 96;
-        else if (yearBase > 100 && [genStr isEqualToString:@"m"])
+        else if (yearBase > 92 && [genStr isEqualToString:@"m"])
             yearBase = 92;
 
-        double secondsToAdd = (minsGainedPerYear * yearsToLive) * 60;
+        double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
         totalSecondsInLife += secondsToAdd;
     }
 }

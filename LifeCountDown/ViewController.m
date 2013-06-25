@@ -36,29 +36,12 @@ double totalSecondsDub;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]];
 
-    // Set button Text Color
-    [infoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [infoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-
-    // Set button Background Color
-    CAGradientLayer *btnGradient = [CAGradientLayer layer];
-    btnGradient.frame = infoBtn.bounds;
-    btnGradient.colors = [NSArray arrayWithObjects:
-                          (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
-                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
-    [infoBtn.layer insertSublayer:btnGradient atIndex:0];
-
-    // Round button corners
-    CALayer *btnLayer = [infoBtn layer];
-    [btnLayer setMasksToBounds:YES];
-    [btnLayer setCornerRadius:5.0f];
-
     _progressView.frame = CGRectMake(25,160,275,21);
 }
 
 /* Toggle between showing and displaying components, when iButton is touched */
 - (IBAction)toggleComponents:(id)sender {
-    if (infoBtn.hidden && _currentAgeLabel.hidden && _ageLabel.hidden)
+    if (_currentAgeLabel.hidden && _ageLabel.hidden)
         [self showComponents];
     else
         [self handlePortrait];
@@ -190,7 +173,6 @@ double totalSecondsDub;
             DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
             NSDictionary *nsdict = [_viewDict objectForKey:@"infoDict"];
             [dateUtil setBirthDate:[nsdict objectForKey:@"birthDate"]];
-
             [self displayUserInfo:nsdict];
         }
         // Otherwise, have the user set this info
@@ -240,7 +222,6 @@ double totalSecondsDub;
 - (void)handlePortrait {
     _percentLabel.hidden = NO;
     iButton.hidden = NO;
-    infoBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
 
@@ -251,7 +232,6 @@ double totalSecondsDub;
 
 - (void)handleLandscape {
     iButton.hidden = YES;
-    infoBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
@@ -262,7 +242,6 @@ double totalSecondsDub;
 }
 
 - (void)showComponents {
-    infoBtn.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
     _percentLabel.hidden = NO;
@@ -276,7 +255,6 @@ double totalSecondsDub;
     [self setProgressView:nil];
     secdsLifeRemLabel = nil;
     iButton = nil;
-    infoBtn = nil;
     detailsLabel = nil;
     [self setPercentLabel:nil];
     [self setCountdownLabel:nil];

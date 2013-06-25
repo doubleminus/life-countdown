@@ -60,7 +60,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="479738728"/>
-				<object class="NSColor" key="IBUIBackgroundColor" id="81662628">
+				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">10</int>
 					<object class="NSImage" key="NSImage">
 						<int key="NSImageFlags">549453824</int>
@@ -4514,7 +4514,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="820062540">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{70, 497}, {180, 21}}</string>
+						<string key="NSFrame">{{70, 489}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="200906629"/>
@@ -4535,7 +4535,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="268049505">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{94, 408}, {133, 21}}</string>
+						<string key="NSFrame">{{94, 400}, {133, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="915449618"/>
@@ -4608,7 +4608,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">To track your estimated life span...</string>
+						<string key="IBUIText">To estimate your life expectancy...</string>
 						<reference key="IBUITextColor" ref="1029780900"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -4628,7 +4628,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUIDatePicker" id="263129815">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{28, 90}, {265, 216}}</string>
+						<string key="NSFrame">{{28, 84}, {265, 216}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="516814913"/>
@@ -4674,7 +4674,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUISegmentedControl" id="516814913">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{57, 338}, {207, 44}}</string>
+						<string key="NSFrame">{{57, 331}, {207, 44}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -4760,7 +4760,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUISlider" id="200906629">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{55, 526}, {211, 23}}</string>
+						<string key="NSFrame">{{55, 518}, {211, 23}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="188488164"/>
@@ -4774,7 +4774,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUISwitch" id="915449618">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{107, 437}, {94, 27}}</string>
+						<string key="NSFrame">{{107, 429}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="820062540"/>
@@ -4791,7 +4791,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="871628317"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<reference key="IBUIBackgroundColor" ref="81662628"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
 					<string key="IBUIDisplayName">Freeform</string>
@@ -4964,16 +4963,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<array class="NSMutableArray" key="children">
 							<reference ref="871628317"/>
 							<reference ref="52594898"/>
-							<reference ref="263129815"/>
-							<reference ref="516814913"/>
-							<reference ref="200906629"/>
 							<reference ref="327982492"/>
 							<reference ref="318350747"/>
-							<reference ref="268049505"/>
-							<reference ref="915449618"/>
 							<reference ref="188488164"/>
-							<reference ref="820062540"/>
 							<reference ref="306072862"/>
+							<reference ref="263129815"/>
+							<reference ref="516814913"/>
+							<reference ref="820062540"/>
+							<reference ref="268049505"/>
+							<reference ref="200906629"/>
+							<reference ref="915449618"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
