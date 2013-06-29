@@ -42,8 +42,7 @@ NSDate *birthDate;
         btnGradient.frame = btn.bounds;
         btnGradient.colors = [NSArray arrayWithObjects:
                               (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
-                              (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
-                              nil];
+                              (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
         [btn.layer insertSublayer:btnGradient atIndex:0];
 
         // Round corners
@@ -69,8 +68,6 @@ NSDate *birthDate;
     [onTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
     [[UISwitch appearance] setOnTintColor:[self onTintColor]];
 
-    //[_smokeSwitch setOnTintColor:[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:251.0f / 255.0f alpha:1.0f]];
-    //[_smokeSwitch setThumbTintColor:[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f]];
     [[UISwitch appearance] setOnImage:[UIImage imageNamed:@"yesSwitch"]];
     [[UISwitch appearance] setOffImage:[UIImage imageNamed:@"noSwitch"]];
 }

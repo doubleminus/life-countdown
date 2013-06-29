@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "DateCalculationUtil.h"
 #import "YLProgressBar.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation ViewController
 
@@ -36,15 +36,10 @@ double totalSecondsDub;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]];
 
-    _progressView.frame = CGRectMake(25,160,275,21);
-}
-
-/* Toggle between showing and displaying components, when iButton is touched */
-- (IBAction)toggleComponents:(id)sender {
-    if (_currentAgeLabel.hidden && _ageLabel.hidden)
-        [self showComponents];
-    else
-        [self handlePortrait];
+    _progressView.frame = CGRectMake(25,160,275,21); // Adjust progress bar location
+    
+    // Setup help view but don't show it yet
+    [self setupHelpView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -205,8 +200,39 @@ double totalSecondsDub;
 - (NSString*)getPath {
     return self->path;
 }
-
 /**** END PLIST METHODS ****/
+
+/* BEGIN UI METHODS */
+- (void)setupHelpView {
+    // Initialize view, and hide it
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(35.0, 25.0, 250.0, 400.0)];
+    _hView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:_hView];
+    _hView.alpha = 0.85;
+    _hView.hidden = YES;
+    
+    // Underline label to make it look like a touchable hyperlink
+    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @1};
+    helpLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Learn more"
+                                                               attributes:underlineAttribute];
+    
+    // Now init a tap gesture that will display some help text in an overlaid view
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [helpLabel addGestureRecognizer:tapGestureRecognizer];
+    helpLabel.userInteractionEnabled = YES;
+}
+
+- (IBAction)toggleComponents:(id)sender {
+    if (_currentAgeLabel.hidden && _ageLabel.hidden)
+        [self showComponents];
+    else
+        [self handlePortrait];
+}
+
+- (IBAction)showHelp:(id)sender {
+    _hView.hidden = NO;
+}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
@@ -214,14 +240,15 @@ double totalSecondsDub;
 
     if (interfaceOrientation == 1)
         [self handlePortrait];
-    // Adjust label locations in landscapeRight or Left orientation
+    // Adjust label locations in landscape right or Left orientation
     else if (interfaceOrientation == 3 || interfaceOrientation == 4)
         [self handleLandscape];
 }
 
 - (void)handlePortrait {
-    _percentLabel.hidden = NO;
     iButton.hidden = NO;
+    helpLabel.hidden = YES;
+    _percentLabel.hidden = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
 
@@ -232,6 +259,7 @@ double totalSecondsDub;
 
 - (void)handleLandscape {
     iButton.hidden = YES;
+    helpLabel.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
@@ -242,6 +270,7 @@ double totalSecondsDub;
 }
 
 - (void)showComponents {
+    helpLabel.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
     _percentLabel.hidden = NO;
@@ -252,6 +281,7 @@ double totalSecondsDub;
 }
 
 - (void)viewDidUnload {
+    helpLabel = nil;
     [self setProgressView:nil];
     secdsLifeRemLabel = nil;
     iButton = nil;
@@ -262,5 +292,6 @@ double totalSecondsDub;
     [self setDateLabel:nil];
     [self setCurrentAgeLabel:nil];
 }
+/* END  UI METHODS */
 
 @end

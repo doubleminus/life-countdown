@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ConfigViewController.h"
+#import "HelpView.h"
 
 @class YLProgressBar;
 
@@ -16,6 +17,8 @@
     NSString *path, *bundle;
     double seconds;
     bool timerStarted;
+
+    __weak IBOutlet UILabel *helpLabel;
     __weak IBOutlet UILabel *detailsLabel;
     __weak IBOutlet UILabel *secdsLifeRemLabel;
     __weak IBOutlet UIButton *iButton;
@@ -26,8 +29,10 @@
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UILabel *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
+@property (strong, nonatomic) HelpView *hView;
 
 - (IBAction)toggleComponents:(id)sender;
+- (IBAction)showHelp:(id)sender;
 - (IBAction)setUserInfo;
 - (NSString*)getPath;
 - (void)verifyPlist;

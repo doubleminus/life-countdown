@@ -24,6 +24,7 @@
 		2E2104D5151ED8A400D0B523 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104D2151ED8A400D0B523 /* ConfigViewController.m */; };
 		2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
+		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
 		2E34F42B1775019E004455BA /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E34F42A1775019E004455BA /* tweed_@2X.png */; };
 		2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
@@ -69,6 +70,8 @@
 		2E2104D1151ED8A400D0B523 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		2E2104D2151ED8A400D0B523 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
+		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
+		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		2E34F42A1775019E004455BA /* tweed_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_@2X.png"; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
@@ -144,20 +147,18 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
+				2E635E5517796F2E00B85650 /* Xibs */,
+				2E635E5417796F1F00B85650 /* Controllers */,
 				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
 				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
 				2E47C1A115CF93F1002213C3 /* Data.plist */,
-				2E2104D1151ED8A400D0B523 /* ConfigViewController.h */,
-				2E2104D2151ED8A400D0B523 /* ConfigViewController.m */,
-				2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */,
 				2E2104A7151ED7BB00D0B523 /* AppDelegate.h */,
 				2E2104A8151ED7BB00D0B523 /* AppDelegate.m */,
-				2E2104AA151ED7BB00D0B523 /* ViewController.h */,
-				2E2104AB151ED7BB00D0B523 /* ViewController.m */,
-				2E2104AD151ED7BB00D0B523 /* ViewController.xib */,
 				2E21049F151ED7BB00D0B523 /* Supporting Files */,
+				2E27E811177C134C009FBFC7 /* HelpView.h */,
+				2E27E812177C134C009FBFC7 /* HelpView.m */,
 			);
 			path = LifeCountDown;
 			sourceTree = "<group>";
@@ -195,6 +196,26 @@
 				2E2104BF151ED7BB00D0B523 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2E635E5417796F1F00B85650 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2E2104AA151ED7BB00D0B523 /* ViewController.h */,
+				2E2104AB151ED7BB00D0B523 /* ViewController.m */,
+				2E2104D1151ED8A400D0B523 /* ConfigViewController.h */,
+				2E2104D2151ED8A400D0B523 /* ConfigViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2E635E5517796F2E00B85650 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */,
+				2E2104AD151ED7BB00D0B523 /* ViewController.xib */,
+			);
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +337,7 @@
 				2E2104D4151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */,
 				2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */,
+				2E27E813177C134C009FBFC7 /* HelpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
