@@ -48,6 +48,7 @@
 						<string key="NSFrameSize">{320, 554}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -4557,10 +4558,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="188488164">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{275, 527}, {180, 21}}</string>
+						<string key="NSFrame">{{272, 519}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="327982492"/>
+						<reference key="NSNextKeyView" ref="306072862"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4578,9 +4579,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="306072862">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{291, 527}, {180, 21}}</string>
+						<string key="NSFrame">{{290, 519}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="327982492"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -4677,6 +4679,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="NSFrame">{{57, 331}, {207, 44}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="268049505"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -4742,6 +4745,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="NSFrame">{{101, 643}, {118, 43}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -4965,14 +4969,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="52594898"/>
 							<reference ref="327982492"/>
 							<reference ref="318350747"/>
-							<reference ref="188488164"/>
-							<reference ref="306072862"/>
 							<reference ref="263129815"/>
 							<reference ref="516814913"/>
 							<reference ref="820062540"/>
 							<reference ref="268049505"/>
 							<reference ref="200906629"/>
 							<reference ref="915449618"/>
+							<reference ref="188488164"/>
+							<reference ref="306072862"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

@@ -208,12 +208,12 @@ double totalSecondsDub;
     _hView = [[HelpView alloc] initWithFrame:CGRectMake(35.0, 25.0, 250.0, 400.0)];
     _hView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:_hView];
-    _hView.alpha = 0.85;
+    _hView.alpha = 0.95;
     _hView.hidden = YES;
     
     // Underline label to make it look like a touchable hyperlink
     NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @1};
-    helpLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Learn more"
+    helpLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Disclaimer"
                                                                attributes:underlineAttribute];
     
     // Now init a tap gesture that will display some help text in an overlaid view
@@ -263,6 +263,7 @@ double totalSecondsDub;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
+    _hView.hidden = YES;
 
     _countdownLabel.frame = CGRectMake(95,70,298,85);
     secdsLifeRemLabel.frame = CGRectMake(145,135,208,21);

@@ -18,18 +18,15 @@
     double seconds;
     bool timerStarted;
 
-    __weak IBOutlet UILabel *helpLabel;
-    __weak IBOutlet UILabel *detailsLabel;
-    __weak IBOutlet UILabel *secdsLifeRemLabel;
+    __weak IBOutlet UILabel *helpLabel, *detailsLabel, *secdsLifeRemLabel;
     __weak IBOutlet UIButton *iButton;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
-@property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel;
-@property (strong, nonatomic) NSDictionary* viewDict;
-@property (strong, nonatomic) IBOutlet UILabel *percentLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel,
+                                               *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) HelpView *hView;
+@property (strong, nonatomic) NSDictionary* viewDict;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)showHelp:(id)sender;
