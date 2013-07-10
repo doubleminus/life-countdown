@@ -205,12 +205,19 @@ double totalSecondsDub;
 /* BEGIN UI METHODS */
 - (void)setupHelpView {
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(35.0, 25.0, 250.0, 400.0)];
-    _hView.backgroundColor = [UIColor grayColor];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(35.0, 40.0, 250.0, 325.0)];
+    _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
-    _hView.alpha = 0.95;
+    _hView.alpha = 0.75;
     _hView.hidden = YES;
+    [_hView.layer setCornerRadius:10.0f];
     
+    // drop shadow
+    [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_hView.layer setShadowOpacity:0.8];
+    [_hView.layer setShadowRadius:3.0];
+    [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
     // Underline label to make it look like a touchable hyperlink
     NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @1};
     helpLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Disclaimer"

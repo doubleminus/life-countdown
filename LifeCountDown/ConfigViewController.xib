@@ -48,7 +48,6 @@
 						<string key="NSFrameSize">{320, 554}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -4536,7 +4535,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="IBUILabel" id="268049505">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{94, 400}, {133, 21}}</string>
+						<string key="NSFrame">{{94, 403}, {133, 21}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="915449618"/>
@@ -4745,7 +4744,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<string key="NSFrame">{{101, 643}, {118, 43}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -4778,7 +4776,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<object class="IBUISwitch" id="915449618">
 						<reference key="NSNextResponder" ref="1070870486"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{107, 429}, {94, 27}}</string>
+						<string key="NSFrame">{{107, 432}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="1070870486"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="820062540"/>
@@ -4972,11 +4970,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="263129815"/>
 							<reference ref="516814913"/>
 							<reference ref="820062540"/>
-							<reference ref="268049505"/>
 							<reference ref="200906629"/>
-							<reference ref="915449618"/>
 							<reference ref="188488164"/>
 							<reference ref="306072862"/>
+							<reference ref="268049505"/>
+							<reference ref="915449618"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

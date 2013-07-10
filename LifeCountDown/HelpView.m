@@ -20,11 +20,11 @@
         self.userInteractionEnabled = YES;
 
         UILabel *helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
-        NSString *helpMsg = @"PUBLIC DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or examined\noutside of the application.\n\n*touch to dismiss*";
+        NSString *helpMsg = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or examined\noutside of the application.";
 
         // Heiti SC Light 17.0
         [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
-        [helpTextLbl setTextColor:[UIColor whiteColor]];
+        [helpTextLbl setTextColor:[UIColor blackColor]];
         [helpTextLbl setBackgroundColor:[UIColor clearColor]];
         [helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
         [helpTextLbl setText:helpMsg];
