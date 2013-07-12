@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DateCalculationUtil.h"
 #import "YLProgressBar.h"
+#import "HelpView.h"
 
 @implementation ViewController
 
@@ -34,9 +35,9 @@ double totalSecondsDub;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"px_by_Gre3g_@2X.png"]];
 
-    _progressView.frame = CGRectMake(25,160,275,21); // Adjust progress bar location
+    _progressView.frame = CGRectMake(25,160,280,25); // Adjust progress bar location
     
     // Setup help view but don't show it yet
     [self setupHelpView];
@@ -68,14 +69,14 @@ double totalSecondsDub;
         if ([dateUtil currentAgeDateComp] != nil)
             currentAgeDateComp = [dateUtil currentAgeDateComp];
 
-        _currentAgeLabel.text = [NSString stringWithFormat:@"Age: %d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
+        _currentAgeLabel.text = [NSString stringWithFormat:@"%d years, %d months, %d days old", [currentAgeDateComp year], [currentAgeDateComp month], [currentAgeDateComp day]];
 
         // Calculate estimated total # of seconds to begin counting down
         seconds = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
         if ([dateUtil secondsRemaining] > 0) {
-            _ageLabel.text = [NSString stringWithFormat:@"Estimated final age: %d", [dateUtil yearBase]];
+            _ageLabel.text = [NSString stringWithFormat:@"%d years old", [dateUtil yearBase]];
             _progressView.hidden = NO;
         }
         // Handle situation where user has exceed life expectancy
@@ -205,7 +206,7 @@ double totalSecondsDub;
 /* BEGIN UI METHODS */
 - (void)setupHelpView {
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(35.0, 40.0, 250.0, 325.0)];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 40.0, 260.0, 325.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.75;
@@ -217,17 +218,6 @@ double totalSecondsDub;
     [_hView.layer setShadowOpacity:0.8];
     [_hView.layer setShadowRadius:3.0];
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-
-    // Underline label to make it look like a touchable hyperlink
-    NSDictionary *underlineAttribute = @{NSUnderlineStyleAttributeName: @1};
-    helpLabel.attributedText = [[NSAttributedString alloc] initWithString:@"Disclaimer"
-                                                               attributes:underlineAttribute];
-    
-    // Now init a tap gesture that will display some help text in an overlaid view
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    [helpLabel addGestureRecognizer:tapGestureRecognizer];
-    helpLabel.userInteractionEnabled = YES;
 }
 
 - (IBAction)toggleComponents:(id)sender {
@@ -238,7 +228,10 @@ double totalSecondsDub;
 }
 
 - (IBAction)showHelp:(id)sender {
-    _hView.hidden = NO;
+    if (_hView.hidden == YES)
+        _hView.hidden = NO;
+    else
+        _hView.hidden = YES;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -253,31 +246,42 @@ double totalSecondsDub;
 }
 
 - (void)handlePortrait {
-    iButton.hidden = NO;
+    iButton.hidden = YES;
     helpLabel.hidden = YES;
+    estTxtLbl.hidden = YES;
+    currAgeTxtLbl.hidden = YES;
     _percentLabel.hidden = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
+    _hView.hidden = YES;
 
     _countdownLabel.frame = CGRectMake(11,20,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(56,90,208,21);
-    _progressView.frame = CGRectMake(30,160,275,21);
+    secdsLifeRemLabel.frame = CGRectMake(56,84,208,21);
+    _progressView.frame = CGRectMake(25,160,280,25);
+    
+    [_touchToggle setEnabled:YES];
 }
 
 - (void)handleLandscape {
+    [_touchToggle setEnabled:NO];
     iButton.hidden = YES;
     helpLabel.hidden = YES;
+    estTxtLbl.hidden = YES;
+    currAgeTxtLbl.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
     _hView.hidden = YES;
 
-    _countdownLabel.frame = CGRectMake(95,70,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(145,135,208,21);
-    _progressView.frame = CGRectMake(52,175,375,21);
+    _countdownLabel.frame = CGRectMake(135,70,298,85);
+    secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
+    _progressView.frame = CGRectMake(92,175,400,25);
 }
 
 - (void)showComponents {
+    iButton.hidden = NO;
+    estTxtLbl.hidden = NO;
+    currAgeTxtLbl.hidden = NO;
     helpLabel.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;

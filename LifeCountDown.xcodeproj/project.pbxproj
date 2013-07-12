@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0E8140178E7CBB0004E647 /* bedge_grunge_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */; };
+		2E0E8142178E7CD30004E647 /* nasty_fabric_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */; };
+		2E0E8146178E7E480004E647 /* tex2res4_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E8145178E7E480004E647 /* tex2res4_@2X.png */; };
+		2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B1422179080BF00FEF11E /* irongrip_@2X.png */; };
+		2E1B14251790820F00FEF11E /* px_by_Gre3g_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */; };
 		2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E210498151ED7BA00D0B523 /* UIKit.framework */; };
 		2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049A151ED7BB00D0B523 /* Foundation.framework */; };
 		2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
@@ -25,7 +30,6 @@
 		2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
-		2E34F42B1775019E004455BA /* tweed_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E34F42A1775019E004455BA /* tweed_@2X.png */; };
 		2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
@@ -48,6 +52,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedge_grunge_@2X.png"; sourceTree = "<group>"; };
+		2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nasty_fabric_@2X.png"; sourceTree = "<group>"; };
+		2E0E8145178E7E480004E647 /* tex2res4_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tex2res4_@2X.png"; sourceTree = "<group>"; };
+		2E1B1422179080BF00FEF11E /* irongrip_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irongrip_@2X.png"; sourceTree = "<group>"; };
+		2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "px_by_Gre3g_@2X.png"; sourceTree = "<group>"; };
 		2E210494151ED7BA00D0B523 /* LifeCountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeCountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E210498151ED7BA00D0B523 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2E21049A151ED7BB00D0B523 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,7 +81,6 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
-		2E34F42A1775019E004455BA /* tweed_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_@2X.png"; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
@@ -166,7 +174,11 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E34F42A1775019E004455BA /* tweed_@2X.png */,
+				2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */,
+				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
+				2E0E8145178E7E480004E647 /* tex2res4_@2X.png */,
+				2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */,
+				2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */,
 				2E80F90017548E690014B517 /* noSwitch@2x.png */,
 				2E80F90117548E690014B517 /* yesSwitch@2x.png */,
 				2E2104A0151ED7BB00D0B523 /* LifeCountDown-Info.plist */,
@@ -295,7 +307,11 @@
 				2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */,
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
-				2E34F42B1775019E004455BA /* tweed_@2X.png in Resources */,
+				2E0E8140178E7CBB0004E647 /* bedge_grunge_@2X.png in Resources */,
+				2E0E8142178E7CD30004E647 /* nasty_fabric_@2X.png in Resources */,
+				2E0E8146178E7E480004E647 /* tex2res4_@2X.png in Resources */,
+				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
+				2E1B14251790820F00FEF11E /* px_by_Gre3g_@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +415,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: NATHAN WISMAN (Z8GZDZ94LR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: NATHAN WISMAN (Z8GZDZ94LR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -413,7 +430,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -428,15 +447,18 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: NATHAN WISMAN (Z8GZDZ94LR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: NATHAN WISMAN (Z8GZDZ94LR)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -448,7 +470,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDown/LifeCountDown-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LifeCountDown;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -459,7 +481,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDown/LifeCountDown-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LifeCountDown;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

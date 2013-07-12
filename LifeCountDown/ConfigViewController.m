@@ -18,7 +18,7 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"tweed_@2X.png"]]];
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"px_by_Gre3g_@2X.png"]]];
 
     // Scroll view setup
     [self.view addSubview:self->contentView];
@@ -117,7 +117,7 @@ NSDate *birthDate;
             [self writePlist:personInfo];
     }
 
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)sliderChanged:(id)sender {
@@ -244,7 +244,7 @@ NSDate *birthDate;
 
 /*****  BEGIN BUTTON METHODS  *****/
 - (IBAction)cancelPressed {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)savePressed {

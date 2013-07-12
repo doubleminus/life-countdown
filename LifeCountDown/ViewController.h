@@ -18,7 +18,7 @@
     double seconds;
     bool timerStarted;
 
-    __weak IBOutlet UILabel *helpLabel, *detailsLabel, *secdsLifeRemLabel;
+    __weak IBOutlet UILabel *helpLabel, *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
     __weak IBOutlet UIButton *iButton;
 }
 
@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) HelpView *hView;
 @property (strong, nonatomic) NSDictionary* viewDict;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)showHelp:(id)sender;
