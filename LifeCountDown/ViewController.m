@@ -260,10 +260,12 @@ double totalSecondsDub;
     _progressView.frame = CGRectMake(25,160,280,25);
     
     [_touchToggle setEnabled:YES];
+    [_setInfoSwipe setEnabled:YES];
 }
 
 - (void)handleLandscape {
     [_touchToggle setEnabled:NO];
+    [_setInfoSwipe setEnabled:NO];
     iButton.hidden = YES;
     helpLabel.hidden = YES;
     estTxtLbl.hidden = YES;

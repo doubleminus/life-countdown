@@ -28,6 +28,7 @@
 @property (strong, nonatomic) HelpView *hView;
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *setInfoSwipe;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)showHelp:(id)sender;
