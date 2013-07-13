@@ -18,7 +18,7 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"px_by_Gre3g_@2X.png"]]];
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png.png"]]];
 
     // Scroll view setup
     [self.view addSubview:self->contentView];
@@ -49,6 +49,14 @@ NSDate *birthDate;
         CALayer *btnLayer = [btn layer];
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
+
+        // Add glow to button text
+        UIColor *color = btn.currentTitleColor;
+        btn.titleLabel.layer.shadowColor = [color CGColor];
+        btn.titleLabel.layer.shadowRadius = 4.0f;
+        btn.titleLabel.layer.shadowOpacity = .9;
+        btn.titleLabel.layer.shadowOffset = CGSizeZero;
+        btn.titleLabel.layer.masksToBounds = NO;
     }
 }
 

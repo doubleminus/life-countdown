@@ -35,10 +35,10 @@ double totalSecondsDub;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"px_by_Gre3g_@2X.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]];
 
     _progressView.frame = CGRectMake(25,160,280,25); // Adjust progress bar location
-    
+
     // Setup help view but don't show it yet
     [self setupHelpView];
 }
@@ -206,7 +206,7 @@ double totalSecondsDub;
 /* BEGIN UI METHODS */
 - (void)setupHelpView {
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 40.0, 260.0, 325.0)];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 60.0, 260.0, 325.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.75;
