@@ -38,9 +38,6 @@ double totalSecondsDub;
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]];
 
     _progressView.frame = CGRectMake(25,160,280,25); // Adjust progress bar location
-
-    // Setup help view but don't show it yet
-    [self setupHelpView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -203,35 +200,11 @@ double totalSecondsDub;
 }
 /**** END PLIST METHODS ****/
 
-/* BEGIN UI METHODS */
-- (void)setupHelpView {
-    // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 60.0, 260.0, 325.0)];
-    _hView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_hView];
-    _hView.alpha = 0.75;
-    _hView.hidden = YES;
-    [_hView.layer setCornerRadius:10.0f];
-    
-    // drop shadow
-    [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [_hView.layer setShadowOpacity:0.8];
-    [_hView.layer setShadowRadius:3.0];
-    [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-}
-
 - (IBAction)toggleComponents:(id)sender {
     if (_currentAgeLabel.hidden && _ageLabel.hidden)
         [self showComponents];
     else
         [self handlePortrait];
-}
-
-- (IBAction)showHelp:(id)sender {
-    if (_hView.hidden == YES)
-        _hView.hidden = NO;
-    else
-        _hView.hidden = YES;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -247,13 +220,11 @@ double totalSecondsDub;
 
 - (void)handlePortrait {
     iButton.hidden = YES;
-    helpLabel.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
     _percentLabel.hidden = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
-    _hView.hidden = YES;
 
     _countdownLabel.frame = CGRectMake(11,20,298,85);
     secdsLifeRemLabel.frame = CGRectMake(56,84,208,21);
@@ -267,13 +238,11 @@ double totalSecondsDub;
     [_touchToggle setEnabled:NO];
     [_setInfoSwipe setEnabled:NO];
     iButton.hidden = YES;
-    helpLabel.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
-    _hView.hidden = YES;
 
     _countdownLabel.frame = CGRectMake(135,70,298,85);
     secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
@@ -284,7 +253,6 @@ double totalSecondsDub;
     iButton.hidden = NO;
     estTxtLbl.hidden = NO;
     currAgeTxtLbl.hidden = NO;
-    helpLabel.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
     _percentLabel.hidden = NO;
@@ -295,7 +263,6 @@ double totalSecondsDub;
 }
 
 - (void)viewDidUnload {
-    helpLabel = nil;
     [self setProgressView:nil];
     secdsLifeRemLabel = nil;
     iButton = nil;

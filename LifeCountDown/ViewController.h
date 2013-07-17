@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ConfigViewController.h"
-#import "HelpView.h"
 
 @class YLProgressBar;
 
@@ -18,20 +17,18 @@
     double seconds;
     bool timerStarted;
 
-    __weak IBOutlet UILabel *helpLabel, *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
+    __weak IBOutlet UILabel *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
     __weak IBOutlet UIButton *iButton;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel,
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
-@property (strong, nonatomic) HelpView *hView;
-@property (strong, nonatomic) NSDictionary* viewDict;
+@property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *setInfoSwipe;
 
 - (IBAction)toggleComponents:(id)sender;
-- (IBAction)showHelp:(id)sender;
 - (IBAction)setUserInfo;
 - (NSString*)getPath;
 - (void)verifyPlist;

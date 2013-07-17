@@ -58,6 +58,9 @@ NSDate *birthDate;
         btn.titleLabel.layer.shadowOffset = CGSizeZero;
         btn.titleLabel.layer.masksToBounds = NO;
     }
+
+    // Setup help view but don't show it yet
+    [self setupHelpView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -249,6 +252,28 @@ NSDate *birthDate;
         [plusLbl setHidden:NO];
 }
 
+- (IBAction)showHelp:(id)sender {
+    if (_hView.hidden == YES)
+        _hView.hidden = NO;
+    else
+        _hView.hidden = YES;
+}
+
+- (void)setupHelpView {
+    // Initialize view, and hide it
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 285.0, 260.0, 260.0)];
+    _hView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_hView];
+    _hView.alpha = 0.75;
+    _hView.hidden = YES;
+    [_hView.layer setCornerRadius:10.0f];
+
+    // drop shadow
+    [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_hView.layer setShadowOpacity:0.8];
+    [_hView.layer setShadowRadius:3.0];
+    [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+}
 
 /*****  BEGIN BUTTON METHODS  *****/
 - (IBAction)cancelPressed {
