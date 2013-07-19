@@ -20,10 +20,6 @@ double totalSecondsDub;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // Check to see if we already have an age value set in our plist
-    //[self deletePlist];
-    [self verifyPlist];
-
     // If we return from configView in landscape, then adjust UI components accordingly
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
         [self handleLandscape];
@@ -31,6 +27,10 @@ double totalSecondsDub;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // Check to see if we already have an age value set in our plist
+    //[self deletePlist];
+    [self verifyPlist];
 }
 
 - (void)viewDidLoad {
@@ -42,7 +42,7 @@ double totalSecondsDub;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo {
-    ConfigViewController* enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    ConfigViewController *enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
     // Important to set the viewcontroller's delegate to be self
     enterInfo.delegate = self;

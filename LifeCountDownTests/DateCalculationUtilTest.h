@@ -7,6 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface DateCalculationUtilTest : SenTestCase
 

@@ -1,11 +1,35 @@
 /*
- * DateCalculationUtilTest.m
- * LifeCountDown
+ Copyright (c) 2013, Nathan Wisman
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+ 
+ * Redistributions of source code must retain the above copyright notice,
+ this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
+ * Neither the name of Nathan Wisman nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "DateCalculationUtilTest.h"
 #import "DateCalculationUtil.h"
-#import "ViewController.h"
+#import "ConfigViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation DateCalculationUtilTest
 
@@ -82,10 +106,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
     STAssertEqualObjects(strVal1, strVal2, @"equal");
-    
+
     // Calculate the total seconds in a person's life who lives to 78
     totalSecondsInLife = ((((daysInAYear * 78) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
-    
+
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
@@ -248,8 +272,6 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
     // 68 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
-    NSInteger minutesExInLife = (((68 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
-    double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
 
     STAssertEquals([testDateUtil yearBase], 90, @"Base age should be correct");
 
@@ -294,7 +316,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     // 82 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
     NSInteger minutesExInLife = (((82 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
-    double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
+    //double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
     
     STAssertEquals([testDateUtil yearBase], 92, @"Base age should be correct");
     

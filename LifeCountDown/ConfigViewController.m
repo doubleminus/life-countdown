@@ -49,13 +49,13 @@ NSDate *birthDate;
         CALayer *btnLayer = [btn layer];
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
-        
+
         // Add slight glow to button text
         UIColor *color = btn.currentTitleColor;
         btn.titleLabel.layer.shadowColor = [color CGColor];
         btn.titleLabel.layer.shadowRadius = 4.0f;
         btn.titleLabel.layer.shadowOpacity = .9;
-        btn.titleLabel.layer.shadowOffset = CGSizeZero;
+        btn.titleLabel.layer.shadowOffset = CGSizeMake(0,0);
         btn.titleLabel.layer.masksToBounds = NO;
     }
 
@@ -66,7 +66,6 @@ NSDate *birthDate;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    //[self deletePlist];
     cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
@@ -183,28 +182,7 @@ NSDate *birthDate;
      NSLog(@"Error in writing to file: %@", error);
      }*/
 }
-
-- (void)deletePlist {
-    // For error information
-    NSError *error;
-
-    // Create file manager
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-
-    // Point to Document directory
-    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
-
-    // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
-        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-    }
-
-    // Show contents of Documents directory for debugging
-    // NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
-}
 /**** END PLIST METHODS ****/
-
 
 // Set our UI component values based on what user entered previously
 - (void)setupDisplay:(NSDictionary*)infoDctnry {

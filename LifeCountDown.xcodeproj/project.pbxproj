@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0E8140178E7CBB0004E647 /* bedge_grunge_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */; };
-		2E0E8142178E7CD30004E647 /* nasty_fabric_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */; };
-		2E0E8146178E7E480004E647 /* tex2res4_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E0E8145178E7E480004E647 /* tex2res4_@2X.png */; };
 		2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B1422179080BF00FEF11E /* irongrip_@2X.png */; };
-		2E1B14251790820F00FEF11E /* px_by_Gre3g_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */; };
 		2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E210498151ED7BA00D0B523 /* UIKit.framework */; };
 		2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049A151ED7BB00D0B523 /* Foundation.framework */; };
 		2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
@@ -30,6 +26,7 @@
 		2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
+		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
@@ -52,11 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedge_grunge_@2X.png"; sourceTree = "<group>"; };
-		2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nasty_fabric_@2X.png"; sourceTree = "<group>"; };
-		2E0E8145178E7E480004E647 /* tex2res4_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tex2res4_@2X.png"; sourceTree = "<group>"; };
 		2E1B1422179080BF00FEF11E /* irongrip_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irongrip_@2X.png"; sourceTree = "<group>"; };
-		2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "px_by_Gre3g_@2X.png"; sourceTree = "<group>"; };
 		2E210494151ED7BA00D0B523 /* LifeCountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeCountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E210498151ED7BA00D0B523 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2E21049A151ED7BB00D0B523 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,11 +167,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E1B14241790820F00FEF11E /* px_by_Gre3g_@2X.png */,
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
-				2E0E8145178E7E480004E647 /* tex2res4_@2X.png */,
-				2E0E8141178E7CD30004E647 /* nasty_fabric_@2X.png */,
-				2E0E813F178E7CBB0004E647 /* bedge_grunge_@2X.png */,
 				2E80F90017548E690014B517 /* noSwitch@2x.png */,
 				2E80F90117548E690014B517 /* yesSwitch@2x.png */,
 				2E2104A0151ED7BB00D0B523 /* LifeCountDown-Info.plist */,
@@ -307,11 +296,7 @@
 				2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */,
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
-				2E0E8140178E7CBB0004E647 /* bedge_grunge_@2X.png in Resources */,
-				2E0E8142178E7CD30004E647 /* nasty_fabric_@2X.png in Resources */,
-				2E0E8146178E7E480004E647 /* tex2res4_@2X.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
-				2E1B14251790820F00FEF11E /* px_by_Gre3g_@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */,
 				2E2104C4151ED7BB00D0B523 /* LifeCountDownTests.m in Sources */,
 				2E2104D5151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */,

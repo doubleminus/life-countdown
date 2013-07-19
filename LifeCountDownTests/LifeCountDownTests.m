@@ -8,20 +8,15 @@
 
 #import "LifeCountDownTests.h"
 #import "ViewController.h"
-#import "ConfigViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation LifeCountDownTests
 
 - (void)setUp {
     [super setUp];
-
-    // Set-up code here.
 }
 
 - (void)tearDown {
-    // Tear-down code here.
-
     [super tearDown];
 }
 

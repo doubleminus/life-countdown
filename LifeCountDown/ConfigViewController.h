@@ -39,6 +39,5 @@
 - (IBAction)cancelPressed;
 - (IBAction)savePressed;
 - (IBAction)showHelp:(id)sender;
-- (void)deletePlist;
 
 @end
