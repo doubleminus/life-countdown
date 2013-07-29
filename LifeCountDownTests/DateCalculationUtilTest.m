@@ -1,6 +1,6 @@
 /*
- Copyright (c) 2013, Nathan Wisman
- All rights reserved.
+ Copyright (c) 2013, Nathan Wisman. All rights reserved.
+ DateCalculationUtilTest.m
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -315,7 +315,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
     // 82 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
-    NSInteger minutesExInLife = (((82 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
+   // NSInteger minutesExInLife = (((82 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
     //double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
     
     STAssertEquals([testDateUtil yearBase], 92, @"Base age should be correct");
@@ -360,9 +360,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     
     // 86 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
-    NSInteger minutesExInLife = (((86 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
-    double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
-    
+
     STAssertEquals([testDateUtil yearBase], 96, @"Base age should be correct");
     
     // User is 10 years old and male. They should have 80 years to live if their expiry age is 90.

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LifeCountDown.xcodeproj">
+      location = "self:Life Count.xcodeproj">
    </FileRef>
 </Workspace>

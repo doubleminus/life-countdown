@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E210493151ED7BA00D0B523"
                BuildableName = "LifeCountDown.app"
-               BlueprintName = "LifeCountDown"
-               ReferencedContainer = "container:LifeCountDown.xcodeproj">
+               BlueprintName = "Life Count"
+               ReferencedContainer = "container:Life Count.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E2104B4151ED7BB00D0B523"
                BuildableName = "LifeCountDownTests.octest"
-               BlueprintName = "LifeCountDownTests"
-               ReferencedContainer = "container:LifeCountDown.xcodeproj">
+               BlueprintName = "Life CountTests"
+               ReferencedContainer = "container:Life Count.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
             BuildableName = "LifeCountDown.app"
-            BlueprintName = "LifeCountDown"
-            ReferencedContainer = "container:LifeCountDown.xcodeproj">
+            BlueprintName = "Life Count"
+            ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
             BuildableName = "LifeCountDown.app"
-            BlueprintName = "LifeCountDown"
-            ReferencedContainer = "container:LifeCountDown.xcodeproj">
+            BlueprintName = "Life Count"
+            ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
             BuildableName = "LifeCountDown.app"
-            BlueprintName = "LifeCountDown"
-            ReferencedContainer = "container:LifeCountDown.xcodeproj">
+            BlueprintName = "Life Count"
+            ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

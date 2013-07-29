@@ -36,6 +36,8 @@
 		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
+		2EA8492E17A37D6D00755F2E /* counting_icon114_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */; };
+		2EA8493017A37D7100755F2E /* counting_icon57_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA8492F17A37D7100755F2E /* counting_icon57_white.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,22 +52,22 @@
 
 /* Begin PBXFileReference section */
 		2E1B1422179080BF00FEF11E /* irongrip_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irongrip_@2X.png"; sourceTree = "<group>"; };
-		2E210494151ED7BA00D0B523 /* LifeCountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeCountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E210494151ED7BA00D0B523 /* Life Count.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life Count.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E210498151ED7BA00D0B523 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2E21049A151ED7BB00D0B523 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2E2104A0151ED7BB00D0B523 /* LifeCountDown-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LifeCountDown-Info.plist"; sourceTree = "<group>"; };
+		2E2104A0151ED7BB00D0B523 /* Life Count-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Life Count-Info.plist"; sourceTree = "<group>"; };
 		2E2104A2151ED7BB00D0B523 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2E2104A4151ED7BB00D0B523 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2E2104A6151ED7BB00D0B523 /* LifeCountDown-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LifeCountDown-Prefix.pch"; sourceTree = "<group>"; };
+		2E2104A6151ED7BB00D0B523 /* Life Count-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Life Count-Prefix.pch"; sourceTree = "<group>"; };
 		2E2104A7151ED7BB00D0B523 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2E2104A8151ED7BB00D0B523 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2E2104AA151ED7BB00D0B523 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2E2104AB151ED7BB00D0B523 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2E2104AE151ED7BB00D0B523 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		2E2104B5151ED7BB00D0B523 /* LifeCountDownTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LifeCountDownTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2104B5151ED7BB00D0B523 /* Life CountTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Life CountTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2104B6151ED7BB00D0B523 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		2E2104BE151ED7BB00D0B523 /* LifeCountDownTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LifeCountDownTests-Info.plist"; sourceTree = "<group>"; };
+		2E2104BE151ED7BB00D0B523 /* Life CountTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Life CountTests-Info.plist"; sourceTree = "<group>"; };
 		2E2104C0151ED7BB00D0B523 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2E2104C2151ED7BB00D0B523 /* LifeCountDownTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LifeCountDownTests.h; sourceTree = "<group>"; };
 		2E2104C3151ED7BB00D0B523 /* LifeCountDownTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LifeCountDownTests.m; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
+		2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = counting_icon114_white.png; sourceTree = "<group>"; };
+		2EA8492F17A37D7100755F2E /* counting_icon57_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = counting_icon57_white.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
+				2EA8492F17A37D7100755F2E /* counting_icon57_white.png */,
+				2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
 				2E21049E151ED7BB00D0B523 /* LifeCountDown */,
@@ -128,8 +134,8 @@
 		2E210495151ED7BA00D0B523 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E210494151ED7BA00D0B523 /* LifeCountDown.app */,
-				2E2104B5151ED7BB00D0B523 /* LifeCountDownTests.octest */,
+				2E210494151ED7BA00D0B523 /* Life Count.app */,
+				2E2104B5151ED7BB00D0B523 /* Life CountTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,10 +176,10 @@
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
 				2E80F90017548E690014B517 /* noSwitch@2x.png */,
 				2E80F90117548E690014B517 /* yesSwitch@2x.png */,
-				2E2104A0151ED7BB00D0B523 /* LifeCountDown-Info.plist */,
+				2E2104A0151ED7BB00D0B523 /* Life Count-Info.plist */,
 				2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */,
 				2E2104A4151ED7BB00D0B523 /* main.m */,
-				2E2104A6151ED7BB00D0B523 /* LifeCountDown-Prefix.pch */,
+				2E2104A6151ED7BB00D0B523 /* Life Count-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -193,7 +199,7 @@
 		2E2104BD151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E2104BE151ED7BB00D0B523 /* LifeCountDownTests-Info.plist */,
+				2E2104BE151ED7BB00D0B523 /* Life CountTests-Info.plist */,
 				2E2104BF151ED7BB00D0B523 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -222,9 +228,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2E210493151ED7BA00D0B523 /* LifeCountDown */ = {
+		2E210493151ED7BA00D0B523 /* Life Count */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E2104C7151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "LifeCountDown" */;
+			buildConfigurationList = 2E2104C7151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "Life Count" */;
 			buildPhases = (
 				2E210490151ED7BA00D0B523 /* Sources */,
 				2E210491151ED7BA00D0B523 /* Frameworks */,
@@ -234,14 +240,14 @@
 			);
 			dependencies = (
 			);
-			name = LifeCountDown;
+			name = "Life Count";
 			productName = LifeCountDown;
-			productReference = 2E210494151ED7BA00D0B523 /* LifeCountDown.app */;
+			productReference = 2E210494151ED7BA00D0B523 /* Life Count.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2E2104B4151ED7BB00D0B523 /* LifeCountDownTests */ = {
+		2E2104B4151ED7BB00D0B523 /* Life CountTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E2104CA151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "LifeCountDownTests" */;
+			buildConfigurationList = 2E2104CA151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "Life CountTests" */;
 			buildPhases = (
 				2E2104B0151ED7BB00D0B523 /* Sources */,
 				2E2104B1151ED7BB00D0B523 /* Frameworks */,
@@ -253,9 +259,9 @@
 			dependencies = (
 				2E2104BB151ED7BB00D0B523 /* PBXTargetDependency */,
 			);
-			name = LifeCountDownTests;
+			name = "Life CountTests";
 			productName = LifeCountDownTests;
-			productReference = 2E2104B5151ED7BB00D0B523 /* LifeCountDownTests.octest */;
+			productReference = 2E2104B5151ED7BB00D0B523 /* Life CountTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -266,7 +272,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = 2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "LifeCountDown" */;
+			buildConfigurationList = 2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "Life Count" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -278,8 +284,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E210493151ED7BA00D0B523 /* LifeCountDown */,
-				2E2104B4151ED7BB00D0B523 /* LifeCountDownTests */,
+				2E210493151ED7BA00D0B523 /* Life Count */,
+				2E2104B4151ED7BB00D0B523 /* Life CountTests */,
 			);
 		};
 /* End PBXProject section */
@@ -297,6 +303,8 @@
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
+				2EA8492E17A37D6D00755F2E /* counting_icon114_white.png in Resources */,
+				2EA8493017A37D7100755F2E /* counting_icon57_white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +366,7 @@
 /* Begin PBXTargetDependency section */
 		2E2104BB151ED7BB00D0B523 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2E210493151ED7BA00D0B523 /* LifeCountDown */;
+			target = 2E210493151ED7BA00D0B523 /* Life Count */;
 			targetProxy = 2E2104BA151ED7BB00D0B523 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -454,9 +462,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
-				INFOPLIST_FILE = "LifeCountDown/LifeCountDown-Info.plist";
-				PRODUCT_NAME = LifeCountDown;
+				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
+				INFOPLIST_FILE = "LifeCountDown/Life Count-Info.plist";
+				PRODUCT_NAME = "Life Count";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -465,9 +473,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
-				INFOPLIST_FILE = "LifeCountDown/LifeCountDown-Info.plist";
-				PRODUCT_NAME = LifeCountDown;
+				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
+				INFOPLIST_FILE = "LifeCountDown/Life Count-Info.plist";
+				PRODUCT_NAME = "Life Count";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -482,8 +490,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
-				INFOPLIST_FILE = "LifeCountDownTests/LifeCountDownTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LifeCountDownTests/Life CountTests-Info.plist";
+				PRODUCT_NAME = "Life CountTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -499,8 +507,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
-				INFOPLIST_FILE = "LifeCountDownTests/LifeCountDownTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LifeCountDownTests/Life CountTests-Info.plist";
+				PRODUCT_NAME = "Life CountTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -509,7 +517,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "LifeCountDown" */ = {
+		2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "Life Count" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E2104C5151ED7BB00D0B523 /* Debug */,
@@ -518,7 +526,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E2104C7151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "LifeCountDown" */ = {
+		2E2104C7151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "Life Count" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E2104C8151ED7BB00D0B523 /* Debug */,
@@ -527,7 +535,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E2104CA151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "LifeCountDownTests" */ = {
+		2E2104CA151ED7BB00D0B523 /* Build configuration list for PBXNativeTarget "Life CountTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E2104CB151ED7BB00D0B523 /* Debug */,
