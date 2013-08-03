@@ -32,6 +32,8 @@
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
+		2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B7AA917ACC7F7004B2696 /* count_icon57.png */; };
+		2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */; };
 		2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90017548E690014B517 /* noSwitch@2x.png */; };
 		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
@@ -83,6 +85,8 @@
 		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateCalculationUtilTest.h; path = LifeCountDownTests/DateCalculationUtilTest.h; sourceTree = SOURCE_ROOT; };
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
+		2E6B7AA917ACC7F7004B2696 /* count_icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = count_icon57.png; sourceTree = "<group>"; };
+		2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = count_icon114.png; sourceTree = "<group>"; };
 		2E80F90017548E690014B517 /* noSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noSwitch@2x.png"; sourceTree = "<group>"; };
 		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
+				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
+				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
 				2EA8492F17A37D7100755F2E /* counting_icon57_white.png */,
 				2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
@@ -305,6 +311,8 @@
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
 				2EA8492E17A37D6D00755F2E /* counting_icon114_white.png in Resources */,
 				2EA8493017A37D7100755F2E /* counting_icon57_white.png in Resources */,
+				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
+				2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

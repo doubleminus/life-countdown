@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E210493151ED7BA00D0B523"
-               BuildableName = "LifeCountDown.app"
+               BuildableName = "Life Count.app"
                BlueprintName = "Life Count"
                ReferencedContainer = "container:Life Count.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E2104B4151ED7BB00D0B523"
-               BuildableName = "LifeCountDownTests.octest"
+               BuildableName = "Life CountTests.octest"
                BlueprintName = "Life CountTests"
                ReferencedContainer = "container:Life Count.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
-            BuildableName = "LifeCountDown.app"
+            BuildableName = "Life Count.app"
             BlueprintName = "Life Count"
             ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
-            BuildableName = "LifeCountDown.app"
+            BuildableName = "Life Count.app"
             BlueprintName = "Life Count"
             ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E210493151ED7BA00D0B523"
-            BuildableName = "LifeCountDown.app"
+            BuildableName = "Life Count.app"
             BlueprintName = "Life Count"
             ReferencedContainer = "container:Life Count.xcodeproj">
          </BuildableReference>
