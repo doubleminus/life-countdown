@@ -69,14 +69,6 @@ NSDate *birthDate;
         CALayer *btnLayer = [btn layer];
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
-
-        // Add slight glow to button text
-        UIColor *color = btn.currentTitleColor;
-        btn.titleLabel.layer.shadowColor = [color CGColor];
-        btn.titleLabel.layer.shadowRadius = 4.0f;
-        btn.titleLabel.layer.shadowOpacity = .9;
-        btn.titleLabel.layer.shadowOffset = CGSizeMake(0,0);
-        btn.titleLabel.layer.masksToBounds = NO;
     }
 
     // Setup help view but don't show it yet

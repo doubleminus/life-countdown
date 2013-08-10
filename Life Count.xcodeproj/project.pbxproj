@@ -38,8 +38,6 @@
 		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
-		2EA8492E17A37D6D00755F2E /* counting_icon114_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */; };
-		2EA8493017A37D7100755F2E /* counting_icon57_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EA8492F17A37D7100755F2E /* counting_icon57_white.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +89,6 @@
 		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
-		2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = counting_icon114_white.png; sourceTree = "<group>"; };
-		2EA8492F17A37D7100755F2E /* counting_icon57_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = counting_icon57_white.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +122,6 @@
 			children = (
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
-				2EA8492F17A37D7100755F2E /* counting_icon57_white.png */,
-				2EA8492D17A37D6D00755F2E /* counting_icon114_white.png */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
 				2E21049E151ED7BB00D0B523 /* LifeCountDown */,
@@ -309,8 +303,6 @@
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
-				2EA8492E17A37D6D00755F2E /* counting_icon114_white.png in Resources */,
-				2EA8493017A37D7100755F2E /* counting_icon57_white.png in Resources */,
 				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
 				2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */,
 			);

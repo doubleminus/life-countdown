@@ -57,7 +57,48 @@ double totalSecondsDub;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]];
 
-    _progressView.frame = CGRectMake(25,160,280,25); // Adjust progress bar location
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    if (screenRect.size.height == 568)
+        isIphone5 = YES;
+    else
+        isIphone5 = NO;
+
+    _progressView.frame = CGRectMake(22,200,280,25); // Adjust progress bar location
+    _percentLabel.frame = CGRectMake(45,225,230,36);
+
+    [self createHeader];
+    
+    lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.bounds.size.width, 1)];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineView];
+}
+
+-(void)createHeader {
+    lbl0 = [[UILabel alloc] init]; lbl1 = [[UILabel alloc] init];
+    lbl2 = [[UILabel alloc] init]; lbl3 = [[UILabel alloc] init];
+    lbl4 = [[UILabel alloc] init]; lbl5 = [[UILabel alloc] init];
+    lbl6 = [[UILabel alloc] init]; lbl7 = [[UILabel alloc] init];
+    lbl8 = [[UILabel alloc] init]; lbl9 = [[UILabel alloc] init];
+
+    lbls = [NSArray arrayWithObjects:lbl0, lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9, nil];
+    NSArray *ltrs = [NSArray arrayWithObjects:@"L", @"I", @"F", @"E", @" ", @"C", @"O", @"U", @"N", @"T", nil];
+    NSInteger pos = 45; // To set X-coordinate for each letter
+    float alph = 1.0; // To decrement alpha for each letter
+
+    for (int i=0; i<=9; i++) {
+        UILabel *bl = [lbls objectAtIndex:i];
+        bl.frame = CGRectMake(pos,10,100,20);
+        bl.backgroundColor = [UIColor clearColor];
+        bl.textColor = [UIColor whiteColor];
+        bl.userInteractionEnabled = YES;
+        bl.alpha = alph;
+        bl.font = [UIFont fontWithName:@"Heiti SC Light" size:15];
+        bl.text = [ltrs objectAtIndex:i];
+
+        [self.view addSubview:bl];
+        pos += 25;
+        alph -= .095;
+    }
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -246,10 +287,24 @@ double totalSecondsDub;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
 
-    _countdownLabel.frame = CGRectMake(11,20,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(56,84,208,21);
-    _progressView.frame = CGRectMake(25,160,280,25);
-    
+ //   if (isIphone5) {
+  //      _countdownLabel.frame = CGRectMake(11,20,298,85);
+   //     secdsLifeRemLabel.frame = CGRectMake(56,84,208,21);
+        _progressView.frame = CGRectMake(25,160,280,25);
+ //   }
+//    else {
+        _countdownLabel.frame = CGRectMake(11,80,298,85);
+        secdsLifeRemLabel.frame = CGRectMake(56,145,208,21);
+        _progressView.frame = CGRectMake(22,200,280,25);
+        _percentLabel.frame = CGRectMake(45,225,230,36);
+//    }
+
+    NSInteger pos = 35; // To set X-coordinate for each letter
+    for (UILabel *lbl in lbls) {
+        lbl.frame = CGRectMake(pos,10,100,20);
+        pos += 25;
+    }
+
     [_touchToggle setEnabled:YES];
     [_setInfoSwipe setEnabled:YES];
 }
@@ -264,9 +319,31 @@ double totalSecondsDub;
     _ageLabel.hidden = YES;
     _percentLabel.hidden = YES;
 
-    _countdownLabel.frame = CGRectMake(135,70,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
-    _progressView.frame = CGRectMake(92,175,400,25);
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    if (screenRect.size.height == 568) {
+        _countdownLabel.frame = CGRectMake(140,70,298,85);
+        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
+        _progressView.frame = CGRectMake(92,175,400,25);
+
+        NSInteger pos = 165; // To set X-coordinate for each letter
+        for (UILabel *lbl in lbls) {
+            lbl.frame = CGRectMake(pos,10,100,20);
+            pos += 25;
+        }
+    }
+    else {
+        _countdownLabel.frame = CGRectMake(90,70,298,85);
+        secdsLifeRemLabel.frame = CGRectMake(130,135,208,21);
+        _progressView.frame = CGRectMake(50,175,400,25);
+
+        NSInteger pos = 125; // To set X-coordinate for each letter
+        for (UILabel *lbl in lbls) {
+            lbl.frame = CGRectMake(pos,10,100,20);
+            pos += 25;
+        }
+    }
+
+    lineView.frame = CGRectMake(0, 35, self.view.bounds.size.width, 1);
 }
 
 - (void)showComponents {
