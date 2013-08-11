@@ -41,7 +41,7 @@
 					<object class="IBUILabel" id="786333789">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{11, 74}, {298, 85}}</string>
+						<string key="NSFrame">{{11, 80}, {298, 85}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1053701925"/>
@@ -75,7 +75,7 @@
 					<object class="IBUILabel" id="1053701925">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{56, 138}, {208, 21}}</string>
+						<string key="NSFrame">{{56, 145}, {208, 21}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="596180835"/>
@@ -142,6 +142,7 @@
 						<string key="NSFrame">{{101, 405}, {158, 32}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -246,7 +247,7 @@
 					<object class="IBUIProgressView" id="596180835">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{23, 214}, {275, 9}}</string>
+						<string key="NSFrame">{{22, 200}, {280, 9}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="686550588"/>
@@ -446,11 +447,11 @@
 							<reference ref="786333789"/>
 							<reference ref="1053701925"/>
 							<reference ref="686550588"/>
-							<reference ref="596180835"/>
 							<reference ref="402407234"/>
 							<reference ref="354573670"/>
 							<reference ref="606796658"/>
 							<reference ref="845863513"/>
+							<reference ref="596180835"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -630,10 +631,6 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1552" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<real value="4600" key="NS.object.0"/>

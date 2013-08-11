@@ -32,12 +32,11 @@
 @class YLProgressBar;
 
 @interface ViewController : UIViewController <ConfigViewDelegate> {
-    UILabel *lbl0, *lbl1, *lbl2, *lbl3, *lbl4, *lbl5, *lbl6, *lbl7, *lbl8, *lbl9;
-    NSArray *lbls;
+    UILabel *lbl0, *lbl1;
     UIView *lineView;
     NSTimer *secondTimer;
     NSString *path, *bundle;
-    bool timerStarted, isIphone5;
+    bool timerStarted;
     double seconds;
 
     __weak IBOutlet UILabel *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
