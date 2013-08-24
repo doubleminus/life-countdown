@@ -66,6 +66,24 @@ double totalSecondsDub, progAmount, percentRemaining;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo {
+    NSString *docsDir;
+    NSArray *dirPaths;
+
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    NSString *databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"foo.png"]];
+
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.view.window.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.view.window.bounds.size);
+
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData *data = UIImagePNGRepresentation(image);
+    [data writeToFile:databasePath atomically:YES];
+
     ConfigViewController *enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
     // Important to set the viewcontroller's delegate to be self
@@ -252,6 +270,7 @@ double totalSecondsDub, progAmount, percentRemaining;
     secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
+   // backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"foo.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];

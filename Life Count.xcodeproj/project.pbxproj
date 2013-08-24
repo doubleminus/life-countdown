@@ -154,7 +154,6 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
-				2E352FEE17BF5B3300744087 /* hglass.jpg */,
 				2E635E5517796F2E00B85650 /* Xibs */,
 				2E635E5417796F1F00B85650 /* Controllers */,
 				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
@@ -174,6 +173,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E352FEE17BF5B3300744087 /* hglass.jpg */,
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
@@ -487,13 +487,13 @@
 		2E2104CB151ED7BB00D0B523 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LifeCountDown.app/LifeCountDown";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Life Count.app/Life Count";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
+				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDownTests/Life CountTests-Info.plist";
 				PRODUCT_NAME = "Life CountTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -504,13 +504,13 @@
 		2E2104CC151ED7BB00D0B523 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LifeCountDown.app/LifeCountDown";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Life Count.app/Life Count";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LifeCountDown/LifeCountDown-Prefix.pch";
+				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDownTests/Life CountTests-Info.plist";
 				PRODUCT_NAME = "Life CountTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
