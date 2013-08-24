@@ -37,7 +37,7 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
     // Scroll view setup
@@ -47,7 +47,6 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,700)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
-    [scroller setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
 
     // Style/skin our buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
@@ -143,7 +142,7 @@ NSDate *birthDate;
 }
 
 - (IBAction)sliderChanged:(id)sender {
-    _daySlider = (UISlider *)sender;
+    _daySlider = (UISlider*)sender;
     NSInteger val = lround(_daySlider.value);
     _daysLbl.text = [NSString stringWithFormat:@"%d", val];
     [self togglePlus:val];
@@ -151,8 +150,8 @@ NSDate *birthDate;
 
 /**** BEGIN PLIST METHODS ****/
 - (void)readPlist {
-    NSString *errorDesc = nil;
     NSPropertyListFormat format;
+    NSString *errorDesc = nil;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // Get path to documents directory from the list.
     path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
 
@@ -237,9 +236,9 @@ NSDate *birthDate;
 
 - (void)togglePlus:(NSInteger)fVal {
     if (fVal <= 20)
-        [plusLbl setHidden:YES];
+        plusLbl.hidden = YES;
     else
-        [plusLbl setHidden:NO];
+        plusLbl.hidden = NO;
 }
 
 - (IBAction)showHelp:(id)sender {
@@ -256,7 +255,7 @@ NSDate *birthDate;
     [self.view addSubview:_hView];
     _hView.alpha = 0.75;
     _hView.hidden = YES;
-    [_hView.layer setCornerRadius:10.0f];
+    _hView.layer.cornerRadius = 10.0f;
 
     // drop shadow
     [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
@@ -288,13 +287,13 @@ NSDate *birthDate;
     cancelBtn = nil;
     contentView = nil;
     plusLbl = nil;
-    [self setDobPicker:nil];
-    [self setGenderToggle:nil];
-    [self setDaySlider:nil];
-    [self setDaysLbl:nil];
-    [self setSmokeSwitch:nil];
-    [self setThumbTintColor:nil];
-    [self setOnTintColor:nil];
+    _dobPicker = nil;
+    _genderToggle = nil;
+    _daysLbl = nil;
+    _smokeSwitch = nil;
+    _thumbTintColor = nil;
+    _onTintColor = nil;
+
     [super viewDidUnload];
 }
 

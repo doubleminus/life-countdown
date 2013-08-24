@@ -191,7 +191,7 @@
 - (void)drawProgressBarWithRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
-    
+
     CGContextSaveGState(context); {
         UIBezierPath *progressBounds = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
         CGContextAddPath(context, [progressBounds CGPath]);
@@ -201,11 +201,11 @@
         CFArrayRef colors = (__bridge CFArrayRef) [NSArray arrayWithObjects:(id)_progressTintColorDark.CGColor,
                                           (id)self.progressTintColor.CGColor, 
                                           nil];
-        
+
         CGGradientRef gradient = CGGradientCreateWithColors (colorSpace, colors, locations);
-        
+
         CGContextDrawLinearGradient(context, gradient, CGPointMake(rect.origin.x, rect.origin.y), CGPointMake(rect.origin.x + rect.size.width, rect.origin.y), (kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation));
-        
+
         CGGradientRelease(gradient);
     }
 
@@ -225,21 +225,21 @@
                                                    bounds:rect];
             [allStripes appendPath:stripe];
         }
-        
+
         // Clip the progress frame
         UIBezierPath *clipPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
 
         CGContextAddPath(context, [clipPath CGPath]);
         CGContextClip(context);
-        
+
         CGContextSaveGState(context); {
             // Clip the stripes
             CGContextAddPath(context, [allStripes CGPath]);
             CGContextClip(context);
-            
+
             const CGFloat stripesColorComponents[] = { 0.0f, 0.0f, 0.0f, 0.28f };
             CGColorRef stripesColor = CGColorCreate(colorSpace, stripesColorComponents);
-            
+
             CGContextSetFillColorWithColor(context, stripesColor);
             CGContextFillRect(context, rect);
             CGColorRelease(stripesColor);

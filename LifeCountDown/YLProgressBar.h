@@ -26,8 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YLProgressBar : UIProgressView
-{
+@interface YLProgressBar : UIProgressView {
+
 @public
     BOOL        animated;
     UIColor*    progressTintColor;
@@ -37,6 +37,7 @@
     CGFloat     cornerRadius;
     NSTimer*    animationTimer;
 }
+
 /** Run the animation of the progress bar. YES by default. */
 @property (nonatomic, getter = isAnimated) BOOL animated;
 @property (nonatomic, retain) UIColor *progressTintColor;

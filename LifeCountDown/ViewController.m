@@ -30,12 +30,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DateCalculationUtil.h"
 #import "YLProgressBar.h"
-#import "HelpView.h"
 
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-double totalSecondsDub;
+double totalSecondsDub, progAmount, percentRemaining;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -47,34 +46,22 @@ double totalSecondsDub;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
+
+    _progressView.hidden = YES;
+    _percentLabel.hidden = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]];
 
-    _progressView.frame = CGRectMake(22,200,280,25); // Adjust progress bar location
-    _percentLabel.frame = CGRectMake(45,225,230,36);
-
-    [self createHeader];
-    
-    lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.bounds.size.width, 1)];
-    lineView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:lineView];
-}
-
--(void)createHeader {
-    lbl0 = [[UILabel alloc] init];
-    lbl0.text = @"L I F E  C O U N T";
-    lbl0.frame = CGRectMake(85,10,self.view.bounds.size.width,20);
-    lbl0.backgroundColor = [UIColor clearColor];
-    lbl0.textColor = [UIColor whiteColor];
-    lbl0.font = [UIFont fontWithName:@"Heiti SC Light" size:15];
-    [self.view addSubview:lbl0];
+    [self handlePortrait];
+    [backgroundView setFrame:self.view.bounds];
+    [[self view] addSubview:backgroundView];
+    [[self view] sendSubviewToBack:backgroundView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -84,8 +71,15 @@ double totalSecondsDub;
     // Important to set the viewcontroller's delegate to be self
     enterInfo.delegate = self;
 
-    // Now present the view controller to the user
-    [self presentViewController:enterInfo animated:true completion:NULL];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    enterInfo.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:enterInfo animated:true completion:nil];
+   // self.modalPresentationStyle = UIModalPresentationFullScreen;
+
+     // enterInfo.view.alpha = .8;
+  //  enterInfo.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:1];
+   // label.text = @”This is good!”;
+   // [UIView animateWithDuration:3.0 animations:^{enterInfo.view.alpha = 1.f; }];
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -109,17 +103,12 @@ double totalSecondsDub;
         seconds = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
-        if ([dateUtil secondsRemaining] > 0) {
+        if ([dateUtil secondsRemaining] > 0)
             _ageLabel.text = [NSString stringWithFormat:@"%d years old", [dateUtil yearBase]];
-            _progressView.hidden = NO;
-        }
-        // Handle situation where user has exceed life expectancy
-        else {
+        else  // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
-            _progressView.hidden = YES;
-        }
 
-        if (!timerStarted) {
+        if (!_timerStarted) {
             [self updateTimerAndBar];
             [self startSecondTimer];
         }
@@ -127,7 +116,7 @@ double totalSecondsDub;
 }
 
 - (void)startSecondTimer {
-    secondTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+    _secondTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
                                                    target: self
                                                  selector: @selector(updateTimerAndBar)
                                                  userInfo: nil
@@ -135,27 +124,20 @@ double totalSecondsDub;
 }
 
 - (void)updateTimerAndBar {
-    double progAmount, percentRemaining;
     seconds -= 1.0;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
+    progAmount = seconds / totalSecondsDub; // Calculate here for coloring progress bar in landscape
 
-    // Set our progress bar's value, based on amount of life remaining
-    progAmount = seconds / totalSecondsDub;
-    [_progressView setProgress:progAmount];
+    // Set our progress bar's value, based on amount of life remaining, but only if in landscape
+    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
+        [_progressView setProgress:progAmount];
 
-    // Calculate percentage of life remaining
-    percentRemaining = progAmount * 100.0;
-    _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
+        // Calculate percentage of life remaining
+        percentRemaining = progAmount * 100.0;
+        _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
+    }
 
-    // Apply color to progress bar based on lifespan
-    if (progAmount >= .66)
-        _progressView.progressTintColor = [UIColor greenColor];
-    else if (progAmount && progAmount > .33)
-        _progressView.progressTintColor = [UIColor yellowColor];
-    else
-        _progressView.progressTintColor = [UIColor redColor];
-
-    timerStarted = YES;
+    _timerStarted = YES;
 }
 /****  END USER INFORMATION METHODS  ****/
 
@@ -259,45 +241,54 @@ double totalSecondsDub;
     iButton.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
-    _percentLabel.hidden = NO;
+    _percentLabel.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
+    _progressView.hidden = YES;
+    _touchToggle.enabled = YES;
+    _setInfoSwipe.enabled = YES;
 
-    _countdownLabel.frame = CGRectMake(11,80,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(56,145,208,21);
-    _progressView.frame = CGRectMake(22,200,280,25);
-    _percentLabel.frame = CGRectMake(45,225,230,36);
-    lbl0.frame = CGRectMake(100,10,self.view.bounds.size.width,20);
+    _countdownLabel.frame = CGRectMake(11,0,298,45);
+    secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
 
-    [_touchToggle setEnabled:YES];
-    [_setInfoSwipe setEnabled:YES];
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
+    backgroundView.frame = self.view.bounds;
+    [[self view] addSubview:backgroundView];
+    [[self view] sendSubviewToBack:backgroundView];
 }
 
 - (void)handleLandscape {
-    [_touchToggle setEnabled:NO];
-    [_setInfoSwipe setEnabled:NO];
+    self.view.backgroundColor = [UIColor blackColor];
+    _touchToggle.enabled = NO;
+    _setInfoSwipe.enabled = NO;
+    _percentLabel.hidden = NO;
+    _progressView.hidden = NO;
+    _currentAgeLabel.hidden = YES;
+    _ageLabel.hidden = YES;
+    backgroundView.hidden = YES;
     iButton.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
-    _currentAgeLabel.hidden = YES;
-    _ageLabel.hidden = YES;
-    _percentLabel.hidden = YES;
 
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
         _countdownLabel.frame = CGRectMake(140,70,298,85);
-        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
         _progressView.frame = CGRectMake(92,175,400,25);
-        lbl0.frame = CGRectMake(215,10,self.view.bounds.size.width,20);
+        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
     }
     else {
         _countdownLabel.frame = CGRectMake(90,70,298,85);
-        secdsLifeRemLabel.frame = CGRectMake(130,135,208,21);
         _progressView.frame = CGRectMake(50,175,400,25);
-        lbl0.frame = CGRectMake(175,10,self.view.bounds.size.width,20);
+        secdsLifeRemLabel.frame = CGRectMake(130,135,208,21);
     }
 
-    lineView.frame = CGRectMake(0, 35, self.view.bounds.size.width, 1);
+    // Apply color to progress bar based on lifespan
+    if (progAmount >= .66)
+        _progressView.progressTintColor = [UIColor greenColor];
+    else if (progAmount && progAmount > .33)
+        _progressView.progressTintColor = [UIColor yellowColor];
+    else
+        _progressView.progressTintColor = [UIColor redColor];
 }
 
 - (void)showComponents {
@@ -306,7 +297,6 @@ double totalSecondsDub;
     currAgeTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
-    _percentLabel.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -314,15 +304,16 @@ double totalSecondsDub;
 }
 
 - (void)viewDidUnload {
-    [self setProgressView:nil];
     secdsLifeRemLabel = nil;
     iButton = nil;
     detailsLabel = nil;
-    [self setPercentLabel:nil];
-    [self setCountdownLabel:nil];
-    [self setAgeLabel:nil];
-    [self setDateLabel:nil];
-    [self setCurrentAgeLabel:nil];
+    self.progressView = nil;
+    self.percentLabel = nil;
+    self.countdownLabel = nil;
+    self.ageLabel = nil;
+    self.dateLabel = nil;
+    self.dateLabel = nil;
+    self.currentAgeLabel = nil;
 }
 /* END  UI METHODS */
 

@@ -32,11 +32,8 @@
 @class YLProgressBar;
 
 @interface ViewController : UIViewController <ConfigViewDelegate> {
-    UILabel *lbl0, *lbl1;
-    UIView *lineView;
-    NSTimer *secondTimer;
+    UIImageView *backgroundView;
     NSString *path, *bundle;
-    bool timerStarted;
     double seconds;
 
     __weak IBOutlet UILabel *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
@@ -46,9 +43,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel,
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
-@property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *setInfoSwipe;
+@property (strong, nonatomic) NSDictionary *viewDict;
+@property (strong, nonatomic) NSTimer *secondTimer;
+@property (nonatomic) bool timerStarted;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)setUserInfo;
