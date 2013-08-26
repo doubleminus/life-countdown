@@ -194,9 +194,9 @@ double totalSecondsDub, progAmount, percentRemaining;
                                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                               format:&format
                                               errorDescription:&errorDesc];
-        if (!_viewDict) {
+       // if (!_viewDict) {
             //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-        }
+       // }
 
         // If we have ALL of the values we need, display info to user.
         if ([_viewDict objectForKey:@"infoDict"] != nil) {

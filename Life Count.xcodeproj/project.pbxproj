@@ -27,8 +27,6 @@
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
-		2E352FEF17BF5B3300744087 /* hglass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E352FEE17BF5B3300744087 /* hglass.jpg */; };
-		2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
@@ -39,6 +37,10 @@
 		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
+		2EBBE62C17CAE490002274D8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE62B17CAE490002274D8 /* Default@2x.png */; };
+		2EBBE62E17CAE495002274D8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE62D17CAE495002274D8 /* Default.png */; };
+		2EBBE63217CAE4EF002274D8 /* hglass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE63117CAE4EF002274D8 /* hglass.jpg */; };
+		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +79,6 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
-		2E352FEE17BF5B3300744087 /* hglass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hglass.jpg; path = ../../../../Desktop/hglass.jpg; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
@@ -91,6 +92,9 @@
 		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
+		2EBBE62B17CAE490002274D8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2EBBE62D17CAE495002274D8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2EBBE63117CAE4EF002274D8 /* hglass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hglass.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,8 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
+				2EBBE62D17CAE495002274D8 /* Default.png */,
+				2EBBE62B17CAE490002274D8 /* Default@2x.png */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
 				2E21049E151ED7BB00D0B523 /* LifeCountDown */,
@@ -173,7 +179,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E352FEE17BF5B3300744087 /* hglass.jpg */,
+				2EBBE63117CAE4EF002274D8 /* hglass.jpg */,
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
@@ -302,13 +308,15 @@
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
-				2E43B2B61612BF26000E984B /* Default-568h@2x.png in Resources */,
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
 				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
 				2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */,
-				2E352FEF17BF5B3300744087 /* hglass.jpg in Resources */,
+				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
+				2EBBE62C17CAE490002274D8 /* Default@2x.png in Resources */,
+				2EBBE62E17CAE495002274D8 /* Default.png in Resources */,
+				2EBBE63217CAE4EF002274D8 /* hglass.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

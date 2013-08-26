@@ -40,7 +40,7 @@ NSDate *birthDate;
 
     [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
-    // Scroll view setup
+    // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
 
@@ -48,7 +48,7 @@ NSDate *birthDate;
     [scroller setContentSize:CGSizeMake(320,700)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
 
-    // Style/skin our buttons
+    // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
     for (UIButton *btn in buttons) {

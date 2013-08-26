@@ -46,12 +46,12 @@
 }
 
 @property (nonatomic, assign) id delegate;
-@property (weak, nonatomic) IBOutlet UISlider *daySlider;
-@property (weak, nonatomic) IBOutlet UILabel *daysLbl;
+@property (weak, nonatomic)   IBOutlet UISlider *daySlider;
+@property (weak, nonatomic)   IBOutlet UILabel *daysLbl;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
-@property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
+@property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) UIColor *thumbTintColor;
 @property (strong, nonatomic) UIColor *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
