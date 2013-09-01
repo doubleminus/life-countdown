@@ -36,8 +36,8 @@
     NSString *path, *bundle;
     double seconds;
 
+    __weak IBOutlet UIButton *setInfoBtn;
     __weak IBOutlet UILabel *detailsLabel, *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
-    __weak IBOutlet UIButton *iButton;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *dateLabel, *ageLabel,

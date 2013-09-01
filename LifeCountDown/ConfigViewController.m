@@ -70,8 +70,12 @@ NSDate *birthDate;
         [btnLayer setCornerRadius:5.0f];
     }
 
-    // Setup help view but don't show it yet
+    // Setup help view but hide it
     [self setupHelpView];
+    
+    // Fade-in our view
+    self.view.alpha = 0;
+    [UIView animateWithDuration:2.0 animations:^{self.view.alpha = 1.f; }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

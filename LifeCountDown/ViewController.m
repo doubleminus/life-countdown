@@ -62,42 +62,34 @@ double totalSecondsDub, progAmount, percentRemaining;
     [backgroundView setFrame:self.view.bounds];
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
+
+    // Set button text color
+    [setInfoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [setInfoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+
+    // Draw a custom gradient
+    CAGradientLayer *btnGradient = [CAGradientLayer layer];
+    btnGradient.frame = setInfoBtn.bounds;
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
+                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
+    [setInfoBtn.layer insertSublayer:btnGradient atIndex:0];
+
+    // Round corners
+    CALayer *btnLayer = [setInfoBtn layer];
+    [btnLayer setMasksToBounds:YES];
+    [btnLayer setCornerRadius:5.0f];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo {
-    NSString *docsDir;
-    NSArray *dirPaths;
-
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    docsDir = [dirPaths objectAtIndex:0];
-    NSString *databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"foo.png"]];
-
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.view.window.bounds.size, NO, [UIScreen mainScreen].scale);
-    else
-        UIGraphicsBeginImageContext(self.view.window.bounds.size);
-
-    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData *data = UIImagePNGRepresentation(image);
-    [data writeToFile:databasePath atomically:YES];
-
     ConfigViewController *enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
     // Important to set the viewcontroller's delegate to be self
     enterInfo.delegate = self;
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    enterInfo.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:enterInfo animated:true completion:nil];
-   // self.modalPresentationStyle = UIModalPresentationFullScreen;
-
-     // enterInfo.view.alpha = .8;
-  //  enterInfo.view.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:1];
-   // label.text = @”This is good!”;
-   // [UIView animateWithDuration:3.0 animations:^{enterInfo.view.alpha = 1.f; }];
+    [self presentViewController:enterInfo animated:YES completion:nil];
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -256,7 +248,7 @@ double totalSecondsDub, progAmount, percentRemaining;
 }
 
 - (void)handlePortrait {
-    iButton.hidden = YES;
+    setInfoBtn.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
     _percentLabel.hidden = YES;
@@ -270,7 +262,6 @@ double totalSecondsDub, progAmount, percentRemaining;
     secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
-   // backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"foo.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
@@ -285,7 +276,7 @@ double totalSecondsDub, progAmount, percentRemaining;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     backgroundView.hidden = YES;
-    iButton.hidden = YES;
+    setInfoBtn.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
 
@@ -311,7 +302,7 @@ double totalSecondsDub, progAmount, percentRemaining;
 }
 
 - (void)showComponents {
-    iButton.hidden = NO;
+    setInfoBtn.hidden = NO;
     estTxtLbl.hidden = NO;
     currAgeTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
@@ -324,7 +315,7 @@ double totalSecondsDub, progAmount, percentRemaining;
 
 - (void)viewDidUnload {
     secdsLifeRemLabel = nil;
-    iButton = nil;
+    setInfoBtn = nil;
     detailsLabel = nil;
     self.progressView = nil;
     self.percentLabel = nil;
