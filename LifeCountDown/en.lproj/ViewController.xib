@@ -105,7 +105,7 @@
 					<object class="IBUILabel" id="686550588">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{43, 470}, {230, 36}}</string>
+						<string key="NSFrame">{{43, 345}, {230, 36}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -115,11 +115,11 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Label</string>
-						<object class="NSColor" key="IBUITextColor" id="509582227">
+						<reference key="IBUITextColor" ref="617612505"/>
+						<object class="NSColor" key="IBUIHighlightedColor" id="509582227">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 						</object>
-						<reference key="IBUIHighlightedColor" ref="509582227"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -141,7 +141,7 @@
 						<string key="NSFrame">{{15, 201}, {158, 32}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="596180835"/>
+						<reference key="NSNextKeyView" ref="478698174"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -261,6 +261,7 @@
 						<string key="NSFrame">{{15, 261}, {79, 26}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="596180835"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -291,7 +292,10 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="786333789"/>
-				<reference key="IBUIBackgroundColor" ref="617612505"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<array key="IBUIGestureRecognizers" id="0"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -460,12 +464,12 @@
 							<reference ref="786333789"/>
 							<reference ref="1053701925"/>
 							<reference ref="596180835"/>
-							<reference ref="686550588"/>
 							<reference ref="402407234"/>
 							<reference ref="354573670"/>
 							<reference ref="606796658"/>
 							<reference ref="845863513"/>
 							<reference ref="478698174"/>
+							<reference ref="686550588"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -576,7 +580,6 @@
 						<string key="progressView">YLProgressBar</string>
 						<string key="secdsLifeRemLabel">UILabel</string>
 						<string key="setInfoBtn">UIButton</string>
-						<string key="setInfoSwipe">UISwipeGestureRecognizer</string>
 						<string key="touchToggle">UITapGestureRecognizer</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -623,10 +626,6 @@
 						<object class="IBToOneOutletInfo" key="setInfoBtn">
 							<string key="name">setInfoBtn</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="setInfoSwipe">
-							<string key="name">setInfoSwipe</string>
-							<string key="candidateClassName">UISwipeGestureRecognizer</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="touchToggle">
 							<string key="name">touchToggle</string>

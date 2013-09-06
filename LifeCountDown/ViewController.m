@@ -52,7 +52,7 @@ double totalSecondsDub, progAmount, percentRemaining;
     [self verifyPlist];
 
     _progressView.hidden = YES;
-    _percentLabel.hidden = YES;
+ //   _percentLabel.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -256,7 +256,6 @@ double totalSecondsDub, progAmount, percentRemaining;
     _ageLabel.hidden = YES;
     _progressView.hidden = YES;
     _touchToggle.enabled = YES;
-    _setInfoSwipe.enabled = YES;
 
     _countdownLabel.frame = CGRectMake(11,0,298,45);
     secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
@@ -268,9 +267,8 @@ double totalSecondsDub, progAmount, percentRemaining;
 }
 
 - (void)handleLandscape {
-    self.view.backgroundColor = [UIColor blackColor];
+ //   self.view.backgroundColor = [UIColor blackColor];
     _touchToggle.enabled = NO;
-    _setInfoSwipe.enabled = NO;
     _percentLabel.hidden = NO;
     _progressView.hidden = NO;
     _currentAgeLabel.hidden = YES;
@@ -284,11 +282,13 @@ double totalSecondsDub, progAmount, percentRemaining;
     if (screenRect.size.height == 568) {
         _countdownLabel.frame = CGRectMake(140,70,298,85);
         _progressView.frame = CGRectMake(92,175,400,25);
+        _percentLabel.frame = CGRectMake(82,200,400,25);
         secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
     }
     else {
         _countdownLabel.frame = CGRectMake(90,70,298,85);
         _progressView.frame = CGRectMake(50,175,400,25);
+        _percentLabel.frame = CGRectMake(40,200,400,25);
         secdsLifeRemLabel.frame = CGRectMake(130,135,208,21);
     }
 

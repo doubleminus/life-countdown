@@ -44,7 +44,6 @@
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
-@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *setInfoSwipe;
 @property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;
