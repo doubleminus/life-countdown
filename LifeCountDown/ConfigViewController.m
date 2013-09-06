@@ -75,7 +75,7 @@ NSDate *birthDate;
     
     // Fade-in our view
     self.view.alpha = 0;
-    [UIView animateWithDuration:2.0 animations:^{self.view.alpha = 1.f; }];
+    [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
