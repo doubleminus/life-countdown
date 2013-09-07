@@ -36,7 +36,7 @@
 
 @implementation DateCalculationUtil
 
-NSInteger const MALE_AGE_START = 78, FEMALE_AGE_START = 81, yearBase;
+float const MALE_AGE_START = 75.6f, FEMALE_AGE_START = 80.7f, yearBase;
 NSString *currentAgeStr;
 NSDate *birthDate;
 NSCalendar *calendar;
@@ -72,17 +72,17 @@ NSCalendarUnit unitFlags;
 // Updates base number of years to live based on user-entered criteria
 - (void)updateYearBase {
     NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
-    NSInteger hrsAdd = [[diction objectForKey:@"hrsExercise"] integerValue];
+    float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
 
     if (genStr != nil && smokeStr != nil) {
         if ([genStr isEqualToString:@"f"])
             yearBase = FEMALE_AGE_START;
 
         if ([smokeStr isEqualToString:@"smoker"])
-            yearBase -= 10; // Remove 10 years from life if they smoke
+            yearBase -= 10.0f; // Remove 10 years from life if they smoke
 
         // Find # years remaining to live (diff between base years to live and current age in years)
-        NSInteger yearsToLive = yearBase - [currentAgeDateComp year];
+        float yearsToLive = yearBase - [currentAgeDateComp year];
 
         // ~6 minutes added to your life for each MINUTE of exercise/week if you don't smoke
         if (![smokeStr isEqualToString:@"smoker"])
@@ -90,22 +90,22 @@ NSCalendarUnit unitFlags;
         else
             minsGainedPerYear = ((hrsAdd * 60) * 3) * 52.1775; // And add only 2 minutes/1 minute of exercise if smoker
 
-        NSInteger yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949; // Divide by # of minutes in year
+        float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
         yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
         // Cap the life expectancy to academically accepted estimated max. life span for Americans
-        if (yearBase > 96 && [genStr isEqualToString:@"f"])
-            yearBase = 96;
-        else if (yearBase > 92 && [genStr isEqualToString:@"m"])
-            yearBase = 92;
+        if (yearBase > 96.0f && [genStr isEqualToString:@"f"])
+            yearBase = 96.0f;
+        else if (yearBase > 92.0f && [genStr isEqualToString:@"m"])
+            yearBase = 92.0f;
 
         double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
         totalSecondsInLife += secondsToAdd;
     }
 }
 
-- (void)calcBaseAgeInSeconds:(NSInteger)baseAgeInt {
-    totalSecondsInLife = ((((365.25 * baseAgeInt) * 24) * 60) * 60);
+- (void)calcBaseAgeInSeconds:(float)baseAgeFloat {
+    totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
 }
 
 // Determines all age information, via the user-provided birthdate

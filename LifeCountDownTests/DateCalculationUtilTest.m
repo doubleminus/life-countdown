@@ -49,13 +49,15 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
                                                                forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    
+  //  [[testDateUtil yearBase] object];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 81, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 80.7f, @"Base age should be correct");
 
-    // Our subject is 10 years old and female. They should have 71 years to live if their expiry age is 81.
-    // Let's manually calculate 71 years in seconds.
-    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:81];
+    // Our subject is 10 years old and female. They should have 70.7 years to live if their expiry age is 80.7.
+    // Let's manually calculate 70.7 years in seconds.
+    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:80.7f];
     double utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
@@ -65,7 +67,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
 
     // Calculate the total seconds in a person's life who lives to 81
-    double totalSecondsInLife = ((((365.25 * 81) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+    double totalSecondsInLife = ((((365.25 * 80.7f) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 
@@ -95,10 +97,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 78, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 75.6f, @"Base age should be correct");
 
     // Now check that calculation for seconds remaining in life is correct
-    remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:78];
+    remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:75.6];
     utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
@@ -107,15 +109,15 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
     STAssertEqualObjects(strVal1, strVal2, @"equal");
 
-    // Calculate the total seconds in a person's life who lives to 78
-    totalSecondsInLife = ((((daysInAYear * 78) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+    // Calculate the total seconds in a person's life who lives to 75.6
+    totalSecondsInLife = ((((daysInAYear * 75.6f) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
  /* Test female smoker age calculation */
 - (void)testFemaleSmokerAgeCalc {
-    NSInteger totalYears = 71;
+    float totalYears = 70.7f;
     NSString *gender = @"f", *smokeStatus = @"smoker";
     //NSLog(@"SEC_CONST constant: %f", SECS);
     
@@ -128,10 +130,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 71, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 70.7f, @"Base age should be correct");
 
-    // User is 10 years old and female. They should have 61 years to live if their expiry age is 71.
-    // Let's manually calculate 71 years in seconds.
+    // User is 10 years old and female. They should have 60.7 years to live if their expiry age is 70.7.
+    // Let's manually calculate 70.7 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
     double utilSeconds = [testDateUtil secondsRemaining];
     
@@ -141,7 +143,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
 
-    // Calculate the total seconds in a person's life who lives to 71
+    // Calculate the total seconds in a person's life who lives to 70.7
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
@@ -149,7 +151,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
 /* Test female nonsmoker age calculation */
 - (void)testFemaleNonSmokerAgeCalc {
-    NSInteger totalYears = 81;
+    float totalYears = 80.7f;
     NSString *gender = @"f", *smokeStatus = @"nonsmoker";
     //NSLog(@"SEC_CONST constant: %f", SECS);
     
@@ -162,10 +164,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
     
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 81, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 80.7f, @"Base age should be correct");
     
-    // User is 10 years old and female. They should have 71 years to live if their expiry age is 81.
-    // Let's manually calculate 81 years in seconds.
+    // User is 10 years old and female. They should have 70.7 years to live if their expiry age is 80.7.
+    // Let's manually calculate 80.7 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
     double utilSeconds = [testDateUtil secondsRemaining];
     
@@ -175,7 +177,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
     
-    // Calculate the total seconds in a person's life who lives to 81
+    // Calculate the total seconds in a person's life who lives to 80.7
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
@@ -183,7 +185,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
 /*Test male age calculation */
 - (void)testMaleSmokerAgeCalc {
-    NSInteger totalYears = 68;
+    float totalYears = 65.6f;
     NSString *gender = @"m", *smokeStatus = @"smoker";
     //NSLog(@"SEC_CONST constant: %f", SECS);
     
@@ -196,10 +198,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 68, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 65.6f, @"Base age should be correct");
 
-    // User is 10 years old and male. They should have 68 years to live if their expiry age is 78.
-    // Let's manually calculate 68 years in seconds.
+    // User is 10 years old and male. They should have 65.6 years to live if their expiry age is 75.6.
+    // Let's manually calculate 65.6 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
     double utilSeconds = [testDateUtil secondsRemaining];
     
@@ -209,7 +211,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
     
-    // Calculate the total seconds in a person's life who lives to 68
+    // Calculate the total seconds in a person's life who lives to 65.6
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
@@ -217,10 +219,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
 /*Test male age calculation */
 - (void)testMaleNonSmokerAgeCalc {
-    NSInteger totalYears = 78;
+    float totalYears = 75.6f;
     NSString *gender = @"m", *smokeStatus = @"nonsmoker";
     //NSLog(@"SEC_CONST constant: %f", SECS);
-    
+
     // Create birthdate, setting it 10 years prior to the current date
     NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
     
@@ -230,10 +232,10 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    STAssertEquals([testDateUtil yearBase], 78, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 75.6f, @"Base age should be correct");
 
-    // User is 10 years old and male. They should have 68 years to live if their expiry age is 78.
-    // Let's manually calculate 68 years in seconds.
+    // User is 10 years old and male. They should have 65.6 years to live if their expiry age is 75.6.
+    // Let's manually calculate 65.6 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
     double utilSeconds = [testDateUtil secondsRemaining];
 
@@ -243,7 +245,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
 
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
 
-    // Calculate the total seconds in a person's life who lives to 78
+    // Calculate the total seconds in a person's life who lives to 75.6
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
@@ -265,19 +267,19 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
     // Estimated final age is 90, because exercising will add 12 years in this case
-    STAssertEquals([testDateUtil yearBase], 90, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 87.492859f, @"Base age should be correct");
 
     // Use this to perform math later on number of seconds left in life
-    NSInteger finalAgeInt = [testDateUtil yearBase];
+    float finalAgeFloat = [testDateUtil yearBase];
 
     // 68 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
 
-    STAssertEquals([testDateUtil yearBase], 90, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 87.492859f, @"Base age should be correct");
 
     // User is 10 years old and male. They should have 80 years to live if their expiry age is 90.
     // Let's manually calculate 90 years in seconds.
-    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:finalAgeInt];
+    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:finalAgeFloat];
     double utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
@@ -287,7 +289,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
 
     // Calculate the total seconds in a person's life who lives to 90 (78 + 12 years added from 5 hrs exercise/week)
-    double totalSecondsInLife = ((((daysInAYear * finalAgeInt) * 24) * 60) * 60);
+    double totalSecondsInLife = ((((daysInAYear * finalAgeFloat) * 24) * 60) * 60);
 
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
@@ -308,7 +310,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
     // Estimated final age should be 96, because we should hit ultimate life span cap
-    STAssertEquals([testDateUtil yearBase], 92, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 92.0f, @"Base age should be correct");
 
     // Use this to perform math later on number of seconds left in life
     NSInteger finalAgeInt = [testDateUtil yearBase];
@@ -318,7 +320,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
    // NSInteger minutesExInLife = (((82 * weeksInYear) * 5) * 60); // calculate total hours of exercise in 68 years more of life
     //double secondsToAddFromExercise = (minutesExInLife * 6) * 60; // Totaling 12.1013 years to add to life <--- Just for reference
     
-    STAssertEquals([testDateUtil yearBase], 92, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 92.0f, @"Base age should be correct");
     
     // User is 10 years old and male. They should have 80 years to live if their expiry age is 90.
     // Let's manually calculate 90 years in seconds.
@@ -353,7 +355,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
     // Estimated final age should be 96, because we should hit ultimate life span cap
-    STAssertEquals([testDateUtil yearBase], 96, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 96.0f, @"Base age should be correct");
     
     // Use this to perform math later on number of seconds left in life
     NSInteger finalAgeInt = [testDateUtil yearBase];
@@ -361,7 +363,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     // 86 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
     //                        weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
 
-    STAssertEquals([testDateUtil yearBase], 96, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 96.0f, @"Base age should be correct");
     
     // User is 10 years old and male. They should have 80 years to live if their expiry age is 90.
     // Let's manually calculate 90 years in seconds.
@@ -396,13 +398,13 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
     // Use this to perform math later on number of seconds left in life
-    NSInteger finalAgeInt = [testDateUtil yearBase];
+    float finalAgeFloat = [testDateUtil yearBase];
 
-    STAssertEquals([testDateUtil yearBase], 75, @"Base age should be correct");
+    STAssertEquals([testDateUtil yearBase], 71.242851f, @"Base age should be correct");
 
     // User is 10 years old and male. They should have 80 years to live if their expiry age is 90.
     // Let's manually calculate 90 years in seconds.
-    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:finalAgeInt];
+    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:finalAgeFloat];
     double utilSeconds = [testDateUtil secondsRemaining];
     
     // Cast to string for easier comparison
@@ -412,7 +414,7 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
     
     // Calculate the total seconds in a person's life who lives to 90 (78 + 12 years added from 5 hrs exercise/week)
-    double totalSecondsInLife = ((((daysInAYear * finalAgeInt) * 24) * 60) * 60);
+    double totalSecondsInLife = ((((daysInAYear * finalAgeFloat) * 24) * 60) * 60);
     
     STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
