@@ -294,7 +294,7 @@
 				<reference key="NSNextKeyView" ref="786333789"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MAA</bytes>
+					<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<array key="IBUIGestureRecognizers" id="0"/>
@@ -574,7 +574,6 @@
 						<string key="currAgeTxtLbl">UILabel</string>
 						<string key="currentAgeLabel">UILabel</string>
 						<string key="dateLabel">UILabel</string>
-						<string key="detailsLabel">UILabel</string>
 						<string key="estTxtLbl">UILabel</string>
 						<string key="percentLabel">UILabel</string>
 						<string key="progressView">YLProgressBar</string>
@@ -601,10 +600,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="dateLabel">
 							<string key="name">dateLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="detailsLabel">
-							<string key="name">detailsLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="estTxtLbl">

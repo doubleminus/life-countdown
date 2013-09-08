@@ -42,6 +42,8 @@ double totalSecondsDub, progAmount, percentRemaining;
     // If we return from configView in landscape, then adjust UI components accordingly
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
         [self handleLandscape];
+
+    _progressView.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,14 +52,14 @@ double totalSecondsDub, progAmount, percentRemaining;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
-
-    _progressView.hidden = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self handlePortrait];
+    
+    // Set background photo
     [backgroundView setFrame:self.view.bounds];
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
@@ -66,7 +68,7 @@ double totalSecondsDub, progAmount, percentRemaining;
     [setInfoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [setInfoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
-    // Draw a custom gradient
+    // Draw a custom gradient for button
     CAGradientLayer *btnGradient = [CAGradientLayer layer];
     btnGradient.frame = setInfoBtn.bounds;
     btnGradient.colors = [NSArray arrayWithObjects:
@@ -74,10 +76,15 @@ double totalSecondsDub, progAmount, percentRemaining;
                           (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
     [setInfoBtn.layer insertSublayer:btnGradient atIndex:0];
 
-    // Round corners
+    // Round button corners
     CALayer *btnLayer = [setInfoBtn layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
+
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
+    backgroundView.frame = self.view.bounds;
+    [[self view] addSubview:backgroundView];
+    [[self view] sendSubviewToBack:backgroundView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -215,9 +222,8 @@ double totalSecondsDub, progAmount, percentRemaining;
     NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
 
     // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES) {
-        //NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-    }
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
 
     // Show contents of Documents directory for debugging purposes
     //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
@@ -258,20 +264,15 @@ double totalSecondsDub, progAmount, percentRemaining;
 
     _countdownLabel.frame = CGRectMake(11,0,298,45);
     secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
-
-    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
-    backgroundView.frame = self.view.bounds;
-    [[self view] addSubview:backgroundView];
-    [[self view] sendSubviewToBack:backgroundView];
+    backgroundView.hidden = NO;
 }
 
 - (void)handleLandscape {
+    backgroundView.hidden = YES;
     _touchToggle.enabled = NO;
-    _percentLabel.hidden = NO;
     _progressView.hidden = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
-    backgroundView.hidden = YES;
     setInfoBtn.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
@@ -279,15 +280,15 @@ double totalSecondsDub, progAmount, percentRemaining;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
         _countdownLabel.frame = CGRectMake(140,70,298,85);
+        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
         _progressView.frame = CGRectMake(92,175,400,25);
         _percentLabel.frame = CGRectMake(82,200,400,25);
-        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
     }
     else {
-        _countdownLabel.frame = CGRectMake(90,70,298,85);
-        _progressView.frame = CGRectMake(50,175,400,25);
-        _percentLabel.frame = CGRectMake(40,200,400,25);
-        secdsLifeRemLabel.frame = CGRectMake(130,135,208,21);
+        _countdownLabel.frame = CGRectMake(85,60,298,85);
+        secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
+        _progressView.frame = CGRectMake(40,165,400,25);
+        _percentLabel.frame = CGRectMake(40,190,400,25);
     }
 
     // Apply color to progress bar based on lifespan
@@ -297,6 +298,8 @@ double totalSecondsDub, progAmount, percentRemaining;
         _progressView.progressTintColor = [UIColor yellowColor];
     else
         _progressView.progressTintColor = [UIColor redColor];
+
+    _percentLabel.hidden = NO; // Unhide last so it has time to set
 }
 
 - (void)showComponents {
@@ -314,7 +317,6 @@ double totalSecondsDub, progAmount, percentRemaining;
 - (void)viewDidUnload {
     secdsLifeRemLabel = nil;
     setInfoBtn = nil;
-    detailsLabel = nil;
     self.progressView = nil;
     self.percentLabel = nil;
     self.countdownLabel = nil;
