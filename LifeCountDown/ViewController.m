@@ -52,7 +52,6 @@ double totalSecondsDub, progAmount, percentRemaining;
     [self verifyPlist];
 
     _progressView.hidden = YES;
- //   _percentLabel.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -114,7 +113,7 @@ double totalSecondsDub, progAmount, percentRemaining;
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
         if ([dateUtil secondsRemaining] > 0)
-            _ageLabel.text = [NSString stringWithFormat:@"%d years old", [dateUtil yearBase]];
+            _ageLabel.text = [NSString stringWithFormat:@"%.2f years old", [dateUtil yearBase]];
         else  // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
 
@@ -267,7 +266,6 @@ double totalSecondsDub, progAmount, percentRemaining;
 }
 
 - (void)handleLandscape {
- //   self.view.backgroundColor = [UIColor blackColor];
     _touchToggle.enabled = NO;
     _percentLabel.hidden = NO;
     _progressView.hidden = NO;

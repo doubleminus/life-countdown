@@ -72,7 +72,7 @@ NSDate *birthDate;
 
     // Setup help view but hide it
     [self setupHelpView];
-    
+
     // Fade-in our view
     self.view.alpha = 0;
     [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
