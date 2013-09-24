@@ -36,11 +36,15 @@
 @property (strong, nonatomic) NSDate *birthDate;
 @property (strong, nonatomic) NSString *futureAgeStr;
 @property (strong, nonatomic) NSDateComponents *currentAgeDateComp;
+@property (strong, nonatomic) NSDictionary *countryDict;
 @property double secondsRemaining, totalSecondsInLife;
 @property float yearBase;
 
 // Constructor
 - (DateCalculationUtil*) initWithDict:(NSDictionary*)myDict;
+
+// Other methods
 - (void)calculateSeconds:(NSDate*)dateArg;
+- (NSDictionary*)getCountryDict;
 
 @end

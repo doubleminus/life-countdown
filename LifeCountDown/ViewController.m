@@ -56,13 +56,7 @@ double totalSecondsDub, progAmount, percentRemaining;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self handlePortrait];
-    
-    // Set background photo
-    [backgroundView setFrame:self.view.bounds];
-    [[self view] addSubview:backgroundView];
-    [[self view] sendSubviewToBack:backgroundView];
 
     // Set button text color
     [setInfoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -81,10 +75,12 @@ double totalSecondsDub, progAmount, percentRemaining;
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
 
-    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.jpg"]];
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -262,8 +258,8 @@ double totalSecondsDub, progAmount, percentRemaining;
     _progressView.hidden = YES;
     _touchToggle.enabled = YES;
 
-    _countdownLabel.frame = CGRectMake(11,0,298,45);
-    secdsLifeRemLabel.frame = CGRectMake(56,45,208,21);
+    _countdownLabel.frame = CGRectMake(11,20,298,45);
+    secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
     backgroundView.hidden = NO;
 }
 

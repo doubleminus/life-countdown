@@ -38,14 +38,14 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
+    //[contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
     // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
 
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,700)];
+    [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
 
     // Style/skin buttons
@@ -69,13 +69,17 @@ NSDate *birthDate;
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
     }
+    
+    // Get array of countries from Countries.plist via calculation util to populate uipickerview values
+    DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
+    countryArray = [[dateUtil getCountryDict] allKeys];
 
     // Setup help view but hide it
     [self setupHelpView];
 
     // Fade-in our view
     self.view.alpha = 0;
-    [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
+    [UIView animateWithDuration:3.0 animations:^{self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,7 +92,7 @@ NSDate *birthDate;
     UIColor *thumbTintColor =  [[UIColor alloc] initWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f];
     [thumbTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
     [[UISwitch appearance] setThumbTintColor:[self thumbTintColor]];
-    
+
     UIColor *onTintColor =  [[UIColor alloc] initWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:251.0f / 255.0f alpha:1.0f];
     [onTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
     [[UISwitch appearance] setOnTintColor:[self onTintColor]];
@@ -261,7 +265,7 @@ NSDate *birthDate;
     _hView.hidden = YES;
     _hView.layer.cornerRadius = 10.0f;
 
-    // drop shadow
+    // Set drop shadow
     [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
     [_hView.layer setShadowOpacity:0.8];
     [_hView.layer setShadowRadius:3.0];
@@ -299,6 +303,18 @@ NSDate *birthDate;
     _onTintColor = nil;
 
     [super viewDidUnload];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return countryArray.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return countryArray[row];
 }
 
 @end

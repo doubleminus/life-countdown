@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E194E0417E9EE7A0075C651 /* hglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E194E0317E9EE7A0075C651 /* hglass.png */; };
 		2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B1422179080BF00FEF11E /* irongrip_@2X.png */; };
 		2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E210498151ED7BA00D0B523 /* UIKit.framework */; };
 		2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049A151ED7BB00D0B523 /* Foundation.framework */; };
@@ -37,9 +38,9 @@
 		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
+		2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DC8CA17EF2D0300AD679B /* Countries.plist */; };
 		2EBBE62C17CAE490002274D8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE62B17CAE490002274D8 /* Default@2x.png */; };
 		2EBBE62E17CAE495002274D8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE62D17CAE495002274D8 /* Default.png */; };
-		2EBBE63217CAE4EF002274D8 /* hglass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EBBE63117CAE4EF002274D8 /* hglass.jpg */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E194E0317E9EE7A0075C651 /* hglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hglass.png; sourceTree = "<group>"; };
 		2E1B1422179080BF00FEF11E /* irongrip_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irongrip_@2X.png"; sourceTree = "<group>"; };
 		2E210494151ED7BA00D0B523 /* Life Count.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life Count.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E210498151ED7BA00D0B523 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -92,9 +94,9 @@
 		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
+		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
 		2EBBE62B17CAE490002274D8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2EBBE62D17CAE495002274D8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2EBBE63117CAE4EF002274D8 /* hglass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hglass.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +168,6 @@
 				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
-				2E47C1A115CF93F1002213C3 /* Data.plist */,
 				2E2104A7151ED7BB00D0B523 /* AppDelegate.h */,
 				2E2104A8151ED7BB00D0B523 /* AppDelegate.m */,
 				2E21049F151ED7BB00D0B523 /* Supporting Files */,
@@ -179,7 +180,9 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2EBBE63117CAE4EF002274D8 /* hglass.jpg */,
+				2E47C1A115CF93F1002213C3 /* Data.plist */,
+				2E9DC8CA17EF2D0300AD679B /* Countries.plist */,
+				2E194E0317E9EE7A0075C651 /* hglass.png */,
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
@@ -279,7 +282,7 @@
 		2E21048B151ED7BA00D0B523 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "Life Count" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -309,6 +312,7 @@
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
+				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
 				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
 				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
@@ -316,7 +320,7 @@
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
 				2EBBE62C17CAE490002274D8 /* Default@2x.png in Resources */,
 				2EBBE62E17CAE495002274D8 /* Default.png in Resources */,
-				2EBBE63217CAE4EF002274D8 /* hglass.jpg in Resources */,
+				2E194E0417E9EE7A0075C651 /* hglass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,9 +419,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -433,10 +438,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -447,9 +456,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -458,10 +468,13 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

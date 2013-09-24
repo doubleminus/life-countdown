@@ -54,19 +54,48 @@ NSCalendarUnit unitFlags;
 
     // Make sure we have our dictionary and crucial birthday value
     if (myDict != nil && [myDict objectForKey:@"birthDate"] != nil) {
-        diction = myDict;
-        self.birthDate = [diction objectForKey:@"birthDate"];
-        yearBase = MALE_AGE_START;
+        _countryDict = [self getCountryDict];
 
-        [self calculateAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get their age
-        [self updateYearBase]; // 2. Adjust our base expected years to live
-        [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
+        if (_countryDict != nil) {
+            diction = myDict;
+            self.birthDate = [diction objectForKey:@"birthDate"];
+            yearBase = MALE_AGE_START;
 
-        if (currentAgeDateComp != nil)
-            [self calculateSeconds:birthDate];
+            [self calculateAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get their age
+            [self updateYearBase]; // 2. Adjust our base expected years to live
+            [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
+
+            if (currentAgeDateComp != nil)
+                [self calculateSeconds:birthDate];
+        }
     }
 
     return self;
+}
+
+- (NSDictionary*)getCountryDict {
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                              NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"Countries"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
+    }
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *cDict = (NSDictionary *)[NSPropertyListSerialization
+                                          propertyListFromData:plistXML
+                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                          format:&format
+                                          errorDescription:&errorDesc];
+    if (!cDict)
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+
+  //  NSArray *maleAge = [temp objectForKey:@"USA"];
+  //  NSLog(@"USA male age: %@", maleAge[0]);
+
+    return cDict;
 }
 
 // Updates base number of years to live based on user-entered criteria
@@ -117,7 +146,6 @@ NSCalendarUnit unitFlags;
     // Calculate difference between current date and user's birth date to get their age
     if (birthDate != nil)
         currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg  toDate:[NSDate date]  options:0];
-
 }
 
 // Calculate the user's remaining seconds left to live

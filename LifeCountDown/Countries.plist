@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NL</key>
+	<array>
+		<real>79.8</real>
+		<real>81.2</real>
+	</array>
+	<key>UK</key>
+	<array>
+		<real>76.7</real>
+		<real>79.7</real>
+	</array>
+	<key>USA</key>
+	<array>
+		<real>75.59999999999999</real>
+		<real>80.7</real>
+	</array>
+</dict>
+</plist>

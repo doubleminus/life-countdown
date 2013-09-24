@@ -29,15 +29,16 @@
 #import <UIKit/UIKit.h>
 #import "HelpView.h"
 
-//delegate to return amount entered by the user
+// Delegate to return amount entered by the user
 @protocol ConfigViewDelegate <NSObject>
 
 @optional
 - (void)displayUserInfo:(NSDictionary*)personInfo;
 @end
 
-@interface ConfigViewController : UIViewController {
+@interface ConfigViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource> {
     NSString *path;
+    NSArray *countryArray;
     IBOutlet UITextField *amountTextField;
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
@@ -48,6 +49,7 @@
 @property (nonatomic, assign) id delegate;
 @property (weak, nonatomic)   IBOutlet UISlider *daySlider;
 @property (weak, nonatomic)   IBOutlet UILabel *daysLbl;
+@property (strong, nonatomic) IBOutlet UIPickerView *ctryPicker;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
