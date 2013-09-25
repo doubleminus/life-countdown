@@ -53,7 +53,7 @@ NSCalendarUnit unitFlags;
     self = [super init];
 
     // Make sure we have our dictionary and crucial birthday value
-    if (myDict != nil && [myDict objectForKey:@"birthDate"] != nil) {
+    if (myDict != nil && [myDict objectForKey:@"birthDate"] != nil && [myDict objectForKey:@"country"] != nil) {
         _countryDict = [self getCountryDict];
 
         if (_countryDict != nil) {

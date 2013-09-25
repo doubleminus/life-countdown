@@ -32,7 +32,7 @@
 
 @implementation ConfigViewController
 NSDictionary *personInfo;
-NSString *gender, *smokeStatus;
+NSString *country, *gender, *smokeStatus;
 NSDate *birthDate;
 
 - (void)viewDidLoad {
@@ -127,6 +127,10 @@ NSDate *birthDate;
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
 
+    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+    
+    NSLog(@"COUNTRY: %@", country);
+
     if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"f";
     else
@@ -139,8 +143,8 @@ NSDate *birthDate;
 
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
-                      [NSArray arrayWithObjects: birthDate, gender, smokeStatus, _daysLbl.text, nil]
-                               forKeys: [NSArray arrayWithObjects: @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+                      [NSArray arrayWithObjects: country, birthDate, gender, smokeStatus, _daysLbl.text, nil]
+                               forKeys: [NSArray arrayWithObjects: @"country", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
 
         if (personInfo != nil)
             [self writePlist:personInfo];
@@ -160,7 +164,9 @@ NSDate *birthDate;
 - (void)readPlist {
     NSPropertyListFormat format;
     NSString *errorDesc = nil;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // Get path to documents directory from the list.
+
+    // Get path to documents directory from the list.
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
 
     if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
