@@ -69,10 +69,11 @@ NSDate *birthDate;
         [btnLayer setMasksToBounds:YES];
         [btnLayer setCornerRadius:5.0f];
     }
-    
+
     // Get array of countries from Countries.plist via calculation util to populate uipickerview values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
     countryArray = [[dateUtil getCountryDict] allKeys];
+    countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     // Setup help view but hide it
     [self setupHelpView];
@@ -85,20 +86,11 @@ NSDate *birthDate;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
+
     cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
-
-    UIColor *thumbTintColor =  [[UIColor alloc] initWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f];
-    [thumbTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
-    [[UISwitch appearance] setThumbTintColor:[self thumbTintColor]];
-
-    UIColor *onTintColor =  [[UIColor alloc] initWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:251.0f / 255.0f alpha:1.0f];
-    [onTintColor performSelector:NSSelectorFromString(@"retain")]; //generates warning, but OK
-    [[UISwitch appearance] setOnTintColor:[self onTintColor]];
-
-    [[UISwitch appearance] setOnImage:[UIImage imageNamed:@"yesSwitch"]];
-    [[UISwitch appearance] setOffImage:[UIImage imageNamed:@"noSwitch"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -126,9 +118,8 @@ NSDate *birthDate;
 - (void)updateAge:(id)sender {
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
-
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-    
+
     NSLog(@"COUNTRY: %@", country);
 
     if ([self.genderToggle selectedSegmentIndex] == 0)
@@ -264,7 +255,7 @@ NSDate *birthDate;
 
 - (void)setupHelpView {
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 285.0, 260.0, 260.0)];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 520.0, 260.0, 260.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.75;
@@ -321,6 +312,10 @@ NSDate *birthDate;
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return countryArray[row];
+}
+
+- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
+    
 }
 
 @end

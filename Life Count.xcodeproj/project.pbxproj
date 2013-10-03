@@ -34,8 +34,6 @@
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
 		2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B7AA917ACC7F7004B2696 /* count_icon57.png */; };
 		2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */; };
-		2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90017548E690014B517 /* noSwitch@2x.png */; };
-		2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E80F90117548E690014B517 /* yesSwitch@2x.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DC8CA17EF2D0300AD679B /* Countries.plist */; };
@@ -90,8 +88,6 @@
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
 		2E6B7AA917ACC7F7004B2696 /* count_icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = count_icon57.png; path = ../count_icon57.png; sourceTree = "<group>"; };
 		2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = count_icon114.png; path = ../count_icon114.png; sourceTree = "<group>"; };
-		2E80F90017548E690014B517 /* noSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noSwitch@2x.png"; sourceTree = "<group>"; };
-		2E80F90117548E690014B517 /* yesSwitch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yesSwitch@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
 		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
@@ -186,8 +182,6 @@
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
 				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
-				2E80F90017548E690014B517 /* noSwitch@2x.png */,
-				2E80F90117548E690014B517 /* yesSwitch@2x.png */,
 				2E2104A0151ED7BB00D0B523 /* Life Count-Info.plist */,
 				2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */,
 				2E2104A4151ED7BB00D0B523 /* main.m */,
@@ -311,9 +305,7 @@
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
-				2E80F90217548E690014B517 /* noSwitch@2x.png in Resources */,
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
-				2E80F90317548E690014B517 /* yesSwitch@2x.png in Resources */,
 				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
 				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
 				2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */,
