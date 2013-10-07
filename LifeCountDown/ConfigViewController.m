@@ -53,15 +53,15 @@ NSDate *birthDate;
 
     for (UIButton *btn in buttons) {
         // Set button text color
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
         // Draw a custom gradient
         CAGradientLayer *btnGradient = [CAGradientLayer layer];
         btnGradient.frame = btn.bounds;
         btnGradient.colors = [NSArray arrayWithObjects:
-                              (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
-                              (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor], nil];
+                              (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor],
+                              (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor], nil];
         [btn.layer insertSublayer:btnGradient atIndex:0];
 
         // Round corners
