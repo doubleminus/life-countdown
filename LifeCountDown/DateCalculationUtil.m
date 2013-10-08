@@ -59,7 +59,6 @@ NSCalendarUnit unitFlags;
         if (_countryDict != nil) {
             diction = myDict;
             self.birthDate = [diction objectForKey:@"birthDate"];
-            yearBase = MALE_AGE_START;
 
             [self calculateAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get their age
             [self updateYearBase]; // 2. Adjust our base expected years to live
@@ -79,10 +78,12 @@ NSCalendarUnit unitFlags;
     NSString *plistPath;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                               NSUserDomainMask, YES) objectAtIndex:0];
+
     plistPath = [rootPath stringByAppendingPathComponent:@"Countries"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
         plistPath = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
-    }
+
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     NSDictionary *cDict = (NSDictionary *)[NSPropertyListSerialization
                                           propertyListFromData:plistXML
@@ -101,11 +102,14 @@ NSCalendarUnit unitFlags;
 // Updates base number of years to live based on user-entered criteria
 - (void)updateYearBase {
     NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
+    NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
     float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
 
-    if (genStr != nil && smokeStr != nil) {
-        if ([genStr isEqualToString:@"f"])
-            yearBase = FEMALE_AGE_START;
+    if (genStr != nil && smokeStr != nil && ageArray != nil) {
+        if ([genStr isEqualToString:@"m"])
+            yearBase = [[ageArray objectAtIndex:0] floatValue];
+        else if ([genStr isEqualToString:@"f"])
+            yearBase = [[ageArray objectAtIndex:1] floatValue];
 
         if ([smokeStr isEqualToString:@"smoker"])
             yearBase -= 10.0f; // Remove 10 years from life if they smoke

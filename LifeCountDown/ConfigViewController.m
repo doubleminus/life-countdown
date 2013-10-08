@@ -116,11 +116,12 @@ NSDate *birthDate;
 
 // Determines all age information, via the user-provided birthdate
 - (void)updateAge:(id)sender {
+    NSNumber *countryIndex = [NSNumber numberWithInt:[_ctryPicker selectedRowInComponent:0]];
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 
-    NSLog(@"COUNTRY: %@", country);
+    //NSLog(@"COUNTRY: %@", country);
 
     if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"f";
@@ -134,8 +135,10 @@ NSDate *birthDate;
 
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
-                      [NSArray arrayWithObjects: country, birthDate, gender, smokeStatus, _daysLbl.text, nil]
-                               forKeys: [NSArray arrayWithObjects: @"country", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+                      [NSArray arrayWithObjects: country, countryIndex, birthDate,
+                                                 gender, smokeStatus, _daysLbl.text, nil]
+                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
+                                                                   @"gender", @"smokeStatus", @"hrsExercise", nil]];
 
         if (personInfo != nil)
             [self writePlist:personInfo];
@@ -219,6 +222,8 @@ NSDate *birthDate;
                 [_genderToggle setSelectedSegmentIndex:0];
             else
                 [_genderToggle setSelectedSegmentIndex:1];
+
+            [self.ctryPicker selectRow:[[infoDctnry objectForKey:@"countryIndex"] integerValue] inComponent:0 animated:NO];
 
             // Set whether user is smoker or not
             if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
@@ -314,8 +319,6 @@ NSDate *birthDate;
     return countryArray[row];
 }
 
-- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
-    
-}
+- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {}
 
 @end
