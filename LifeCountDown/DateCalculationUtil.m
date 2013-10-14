@@ -105,7 +105,7 @@ NSCalendarUnit unitFlags;
     NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
     float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
 
-    if (genStr != nil && smokeStr != nil && ageArray != nil) {
+    if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
         if ([genStr isEqualToString:@"m"])
             yearBase = [[ageArray objectAtIndex:0] floatValue];
         else if ([genStr isEqualToString:@"f"])

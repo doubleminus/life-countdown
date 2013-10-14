@@ -62,13 +62,7 @@ double totalSecondsDub, progAmount, percentRemaining;
     [setInfoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [setInfoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
-    // Draw a custom gradient for button
-    CAGradientLayer *btnGradient = [CAGradientLayer layer];
-    btnGradient.frame = setInfoBtn.bounds;
-    btnGradient.colors = [NSArray arrayWithObjects:
-                          (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor],
-                          (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor], nil];
-    [setInfoBtn.layer insertSublayer:btnGradient atIndex:0];
+    [setInfoBtn setBackgroundColor:[UIColor whiteColor]];
 
     // Round button corners
     CALayer *btnLayer = [setInfoBtn layer];

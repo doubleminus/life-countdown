@@ -56,13 +56,7 @@ NSDate *birthDate;
         [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
 
-        // Draw a custom gradient
-        CAGradientLayer *btnGradient = [CAGradientLayer layer];
-        btnGradient.frame = btn.bounds;
-        btnGradient.colors = [NSArray arrayWithObjects:
-                              (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor],
-                              (id)[[UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor], nil];
-        [btn.layer insertSublayer:btnGradient atIndex:0];
+        [btn setBackgroundColor:[UIColor whiteColor]];
 
         // Round corners
         CALayer *btnLayer = [btn layer];
@@ -77,10 +71,6 @@ NSDate *birthDate;
 
     // Setup help view but hide it
     [self setupHelpView];
-
-    // Fade-in our view
-    self.view.alpha = 0;
-    [UIView animateWithDuration:3.0 animations:^{self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,6 +85,10 @@ NSDate *birthDate;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // Fade-in our view
+    self.view.alpha = 0;
+    [UIView animateWithDuration:3.0 animations:^{self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -217,15 +211,16 @@ NSDate *birthDate;
         if ([infoDctnry objectForKey:@"gender"] != nil) {
             cancelBtn.hidden = NO;
 
-            // Set Gender in UI
+            // Set Gender switch in UI
             if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"])
                 [_genderToggle setSelectedSegmentIndex:0];
             else
                 [_genderToggle setSelectedSegmentIndex:1];
 
+            // Set country in uipicker
             [self.ctryPicker selectRow:[[infoDctnry objectForKey:@"countryIndex"] integerValue] inComponent:0 animated:NO];
 
-            // Set whether user is smoker or not
+            // Set smoker switch in UI
             if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
                 [_smokeSwitch setOn:NO];
             else
