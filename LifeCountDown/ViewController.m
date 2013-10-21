@@ -59,8 +59,8 @@ double totalSecondsDub, progAmount, percentRemaining;
     [self handlePortrait];
 
     // Set button text color
-    [setInfoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [setInfoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [setInfoBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [setInfoBtn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
 
     [setInfoBtn setBackgroundColor:[UIColor whiteColor]];
 

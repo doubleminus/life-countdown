@@ -38,7 +38,7 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //[contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
     // Set up scroll view
     [self.view addSubview:self->contentView];
@@ -47,14 +47,18 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
+    [scroller setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
+
+   // UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
+   // [scroller setBackgroundColor:darkGray];
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
     for (UIButton *btn in buttons) {
         // Set button text color
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+        [btn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
 
         [btn setBackgroundColor:[UIColor whiteColor]];
 
