@@ -45,10 +45,9 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
-    [scroller setBackgroundColor:[UIColor blackColor]]; //[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
-    UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
-    [scroller setBackgroundColor:darkGray];
+  //  UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
+  //  [scroller setBackgroundColor:darkGray];
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
@@ -90,7 +89,7 @@ NSDate *birthDate;
     
     // Fade-in our view
     self.view.alpha = 0;
-    [UIView animateWithDuration:3.0 animations:^{self.view.alpha = 1.f;}];
+    [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
