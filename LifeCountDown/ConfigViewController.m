@@ -38,8 +38,6 @@ NSDate *birthDate;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
-
     // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
@@ -47,10 +45,10 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
-    [scroller setBackgroundColor:[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
+    [scroller setBackgroundColor:[UIColor blackColor]]; //[UIColor colorWithPatternImage: [UIImage imageNamed:@"irongrip_@2X.png"]]];
 
-   // UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
-   // [scroller setBackgroundColor:darkGray];
+    UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
+    [scroller setBackgroundColor:darkGray];
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];

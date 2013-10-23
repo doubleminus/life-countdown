@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E194E0417E9EE7A0075C651 /* hglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E194E0317E9EE7A0075C651 /* hglass.png */; };
-		2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E1B1422179080BF00FEF11E /* irongrip_@2X.png */; };
 		2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E210498151ED7BA00D0B523 /* UIKit.framework */; };
 		2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049A151ED7BB00D0B523 /* Foundation.framework */; };
 		2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
@@ -54,7 +53,6 @@
 
 /* Begin PBXFileReference section */
 		2E194E0317E9EE7A0075C651 /* hglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hglass.png; sourceTree = "<group>"; };
-		2E1B1422179080BF00FEF11E /* irongrip_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irongrip_@2X.png"; sourceTree = "<group>"; };
 		2E210494151ED7BA00D0B523 /* Life Count.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life Count.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E210498151ED7BA00D0B523 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2E21049A151ED7BB00D0B523 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,7 +179,6 @@
 				2E194E0317E9EE7A0075C651 /* hglass.png */,
 				2E6B7AAB17ACC7FC004B2696 /* count_icon114.png */,
 				2E6B7AA917ACC7F7004B2696 /* count_icon57.png */,
-				2E1B1422179080BF00FEF11E /* irongrip_@2X.png */,
 				2E2104A0151ED7BB00D0B523 /* Life Count-Info.plist */,
 				2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */,
 				2E2104A4151ED7BB00D0B523 /* main.m */,
@@ -277,6 +274,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					2E210493151ED7BA00D0B523 = {
+						DevelopmentTeam = 745BECY8K2;
+					};
+				};
 			};
 			buildConfigurationList = 2E21048E151ED7BA00D0B523 /* Build configuration list for PBXProject "Life Count" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -306,7 +308,6 @@
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
-				2E1B1423179080BF00FEF11E /* irongrip_@2X.png in Resources */,
 				2E6B7AAA17ACC7F7004B2696 /* count_icon57.png in Resources */,
 				2E6B7AAC17ACC7FC004B2696 /* count_icon114.png in Resources */,
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
@@ -478,10 +479,13 @@
 		2E2104C8151ED7BB00D0B523 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDown/Life Count-Info.plist";
 				PRODUCT_NAME = "Life Count";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -489,10 +493,13 @@
 		2E2104C9151ED7BB00D0B523 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LifeCountDown/Life Count-Prefix.pch";
 				INFOPLIST_FILE = "LifeCountDown/Life Count-Info.plist";
 				PRODUCT_NAME = "Life Count";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -35,6 +35,7 @@
 
 NSNumberFormatter *formatter;
 double totalSecondsDub, progAmount, percentRemaining;
+bool exceedExp = NO;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -58,10 +59,9 @@ double totalSecondsDub, progAmount, percentRemaining;
     [super viewDidLoad];
     [self handlePortrait];
 
-    // Set button text color
+    // Set button colors
     [setInfoBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
     [setInfoBtn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-
     [setInfoBtn setBackgroundColor:[UIColor whiteColor]];
 
     // Round button corners
@@ -109,10 +109,14 @@ double totalSecondsDub, progAmount, percentRemaining;
         seconds = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
-        if ([dateUtil secondsRemaining] > 0)
+        if ([dateUtil secondsRemaining] > 0) {
             _ageLabel.text = [NSString stringWithFormat:@"%.2f years old", [dateUtil yearBase]];
-        else  // Handle situation where user has exceeded maximum life expectancy
+            exceedExp = NO;
+        }
+        else { // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
+            exceedExp = YES;
+        }
 
         if (!_timerStarted) {
             [self updateTimerAndBar];
@@ -244,8 +248,8 @@ double totalSecondsDub, progAmount, percentRemaining;
 
 - (void)handlePortrait {
     setInfoBtn.hidden = YES;
-    estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
+    estTxtLbl.hidden = YES;
     _percentLabel.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
@@ -260,7 +264,6 @@ double totalSecondsDub, progAmount, percentRemaining;
 - (void)handleLandscape {
     backgroundView.hidden = YES;
     _touchToggle.enabled = NO;
-    _progressView.hidden = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     setInfoBtn.hidden = YES;
@@ -281,23 +284,31 @@ double totalSecondsDub, progAmount, percentRemaining;
         _percentLabel.frame = CGRectMake(40,190,400,25);
     }
 
-    // Apply color to progress bar based on lifespan
-    if (progAmount >= .66)
-        _progressView.progressTintColor = [UIColor greenColor];
-    else if (progAmount && progAmount > .33)
-        _progressView.progressTintColor = [UIColor yellowColor];
-    else
-        _progressView.progressTintColor = [UIColor redColor];
-
-    _percentLabel.hidden = NO; // Unhide last so it has time to set
+    if (!exceedExp) {
+        _progressView.hidden = NO;
+         _percentLabel.hidden = NO;
+        // Apply color to progress bar based on lifespan
+        if (progAmount >= .66)
+            _progressView.progressTintColor = [UIColor greenColor];
+        else if (progAmount && progAmount > .33)
+            _progressView.progressTintColor = [UIColor yellowColor];
+        else
+            _progressView.progressTintColor = [UIColor redColor];
+    }
 }
 
 - (void)showComponents {
     setInfoBtn.hidden = NO;
-    estTxtLbl.hidden = NO;
     currAgeTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
+
+    //NSLog(exceedExp ? @"Yes" : @"No");
+    
+    if (exceedExp)
+        estTxtLbl.hidden = YES;
+    else
+        estTxtLbl.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
