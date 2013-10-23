@@ -53,11 +53,11 @@ bool exceedExp = NO;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist];
+    [self handlePortrait];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self handlePortrait];
 
     // Set button colors
     [setInfoBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
@@ -110,9 +110,10 @@ bool exceedExp = NO;
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
 
         if ([dateUtil secondsRemaining] > 0) {
-            _ageLabel.text = [NSString stringWithFormat:@"%.2f years old", [dateUtil yearBase]];
+            _ageLabel.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
             exceedExp = NO;
             secdsLifeRemLabel.text = @"seconds of your life remaining";
+            estTxtLbl.hidden = NO;
         }
         else { // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
