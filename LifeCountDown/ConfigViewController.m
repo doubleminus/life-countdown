@@ -46,9 +46,6 @@ NSDate *birthDate;
     [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
 
-  //  UIColor *darkGray = [UIColor colorWithRed:78.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:1];
-  //  [scroller setBackgroundColor:darkGray];
-
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 

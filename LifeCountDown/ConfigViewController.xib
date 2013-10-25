@@ -177,8 +177,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <action selector="sliderChanged:" destination="-1" eventType="valueChanged" id="73"/>
                     </connections>
                 </slider>
-                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="yesSwitch.png" offImage="noSwitch.png" id="76">
-                    <rect key="frame" x="205" y="672" width="51" height="31"/>
+                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="76">
+                    <rect key="frame" x="201" y="672" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </switch>
@@ -252,8 +252,4 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="noSwitch.png" width="26" height="11"/>
-        <image name="yesSwitch.png" width="26" height="11"/>
-    </resources>
 </document>

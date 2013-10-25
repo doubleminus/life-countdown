@@ -113,11 +113,9 @@ bool exceedExp = NO;
             _ageLabel.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
             exceedExp = NO;
             secdsLifeRemLabel.text = @"seconds of your life remaining";
-            estTxtLbl.hidden = NO;
         }
         else { // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
-            estTxtLbl.hidden = YES;
             exceedExp = YES;
             secdsLifeRemLabel.text = @"seconds you've outlived estimates";
         }
@@ -306,13 +304,9 @@ bool exceedExp = NO;
     currAgeTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
+    estTxtLbl.hidden = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
-    
-    if (exceedExp)
-        estTxtLbl.hidden = YES;
-    else
-        estTxtLbl.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
