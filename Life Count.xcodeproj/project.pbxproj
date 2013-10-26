@@ -27,6 +27,7 @@
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
+		2E302C50181C361A00396616 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C4F181C361A00396616 /* back4.png */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
@@ -76,6 +77,7 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		2E302C4F181C361A00396616 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back4.png; path = ../back4.png; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E302C4F181C361A00396616 /* back4.png */,
 				2EF47CF6181A2EB20006B704 /* black_grad_120.png */,
 				2E47C1A115CF93F1002213C3 /* Data.plist */,
 				2E9DC8CA17EF2D0300AD679B /* Countries.plist */,
@@ -304,6 +307,7 @@
 			files = (
 				2E2104A3151ED7BB00D0B523 /* InfoPlist.strings in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
+				2E302C50181C361A00396616 /* back4.png in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,

@@ -265,6 +265,8 @@ bool exceedExp = NO;
 
 - (void)handleLandscape {
     backgroundView.hidden = YES;
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
+    
     _touchToggle.enabled = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
