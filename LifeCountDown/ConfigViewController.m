@@ -49,8 +49,7 @@ NSDate *birthDate;
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
     
-   // [scroller setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
-    //[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
+    // Set gradient image as our background
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
 
     for (UIButton *btn in buttons) {
@@ -257,7 +256,7 @@ NSDate *birthDate;
 
 - (void)setupHelpView {
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 520.0, 260.0, 260.0)];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.75;
