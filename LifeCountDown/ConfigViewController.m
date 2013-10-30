@@ -259,7 +259,7 @@ NSDate *birthDate;
     _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
-    _hView.alpha = 0.75;
+    _hView.alpha = 0.85;
     _hView.hidden = YES;
     _hView.layer.cornerRadius = 10.0f;
 
