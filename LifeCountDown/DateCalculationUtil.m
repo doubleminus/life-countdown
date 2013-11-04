@@ -36,7 +36,7 @@
 
 @implementation DateCalculationUtil
 
-float const MALE_AGE_START = 75.6f, FEMALE_AGE_START = 80.7f, yearBase;
+float const yearBase;
 NSString *currentAgeStr;
 NSDate *birthDate;
 NSCalendar *calendar;
@@ -60,8 +60,8 @@ NSCalendarUnit unitFlags;
             diction = myDict;
             self.birthDate = [diction objectForKey:@"birthDate"];
 
-            [self calculateAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get their age
-            [self updateYearBase]; // 2. Adjust our base expected years to live
+            [self calculateAge:birthDate]; // 1. Calculate difference between the current date and user's birthdate to get age
+            [self updateYearBase]; // 2. Adjust base expected years to live
             [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
 
             if (currentAgeDateComp != nil)
@@ -70,6 +70,55 @@ NSCalendarUnit unitFlags;
     }
 
     return self;
+}
+
+// Determines all age information, via the user-provided birthdate
+- (void)calculateAge:(NSDate*)dateArg {
+    calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
+    NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    // Calculate difference between current date and user's birth date to get their age
+    if (birthDate != nil)
+        currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg  toDate:[NSDate date]  options:0];
+}
+
+// Updates base number of years to live based on user-entered criteria
+- (void)updateYearBase {
+    NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
+    NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
+    float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
+
+    if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
+        if ([genStr isEqualToString:@"m"])
+            yearBase = [[ageArray objectAtIndex:0] floatValue];
+        else if ([genStr isEqualToString:@"f"])
+            yearBase = [[ageArray objectAtIndex:1] floatValue];
+        
+        NSLog(@"yearBASE!!: %f", yearBase);
+
+        if ([smokeStr isEqualToString:@"smoker"])
+            yearBase -= 10.0f; // Remove 10 years from life if they smoke
+
+        // Find # years remaining to live (diff between base years to live and current age in years
+        float yearsToLive = yearBase - [currentAgeDateComp year];
+
+        // ~7 minutes added to your life for each MINUTE of exercise/week if you don't smoke
+        if (![smokeStr isEqualToString:@"smoker"])
+            minsGainedPerYear = ((hrsAdd * 60) * 7) * 52.1775; // Find hours added for each year of working out...
+
+        float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
+
+        if (yearsToAdd > 4.5)
+            yearsToAdd = 4.5;
+
+        yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
+        
+                NSLog(@"yearBASE later: %f", yearBase);
+
+        double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
+        totalSecondsInLife += secondsToAdd;
+    }
 }
 
 - (NSDictionary*)getCountryDict {
@@ -99,57 +148,8 @@ NSCalendarUnit unitFlags;
     return cDict;
 }
 
-// Updates base number of years to live based on user-entered criteria
-- (void)updateYearBase {
-    NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
-    NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
-    float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
-
-    if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
-        if ([genStr isEqualToString:@"m"])
-            yearBase = [[ageArray objectAtIndex:0] floatValue];
-        else if ([genStr isEqualToString:@"f"])
-            yearBase = [[ageArray objectAtIndex:1] floatValue];
-
-        if ([smokeStr isEqualToString:@"smoker"])
-            yearBase -= 10.0f; // Remove 10 years from life if they smoke
-
-        // Find # years remaining to live (diff between base years to live and current age in years)
-        float yearsToLive = yearBase - [currentAgeDateComp year];
-
-        // ~6 minutes added to your life for each MINUTE of exercise/week if you don't smoke
-        if (![smokeStr isEqualToString:@"smoker"])
-            minsGainedPerYear = ((hrsAdd * 60) * 6) * 52.1775; // Find hours added for each year of working out...
-        else
-            minsGainedPerYear = ((hrsAdd * 60) * 3) * 52.1775; // And add only 2 minutes/1 minute of exercise if smoker
-
-        float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
-        yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
-
-        // Cap the life expectancy to academically accepted estimated max. life span for Americans
-        if (yearBase > 96.0f && [genStr isEqualToString:@"f"])
-            yearBase = 96.0f;
-        else if (yearBase > 92.0f && [genStr isEqualToString:@"m"])
-            yearBase = 92.0f;
-
-        double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
-        totalSecondsInLife += secondsToAdd;
-    }
-}
-
 - (void)calcBaseAgeInSeconds:(float)baseAgeFloat {
     totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
-}
-
-// Determines all age information, via the user-provided birthdate
-- (void)calculateAge:(NSDate*)dateArg {
-    calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
-                    NSMinuteCalendarUnit | NSSecondCalendarUnit;
-
-    // Calculate difference between current date and user's birth date to get their age
-    if (birthDate != nil)
-        currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg  toDate:[NSDate date]  options:0];
 }
 
 // Calculate the user's remaining seconds left to live

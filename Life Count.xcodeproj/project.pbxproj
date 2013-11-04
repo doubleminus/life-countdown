@@ -79,7 +79,7 @@
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		2E302C4F181C361A00396616 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back4.png; path = ../back4.png; sourceTree = "<group>"; };
-		2E302C55181C4A3300396616 /* scroll_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scroll_1.png; sourceTree = "<group>"; };
+		2E302C55181C4A3300396616 /* scroll_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroll_1.png; path = ../scroll_1.png; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
@@ -125,7 +125,6 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
-				2E302C55181C4A3300396616 /* scroll_1.png */,
 				2EF47CF7181A30DE0006B704 /* Images.xcassets */,
 				2EBBE62D17CAE495002274D8 /* Default.png */,
 				2EBBE62B17CAE490002274D8 /* Default@2x.png */,
@@ -179,6 +178,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E302C55181C4A3300396616 /* scroll_1.png */,
 				2E302C4F181C361A00396616 /* back4.png */,
 				2EF47CF6181A2EB20006B704 /* black_grad_120.png */,
 				2E47C1A115CF93F1002213C3 /* Data.plist */,
