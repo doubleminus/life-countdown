@@ -94,8 +94,6 @@ NSCalendarUnit unitFlags;
             yearBase = [[ageArray objectAtIndex:0] floatValue];
         else if ([genStr isEqualToString:@"f"])
             yearBase = [[ageArray objectAtIndex:1] floatValue];
-        
-        NSLog(@"yearBASE!!: %f", yearBase);
 
         if ([smokeStr isEqualToString:@"smoker"])
             yearBase -= 10.0f; // Remove 10 years from life if they smoke
@@ -113,8 +111,6 @@ NSCalendarUnit unitFlags;
             yearsToAdd = 4.5;
 
         yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
-        
-                NSLog(@"yearBASE later: %f", yearBase);
 
         double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
         totalSecondsInLife += secondsToAdd;

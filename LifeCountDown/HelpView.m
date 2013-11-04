@@ -40,7 +40,7 @@
         self.userInteractionEnabled = YES;
 
         UILabel *helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
-        NSString *helpMsg = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or used\noutside of the application.";
+        NSString *helpMsg = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or used\noutside of the application. \n\nLifeIsShortSoftware.com";
 
         // Heiti SC Light 17.0
         [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
