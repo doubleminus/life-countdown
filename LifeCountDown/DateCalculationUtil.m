@@ -135,8 +135,8 @@ NSCalendarUnit unitFlags;
                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                           format:&format
                                           errorDescription:&errorDesc];
-    if (!cDict)
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    //if (!cDict)
+    //    NSLog(@"Error reading plist: %@, format%ulu", errorDesc, format);
 
   //  NSArray *maleAge = [temp objectForKey:@"USA"];
   //  NSLog(@"USA male age: %@", maleAge[0]);

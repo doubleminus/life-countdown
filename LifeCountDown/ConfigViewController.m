@@ -111,7 +111,7 @@ NSDate *birthDate;
 
 // Determines all age information, via the user-provided birthdate
 - (void)updateAge:(id)sender {
-    NSNumber *countryIndex = [NSNumber numberWithInt:[_ctryPicker selectedRowInComponent:0]];
+    NSNumber *countryIndex = [NSNumber numberWithInteger:[_ctryPicker selectedRowInComponent:0]];
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
@@ -145,7 +145,7 @@ NSDate *birthDate;
 - (IBAction)sliderChanged:(id)sender {
     _daySlider = (UISlider*)sender;
     NSInteger val = lround(_daySlider.value);
-    _daysLbl.text = [NSString stringWithFormat:@"%d", val];
+    _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
     [self togglePlus:val];
 }
 
