@@ -75,6 +75,13 @@ bool exceedExp = NO;
     [[self view] sendSubviewToBack:backgroundView];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-ipad_retina-port.png"]];
+        backgroundView.frame = self.view.bounds;
+        [[self view] addSubview:backgroundView];
+        [[self view] sendSubviewToBack:backgroundView];
+    }
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/

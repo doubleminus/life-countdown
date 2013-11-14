@@ -17,6 +17,18 @@
       "idiom" : "iphone",
       "filename" : "black_grad_120.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "black_grad_76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "black_grad_152.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
