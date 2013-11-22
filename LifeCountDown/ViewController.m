@@ -69,15 +69,17 @@ bool exceedExp = NO;
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
 
-    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
-    backgroundView.frame = self.view.bounds;
-    [[self view] addSubview:backgroundView];
-    [[self view] sendSubviewToBack:backgroundView];
-
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-ipad_retina-port.png"]];
+        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x~ipad.png"]];
+        backgroundView.frame = self.view.bounds;
+        [[self view] addSubview:backgroundView];
+        [[self view] sendSubviewToBack:backgroundView];
+
+    }
+    else {
+        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
         backgroundView.frame = self.view.bounds;
         [[self view] addSubview:backgroundView];
         [[self view] sendSubviewToBack:backgroundView];
@@ -250,8 +252,7 @@ bool exceedExp = NO;
 
     if (interfaceOrientation == 1)
         [self handlePortrait];
-    // Adjust label locations in landscape right or Left orientation
-    else if (interfaceOrientation == 3 || interfaceOrientation == 4)
+    else if (interfaceOrientation == 3 || interfaceOrientation == 4) // Adjust label locations in landscape right or left orientation
         [self handleLandscape];
 }
 
@@ -329,8 +330,6 @@ bool exceedExp = NO;
     self.percentLabel = nil;
     self.countdownLabel = nil;
     self.ageLabel = nil;
-    self.dateLabel = nil;
-    self.dateLabel = nil;
     self.currentAgeLabel = nil;
 }
 /* END  UI METHODS */

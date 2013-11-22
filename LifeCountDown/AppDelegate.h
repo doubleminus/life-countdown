@@ -29,13 +29,16 @@
 #import <UIKit/UIKit.h>
 
 @class ViewController;
+@class IpadControllerViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     ViewController *viewController;
+    IpadControllerViewController *icvc;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) IBOutlet ViewController *viewController;
+@property (nonatomic, retain) IBOutlet IpadControllerViewController *icvc;
 
 @end
