@@ -43,14 +43,13 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.icvc = [[IpadControllerViewController alloc] initWithNibName:@"IpadControllerViewController" bundle:nil];
         self.window.rootViewController = self.icvc;
-        [self.window makeKeyAndVisible];
     }
     else {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
         self.window.rootViewController = self.viewController;
-        [self.window makeKeyAndVisible];
     }
-
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
