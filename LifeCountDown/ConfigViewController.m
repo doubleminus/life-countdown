@@ -37,6 +37,7 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.alpha = 0;
 
     // Set up scroll view
     [self.view addSubview:self->contentView];
@@ -45,10 +46,13 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,2000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [scroller setScrollEnabled:NO];
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
-    
+
     // Set gradient image as our background
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
 
@@ -65,7 +69,7 @@ NSDate *birthDate;
         [btnLayer setCornerRadius:5.0f];
     }
 
-    // Get array of czountries from Countries.plist via calculation util to populate uipickerview values
+    // Get array of countries from Countries.plist via calculation util to populate uipickerview values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
     countryArray = [[dateUtil getCountryDict] allKeys];
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -87,6 +91,8 @@ NSDate *birthDate;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [scroller setFrame:CGRectMake(450, 20, 900, 1200)];
+    
     // Fade-in our view
     self.view.alpha = 0;
     
@@ -97,8 +103,6 @@ NSDate *birthDate;
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
         
     }
-
-    [scroller setFrame:CGRectMake(450, 20, 900, 1200)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

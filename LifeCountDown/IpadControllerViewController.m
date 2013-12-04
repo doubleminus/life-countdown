@@ -53,7 +53,7 @@ bool exceedExp1 = NO;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist1];
- //   [self handlePortrait1];
+    [self handlePortrait1];
 }
 
 - (void)viewDidLoad {
@@ -84,7 +84,6 @@ bool exceedExp1 = NO;
 
     // Important to set the viewcontroller's delegate to be self
     enterInfo1.delegate = self;
-  //  enterInfo1.view.frame = CGRectMake(140,70,500,500);
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:YES completion:nil];
@@ -104,44 +103,44 @@ bool exceedExp1 = NO;
         
         if ([dateUtil currentAgeDateComp] != nil)
             currentAgeDateComp = [dateUtil currentAgeDateComp];
-        /*
-        _currentAgeLabel1.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
-        
+
+        _ageLbl.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
+
         // Calculate estimated total # of seconds to begin counting down
         seconds1 = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
-        
+
         if ([dateUtil secondsRemaining] > 0) {
-            _ageLabel1.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
+            currAgeLbl.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
             exceedExp1 = NO;
-            secdsLifeRemLabel1.text = @"seconds of your life remaining";
+            secsRem.text = @"seconds of your life remaining";
         }
         else { // Handle situation where user has exceeded maximum life expectancy
-            _ageLabel1.text = @"";
+            currAgeLbl.text = @"";
             exceedExp1 = YES;
-            secdsLifeRemLabel1.text = @"seconds you've outlived estimates";
+            secsRem.text = @"seconds you've outlived estimates";
         }
-        
+
         if (!_timerStarted1) {
             [self updateTimerAndBar];
             [self startSecondTimer];
-        } */
+        }
     }
 }
 
-- (void)startSecondTimer {/*
+- (void)startSecondTimer {
     _secondTimer1 = [NSTimer scheduledTimerWithTimeInterval: 1.0
                                                     target: self
                                                   selector: @selector(updateTimerAndBar)
                                                   userInfo: nil
-                                                   repeats: YES]; */
+                                                   repeats: YES];
 }
 
 - (void)updateTimerAndBar {
     seconds1 -= 1.0;
-   // _countdownLabel1.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds1]];
+    _cntLbl.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds1]];
     progAmount = seconds1 / totalSecondsDub; // Calculate here for coloring progress bar in landscape
-    
+
     // Set our progress bar's value, based on amount of life remaining, but only if in landscape
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
        // [_progressView1 setProgress:progAmount];
@@ -150,8 +149,8 @@ bool exceedExp1 = NO;
         percentRemaining = progAmount * 100.0;
       //  _percentLabel1.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
-    
-   // _timerStarted1 = YES;
+
+    _timerStarted1 = YES;
 }
 /****  END USER INFORMATION METHODS  ****/
 
@@ -182,10 +181,10 @@ bool exceedExp1 = NO;
 - (void)readPlist1 {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
-    
+
     if (path1 != nil && path1.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path1]) {
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path1];
-      /*  _viewDict1 = (NSDictionary *)[NSPropertyListSerialization
+        _viewDict1 = (NSDictionary *)[NSPropertyListSerialization
                                      propertyListFromData:plistXML
                                      mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                      format:&format
@@ -193,7 +192,7 @@ bool exceedExp1 = NO;
         // if (!_viewDict) {
         //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
         // }
-        
+
         // If we have ALL of the values we need, display info to user.
         if ([_viewDict1 objectForKey:@"infoDict"] != nil) {
             DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
@@ -204,7 +203,7 @@ bool exceedExp1 = NO;
         // Otherwise, have the user set this info
         else {
             [self setUserInfo1];
-        } */
+        }
     }
 }
 
@@ -231,10 +230,10 @@ bool exceedExp1 = NO;
 /**** END PLIST METHODS ****/
 
 - (IBAction)toggleComponents1:(id)sender {
-  /*  if (_currentAgeLabel1.hidden && _ageLabel1.hidden)
+    if (currAgeLbl.hidden && _ageLbl.hidden)
         [self showComponents1];
     else
-        [self handlePortrait1]; */
+        [self handlePortrait1];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -247,17 +246,18 @@ bool exceedExp1 = NO;
         [self handleLandscape1];
 }
 
-- (void)handlePortrait1 { /*
-    setInfoBtn1.hidden = YES;
-    currAgeTxtLbl1.hidden = YES;
-    estTxtLbl1.hidden = YES;
-    _percentLabel1.hidden = YES;
-    _currentAgeLabel1.hidden = YES;
-    _ageLabel1.hidden = YES;
-    _progressView1.hidden = YES;
-    _touchToggle1.enabled = YES; */
+- (void)handlePortrait1 {
+    setInfoButton.hidden = YES;
+    currAgeLbl.hidden = YES;
+    estTextLbl.hidden = YES;
+  //  _percentLabel1.hidden = YES;
+    ageTxtLbl.hidden = YES;
+    _ageLbl.hidden = YES;
+   // _progressView1.hidden = YES;
+    _tchTggle.enabled = YES;
+    
 
- //   _countdownLabel1.frame = CGRectMake(11,20,298,45);
+  //  _cntLbl.frame = CGRectMake(11,20,298,45);
 //    secdsLifeRemLabel1.frame = CGRectMake(56,65,208,21);
     backgroundView1.hidden = NO;
 }
@@ -265,28 +265,28 @@ bool exceedExp1 = NO;
 - (void)handleLandscape1 {
     backgroundView1.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
-/*
-    _touchToggle1.enabled = NO;
-    _currentAgeLabel1.hidden = YES;
-    _ageLabel1.hidden = YES;
-    setInfoBtn1.hidden = YES;
-    estTxtLbl1.hidden = YES;
-    currAgeTxtLbl1.hidden = YES;
-    
+
+    _tchTggle.enabled = NO;
+    currAgeLbl.hidden = YES;
+    _ageLbl.hidden = YES;
+    setInfoButton.hidden = YES;
+    estTextLbl.hidden = YES;
+    ageTxtLbl.hidden = YES;
+   /*
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
-        _countdownLabel1.frame = CGRectMake(140,70,298,85);
-        secdsLifeRemLabel1.frame = CGRectMake(185,135,208,21);
-        _progressView1.frame = CGRectMake(92,175,400,25);
-        _percentLabel1.frame = CGRectMake(82,200,400,25);
+        _cntLbl.frame = CGRectMake(140,70,298,85);
+       // secsRem.frame = CGRectMake(185,135,208,21);
+       // _progressView1.frame = CGRectMake(92,175,400,25);
+       // _percentLabel1.frame = CGRectMake(82,200,400,25);
     }
     else {
-        _countdownLabel1.frame = CGRectMake(85,60,298,85);
-        secdsLifeRemLabel1.frame = CGRectMake(130,125,208,21);
-        _progressView1.frame = CGRectMake(40,165,400,25);
-        _percentLabel1.frame = CGRectMake(40,190,400,25);
-    }
- 
+        _cntLbl.frame = CGRectMake(85,60,298,85);
+      //  secsRem.frame = CGRectMake(130,125,208,21);
+      //  _progressView1.frame = CGRectMake(40,165,400,25);
+       // _percentLabel1.frame = CGRectMake(40,190,400,25);
+    } */
+ /*
     if (!exceedExp1) {
         _progressView1.hidden = NO;
         _percentLabel1.hidden = NO;
@@ -300,12 +300,12 @@ bool exceedExp1 = NO;
     } */
 }
 
-- (void)showComponents1 { /*
-    setInfoBtn1.hidden = NO;
-    currAgeTxtLbl1.hidden = NO;
-    _currentAgeLabel1.hidden = NO;
-    _ageLabel1.hidden = NO;
-    estTxtLbl1.hidden = NO; */
+- (void)showComponents1 {
+    setInfoButton.hidden = NO;
+    ageTxtLbl.hidden = NO;
+    currAgeLbl.hidden = NO;
+    _ageLbl.hidden = NO;
+    estTextLbl.hidden = NO;
     
     //NSLog(exceedExp1 ? @"Yes" : @"No");
 }
@@ -314,14 +314,17 @@ bool exceedExp1 = NO;
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload { /*
-    secdsLifeRemLabel1 = nil;
-    setInfoBtn1 = nil;
-    self.progressView1 = nil;
-    self.percentLabel1 = nil;
-    self.countdownLabel1 = nil;
-    self.ageLabel1 = nil;
-    self.currentAgeLabel1 = nil; */
+- (void)viewDidUnload {
+    secsRem = nil;
+    setInfoButton = nil;
+    currAgeLbl = nil;
+    ageTxtLbl = nil;
+    estTextLbl = nil;
+   // self.progressView1 = nil;
+   // self.percentLabel1 = nil;
+    _tchTggle = nil;
+    _cntLbl = nil;
+    _ageLbl = nil;
 }
 /* END  UI METHODS */
 
