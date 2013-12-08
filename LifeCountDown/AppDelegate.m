@@ -28,7 +28,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "IpadControllerViewController.h"
+#import "IPadControllerViewController.h"
 
 @implementation AppDelegate
 
@@ -37,6 +37,7 @@
 @synthesize icvc;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [IpadControllerViewController class];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     // Override point for customization after application launch.

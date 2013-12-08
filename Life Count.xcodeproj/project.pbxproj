@@ -13,7 +13,6 @@
 		2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
 		2E2104A3151ED7BB00D0B523 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */; };
 		2E2104A5151ED7BB00D0B523 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A4151ED7BB00D0B523 /* main.m */; };
-		2E2104A9151ED7BB00D0B523 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E2104AC151ED7BB00D0B523 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104AB151ED7BB00D0B523 /* ViewController.m */; };
 		2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104AD151ED7BB00D0B523 /* ViewController.xib */; };
 		2E2104B7151ED7BB00D0B523 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2104B6151ED7BB00D0B523 /* SenTestingKit.framework */; };
@@ -29,6 +28,7 @@
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E302C50181C361A00396616 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C4F181C361A00396616 /* back4.png */; };
 		2E302C56181C4A3300396616 /* scroll_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C55181C4A3300396616 /* scroll_1.png */; };
+		2E428A611854131A000E79E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
@@ -97,7 +97,7 @@
 		2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateCalculationUtilTest.h; path = LifeCountDownTests/DateCalculationUtilTest.h; sourceTree = SOURCE_ROOT; };
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
 		2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hglass-ipad_retina-port.png"; path = "../hglass-ipad_retina-port.png"; sourceTree = "<group>"; };
-		2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ret_ipad_hglass@2x.png"; sourceTree = "<group>"; };
+		2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ret_ipad_hglass@2x.png"; path = "../ret_ipad_hglass@2x.png"; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
 		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
-				2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */,
 				2EF47CF7181A30DE0006B704 /* Images.xcassets */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
@@ -186,6 +185,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */,
 				2E3D84441835EE7F0028C3C4 /* launch-ipad-retina-portrait.png */,
 				2E3D84431835EE670028C3C4 /* launch-ipad-NONretina-portrait.png */,
 				2E3D84421835EE410028C3C4 /* launch_image_1136.png */,
@@ -373,10 +373,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E2104A5151ED7BB00D0B523 /* main.m in Sources */,
-				2E2104A9151ED7BB00D0B523 /* AppDelegate.m in Sources */,
 				2E5B774E183C73CC00CC6510 /* IpadControllerViewController.m in Sources */,
 				2E2104AC151ED7BB00D0B523 /* ViewController.m in Sources */,
 				2E2104D4151ED8A400D0B523 /* ConfigViewController.m in Sources */,
+				2E428A611854131A000E79E7 /* AppDelegate.m in Sources */,
 				2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */,
 				2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */,
 				2E27E813177C134C009FBFC7 /* HelpView.m in Sources */,

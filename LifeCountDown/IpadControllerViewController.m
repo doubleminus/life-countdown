@@ -44,7 +44,7 @@ bool exceedExp1 = NO;
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
         [self handleLandscape1];
 
-   // _progressView1.hidden = YES;
+    _progBar.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,11 +59,10 @@ bool exceedExp1 = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x~ipad.png"]];
+    backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x.png"]];
     backgroundView1.frame = self.view.bounds;
     [[self view] addSubview:backgroundView1];
     [[self view] sendSubviewToBack:backgroundView1];
-
 
     // Set button colors
     [setInfoButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
@@ -143,11 +142,11 @@ bool exceedExp1 = NO;
 
     // Set our progress bar's value, based on amount of life remaining, but only if in landscape
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
-       // [_progressView1 setProgress:progAmount];
-        
+        [_progBar setProgress:progAmount];
+
         // Calculate percentage of life remaining
         percentRemaining = progAmount * 100.0;
-      //  _percentLabel1.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
+        _pLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
 
     _timerStarted1 = YES;
@@ -158,12 +157,12 @@ bool exceedExp1 = NO;
 /****  BEGIN PLIST METHODS  ****/
 - (void)verifyPlist1 {
     NSError *error;
-    
+
     // Get path to your documents directory from the list.
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     path1 = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
     //NSLog(@"path in createplistpath: %@", path);
-    
+
     // Our plist exists, just read it.
     if ([[NSFileManager defaultManager] fileExistsAtPath:path1]) {
         //NSLog(@"Plist file exists");
@@ -250,12 +249,11 @@ bool exceedExp1 = NO;
     setInfoButton.hidden = YES;
     currAgeLbl.hidden = YES;
     estTextLbl.hidden = YES;
-  //  _percentLabel1.hidden = YES;
     ageTxtLbl.hidden = YES;
+    _pLabel.hidden = NO;
     _ageLbl.hidden = YES;
-   // _progressView1.hidden = YES;
+    _progBar.hidden = YES;
     _tchTggle.enabled = YES;
-    
 
   //  _cntLbl.frame = CGRectMake(11,20,298,45);
 //    secdsLifeRemLabel1.frame = CGRectMake(56,65,208,21);
@@ -267,11 +265,12 @@ bool exceedExp1 = NO;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
     _tchTggle.enabled = NO;
-    currAgeLbl.hidden = YES;
     _ageLbl.hidden = YES;
+    currAgeLbl.hidden = YES;
     setInfoButton.hidden = YES;
     estTextLbl.hidden = YES;
     ageTxtLbl.hidden = YES;
+
    /*
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
@@ -304,9 +303,9 @@ bool exceedExp1 = NO;
     setInfoButton.hidden = NO;
     ageTxtLbl.hidden = NO;
     currAgeLbl.hidden = NO;
-    _ageLbl.hidden = NO;
     estTextLbl.hidden = NO;
-    
+    _ageLbl.hidden = NO;
+
     //NSLog(exceedExp1 ? @"Yes" : @"No");
 }
 
@@ -320,8 +319,8 @@ bool exceedExp1 = NO;
     currAgeLbl = nil;
     ageTxtLbl = nil;
     estTextLbl = nil;
-   // self.progressView1 = nil;
-   // self.percentLabel1 = nil;
+    _progBar = nil;
+    _pLabel = nil;
     _tchTggle = nil;
     _cntLbl = nil;
     _ageLbl = nil;

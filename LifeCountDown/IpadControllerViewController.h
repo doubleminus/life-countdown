@@ -17,12 +17,7 @@
     double seconds1;
 
     __weak IBOutlet UIButton *setInfoButton;
-    __weak IBOutlet UILabel *currAgeLbl;
-    __weak IBOutlet UILabel *ageTxtLbl;
-    __weak IBOutlet UILabel *estTextLbl;
-    __weak IBOutlet UILabel *secsRem;
-
-   // __weak IBOutlet UILabel *secdsLifeRemLabel1, *currAgeTxtLbl1, *estTxtLbl1;
+    __weak IBOutlet UILabel *currAgeLbl, *ageTxtLbl, *estTextLbl, *secsRem;
 }
 
 @property (strong, nonatomic) NSDictionary *viewDict1;
@@ -30,13 +25,11 @@
 @property (nonatomic) bool timerStarted1;
 
 /*
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle1;
-@property (strong, nonatomic) IBOutlet YLProgressBar *progressView1;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel1, *ageLabel1, *countdownLabel1, *percentLabel1;
 */
-@property (strong, nonatomic) IBOutlet UILabel *ageLbl;
-@property (strong, nonatomic) IBOutlet UILabel *cntLbl;
+@property (strong, nonatomic) IBOutlet UILabel *ageLbl, *cntLbl, *pLabel;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tchTggle;
+@property (strong, nonatomic) IBOutlet YLProgressBar *progBar;
 
 - (IBAction)toggleComponents1:(id)sender;
 - (IBAction)setUserInfo1;

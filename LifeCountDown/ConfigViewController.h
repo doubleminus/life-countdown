@@ -54,8 +54,7 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
 @property (strong, nonatomic) NSDictionary* viewDict;
-@property (strong, nonatomic) UIColor *thumbTintColor;
-@property (strong, nonatomic) UIColor *onTintColor;
+@property (strong, nonatomic) UIColor *thumbTintColor, *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
 
 - (IBAction)cancelPressed;
