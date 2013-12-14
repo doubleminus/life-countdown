@@ -250,13 +250,13 @@ bool exceedExp1 = NO;
     currAgeLbl.hidden = YES;
     estTextLbl.hidden = YES;
     ageTxtLbl.hidden = YES;
-    _pLabel.hidden = NO;
+    _pLabel.hidden = YES;
     _ageLbl.hidden = YES;
     _progBar.hidden = YES;
     _tchTggle.enabled = YES;
 
   //  _cntLbl.frame = CGRectMake(11,20,298,45);
-//    secdsLifeRemLabel1.frame = CGRectMake(56,65,208,21);
+//  secdsLifeRemLabel1.frame = CGRectMake(56,65,208,21);
     backgroundView1.hidden = NO;
 }
 
@@ -266,6 +266,7 @@ bool exceedExp1 = NO;
 
     _tchTggle.enabled = NO;
     _ageLbl.hidden = YES;
+    _pLabel.hidden = NO;
     currAgeLbl.hidden = YES;
     setInfoButton.hidden = YES;
     estTextLbl.hidden = YES;
