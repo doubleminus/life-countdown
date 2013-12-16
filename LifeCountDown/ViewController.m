@@ -71,19 +71,10 @@ bool exceedExp = NO;
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x~ipad.png"]];
-        backgroundView.frame = self.view.bounds;
-        [[self view] addSubview:backgroundView];
-        [[self view] sendSubviewToBack:backgroundView];
-
-    }
-    else {
-        backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
-        backgroundView.frame = self.view.bounds;
-        [[self view] addSubview:backgroundView];
-        [[self view] sendSubviewToBack:backgroundView];
-    }
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
+    backgroundView.frame = self.view.bounds;
+    [[self view] addSubview:backgroundView];
+    [[self view] sendSubviewToBack:backgroundView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/

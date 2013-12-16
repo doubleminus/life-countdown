@@ -37,7 +37,6 @@ NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.alpha = 0;
 
     // Set up scroll view
     [self.view addSubview:self->contentView];
@@ -46,9 +45,13 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,2000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setScrollEnabled:NO];
+        self.view.alpha = 0;
+    }
+
+    //self.view.alpha = 1.0;
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
@@ -60,7 +63,6 @@ NSDate *birthDate;
         // Set button text color
         [btn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-
         [btn setBackgroundColor:[UIColor whiteColor]];
 
         // Round corners
@@ -80,7 +82,6 @@ NSDate *birthDate;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
 
     cancelBtn.hidden = YES;
@@ -90,19 +91,17 @@ NSDate *birthDate;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [scroller setFrame:CGRectMake(450, 20, 900, 1200)];
-    
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [scroller setFrame:CGRectMake(450, 20, 900, 1200)];
+
     // Fade-in our view
     self.view.alpha = 0;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = .9f;}];
-    }
-    else {
+    else
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
-        
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

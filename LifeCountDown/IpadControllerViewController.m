@@ -86,6 +86,7 @@ bool exceedExp1 = NO;
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:YES completion:nil];
+    //enterInfo1.view.frame = CGRectMake(40,40,320,2000);
 }
 
 #pragma mark displayUserInfo Delegate function
