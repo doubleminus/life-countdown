@@ -53,11 +53,11 @@ bool exceedExp1 = NO;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist1];
-    [self handlePortrait1];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self handlePortrait1];
 
     backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x.png"]];
     backgroundView1.frame = self.view.bounds;
@@ -126,6 +126,8 @@ bool exceedExp1 = NO;
             [self startSecondTimer];
         }
     }
+    
+    [self showComponents1];
 }
 
 - (void)startSecondTimer {
@@ -169,8 +171,7 @@ bool exceedExp1 = NO;
         //NSLog(@"Plist file exists");
         [self readPlist1];
     }
-    // There is no plist. Have the user provide info then write it to plist.
-    else {
+    else { // There is no plist. Have the user provide info then write it to plist.
         //NSLog(@"no plist!!");
         bundle1 = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"]; // Get a path to your plist created manually in Xcode
         [[NSFileManager defaultManager] copyItemAtPath:bundle1 toPath:path1 error:&error]; // Copy this plist to your documents directory.
@@ -229,13 +230,6 @@ bool exceedExp1 = NO;
 - (NSString*)getPath1 { return self->path1; }
 /**** END PLIST METHODS ****/
 
-- (IBAction)toggleComponents1:(id)sender {
-    if (currAgeLbl.hidden && _ageLbl.hidden)
-        [self showComponents1];
-    else
-        [self handlePortrait1];
-}
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
@@ -246,7 +240,21 @@ bool exceedExp1 = NO;
         [self handleLandscape1];
 }
 
+- (void)showComponents1 {
+    secsRem.hidden = NO;
+    _cntLbl.hidden = NO;
+    setInfoButton.hidden = NO;
+    ageTxtLbl.hidden = NO;
+    currAgeLbl.hidden = NO;
+    estTextLbl.hidden = NO;
+    _ageLbl.hidden = NO;
+    
+    //NSLog(exceedExp1 ? @"Yes" : @"No");
+}
+
 - (void)handlePortrait1 {
+    secsRem.hidden = YES;
+    _cntLbl.hidden = YES;
     setInfoButton.hidden = YES;
     currAgeLbl.hidden = YES;
     estTextLbl.hidden = YES;
@@ -254,18 +262,12 @@ bool exceedExp1 = NO;
     _pLabel.hidden = YES;
     _ageLbl.hidden = YES;
     _progBar.hidden = YES;
-    _tchTggle.enabled = YES;
-
-  //  _cntLbl.frame = CGRectMake(11,20,298,45);
-//  secdsLifeRemLabel1.frame = CGRectMake(56,65,208,21);
-    backgroundView1.hidden = NO;
 }
 
 - (void)handleLandscape1 {
     backgroundView1.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
-    _tchTggle.enabled = NO;
     _ageLbl.hidden = YES;
     _pLabel.hidden = NO;
     currAgeLbl.hidden = YES;
@@ -301,16 +303,6 @@ bool exceedExp1 = NO;
     } */
 }
 
-- (void)showComponents1 {
-    setInfoButton.hidden = NO;
-    ageTxtLbl.hidden = NO;
-    currAgeLbl.hidden = NO;
-    estTextLbl.hidden = NO;
-    _ageLbl.hidden = NO;
-
-    //NSLog(exceedExp1 ? @"Yes" : @"No");
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -323,7 +315,6 @@ bool exceedExp1 = NO;
     estTextLbl = nil;
     _progBar = nil;
     _pLabel = nil;
-    _tchTggle = nil;
     _cntLbl = nil;
     _ageLbl = nil;
 }
