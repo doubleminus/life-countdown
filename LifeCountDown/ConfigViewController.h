@@ -56,9 +56,11 @@
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) UIColor *thumbTintColor, *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGest;
 
 - (IBAction)cancelPressed;
 - (IBAction)savePressed;
 - (IBAction)showHelp:(id)sender;
+- (IBAction)panPiece:(UIPanGestureRecognizer*)gestureRecognizer;
 
 @end

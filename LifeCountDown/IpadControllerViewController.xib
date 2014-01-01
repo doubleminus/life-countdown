@@ -14,7 +14,6 @@
                 <outlet property="pLabel" destination="eRw-Ho-ZwR" id="fmz-6i-3Y9"/>
                 <outlet property="progBar" destination="eAs-jB-OjJ" id="hjz-sk-lGv"/>
                 <outlet property="secsRem" destination="drx-8U-43E" id="PgV-gC-Bi8"/>
-                <outlet property="setInfoButton" destination="a3F-NI-uQv" id="JuN-6J-QeH"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -44,7 +43,7 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eAs-jB-OjJ">
+                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eAs-jB-OjJ">
                     <rect key="frame" x="268" y="591" width="243" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
@@ -76,17 +75,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3F-NI-uQv">
-                    <rect key="frame" x="34" y="387" width="101" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
-                    <state key="normal" title="Set Info">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="setUserInfo1" destination="-1" eventType="touchUpInside" id="tfe-c8-N07"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>

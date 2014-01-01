@@ -43,8 +43,6 @@ bool exceedExp1 = NO;
     // If we return from configView in landscape, then adjust UI components accordingly
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
         [self handleLandscape1];
-
-    _progBar.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -53,6 +51,8 @@ bool exceedExp1 = NO;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist1];
+    
+    [self setUserInfo1];
 }
 
 - (void)viewDidLoad {
@@ -85,7 +85,7 @@ bool exceedExp1 = NO;
     enterInfo1.delegate = self;
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:YES completion:nil];
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
     //enterInfo1.view.frame = CGRectMake(40,40,320,2000);
 }
 

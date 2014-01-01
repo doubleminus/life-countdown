@@ -43,15 +43,15 @@ NSDate *birthDate;
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
 
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,2000)];
+    [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
 
+    // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setScrollEnabled:NO];
-        self.view.alpha = 0;
+        [scroller setContentSize:CGSizeMake(320,2000)];
+        [_panGest setEnabled:YES];
     }
-
-    //self.view.alpha = 1.0;
 
     // Style/skin buttons
     NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
@@ -80,6 +80,20 @@ NSDate *birthDate;
     [self setupHelpView];
 }
 
+// Method to allow sliding view out from side on iPad
+- (IBAction)panPiece:(UIPanGestureRecognizer *)gestureRecognizer {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UIView *piece = [gestureRecognizer view];
+
+        if ([gestureRecognizer state] == UIGestureRecognizerStateBegan || [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
+            CGPoint translation = [gestureRecognizer translationInView:[piece superview]];
+
+            [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
+            [gestureRecognizer setTranslation:CGPointZero inView:[piece superview]];
+        }
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
@@ -93,15 +107,16 @@ NSDate *birthDate;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [scroller setFrame:CGRectMake(450, 20, 900, 1200)];
-
-    // Fade-in our view
-    self.view.alpha = 0;
+        [scroller setFrame:CGRectMake(750, 20, 900, 1200)];
+    else
+        self.view.alpha = 0; // Fade-in our view
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = .9f;}];
     else
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
+
+    NSLog(@"enabled?? %d", [scroller isScrollEnabled]);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
