@@ -34,6 +34,7 @@
 NSDictionary *personInfo;
 NSString *country, *gender, *smokeStatus;
 NSDate *birthDate;
+CGRect scrollRect;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,31 +46,27 @@ NSDate *birthDate;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1000)];
     [scroller setContentOffset:CGPointMake(0,0) animated:NO];
+    scrollRect = CGRectMake(750, 20, 900, 1200);
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
-        [_panGest setEnabled:YES];
+        [_tapGesture setEnabled:YES];
     }
-
-    // Style/skin buttons
-    NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
 
     // Set gradient image as our background
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
 
-    for (UIButton *btn in buttons) {
-        // Set button text color
-        [btn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-        [btn setBackgroundColor:[UIColor whiteColor]];
+    // Set button text color
+    [saveBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
+    [saveBtn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
+    [saveBtn setBackgroundColor:[UIColor whiteColor]];
 
-        // Round corners
-        CALayer *btnLayer = [btn layer];
-        [btnLayer setMasksToBounds:YES];
-        [btnLayer setCornerRadius:5.0f];
-    }
+    // Round corners
+    CALayer *btnLayer = [saveBtn layer];
+    [btnLayer setMasksToBounds:YES];
+    [btnLayer setCornerRadius:5.0f];
 
     // Get array of countries from Countries.plist via calculation util to populate uipickerview values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
@@ -81,16 +78,17 @@ NSDate *birthDate;
 }
 
 // Method to allow sliding view out from side on iPad
-- (IBAction)panPiece:(UIPanGestureRecognizer *)gestureRecognizer {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        UIView *piece = [gestureRecognizer view];
-
-        if ([gestureRecognizer state] == UIGestureRecognizerStateBegan || [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-            CGPoint translation = [gestureRecognizer translationInView:[piece superview]];
-
-            [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
-            [gestureRecognizer setTranslation:CGPointZero inView:[piece superview]];
-        }
+- (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
+    // Config view is not slid out yet
+    if (CGRectEqualToRect(scroller.frame, scrollRect)) {
+        [UIView animateWithDuration:0.5f animations:^{
+            scroller.frame = CGRectOffset(scroller.frame, -300, 0);
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.5f animations:^{
+            scroller.frame = CGRectOffset(scroller.frame, 300, 0);
+        }];
     }
 }
 
@@ -98,7 +96,6 @@ NSDate *birthDate;
     [super viewWillAppear:animated];
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
 
-    cancelBtn.hidden = YES;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     [self readPlist];
 }
@@ -107,7 +104,7 @@ NSDate *birthDate;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [scroller setFrame:CGRectMake(750, 20, 900, 1200)];
+        [scroller setFrame:scrollRect];
     else
         self.view.alpha = 0; // Fade-in our view
 
@@ -115,8 +112,6 @@ NSDate *birthDate;
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = .9f;}];
     else
         [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
-
-    NSLog(@"enabled?? %d", [scroller isScrollEnabled]);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -237,8 +232,6 @@ NSDate *birthDate;
         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
 
         if ([infoDctnry objectForKey:@"gender"] != nil) {
-            cancelBtn.hidden = NO;
-
             // Set Gender switch in UI
             if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"])
                 [_genderToggle setSelectedSegmentIndex:0];
@@ -316,8 +309,6 @@ NSDate *birthDate;
 - (void)viewDidUnload {
     scroller = nil;
     saveBtn = nil;
-    cancelBtn = nil;
-    cancelBtn = nil;
     contentView = nil;
     plusLbl = nil;
     _dobPicker = nil;

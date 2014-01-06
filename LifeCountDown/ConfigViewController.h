@@ -42,7 +42,7 @@
     IBOutlet UITextField *amountTextField;
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
-    __weak IBOutlet UIButton *cancelBtn, *saveBtn;
+    __weak IBOutlet UIButton *saveBtn;
     __weak IBOutlet UILabel *plusLbl, *helpLabel;
 }
 
@@ -56,11 +56,10 @@
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) UIColor *thumbTintColor, *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
-@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGest;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 
-- (IBAction)cancelPressed;
 - (IBAction)savePressed;
 - (IBAction)showHelp:(id)sender;
-- (IBAction)panPiece:(UIPanGestureRecognizer*)gestureRecognizer;
+- (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
 
 @end
