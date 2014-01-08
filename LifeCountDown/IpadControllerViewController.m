@@ -51,7 +51,7 @@ bool exceedExp1 = NO;
     // Check to see if we already have an age value set in our plist
     //[self deletePlist];
     [self verifyPlist1];
-    
+
     [self setUserInfo1];
 }
 
@@ -78,7 +78,7 @@ bool exceedExp1 = NO;
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
-- (IBAction)setUserInfo1 {
+- (void)setUserInfo1 {
     ConfigViewController *enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
     // Important to set the viewcontroller's delegate to be self
@@ -242,12 +242,13 @@ bool exceedExp1 = NO;
 
 - (void)showComponents1 {
     secsRem.hidden = NO;
-    _cntLbl.hidden = NO;
+    
     setInfoButton.hidden = NO;
     ageTxtLbl.hidden = NO;
     currAgeLbl.hidden = NO;
     estTextLbl.hidden = NO;
     _ageLbl.hidden = NO;
+    _cntLbl.hidden = NO;
     
     //NSLog(exceedExp1 ? @"Yes" : @"No");
 }

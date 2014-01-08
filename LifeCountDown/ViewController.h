@@ -49,7 +49,6 @@
 @property (nonatomic) bool timerStarted;
 
 - (IBAction)toggleComponents:(id)sender;
-- (IBAction)setUserInfo;
 - (NSString*)getPath;
 - (void)verifyPlist;
 

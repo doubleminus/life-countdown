@@ -46,7 +46,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *ageLbl, *cntLbl, *pLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progBar;
 
-- (IBAction)setUserInfo1;
 - (NSString*)getPath1;
 - (void)verifyPlist1;
 

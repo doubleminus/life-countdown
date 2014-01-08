@@ -54,6 +54,8 @@ bool exceedExp = NO;
     //[self deletePlist];
     [self verifyPlist];
     [self handlePortrait];
+    
+    [self setUserInfo];
 }
 
 - (void)viewDidLoad {
@@ -78,14 +80,15 @@ bool exceedExp = NO;
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
-- (IBAction)setUserInfo {
-    ConfigViewController *enterInfo = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-
+- (void)setUserInfo {
+    ConfigViewController *enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    
     // Important to set the viewcontroller's delegate to be self
-    enterInfo.delegate = self;
-
+    enterInfo1.delegate = self;
+    
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo animated:YES completion:nil];
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    //enterInfo1.view.frame = CGRectMake(40,40,320,2000);
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -129,10 +132,10 @@ bool exceedExp = NO;
 
 - (void)startSecondTimer {
     _secondTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
-                                                   target: self
-                                                 selector: @selector(updateTimerAndBar)
-                                                 userInfo: nil
-                                                  repeats: YES];
+                                                    target: self
+                                                  selector: @selector(updateTimerAndBar)
+                                                  userInfo: nil
+                                                   repeats: YES];
 }
 
 - (void)updateTimerAndBar {
@@ -173,7 +176,7 @@ bool exceedExp = NO;
         //NSLog(@"no plist!!");
         bundle = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"]; // Get a path to your plist created manually in Xcode
         [[NSFileManager defaultManager] copyItemAtPath:bundle toPath:path error:&error]; // Copy this plist to your documents directory.
-        [self setUserInfo];
+        // ToDo: Slide out config view!
     }
 }
 
@@ -201,7 +204,7 @@ bool exceedExp = NO;
         }
         // Otherwise, have the user set this info
         else {
-            [self setUserInfo];
+            // ToDo: Slide out config view!
         }
     }
 }

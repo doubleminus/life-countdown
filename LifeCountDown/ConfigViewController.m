@@ -34,7 +34,7 @@
 NSDictionary *personInfo;
 NSString *country, *gender, *smokeStatus;
 NSDate *birthDate;
-CGRect scrollRect;
+CGRect padScrollRect, phoneScrollRect;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,8 +45,9 @@ CGRect scrollRect;
 
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1000)];
-    [scroller setContentOffset:CGPointMake(0,0) animated:NO];
-    scrollRect = CGRectMake(750, 20, 900, 1200);
+
+    padScrollRect = CGRectMake(750, 20, 900, 1200);
+    phoneScrollRect = CGRectMake(310, 0, 320, 1200);
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -79,15 +80,22 @@ CGRect scrollRect;
 
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
+    int slideDistance = 0;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        slideDistance = 300;
+    else
+        slideDistance = 310;
+
     // Config view is not slid out yet
-    if (CGRectEqualToRect(scroller.frame, scrollRect)) {
+    if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
         [UIView animateWithDuration:0.5f animations:^{
-            scroller.frame = CGRectOffset(scroller.frame, -300, 0);
+            scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
         }];
     }
     else {
         [UIView animateWithDuration:0.5f animations:^{
-            scroller.frame = CGRectOffset(scroller.frame, 300, 0);
+            scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
         }];
     }
 }
@@ -104,14 +112,9 @@ CGRect scrollRect;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [scroller setFrame:scrollRect];
+        [scroller setFrame:padScrollRect];
     else
-        self.view.alpha = 0; // Fade-in our view
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [UIView animateWithDuration:1.0 animations:^{self.view.alpha = .9f;}];
-    else
-        [UIView animateWithDuration:1.0 animations:^{self.view.alpha = 1.f;}];
+        [scroller setFrame:phoneScrollRect];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -161,7 +164,8 @@ CGRect scrollRect;
             [self writePlist:personInfo];
     }
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self animateConfig:nil];
 }
 
 - (IBAction)sliderChanged:(id)sender {
