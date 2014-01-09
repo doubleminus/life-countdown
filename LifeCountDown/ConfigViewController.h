@@ -53,10 +53,10 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) UIColor *thumbTintColor, *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 
 - (IBAction)savePressed;
 - (IBAction)showHelp:(id)sender;

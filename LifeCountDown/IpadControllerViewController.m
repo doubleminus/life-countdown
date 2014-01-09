@@ -90,7 +90,7 @@ bool exceedExp1 = NO;
 }
 
 #pragma mark displayUserInfo Delegate function
-- (void)displayUserInfo1:(NSDictionary*)infoDictionary {
+- (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
 
@@ -199,7 +199,7 @@ bool exceedExp1 = NO;
             DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
             NSDictionary *nsdict = [_viewDict1 objectForKey:@"infoDict"];
             [dateUtil setBirthDate:[nsdict objectForKey:@"birthDate"]];
-            [self displayUserInfo1:nsdict];
+            [self displayUserInfo:nsdict];
         }
         // Otherwise, have the user set this info
         else {

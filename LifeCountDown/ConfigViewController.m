@@ -31,10 +31,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ConfigViewController
-NSDictionary *personInfo;
 NSString *country, *gender, *smokeStatus;
-NSDate *birthDate;
 CGRect padScrollRect, phoneScrollRect;
+NSDictionary *personInfo;
+NSDate *birthDate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,9 +42,8 @@ CGRect padScrollRect, phoneScrollRect;
     // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
-
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,1000)];
+    [scroller setContentSize:CGSizeMake(320,1625)];
 
     padScrollRect = CGRectMake(750, 20, 900, 1200);
     phoneScrollRect = CGRectMake(310, 0, 320, 1200);
@@ -53,7 +52,9 @@ CGRect padScrollRect, phoneScrollRect;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
-        [_tapGesture setEnabled:YES];
+        CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
+        [viewLayer setMasksToBounds:YES];
+        [viewLayer setCornerRadius:5.0f];
     }
 
     // Set gradient image as our background
@@ -164,7 +165,6 @@ CGRect padScrollRect, phoneScrollRect;
             [self writePlist:personInfo];
     }
 
-    //[self dismissViewControllerAnimated:YES completion:nil];
     [self animateConfig:nil];
 }
 
