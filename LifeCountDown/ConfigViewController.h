@@ -55,7 +55,6 @@
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) NSDictionary* viewDict;
-@property (strong, nonatomic) UIColor *thumbTintColor, *onTintColor;
 @property (strong, nonatomic) HelpView *hView;
 
 - (IBAction)savePressed;

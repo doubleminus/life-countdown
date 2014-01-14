@@ -43,10 +43,15 @@ NSDate *birthDate;
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,1625)];
+    [scroller setContentSize:CGSizeMake(320,1660)];
 
     padScrollRect = CGRectMake(750, 20, 900, 1200);
-    phoneScrollRect = CGRectMake(310, 0, 320, 1200);
+    
+    // Adjust iPhone scroll rect based on screen height
+    if ([[UIScreen mainScreen] bounds].size.height == 480)
+        phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
+    else
+        phoneScrollRect = CGRectMake(310, 0, 320, 1275); // 4-inch
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -319,8 +324,6 @@ NSDate *birthDate;
     _genderToggle = nil;
     _daysLbl = nil;
     _smokeSwitch = nil;
-    _thumbTintColor = nil;
-    _onTintColor = nil;
 
     [super viewDidUnload];
 }
