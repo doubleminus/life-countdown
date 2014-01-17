@@ -42,7 +42,6 @@
     IBOutlet UITextField *amountTextField;
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
-    __weak IBOutlet UIButton *saveBtn;
     __weak IBOutlet UILabel *plusLbl, *helpLabel;
 }
 
@@ -57,7 +56,6 @@
 @property (strong, nonatomic) NSDictionary* viewDict;
 @property (strong, nonatomic) HelpView *hView;
 
-- (IBAction)savePressed;
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
 

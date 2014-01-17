@@ -65,16 +65,6 @@ NSDate *birthDate;
     // Set gradient image as our background
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
 
-    // Set button text color
-    [saveBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-    [saveBtn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-    [saveBtn setBackgroundColor:[UIColor whiteColor]];
-
-    // Round corners
-    CALayer *btnLayer = [saveBtn layer];
-    [btnLayer setMasksToBounds:YES];
-    [btnLayer setCornerRadius:5.0f];
-
     // Get array of countries from Countries.plist via calculation util to populate uipickerview values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
     countryArray = [[dateUtil getCountryDict] allKeys];
@@ -317,7 +307,6 @@ NSDate *birthDate;
 
 - (void)viewDidUnload {
     scroller = nil;
-    saveBtn = nil;
     contentView = nil;
     plusLbl = nil;
     _dobPicker = nil;
