@@ -90,6 +90,7 @@ NSDate *birthDate;
         }];
     }
     else {
+        [self savePressed]; // Save config data prior to sliding view back in
         [UIView animateWithDuration:0.5f animations:^{
             scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
         }];
@@ -159,8 +160,6 @@ NSDate *birthDate;
         if (personInfo != nil)
             [self writePlist:personInfo];
     }
-
-    [self animateConfig:nil];
 }
 
 - (IBAction)sliderChanged:(id)sender {
@@ -294,7 +293,7 @@ NSDate *birthDate;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)savePressed {
+- (void)savePressed {
     [self updateAge:nil];
 
     // Check to see if anyone is listening...
