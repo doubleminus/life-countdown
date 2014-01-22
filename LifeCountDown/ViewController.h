@@ -27,6 +27,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 #import "ConfigViewController.h"
 
 @class YLProgressBar;
@@ -44,11 +46,14 @@
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tweetTap;
 @property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;
+@property (strong, nonatomic) IBOutlet UIImageView *tweetImg;
 
 - (IBAction)toggleComponents:(id)sender;
+- (IBAction)tweetTapGest:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
 

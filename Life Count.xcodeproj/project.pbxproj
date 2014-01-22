@@ -32,6 +32,8 @@
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
+		2E4C77F0188F998B00D0910A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4C77EF188F998B00D0910A /* Accounts.framework */; };
+		2E4C77F2188F999400D0910A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4C77F1188F999400D0910A /* Social.framework */; };
 		2E5B774E183C73CC00CC6510 /* IpadControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B774C183C73CC00CC6510 /* IpadControllerViewController.m */; };
 		2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
@@ -40,6 +42,7 @@
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DC8CA17EF2D0300AD679B /* Countries.plist */; };
+		2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */; };
 		2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF47CF7181A30DE0006B704 /* Images.xcassets */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -91,6 +94,8 @@
 		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		2E47E28B1768004000D81B13 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2E4C77EF188F998B00D0910A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		2E4C77F1188F999400D0910A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2E5B774B183C73CC00CC6510 /* IpadControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpadControllerViewController.h; sourceTree = "<group>"; };
 		2E5B774C183C73CC00CC6510 /* IpadControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IpadControllerViewController.m; sourceTree = "<group>"; };
 		2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IpadControllerViewController.xib; sourceTree = "<group>"; };
@@ -101,6 +106,7 @@
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
 		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
+		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
 		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E4C77F2188F999400D0910A /* Social.framework in Frameworks */,
+				2E4C77F0188F998B00D0910A /* Accounts.framework in Frameworks */,
 				2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */,
 				2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
 				2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */,
@@ -156,6 +164,8 @@
 		2E210497151ED7BA00D0B523 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E4C77F1188F999400D0910A /* Social.framework */,
+				2E4C77EF188F998B00D0910A /* Accounts.framework */,
 				2E210498151ED7BA00D0B523 /* UIKit.framework */,
 				2E21049A151ED7BB00D0B523 /* Foundation.framework */,
 				2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */,
@@ -185,6 +195,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */,
 				2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */,
 				2E3D84441835EE7F0028C3C4 /* launch-ipad-retina-portrait.png */,
 				2E3D84431835EE670028C3C4 /* launch-ipad-NONretina-portrait.png */,
@@ -326,6 +337,7 @@
 			files = (
 				2E71CCAD1834A19F0022C509 /* hglass-ipad_retina-port.png in Resources */,
 				2E2104A3151ED7BB00D0B523 /* InfoPlist.strings in Resources */,
+				2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */,
 				2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E302C50181C361A00396616 /* back4.png in Resources */,

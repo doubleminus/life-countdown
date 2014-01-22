@@ -27,13 +27,16 @@
  */
 
 #import "ViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "DateCalculationUtil.h"
 #import "YLProgressBar.h"
+#import "DateCalculationUtil.h"
+#import <QuartzCore/QuartzCore.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @implementation ViewController
 
 NSNumberFormatter *formatter;
+SLComposeViewController *twCtrl;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
 
@@ -240,6 +243,31 @@ bool exceedExp = NO;
         [self handlePortrait];
 }
 
+- (IBAction)tweetTapGest:(id)sender {
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
+            [twCtrl dismissViewControllerAnimated:YES completion:nil];
+
+            switch(result){
+                case SLComposeViewControllerResultCancelled:
+                default:{
+                    NSLog(@"Cancelled.....");
+                }
+                    break;
+                case SLComposeViewControllerResultDone: {
+                    NSLog(@"Posted....");
+                }
+                    break;
+            }};
+
+        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
+        [twCtrl setInitialText:@"Check out this article."];
+        [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
+        [twCtrl setCompletionHandler:completionHandler];
+        [self presentViewController:twCtrl animated:YES completion:nil];
+    }
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
@@ -258,6 +286,7 @@ bool exceedExp = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _progressView.hidden = YES;
+    _tweetImg.hidden = YES;
     _touchToggle.enabled = YES;
 
     _countdownLabel.frame = CGRectMake(11,20,298,45);
@@ -268,7 +297,7 @@ bool exceedExp = NO;
 - (void)handleLandscape {
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
-    
+
     _touchToggle.enabled = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
@@ -306,9 +335,10 @@ bool exceedExp = NO;
 - (void)showComponents {
     setInfoBtn.hidden = NO;
     currAgeTxtLbl.hidden = NO;
+    estTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
-    estTxtLbl.hidden = NO;
+    _tweetImg.hidden = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
