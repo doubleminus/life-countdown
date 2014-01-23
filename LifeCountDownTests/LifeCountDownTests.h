@@ -28,6 +28,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <QuartzCore/QuartzCore.h>
+
 @class ViewController;
 
 @interface LifeCountDownTests : SenTestCase

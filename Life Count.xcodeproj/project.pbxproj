@@ -45,6 +45,7 @@
 		2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */; };
 		2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF47CF7181A30DE0006B704 /* Images.xcassets */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
+		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
 		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
+		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +118,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
 				2E4C77F2188F999400D0910A /* Social.framework in Frameworks */,
 				2E4C77F0188F998B00D0910A /* Accounts.framework in Frameworks */,
 				2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */,
-				2E210499151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
 				2E21049B151ED7BB00D0B523 /* Foundation.framework in Frameworks */,
 				2E21049D151ED7BB00D0B523 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */,
 				2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */,
 				2E2104B7151ED7BB00D0B523 /* SenTestingKit.framework in Frameworks */,
 				2E2104B8151ED7BB00D0B523 /* UIKit.framework in Frameworks */,
@@ -164,6 +167,7 @@
 		2E210497151ED7BA00D0B523 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65D304F51891AF3D0023F39A /* CoreText.framework */,
 				2E4C77F1188F999400D0910A /* Social.framework */,
 				2E4C77EF188F998B00D0910A /* Accounts.framework */,
 				2E210498151ED7BA00D0B523 /* UIKit.framework */,
