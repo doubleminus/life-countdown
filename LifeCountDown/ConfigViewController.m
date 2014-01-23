@@ -218,7 +218,6 @@ bool firstTime = false;
         }
         else if ([_viewDict objectForKey:@"infoDict"] != nil) {
             // If we have ALL of the values we need, display info to user.
-            NSLog(@"Error reading plist: %@", errorDesc);
             NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
             firstTime = NO;
 
