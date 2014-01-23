@@ -54,9 +54,11 @@
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) NSDictionary* viewDict;
+@property (strong, nonatomic) NSTimer *animateTimer;
 @property (strong, nonatomic) HelpView *hView;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 
 @end

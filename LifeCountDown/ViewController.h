@@ -38,15 +38,13 @@
     NSString *path, *bundle;
     double seconds;
 
-    __weak IBOutlet UIButton *setInfoBtn;
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel,
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tweetTap;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *touchToggle, *tweetTap;
 @property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;

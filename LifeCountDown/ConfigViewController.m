@@ -35,6 +35,8 @@ NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 NSDictionary *personInfo;
 NSDate *birthDate;
+int slideDistance = 0;
+bool firstTime = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,8 +46,6 @@ NSDate *birthDate;
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1660)];
-
-    padScrollRect = CGRectMake(750, 20, 900, 1200);
     
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
@@ -55,6 +55,7 @@ NSDate *birthDate;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        padScrollRect = CGRectMake(750, 20, 900, 1200);
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
@@ -76,15 +77,19 @@ NSDate *birthDate;
 
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
-    int slideDistance = 0;
-    
+    [_animateTimer invalidate];
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         slideDistance = 300;
     else
         slideDistance = 310;
 
     // Config view is not slid out yet
-    if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
+    if (firstTime) {
+        [scroller setFrame:CGRectMake(0, 0, 320, 1275)];
+        firstTime = NO;
+    }
+    else if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
         [UIView animateWithDuration:0.5f animations:^{
             scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
         }];
@@ -95,6 +100,24 @@ NSDate *birthDate;
             scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
         }];
     }
+}
+
+- (void)handleFirstUse {
+    _animateTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
+                                                     target: self
+                                                   selector: @selector(animateSlideout)
+                                                   userInfo: nil
+                                                    repeats: YES];
+}
+
+// Encourage user to tap configview and slide it out and provide data
+- (void)animateSlideout {
+    slideDistance = 30; // Only slide view out slightly, as a hint
+    
+    [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
+        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+    } completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,8 +133,10 @@ NSDate *birthDate;
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [scroller setFrame:padScrollRect];
-    else
+    else if (!firstTime)
         [scroller setFrame:phoneScrollRect];
+    else // Set for first-time use
+        scroller.frame = CGRectOffset(scroller.frame, 310, 0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -185,17 +210,20 @@ NSDate *birthDate;
                                      mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                      format:&format
                                      errorDescription:&errorDesc];
-        if (!_viewDict) {
-            //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-        }
-        else {
-            // If we have ALL of the values we need, display info to user.
-            if ([_viewDict objectForKey:@"infoDict"] != nil) {
-                NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
 
-                if (nsDict != nil)
-                    [self setupDisplay:nsDict];
-            }
+        if (!_viewDict || [_viewDict count] == 0) { // No nsdictionary, or it's empty - user needs to provide config data
+            //NSLog(@"Error reading plist: %@", errorDesc);
+            firstTime = YES;
+            [self handleFirstUse];
+        }
+        else if ([_viewDict objectForKey:@"infoDict"] != nil) {
+            // If we have ALL of the values we need, display info to user.
+            NSLog(@"Error reading plist: %@", errorDesc);
+            NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
+            firstTime = NO;
+
+            if (nsDict != nil)
+                [self setupDisplay:nsDict];
         }
     }
 }
@@ -218,6 +246,25 @@ NSDate *birthDate;
 }
 /**** END PLIST METHODS ****/
 
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInView:scroller];
+
+    NSLog(@"IN HERE");
+
+    if ([scroller.layer.presentationLayer hitTest:touchLocation]) {
+        [_animateTimer invalidate];
+        _animateTimer = nil;
+    }
+
+    CGPoint touchLocation1 = [touch locationInView:self.view];
+
+    if ([self.view.layer.presentationLayer hitTest:touchLocation1]) {
+        [_animateTimer invalidate];
+        _animateTimer = nil;
+    }
+}
+
 // Set our UI component values based on what user entered previously
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
@@ -236,7 +283,7 @@ NSDate *birthDate;
             else
                 [_genderToggle setSelectedSegmentIndex:1];
 
-            // Set country in uipicker
+            // Set country in UIPicker
             [self.ctryPicker selectRow:[[infoDctnry objectForKey:@"countryIndex"] integerValue] inComponent:0 animated:NO];
 
             // Set smoker switch in UI

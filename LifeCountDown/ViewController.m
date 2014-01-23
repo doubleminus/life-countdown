@@ -39,6 +39,7 @@ NSNumberFormatter *formatter;
 SLComposeViewController *twCtrl;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
+UIView *shadeView;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -54,7 +55,6 @@ bool exceedExp = NO;
     [super viewDidAppear:animated];
 
     // Check to see if we already have an age value set in our plist
-    //[self deletePlist];
     [self verifyPlist];
     [self handlePortrait];
     
@@ -63,16 +63,6 @@ bool exceedExp = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Set button colors
-    [setInfoBtn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-    [setInfoBtn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-    [setInfoBtn setBackgroundColor:[UIColor whiteColor]];
-
-    // Round button corners
-    CALayer *btnLayer = [setInfoBtn layer];
-    [btnLayer setMasksToBounds:YES];
-    [btnLayer setCornerRadius:5.0f];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
@@ -100,6 +90,12 @@ bool exceedExp = NO;
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
+        // Undo first time usage setup
+        _touchToggle.enabled = YES;
+        _countdownLabel.hidden = NO;
+        secdsLifeRemLabel.hidden = NO;
+        shadeView.hidden = YES;
+        
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -186,49 +182,26 @@ bool exceedExp = NO;
 - (void)readPlist {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
-
+    
     if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
         _viewDict = (NSDictionary *)[NSPropertyListSerialization
-                                              propertyListFromData:plistXML
-                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                              format:&format
-                                              errorDescription:&errorDesc];
-       // if (!_viewDict) {
-            //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-       // }
-
+                                     propertyListFromData:plistXML
+                                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                     format:&format
+                                     errorDescription:&errorDesc];
+        
         // If we have ALL of the values we need, display info to user.
-        if ([_viewDict objectForKey:@"infoDict"] != nil) {
+        if (_viewDict && [_viewDict objectForKey:@"infoDict"] != nil) {
             DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
             NSDictionary *nsdict = [_viewDict objectForKey:@"infoDict"];
             [dateUtil setBirthDate:[nsdict objectForKey:@"birthDate"]];
             [self displayUserInfo:nsdict];
         }
-        // Otherwise, have the user set this info
         else {
-            // ToDo: Slide out config view!
+            [self firstTimeUseSetup];
         }
     }
-}
-
-- (void)deletePlist {
-    // For error information
-    NSError *error;
-
-    // Create file manager
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-
-    // Point to Document directory
-    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
-
-    // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-
-    // Show contents of Documents directory for debugging purposes
-    //NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
 }
 
 - (NSString*)getPath {
@@ -236,11 +209,17 @@ bool exceedExp = NO;
 }
 /**** END PLIST METHODS ****/
 
-- (IBAction)toggleComponents:(id)sender {
-    if (_currentAgeLabel.hidden && _ageLabel.hidden)
-        [self showComponents];
-    else
-        [self handlePortrait];
+- (void)firstTimeUseSetup {
+    _touchToggle.enabled = NO;
+    _countdownLabel.hidden = YES;
+    secdsLifeRemLabel.hidden = YES;
+
+    shadeView = [[UIView alloc] init];
+    shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
+    shadeView.backgroundColor = [UIColor grayColor];
+    shadeView.hidden = NO;
+    shadeView.alpha = .6;
+    [[self view] addSubview:shadeView];
 }
 
 - (IBAction)tweetTapGest:(id)sender {
@@ -268,6 +247,13 @@ bool exceedExp = NO;
     }
 }
 
+- (IBAction)toggleComponents:(id)sender {
+    if (_currentAgeLabel.hidden && _ageLabel.hidden)
+        [self showComponents];
+    else
+        [self handlePortrait];
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
@@ -279,7 +265,6 @@ bool exceedExp = NO;
 }
 
 - (void)handlePortrait {
-    setInfoBtn.hidden = YES;
     currAgeTxtLbl.hidden = YES;
     estTxtLbl.hidden = YES;
     _percentLabel.hidden = YES;
@@ -301,7 +286,6 @@ bool exceedExp = NO;
     _touchToggle.enabled = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
-    setInfoBtn.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
 
@@ -333,7 +317,6 @@ bool exceedExp = NO;
 }
 
 - (void)showComponents {
-    setInfoBtn.hidden = NO;
     currAgeTxtLbl.hidden = NO;
     estTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
@@ -349,7 +332,7 @@ bool exceedExp = NO;
 
 - (void)viewDidUnload {
     secdsLifeRemLabel = nil;
-    setInfoBtn = nil;
+    shadeView = nil;
     self.progressView = nil;
     self.percentLabel = nil;
     self.countdownLabel = nil;
