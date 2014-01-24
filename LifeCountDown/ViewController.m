@@ -63,6 +63,7 @@ UIView *shadeView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _touchToggle.enabled = NO;
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
@@ -90,12 +91,13 @@ UIView *shadeView;
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
+        shadeView.hidden = YES;
+        shadeView = nil;
         // Undo first time usage setup
         _touchToggle.enabled = YES;
         _countdownLabel.hidden = NO;
         secdsLifeRemLabel.hidden = NO;
-        shadeView.hidden = YES;
-        
+
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -182,7 +184,7 @@ UIView *shadeView;
 - (void)readPlist {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
-    
+
     if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
         _viewDict = (NSDictionary *)[NSPropertyListSerialization
@@ -190,7 +192,7 @@ UIView *shadeView;
                                      mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                      format:&format
                                      errorDescription:&errorDesc];
-        
+
         // If we have ALL of the values we need, display info to user.
         if (_viewDict && [_viewDict objectForKey:@"infoDict"] != nil) {
             DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
@@ -214,12 +216,21 @@ UIView *shadeView;
     _countdownLabel.hidden = YES;
     secdsLifeRemLabel.hidden = YES;
 
+    // Mask primary UIView until user data has been entered
     shadeView = [[UIView alloc] init];
     shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
-    shadeView.backgroundColor = [UIColor grayColor];
     shadeView.hidden = NO;
     shadeView.alpha = .6;
+    shadeView.opaque = NO;
+    shadeView.backgroundColor = [UIColor clearColor];
     [[self view] addSubview:shadeView];
+    
+    // Custom blurring solution
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    toolbar.barTintColor = [UIColor clearColor];
+    toolbar.alpha = .8;
+    [self.view.superview insertSubview:toolbar belowSubview:shadeView];
 }
 
 - (IBAction)tweetTapGest:(id)sender {
@@ -272,7 +283,6 @@ UIView *shadeView;
     _ageLabel.hidden = YES;
     _progressView.hidden = YES;
     _tweetImg.hidden = YES;
-    _touchToggle.enabled = YES;
 
     _countdownLabel.frame = CGRectMake(11,20,298,45);
     secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
