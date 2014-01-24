@@ -39,7 +39,8 @@ NSNumberFormatter *formatter;
 SLComposeViewController *twCtrl;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
-UIView *shadeView;
+UIView *shadeView; // Used for first app run only
+UIToolbar *toolbar; // Used for first app run only
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -91,8 +92,14 @@ UIView *shadeView;
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
-        shadeView.hidden = YES;
-        shadeView = nil;
+        
+        if (!shadeView.hidden || !toolbar.hidden) {
+            shadeView.hidden = YES;
+            toolbar.hidden = YES;
+            shadeView = nil;
+            toolbar = nil;
+        }
+
         // Undo first time usage setup
         _touchToggle.enabled = YES;
         _countdownLabel.hidden = NO;
@@ -226,7 +233,7 @@ UIView *shadeView;
     [[self view] addSubview:shadeView];
     
     // Custom blurring solution
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+    toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     toolbar.barTintColor = [UIColor clearColor];
     toolbar.alpha = .8;
@@ -343,6 +350,7 @@ UIView *shadeView;
 - (void)viewDidUnload {
     secdsLifeRemLabel = nil;
     shadeView = nil;
+   // toolbar = nil;
     self.progressView = nil;
     self.percentLabel = nil;
     self.countdownLabel = nil;
