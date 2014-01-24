@@ -107,13 +107,16 @@ NSCalendarUnit unitFlags;
 
         float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
 
-        if (yearsToAdd > 4.5)
-            yearsToAdd = 4.5;
+        NSLog(@"yearsToAdd BEFORE: %f", yearsToAdd);
+        
+        if (yearsToAdd > 4.5) yearsToAdd = 4.5;
+
+        NSLog(@"yearsToAdd AFTER: %f", yearsToAdd);
 
         yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
         double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
-        totalSecondsInLife += secondsToAdd;
+        totalSeco3ndsInLife += secondsToAdd;
     }
 }
 

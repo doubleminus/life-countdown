@@ -59,6 +59,5 @@
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
 
 @end

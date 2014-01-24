@@ -46,7 +46,7 @@ bool firstTime = false;
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1660)];
-    
+
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
         phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
@@ -95,7 +95,8 @@ bool firstTime = false;
         }];
     }
     else {
-        [self savePressed]; // Save config data prior to sliding view back in
+        [self updateAge:nil];
+        //[self savePressed]; // Save config data prior to sliding view back in
         [UIView animateWithDuration:0.5f animations:^{
             scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
         }];
@@ -164,6 +165,7 @@ bool firstTime = false;
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 
     //NSLog(@"COUNTRY: %@", country);
+    NSLog(@"days exercise: %@", _daysLbl.text);
 
     if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"f";
@@ -184,6 +186,12 @@ bool firstTime = false;
 
         if (personInfo != nil)
             [self writePlist:personInfo];
+    }
+
+    // Check to see if anyone is listening...
+    if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
+        // ...then send the delegate function with amount entered by the user
+        [_delegate displayUserInfo:personInfo];
     }
 }
 
@@ -244,25 +252,6 @@ bool firstTime = false;
      }*/
 }
 /**** END PLIST METHODS ****/
-
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInView:scroller];
-
-    NSLog(@"IN HERE");
-
-    if ([scroller.layer.presentationLayer hitTest:touchLocation]) {
-        [_animateTimer invalidate];
-        _animateTimer = nil;
-    }
-
-    CGPoint touchLocation1 = [touch locationInView:self.view];
-
-    if ([self.view.layer.presentationLayer hitTest:touchLocation1]) {
-        [_animateTimer invalidate];
-        _animateTimer = nil;
-    }
-}
 
 // Set our UI component values based on what user entered previously
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
@@ -333,22 +322,6 @@ bool firstTime = false;
     [_hView.layer setShadowRadius:3.0];
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 }
-
-/*****  BEGIN BUTTON METHODS  *****/
-- (IBAction)cancelPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)savePressed {
-    [self updateAge:nil];
-
-    // Check to see if anyone is listening...
-    if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
-        // ...then send the delegate function with amount entered by the user
-        [_delegate displayUserInfo:personInfo];
-    }
-}
-/*****  END BUTTON METHODS  *****/
 
 - (void)viewDidUnload {
     scroller = nil;
