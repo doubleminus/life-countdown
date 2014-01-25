@@ -47,6 +47,13 @@ bool firstTime = false;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1660)];
 
+    // border radius
+    [scroller.layer setCornerRadius:15.0f];
+    
+    // border
+    [scroller.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [scroller.layer setBorderWidth:1.5f];
+
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
         phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
@@ -165,7 +172,6 @@ bool firstTime = false;
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 
     //NSLog(@"COUNTRY: %@", country);
-    NSLog(@"days exercise: %@", _daysLbl.text);
 
     if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"f";

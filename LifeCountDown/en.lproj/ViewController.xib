@@ -12,12 +12,12 @@
                 <outlet property="currAgeTxtLbl" destination="101" id="103"/>
                 <outlet property="currentAgeLabel" destination="26" id="30"/>
                 <outlet property="estTxtLbl" destination="102" id="104"/>
+                <outlet property="facebookBtn" destination="VvC-lU-1w3" id="TiC-M6-h0c"/>
                 <outlet property="percentLabel" destination="48" id="49"/>
                 <outlet property="progressView" destination="72" id="73"/>
                 <outlet property="secdsLifeRemLabel" destination="46" id="66"/>
                 <outlet property="touchToggle" destination="107" id="109"/>
-                <outlet property="tweetImg" destination="dW2-bf-enx" id="WRY-mf-Xgh"/>
-                <outlet property="tweetTap" destination="Say-SP-oaK" id="vqP-KC-hkq"/>
+                <outlet property="tweetBtn" destination="mCg-i1-Hrv" id="Ogl-Jm-73c"/>
                 <outlet property="view" destination="6" id="7"/>
             </connections>
         </placeholder>
@@ -86,14 +86,28 @@
                     <rect key="frame" x="18" y="446" width="280" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
-                <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Twitter_logo_white.png" id="dW2-bf-enx">
-                    <rect key="frame" x="18" y="527" width="26" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
+                    <rect key="frame" x="15" y="526" width="24" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <gestureRecognizers/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="Twitter_logo_white.png">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="Say-SP-oaK" appends="YES" id="jqs-eo-bg6"/>
+                        <action selector="tweetTapGest:" destination="-1" eventType="touchUpInside" id="LS2-tU-drK"/>
                     </connections>
-                </imageView>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="VvC-lU-1w3">
+                    <rect key="frame" x="47" y="524" width="29" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="FB-72.png">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="fbTapGest:" destination="-1" eventType="touchUpInside" id="RJp-Wf-vXe"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.30588235294117649" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>
@@ -103,11 +117,6 @@
                 <outletCollection property="gestureRecognizers" destination="107" appends="YES" id="108"/>
             </connections>
         </view>
-        <tapGestureRecognizer id="Say-SP-oaK">
-            <connections>
-                <action selector="tweetTapGest:" destination="-1" id="saU-yb-6aX"/>
-            </connections>
-        </tapGestureRecognizer>
         <tapGestureRecognizer id="107">
             <connections>
                 <action selector="toggleComponents:" destination="-1" id="110"/>
@@ -115,6 +124,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="FB-72.png" width="72" height="72"/>
         <image name="Twitter_logo_white.png" width="120" height="98"/>
     </resources>
 </document>

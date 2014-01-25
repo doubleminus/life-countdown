@@ -45,6 +45,7 @@
 		2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */; };
 		2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF47CF7181A30DE0006B704 /* Images.xcassets */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
+		6597E6F61893379F000D1CCD /* FB-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6597E6F51893379F000D1CCD /* FB-72.png */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
 		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
+		6597E6F51893379F000D1CCD /* FB-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB-72.png"; path = "../../FB-72.png"; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6597E6F51893379F000D1CCD /* FB-72.png */,
 				2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */,
 				2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */,
 				2E3D84441835EE7F0028C3C4 /* launch-ipad-retina-portrait.png */,
@@ -353,6 +356,7 @@
 				2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */,
 				2E302C56181C4A3300396616 /* scroll_1.png in Resources */,
 				2E194E0417E9EE7A0075C651 /* hglass.png in Resources */,
+				6597E6F61893379F000D1CCD /* FB-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

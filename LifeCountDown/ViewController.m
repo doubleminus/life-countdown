@@ -88,11 +88,10 @@ UIToolbar *toolbar; // Used for first app run only
 
 #pragma mark displayUserInfo Delegate function
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
-    // Perform some setup prior to setting label values...
+    // Perform setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
-        
         if (!shadeView.hidden || !toolbar.hidden) {
             shadeView.hidden = YES;
             toolbar.hidden = YES;
@@ -227,8 +226,8 @@ UIToolbar *toolbar; // Used for first app run only
     shadeView = [[UIView alloc] init];
     shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
     shadeView.hidden = NO;
-    shadeView.alpha = .6;
     shadeView.opaque = NO;
+    shadeView.alpha = .6;
     shadeView.backgroundColor = [UIColor clearColor];
     [[self view] addSubview:shadeView];
     
@@ -241,11 +240,14 @@ UIToolbar *toolbar; // Used for first app run only
 }
 
 - (IBAction)tweetTapGest:(id)sender {
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+    NSLog(@"IN TWEET TAP");
+
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        NSLog(@"IN TWEET TAP LOWER");
         SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
             [twCtrl dismissViewControllerAnimated:YES completion:nil];
 
-            switch(result){
+            switch(result) {
                 case SLComposeViewControllerResultCancelled:
                 default:{
                     NSLog(@"Cancelled.....");
@@ -257,6 +259,34 @@ UIToolbar *toolbar; // Used for first app run only
                     break;
             }};
 
+        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
+        [twCtrl setInitialText:@"Check out this article."];
+        [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
+        [twCtrl setCompletionHandler:completionHandler];
+        [self presentViewController:twCtrl animated:YES completion:nil];
+    }
+}
+
+- (IBAction)fbTapGest:(id)sender {
+    NSLog(@"IN Facebook TAP");
+
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        NSLog(@"IN Facebook TAP LOWER");
+        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
+            [twCtrl dismissViewControllerAnimated:YES completion:nil];
+            
+            switch(result) {
+                case SLComposeViewControllerResultCancelled:
+                default:{
+                    NSLog(@"Cancelled.....");
+                }
+                    break;
+                case SLComposeViewControllerResultDone: {
+                    NSLog(@"Posted....");
+                }
+                    break;
+            }};
+        
         [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
         [twCtrl setInitialText:@"Check out this article."];
         [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
@@ -289,7 +319,8 @@ UIToolbar *toolbar; // Used for first app run only
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     _progressView.hidden = YES;
-    _tweetImg.hidden = YES;
+    _tweetBtn.hidden = YES;
+    _facebookBtn.hidden = YES;
 
     _countdownLabel.frame = CGRectMake(11,20,298,45);
     secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
@@ -338,7 +369,8 @@ UIToolbar *toolbar; // Used for first app run only
     estTxtLbl.hidden = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden = NO;
-    _tweetImg.hidden = NO;
+    _tweetBtn.hidden = NO;
+    _facebookBtn.hidden = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
@@ -350,7 +382,7 @@ UIToolbar *toolbar; // Used for first app run only
 - (void)viewDidUnload {
     secdsLifeRemLabel = nil;
     shadeView = nil;
-   // toolbar = nil;
+    toolbar = nil;
     self.progressView = nil;
     self.percentLabel = nil;
     self.countdownLabel = nil;
