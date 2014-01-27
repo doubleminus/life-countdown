@@ -36,7 +36,7 @@
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-SLComposeViewController *twCtrl;
+SLComposeViewController *twCtrl, *fbCtrl;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
 UIView *shadeView; // Used for first app run only
@@ -83,7 +83,6 @@ UIToolbar *toolbar; // Used for first app run only
     
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
-    //enterInfo1.view.frame = CGRectMake(40,40,320,2000);
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -231,7 +230,7 @@ UIToolbar *toolbar; // Used for first app run only
     shadeView.backgroundColor = [UIColor clearColor];
     [[self view] addSubview:shadeView];
     
-    // Custom blurring solution
+    // Custom translucent background blurring solution
     toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     toolbar.barTintColor = [UIColor clearColor];
@@ -243,19 +242,14 @@ UIToolbar *toolbar; // Used for first app run only
     NSLog(@"IN TWEET TAP");
 
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        NSLog(@"IN TWEET TAP LOWER");
         SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
             [twCtrl dismissViewControllerAnimated:YES completion:nil];
 
             switch(result) {
                 case SLComposeViewControllerResultCancelled:
-                default:{
-                    NSLog(@"Cancelled.....");
-                }
+                default:{ NSLog(@"Cancelled....."); }
                     break;
-                case SLComposeViewControllerResultDone: {
-                    NSLog(@"Posted....");
-                }
+                case SLComposeViewControllerResultDone: { NSLog(@"Posted...."); }
                     break;
             }};
 
@@ -270,10 +264,9 @@ UIToolbar *toolbar; // Used for first app run only
 - (IBAction)fbTapGest:(id)sender {
     NSLog(@"IN Facebook TAP");
 
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        NSLog(@"IN Facebook TAP LOWER");
+ //   if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
-            [twCtrl dismissViewControllerAnimated:YES completion:nil];
+            [fbCtrl dismissViewControllerAnimated:YES completion:nil];
             
             switch(result) {
                 case SLComposeViewControllerResultCancelled:
@@ -286,13 +279,13 @@ UIToolbar *toolbar; // Used for first app run only
                 }
                     break;
             }};
-        
-        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
-        [twCtrl setInitialText:@"Check out this article."];
-        [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
-        [twCtrl setCompletionHandler:completionHandler];
-        [self presentViewController:twCtrl animated:YES completion:nil];
-    }
+
+        [fbCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
+        [fbCtrl setInitialText:@"Check out this article."];
+        [fbCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
+        [fbCtrl setCompletionHandler:completionHandler];
+        [self presentViewController:fbCtrl animated:YES completion:nil];
+ //   }
 }
 
 - (IBAction)toggleComponents:(id)sender {
@@ -354,6 +347,7 @@ UIToolbar *toolbar; // Used for first app run only
     if (!exceedExp) {
         _progressView.hidden = NO;
          _percentLabel.hidden = NO;
+
         // Apply color to progress bar based on lifespan
         if (progAmount >= .66)
             _progressView.progressTintColor = [UIColor greenColor];

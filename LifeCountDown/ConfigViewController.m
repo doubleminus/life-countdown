@@ -103,7 +103,7 @@ bool firstTime = false;
     }
     else {
         [self updateAge:nil];
-        //[self savePressed]; // Save config data prior to sliding view back in
+
         [UIView animateWithDuration:0.5f animations:^{
             scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
         }];

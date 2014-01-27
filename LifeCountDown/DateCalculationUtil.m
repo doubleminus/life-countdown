@@ -75,12 +75,11 @@ NSCalendarUnit unitFlags;
 // Determines all age information, via the user-provided birthdate
 - (void)calculateAge:(NSDate*)dateArg {
     calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
-    NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    
+    unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+
     // Calculate difference between current date and user's birth date to get their age
     if (birthDate != nil)
-        currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg  toDate:[NSDate date]  options:0];
+        currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg toDate:[NSDate date] options:0];
 }
 
 // Updates base number of years to live based on user-entered criteria
@@ -107,7 +106,7 @@ NSCalendarUnit unitFlags;
 
         float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
 
-        if (yearsToAdd > 4.5) yearsToAdd = 4.5;
+        if (yearsToAdd > 4.5) yearsToAdd = 4.5; // Ceiling of 4.5 additional years due to exercise, per research
 
         yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
