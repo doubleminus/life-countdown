@@ -102,11 +102,21 @@ bool firstTime = false;
         }];
     }
     else {
-        [self updateAge:nil];
+        if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+            [self updateAge:nil];
 
-        [UIView animateWithDuration:0.5f animations:^{
-            scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
-        }];
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+            }];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                            message:@"Please select a gender to continue."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
@@ -121,7 +131,7 @@ bool firstTime = false;
 // Encourage user to tap configview and slide it out and provide data
 - (void)animateSlideout {
     slideDistance = 30; // Only slide view out slightly, as a hint
-    
+
     [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
         scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
         scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);

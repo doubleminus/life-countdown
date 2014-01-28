@@ -41,6 +41,7 @@ double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
 UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
+ConfigViewController *enterInfo1;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -58,7 +59,7 @@ UIToolbar *toolbar; // Used for first app run only
     // Check to see if we already have an age value set in our plist
     [self verifyPlist];
     [self handlePortrait];
-    
+
     [self setUserInfo];
 }
 
@@ -76,13 +77,18 @@ UIToolbar *toolbar; // Used for first app run only
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (void)setUserInfo {
-    ConfigViewController *enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    
-    // Important to set the viewcontroller's delegate to be self
-    enterInfo1.delegate = self;
-    
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    NSLog(@"IN HERE");
+
+    if (!enterInfo1) {
+        NSLog(@"IN HERE 1");
+        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+
+        // Important to set the viewcontroller's delegate to be self
+        enterInfo1.delegate = self;
+
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:enterInfo1 animated:NO completion:nil];
+    }
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -240,7 +246,17 @@ UIToolbar *toolbar; // Used for first app run only
 
 - (IBAction)tweetTapGest:(id)sender {
     NSLog(@"IN TWEET TAP");
+    
+    [self dismissViewControllerAnimated:NO completion:^(void) {
+        SLComposeViewController *twCtrl = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [twCtrl setInitialText:@"Test Tweet"];
+        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
+        [twCtrl addURL:[NSURL URLWithString:@"http://test.blah.com/"]];
+        [self presentViewController:twCtrl animated:YES completion:nil];
+    }];
 
+    /*
     if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
             [twCtrl dismissViewControllerAnimated:YES completion:nil];
@@ -252,22 +268,28 @@ UIToolbar *toolbar; // Used for first app run only
                 case SLComposeViewControllerResultDone: { NSLog(@"Posted...."); }
                     break;
             }};
-
+ 
         [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
         [twCtrl setInitialText:@"Check out this article."];
         [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
         [twCtrl setCompletionHandler:completionHandler];
         [self presentViewController:twCtrl animated:YES completion:nil];
-    }
+    } */
 }
 
 - (IBAction)fbTapGest:(id)sender {
-    NSLog(@"IN Facebook TAP");
+    NSLog(@"IN Facebook TAP 1");
+    fbCtrl = [[SLComposeViewController alloc] init];
+    NSLog(@"IN Facebook TAP 2");
 
  //   if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
-            [fbCtrl dismissViewControllerAnimated:YES completion:nil];
-            
+                NSLog(@"IN Facebook TAP 3");
+           // [fbCtrl dismissViewControllerAnimated:YES completion:nil];
+           // [[self view] addSubview:fbCtrl.view];
+           // [self addChildViewController:fbCtrl];
+                NSLog(@"IN Facebook TAP 4");
+
             switch(result) {
                 case SLComposeViewControllerResultCancelled:
                 default:{
@@ -284,7 +306,7 @@ UIToolbar *toolbar; // Used for first app run only
         [fbCtrl setInitialText:@"Check out this article."];
         [fbCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
         [fbCtrl setCompletionHandler:completionHandler];
-        [self presentViewController:fbCtrl animated:YES completion:nil];
+       // [self presentViewController:fbCtrl animated:NO completion:nil];
  //   }
 }
 
