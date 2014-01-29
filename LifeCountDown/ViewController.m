@@ -77,10 +77,7 @@ ConfigViewController *enterInfo1;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (void)setUserInfo {
-    NSLog(@"IN HERE");
-
     if (!enterInfo1) {
-        NSLog(@"IN HERE 1");
         enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
         // Important to set the viewcontroller's delegate to be self
@@ -235,7 +232,7 @@ ConfigViewController *enterInfo1;
     shadeView.alpha = .6;
     shadeView.backgroundColor = [UIColor clearColor];
     [[self view] addSubview:shadeView];
-    
+
     // Custom translucent background blurring solution
     toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -246,35 +243,45 @@ ConfigViewController *enterInfo1;
 
 - (IBAction)tweetTapGest:(id)sender {
     NSLog(@"IN TWEET TAP");
-    
-    [self dismissViewControllerAnimated:NO completion:^(void) {
-        SLComposeViewController *twCtrl = [SLComposeViewController
+
+   // if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        [self dismissViewControllerAnimated:NO completion:^(void) {
+            SLComposeViewController *twCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [twCtrl setInitialText:@"Test Tweet"];
-        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
-        [twCtrl addURL:[NSURL URLWithString:@"http://test.blah.com/"]];
-        [self presentViewController:twCtrl animated:YES completion:nil];
-    }];
 
-    /*
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
-            [twCtrl dismissViewControllerAnimated:YES completion:nil];
+            SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
+                [twCtrl dismissViewControllerAnimated:YES completion:nil];
 
-            switch(result) {
-                case SLComposeViewControllerResultCancelled:
-                default:{ NSLog(@"Cancelled....."); }
-                    break;
-                case SLComposeViewControllerResultDone: { NSLog(@"Posted...."); }
-                    break;
-            }};
- 
-        [twCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
-        [twCtrl setInitialText:@"Check out this article."];
-        [twCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
-        [twCtrl setCompletionHandler:completionHandler];
-        [self presentViewController:twCtrl animated:YES completion:nil];
-    } */
+                switch(result) {
+                    case SLComposeViewControllerResultCancelled:
+                    default:{
+                        NSLog(@"Cancelled.....");
+                      //  [self dismissViewControllerAnimated:NO completion:^(void) {
+                            NSLog(@"COME BACK IN HERE?");
+                         //   enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+                            self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                            [self presentViewController:enterInfo1 animated:NO completion:nil];
+                     //   }];
+                    }
+                        break;
+                    case SLComposeViewControllerResultDone: {
+                        NSLog(@"Posted....");
+                       // [self dismissViewControllerAnimated:NO completion:^(void) {
+                        //   enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+                            self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                            [self presentViewController:enterInfo1 animated:NO completion:nil];
+                       // }];
+                    }
+                        break;
+                }};
+
+            [twCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
+            [twCtrl setInitialText:@"Check out this article."];
+            [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
+            [twCtrl setCompletionHandler:completionHandler];
+            [self presentViewController:twCtrl animated:YES completion:nil];
+        }];
+ //   }
 }
 
 - (IBAction)fbTapGest:(id)sender {
