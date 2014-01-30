@@ -36,12 +36,12 @@
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-SLComposeViewController *twCtrl, *fbCtrl;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp = NO;
 UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
+DateCalculationUtil *dateUtil;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -60,7 +60,7 @@ ConfigViewController *enterInfo1;
     [self verifyPlist];
     [self handlePortrait];
 
-    [self setUserInfo];
+    [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
 }
 
 - (void)viewDidLoad {
@@ -106,7 +106,7 @@ ConfigViewController *enterInfo1;
         _countdownLabel.hidden = NO;
         secdsLifeRemLabel.hidden = NO;
 
-        DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
+        dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setGeneratesDecimalNumbers:NO];
@@ -242,9 +242,7 @@ ConfigViewController *enterInfo1;
 }
 
 - (IBAction)tweetTapGest:(id)sender {
-    NSLog(@"IN TWEET TAP");
-
-   // if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             SLComposeViewController *twCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -255,66 +253,62 @@ ConfigViewController *enterInfo1;
                 switch(result) {
                     case SLComposeViewControllerResultCancelled:
                     default:{
-                        NSLog(@"Cancelled.....");
-                      //  [self dismissViewControllerAnimated:NO completion:^(void) {
-                            NSLog(@"COME BACK IN HERE?");
-                         //   enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-                            self.modalPresentationStyle = UIModalPresentationCurrentContext;
-                            [self presentViewController:enterInfo1 animated:NO completion:nil];
-                     //   }];
+                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                        [self presentViewController:enterInfo1 animated:NO completion:nil];
                     }
                         break;
                     case SLComposeViewControllerResultDone: {
-                        NSLog(@"Posted....");
-                       // [self dismissViewControllerAnimated:NO completion:^(void) {
-                        //   enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-                            self.modalPresentationStyle = UIModalPresentationCurrentContext;
-                            [self presentViewController:enterInfo1 animated:NO completion:nil];
-                       // }];
+                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                        [self presentViewController:enterInfo1 animated:NO completion:nil];
                     }
                         break;
                 }};
 
+            NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
+                                    stringByAppendingString:@"seconds of my life are estimated to be remaining by the iOS Every Moment app."];
+
             [twCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
-            [twCtrl setInitialText:@"Check out this article."];
+            [twCtrl setInitialText:fullString];
             [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
             [twCtrl setCompletionHandler:completionHandler];
             [self presentViewController:twCtrl animated:YES completion:nil];
         }];
- //   }
+    }
 }
 
 - (IBAction)fbTapGest:(id)sender {
-    NSLog(@"IN Facebook TAP 1");
-    fbCtrl = [[SLComposeViewController alloc] init];
-    NSLog(@"IN Facebook TAP 2");
+   // if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        [self dismissViewControllerAnimated:NO completion:^(void) {
+            SLComposeViewController *fbCtrl = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeFacebook];
+            
+            SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
+                [fbCtrl dismissViewControllerAnimated:YES completion:nil];
 
- //   if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
-                NSLog(@"IN Facebook TAP 3");
-           // [fbCtrl dismissViewControllerAnimated:YES completion:nil];
-           // [[self view] addSubview:fbCtrl.view];
-           // [self addChildViewController:fbCtrl];
-                NSLog(@"IN Facebook TAP 4");
-
-            switch(result) {
-                case SLComposeViewControllerResultCancelled:
-                default:{
-                    NSLog(@"Cancelled.....");
-                }
-                    break;
-                case SLComposeViewControllerResultDone: {
-                    NSLog(@"Posted....");
-                }
-                    break;
-            }};
-
-        [fbCtrl addImage:[UIImage imageNamed:@"1.jpg"]];
-        [fbCtrl setInitialText:@"Check out this article."];
-        [fbCtrl addURL:[NSURL URLWithString:@"http://soulwithmobiletechnology.blogspot.com/"]];
-        [fbCtrl setCompletionHandler:completionHandler];
-       // [self presentViewController:fbCtrl animated:NO completion:nil];
- //   }
+                switch(result) {
+                    case SLComposeViewControllerResultCancelled:
+                    default:{
+                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                        [self presentViewController:enterInfo1 animated:NO completion:nil];
+                    }
+                        break;
+                    case SLComposeViewControllerResultDone: {
+                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                        [self presentViewController:enterInfo1 animated:NO completion:nil];
+                    }
+                        break;
+                }};
+            
+            NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
+                                    stringByAppendingString:@"seconds of my life are estimated to be remaining by the iOS Every Moment app."];
+            
+            [fbCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
+            [fbCtrl setInitialText:fullString];
+            [fbCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
+            [fbCtrl setCompletionHandler:completionHandler];
+            [self presentViewController:fbCtrl animated:YES completion:nil];
+        }];
+  //  }
 }
 
 - (IBAction)toggleComponents:(id)sender {
@@ -350,6 +344,7 @@ ConfigViewController *enterInfo1;
 }
 
 - (void)handleLandscape {
+    NSLog(@"in landscape?");
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
@@ -397,6 +392,17 @@ ConfigViewController *enterInfo1;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
+
+/*
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeRight) || (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+}
+
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
