@@ -36,21 +36,34 @@
 // Get number of seconds in 10 years. Make negative in order to determine age. 31,557,600 sec/yr X 10 = 315,576,000
 double const SEC_CONST = ((((365.25 * 10) * 24) * 60) * -60);
 double weeksInYear = 52.1775, daysInAYear = 365.25;
+NSString *msg = @"Total seconds in life should equal util calculation", *bMsg = @"Ensure birthdate was assigned correctly.";
+NSDate *birthDate;
+NSArray *keyArray;
+
++ (void)initialize {
+    if (self == [DateCalculationUtilTest class]) {
+        keyArray = [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil];
+        
+        // Create birthdate, setting it 10 years prior to the current date
+        birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
+    }
+    // Initialization for this class and any subclasses
+}
+
+- (NSDictionary*)createDict:(NSArray*)testArr  {
+    NSDictionary *testDict = [NSDictionary dictionaryWithObjects:testArr forKeys:keyArray];
+
+    return testDict;
+}
 
 /* Test female age calculation */
 - (void)testFemaleAgeCalc {
     NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
-
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 81.0f, @"Base age should be correct");
 
     // Our subject is 10 years old and female. They should have 70.7 years to live if their expiry age is 80.7.
@@ -62,23 +75,23 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
 
     // Calculate the total seconds in a person's life who lives to 81
     double totalSecondsInLife = ((((365.25 * 81.0f) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 
     // Switch gender to male and keep birthdate the same, to see change in age estimate.
     gender = @"m";
 
     // Update dictionary with new gender
     testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+                                                  forKeys: keyArray];
     // Recalculate our dates via date util
     testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 76.0f, @"Base age should be correct");
 
     // Now check that calculation for seconds remaining in life is correct
@@ -94,24 +107,19 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     // Calculate the total seconds in a person's life who lives to 75.6
     totalSecondsInLife = ((((daysInAYear * 76.0f) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /* Test female smoker age calculation */
 - (void)testFemaleSmokerAgeCalc {
     float totalYears = 71.0f;
     NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-    
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
 
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
-    
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 71.0f, @"Base age should be correct");
 
     // User is 10 years old and female. They should have 60.7 years to live if their expiry age is 70.7.
@@ -123,29 +131,25 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
 
     // Calculate the total seconds in a person's life who lives to 70.7
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /* Test age calculation for female smoker in Uganda */
 - (void)testFemaleSmokerAgeCalcUganda {
     float totalYears = 47.0f;
     NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Uganda", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
     
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-    
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
     
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 47.0f, @"Base age should be correct");
     
     // User is 10 years old and female. They should have 37.0 years to live if their expiry age is 47.0.
@@ -157,63 +161,55 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
     
     // Calculate the total seconds in a person's life who lives to 47.0
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /* Test U.S. female nonsmoker age calculation */
 - (void)testFemaleNonSmokerAgeCalc {
     float totalYears = 81.0f;
     NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-    
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-    
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
-    
+
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
+
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
-    
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 81.0f, @"Base age should be correct");
-    
+
     // User is 10 years old and female. They should have 70.7 years to live if their expiry age is 80.7.
     // Let's manually calculate 80.7 years in seconds.
     double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
     double utilSeconds = [testDateUtil secondsRemaining];
-    
+
     // Cast to string for easier comparison
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
-    
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
-    
+
+    STAssertEqualObjects(strVal1, strVal2, msg);
+
     // Calculate the total seconds in a person's life who lives to 80.7
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
-    
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test age calculation for a U.S. male smoker */
 - (void)testMaleSmokerAgeCalc {
     float totalYears = 66.0f;
     NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
     
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-    
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 66.0f, @"Base age should be correct");
 
     // User is 10 years old and male. They should have 65.6 years to live if their expiry age is 75.6.
@@ -225,29 +221,25 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
     
     // Calculate the total seconds in a person's life who lives to 65.6
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test age calculation for a male smoker in Chad */
 - (void)testMaleSmokerAgeCalcChad {
     float totalYears = 40.0f;
     NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Chad", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
     
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-    
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
     
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 40.0f, @"Base age should be correct");
     
     // User is 10 years old and male. They should have 65.6 years to live if their expiry age is 75.6.
@@ -259,29 +251,25 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
     
     // Calculate the total seconds in a person's life who lives to 65.6
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
     
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test male age calculation */
 - (void)testMaleNonSmokerAgeCalc {
     float totalYears = 76.0f;
     NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
     
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     STAssertEquals([testDateUtil yearBase], 76.0f, @"Base age should be correct");
 
     // User is 10 years old and male. They should have 66.0 years to live if their expiry age is 76.0.
@@ -293,28 +281,24 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
 
     // Calculate the total seconds in a person's life who lives to 76.0
     double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test male age calculation */
 - (void)testMaleNonSmokerAgeCalcExercise {
     NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184";;
-    //NSLog(@"SEC_CONST constant: %f", SECS);
 
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
 
     // Estimated final age is 90, because exercising will add the maximum of 4.5 years in this case
     STAssertEquals([testDateUtil yearBase], 80.5f, @"Base age should be correct");
@@ -336,27 +320,23 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
 
     // Calculate the total seconds in a person's life who lives to 90 (78 + 12 years added from 5 hrs exercise/week)
     double totalSecondsInLife = ((((daysInAYear * finalAgeFloat) * 24) * 60) * 60);
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test male age calculation */
 - (void)testMaleNonSmokerAgeCalcExerciseCap {
     NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
 
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
-
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
 
     // Estimated final age should be 80.5
     STAssertEquals([testDateUtil yearBase], 80.5f, @"Base age should be correct");
@@ -380,28 +360,24 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
 
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
 
     // Calculate the total seconds in a person's life who lives to 92 (78 + 12 years added from 5 hrs exercise/week)
     double totalSecondsInLife = 2540386800; //((((daysInAYear * finalAgeInt) * 24) * 60) * 60);
 
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /*Test male age calculation */
 - (void)testFemaleNonSmokerAgeCalcExerciseCap {
     NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-
-    // Create birthdate, setting it 10 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
     
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
     
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
     
     // Estimated final age should be 96, because we should hit ultimate life span cap
     STAssertEquals([testDateUtil yearBase], 85.5f, @"Base age should be correct");
@@ -423,28 +399,24 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
-    
+    STAssertEqualObjects(strVal1, strVal2, msg);
+
     // Calculate the total seconds in a person's life who lives to 96 (78 + 12 years added from 5 hrs exercise/week)
-    double totalSecondsInLife = ((((daysInAYear * finalAgeInt) * 24) * 60) * 60);
+    //double totalSecondsInLife = ((((daysInAYear * finalAgeInt) * 24) * 60) * 60);
     
-   // STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    //STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
 /*Test that age calculation shows a different message for users who've outlived their life expectancy */
 - (void)testOutlivedExpectancy {
     NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184";
-    //NSLog(@"SEC_CONST constant: %f", SECS);
-    
-    // Create birthdate, setting it 100 years prior to the current date
-    NSDate *birthDate = [NSDate dateWithTimeIntervalSinceNow:((((365.25 * 100) * 24) * 60) * -60)];
 
-    NSDictionary *testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
-                                                               forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil]];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
 
-    STAssertEquals(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    STAssertEquals(birthDate, [testDateUtil birthDate], bMsg);
 
     // Use this to perform math later on number of seconds left in life
     float finalAgeFloat = [testDateUtil yearBase];
@@ -460,12 +432,12 @@ double weeksInYear = 52.1775, daysInAYear = 365.25;
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
     
-    STAssertEqualObjects(strVal1, strVal2, @"Remaining seconds in life should be equal");
+    STAssertEqualObjects(strVal1, strVal2, msg);
     
     // Calculate the total seconds in a person's life who lives to 90 (78 + 12 years added from 5 hrs exercise/week)
     double totalSecondsInLife = ((((daysInAYear * finalAgeFloat) * 24) * 60) * 60);
     
-    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+    STAssertEquals(totalSecondsInLife, [testDateUtil totalSecondsInLife], msg);
 }
 
 /* Helper method to calculate remaining seconds to test against */
