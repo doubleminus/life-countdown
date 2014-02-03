@@ -59,5 +59,6 @@
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
+- (IBAction)animateConfiger:(id)sender;
 
 @end

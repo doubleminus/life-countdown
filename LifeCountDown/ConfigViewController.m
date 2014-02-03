@@ -48,11 +48,11 @@ bool firstTime = false;
     [scroller setContentSize:CGSizeMake(320,1660)];
 
     // border radius
-    [scroller.layer setCornerRadius:15.0f];
+    [contentView.layer setCornerRadius:15.0f];
     
     // border
-    [scroller.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [scroller.layer setBorderWidth:1.5f];
+    [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [contentView.layer setBorderWidth:1.5f];
 
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
@@ -80,6 +80,15 @@ bool firstTime = false;
 
     // Setup help view but hide it
     [self setupHelpView];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"IN WILL ROTATE?");
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
 // Method to allow sliding view out from side on iPad

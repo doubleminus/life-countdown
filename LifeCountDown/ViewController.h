@@ -49,11 +49,13 @@
 @property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;
+@property (strong, nonatomic) IBOutlet UIButton *slideBtn;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)fbTapGest:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
+- (IBAction)animateConfig:(id)sender;
 
 @end

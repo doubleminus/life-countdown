@@ -28,6 +28,7 @@
 
 #import "ViewController.h"
 #import "YLProgressBar.h"
+#import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
@@ -42,6 +43,13 @@ UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
+
+- (IBAction)animateConfig:(id)sender {
+    enterInfo1.view.frame = CGRectOffset(CGRectMake(10, 20, 320, 1275),50,200);;
+
+    //ConfigViewController *cvc = [[ConfigViewController alloc] init];
+    //[cvc animateConfiger:sender];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -58,9 +66,10 @@ DateCalculationUtil *dateUtil;
 
     // Check to see if we already have an age value set in our plist
     [self verifyPlist];
-    [self handlePortrait];
+    
 
-    [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
+    if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
+        [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
 }
 
 - (void)viewDidLoad {
@@ -277,7 +286,7 @@ DateCalculationUtil *dateUtil;
 }
 
 - (IBAction)fbTapGest:(id)sender {
-   // if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             SLComposeViewController *fbCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeFacebook];
@@ -301,14 +310,14 @@ DateCalculationUtil *dateUtil;
             
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
                                     stringByAppendingString:@"seconds of my life are estimated to be remaining by the iOS Every Moment app."];
-            
+
             [fbCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
             [fbCtrl setInitialText:fullString];
             [fbCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
             [fbCtrl setCompletionHandler:completionHandler];
             [self presentViewController:fbCtrl animated:YES completion:nil];
         }];
-  //  }
+    }
 }
 
 - (IBAction)toggleComponents:(id)sender {
@@ -319,6 +328,7 @@ DateCalculationUtil *dateUtil;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    NSLog(@"DID ROTATE?");
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
 
@@ -343,8 +353,16 @@ DateCalculationUtil *dateUtil;
     backgroundView.hidden = NO;
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"IN WILL ROTATE?");
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 - (void)handleLandscape {
     NSLog(@"in landscape?");
+    
+    [self dismissViewControllerAnimated:NO completion:^(void) {
+        NSLog(@"in landscape? LOWER");
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
@@ -380,6 +398,7 @@ DateCalculationUtil *dateUtil;
         else
             _progressView.progressTintColor = [UIColor redColor];
     }
+    }];
 }
 
 - (void)showComponents {
@@ -394,15 +413,28 @@ DateCalculationUtil *dateUtil;
 }
 
 /*
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    if ((orientation == UIInterfaceOrientationPortrait) ||
+        (orientation == UIInterfaceOrientationLandscapeLeft) ||
+        (orientation == UIInterfaceOrientationLandscapeRight))
+        return YES;
+    
+    return NO;
+}
+ */
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
+/*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationLandscapeRight) || (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
-}
-*/
+    return UIInterfaceOrientationMaskPortrait;
+} */
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
