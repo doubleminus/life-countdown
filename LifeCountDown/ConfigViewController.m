@@ -56,9 +56,9 @@ bool firstTime = false;
 
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
-        phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
+        phoneScrollRect = CGRectMake(318, 0, 320, 1200); // 3.5-inch
     else
-        phoneScrollRect = CGRectMake(310, 0, 320, 1275); // 4-inch
+        phoneScrollRect = CGRectMake(318, 0, 320, 1275); // 4-inch
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

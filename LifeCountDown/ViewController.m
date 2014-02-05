@@ -38,17 +38,48 @@
 
 NSNumberFormatter *formatter;
 double totalSecondsDub, progAmount, percentRemaining;
-bool exceedExp = NO;
+CGRect phoneScrollRect;
+int slideDistance2 = 0;
+bool exceedExp = NO, firstTime2 = false;;
 UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 
 - (IBAction)animateConfig:(id)sender {
-    enterInfo1.view.frame = CGRectOffset(CGRectMake(10, 20, 320, 1275),50,200);;
+    //[_animateTimer invalidate];
 
-    //ConfigViewController *cvc = [[ConfigViewController alloc] init];
-    //[cvc animateConfiger:sender];
+    slideDistance2 = 318;
+
+    // Config view is not slid out yet
+    if (firstTime2) {
+        [enterInfo1.view setFrame:CGRectMake(0, 0, 318, 1275)];
+        firstTime2 = NO;
+    }
+    else if (CGRectEqualToRect(enterInfo1.view.frame, phoneScrollRect)) {
+        [UIView animateWithDuration:0.5f animations:^{
+            _slideBtn.frame = CGRectOffset(_slideBtn.frame, -310, 0);
+            enterInfo1.view.frame = CGRectOffset(enterInfo1.view.frame, slideDistance2 * -1, 0);
+        }];
+    }
+    else {
+        if (enterInfo1.genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+            [enterInfo1 updateAge:nil];
+
+            [UIView animateWithDuration:0.5f animations:^{
+                _slideBtn.frame = CGRectOffset(_slideBtn.frame, slideDistance2, 0);
+                enterInfo1.view.frame = CGRectOffset(enterInfo1.view.frame, slideDistance2, 0);
+            }];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                            message:@"Please select a gender to continue."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,6 +113,12 @@ DateCalculationUtil *dateUtil;
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
+    
+    // Adjust iPhone scroll rect based on screen height
+    if ([[UIScreen mainScreen] bounds].size.height == 480)
+        phoneScrollRect = CGRectMake(318, 0, 318, 1200); // 3.5-inch
+    else
+        phoneScrollRect = CGRectMake(318, 0, 318, 1275); // 4-inch
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -274,7 +311,7 @@ DateCalculationUtil *dateUtil;
                 }};
 
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
-                                    stringByAppendingString:@"seconds of my life are estimated to be remaining by the iOS Every Moment app."];
+                                    stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
 
             [twCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
             [twCtrl setInitialText:fullString];
@@ -309,7 +346,7 @@ DateCalculationUtil *dateUtil;
                 }};
             
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
-                                    stringByAppendingString:@"seconds of my life are estimated to be remaining by the iOS Every Moment app."];
+                                    stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
 
             [fbCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
             [fbCtrl setInitialText:fullString];
