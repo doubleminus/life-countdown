@@ -41,7 +41,7 @@
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
-@property (strong, nonatomic) IBOutlet UIButton *tweetBtn, *facebookBtn;
+@property (strong, nonatomic) IBOutlet UIButton *tweetBtn, *facebookBtn, *slideBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel,
                                                *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
@@ -49,13 +49,12 @@
 @property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;
-@property (strong, nonatomic) IBOutlet UIButton *slideBtn;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)fbTapGest:(id)sender;
+- (IBAction)animateConfig:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
-- (IBAction)animateConfig:(id)sender;
 
 @end

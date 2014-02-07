@@ -49,7 +49,7 @@ bool firstTime = false;
 
     // border radius
     [contentView.layer setCornerRadius:15.0f];
-    
+
     // border
     [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [contentView.layer setBorderWidth:1.5f];
@@ -88,6 +88,7 @@ bool firstTime = false;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    NSLog(@"IN HERE?");
     return YES;
 }
 

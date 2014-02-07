@@ -49,20 +49,21 @@ DateCalculationUtil *dateUtil;
 - (IBAction)animateConfig:(id)sender {
     //[_animateTimer invalidate];
 
-    slideDistance2 = 318;
+    slideDistance2 = 305;
 
     // Config view is not slid out yet
     if (firstTime2) {
         [enterInfo1.view setFrame:CGRectMake(0, 0, 318, 1275)];
         firstTime2 = NO;
     }
-    else if (CGRectEqualToRect(enterInfo1.view.frame, phoneScrollRect)) {
+  //  else if (CGRectEqualToRect(enterInfo1.view.frame, phoneScrollRect)) {
         [UIView animateWithDuration:0.5f animations:^{
-            _slideBtn.frame = CGRectOffset(_slideBtn.frame, -310, 0);
+            [self setUserInfo];
+            _slideBtn.frame = CGRectOffset(_slideBtn.frame, slideDistance2 * -1, 0);
             enterInfo1.view.frame = CGRectOffset(enterInfo1.view.frame, slideDistance2 * -1, 0);
         }];
-    }
-    else {
+ //   }
+   /* else {
         if (enterInfo1.genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
             [enterInfo1 updateAge:nil];
 
@@ -79,7 +80,7 @@ DateCalculationUtil *dateUtil;
                                                   otherButtonTitles:nil];
             [alert show];
         }
-    }
+    } */
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -99,8 +100,8 @@ DateCalculationUtil *dateUtil;
     [self verifyPlist];
     
 
-    if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
-        [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
+  //  if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
+        //[self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
 }
 
 - (void)viewDidLoad {
@@ -114,6 +115,8 @@ DateCalculationUtil *dateUtil;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
     
+    [self.view bringSubviewToFront:_slideBtn];
+
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
         phoneScrollRect = CGRectMake(318, 0, 318, 1200); // 3.5-inch
@@ -392,13 +395,15 @@ DateCalculationUtil *dateUtil;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     NSLog(@"IN WILL ROTATE?");
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:^(void) {
+        [self handleLandscape];
+    }];
 }
 
 - (void)handleLandscape {
     NSLog(@"in landscape?");
     
-    [self dismissViewControllerAnimated:NO completion:^(void) {
+   // [self dismissViewControllerAnimated:NO completion:^(void) {
         NSLog(@"in landscape? LOWER");
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
@@ -435,7 +440,7 @@ DateCalculationUtil *dateUtil;
         else
             _progressView.progressTintColor = [UIColor redColor];
     }
-    }];
+  //  }];
 }
 
 - (void)showComponents {
@@ -449,29 +454,10 @@ DateCalculationUtil *dateUtil;
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
 
-/*
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    if ((orientation == UIInterfaceOrientationPortrait) ||
-        (orientation == UIInterfaceOrientationLandscapeLeft) ||
-        (orientation == UIInterfaceOrientationLandscapeRight))
-        return YES;
-    
-    return NO;
-}
- */
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    NSLog(@"IN Viewcontroller rotate");
     return YES;
 }
-
-/*
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeRight) || (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
-}
-
-
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-} */
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
