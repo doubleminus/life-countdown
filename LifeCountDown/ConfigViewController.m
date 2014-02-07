@@ -35,7 +35,7 @@ NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 NSDictionary *personInfo;
 NSDate *birthDate;
-int slideDistance = 0;
+int slideDistance = 300;
 bool firstTime = false;
 
 - (void)viewDidLoad {
@@ -53,12 +53,6 @@ bool firstTime = false;
     // border
     [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [contentView.layer setBorderWidth:1.5f];
-
-    // Adjust iPhone scroll rect based on screen height
-    if ([[UIScreen mainScreen] bounds].size.height == 480)
-        phoneScrollRect = CGRectMake(318, 0, 320, 1200); // 3.5-inch
-    else
-        phoneScrollRect = CGRectMake(318, 0, 320, 1275); // 4-inch
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -96,36 +90,33 @@ bool firstTime = false;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
     [_animateTimer invalidate];
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        slideDistance = 300;
-    else
-        slideDistance = 310;
-
-    // Config view is not slid out yet
-    if (firstTime) {
-        [scroller setFrame:CGRectMake(0, 0, 320, 1275)];
-        firstTime = NO;
-    }
-    else if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
-        [UIView animateWithDuration:0.5f animations:^{
-            scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
-        }];
-    }
-    else {
-        if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-            [self updateAge:nil];
-
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // Config view is not slid out yet
+        if (firstTime) {
+            [scroller setFrame:CGRectMake(0, 0, 320, 1275)];
+            firstTime = NO;
+        }
+        else if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
             [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
             }];
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                            message:@"Please select a gender to continue."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+                [self updateAge:nil];
+
+                [UIView animateWithDuration:0.5f animations:^{
+                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                }];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                                message:@"Please select a gender to continue."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
         }
     }
 }

@@ -46,42 +46,6 @@ UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 
-- (IBAction)animateConfig:(id)sender {
-    //[_animateTimer invalidate];
-
-    slideDistance2 = 305;
-
-    // Config view is not slid out yet
-    if (firstTime2) {
-        [enterInfo1.view setFrame:CGRectMake(0, 0, 318, 1275)];
-        firstTime2 = NO;
-    }
-  //  else if (CGRectEqualToRect(enterInfo1.view.frame, phoneScrollRect)) {
-        [UIView animateWithDuration:0.5f animations:^{
-            [self setUserInfo];
-            _slideBtn.frame = CGRectOffset(_slideBtn.frame, slideDistance2 * -1, 0);
-            enterInfo1.view.frame = CGRectOffset(enterInfo1.view.frame, slideDistance2 * -1, 0);
-        }];
- //   }
-   /* else {
-        if (enterInfo1.genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-            [enterInfo1 updateAge:nil];
-
-            [UIView animateWithDuration:0.5f animations:^{
-                _slideBtn.frame = CGRectOffset(_slideBtn.frame, slideDistance2, 0);
-                enterInfo1.view.frame = CGRectOffset(enterInfo1.view.frame, slideDistance2, 0);
-            }];
-        }
-        else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                            message:@"Please select a gender to continue."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    } */
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -100,13 +64,12 @@ DateCalculationUtil *dateUtil;
     [self verifyPlist];
     
 
-  //  if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
-        //[self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
+   // if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
+    //    [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _touchToggle.enabled = NO;
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
@@ -114,14 +77,35 @@ DateCalculationUtil *dateUtil;
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
-    
-    [self.view bringSubviewToFront:_slideBtn];
 
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480)
         phoneScrollRect = CGRectMake(318, 0, 318, 1200); // 3.5-inch
     else
         phoneScrollRect = CGRectMake(318, 0, 318, 1275); // 4-inch
+    
+    // Style/skin buttons
+     /*   NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
+    
+    // Set gradient image as our background
+    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
+
+    for (UIButton *btn in buttons) {
+        // Set button text color
+        [btn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
+      
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        
+        // Round corners
+        CALayer *btnLayer = [btn layer];
+        [btnLayer setMasksToBounds:YES];
+        [btnLayer setCornerRadius:5.0f];
+    }
+    */
+    _touchView.userInteractionEnabled = YES;
+    [_touchView addGestureRecognizer:_kTouch];
+    [self.view bringSubviewToFront:_touchView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -151,7 +135,6 @@ DateCalculationUtil *dateUtil;
         }
 
         // Undo first time usage setup
-        _touchToggle.enabled = YES;
         _countdownLabel.hidden = NO;
         secdsLifeRemLabel.hidden = NO;
 
@@ -269,7 +252,6 @@ DateCalculationUtil *dateUtil;
 /**** END PLIST METHODS ****/
 
 - (void)firstTimeUseSetup {
-    _touchToggle.enabled = NO;
     _countdownLabel.hidden = YES;
     secdsLifeRemLabel.hidden = YES;
 
@@ -361,6 +343,7 @@ DateCalculationUtil *dateUtil;
 }
 
 - (IBAction)toggleComponents:(id)sender {
+    NSLog(@"in toggle");
     if (_currentAgeLabel.hidden && _ageLabel.hidden)
         [self showComponents];
     else
@@ -408,7 +391,6 @@ DateCalculationUtil *dateUtil;
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
-    _touchToggle.enabled = NO;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     estTxtLbl.hidden = YES;
