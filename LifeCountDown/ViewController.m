@@ -74,32 +74,13 @@ DateCalculationUtil *dateUtil;
     [[self view] sendSubviewToBack:backgroundView];
 
     // Adjust iPhone scroll rect based on screen height
-    if ([[UIScreen mainScreen] bounds].size.height == 480)
-        phoneScrollRect = CGRectMake(318, 0, 318, 1200); // 3.5-inch
-    else
-        phoneScrollRect = CGRectMake(318, 0, 318, 1275); // 4-inch
-    
-    // Style/skin buttons
-     /*   NSArray *buttons = [NSArray arrayWithObjects: cancelBtn, saveBtn, nil];
-    
-    // Set gradient image as our background
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
-
-    for (UIButton *btn in buttons) {
-        // Set button text color
-        [btn setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-      
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        
-        // Round corners
-        CALayer *btnLayer = [btn layer];
-        [btnLayer setMasksToBounds:YES];
-        [btnLayer setCornerRadius:5.0f];
+    if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
+        _touchView.window.frame = CGRectMake(320, 438, self.view.frame.size.width, self.view.frame.size.height);
+        _configBtn.frame = CGRectMake(40, 444, 31, 31);
+        _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
+        _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
     }
-    */
-
-  //  _touchView.userInteractionEnabled = YES;
+    
     [_touchView addGestureRecognizer:_kTouch];
     [self.view bringSubviewToFront:_touchView];
 }
@@ -372,8 +353,8 @@ DateCalculationUtil *dateUtil;
     _facebookBtn.hidden = YES;
     _configBtn.hidden = YES;
     
-    _countdownLabel.frame = CGRectMake(11,20,298,45);
-    secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
+  //  _countdownLabel.frame = CGRectMake(11,20,298,45);
+  //  secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
     backgroundView.hidden = NO;
 }
 
