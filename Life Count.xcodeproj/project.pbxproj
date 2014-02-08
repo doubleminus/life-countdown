@@ -28,7 +28,6 @@
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E302C50181C361A00396616 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C4F181C361A00396616 /* back4.png */; };
 		2E302C56181C4A3300396616 /* scroll_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C55181C4A3300396616 /* scroll_1.png */; };
-		2E31ADF9189F2F160011B014 /* tab2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E31ADF8189F2F160011B014 /* tab2.png */; };
 		2E428A611854131A000E79E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
@@ -46,6 +45,7 @@
 		2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */; };
 		2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF47CF7181A30DE0006B704 /* Images.xcassets */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
+		652727A018A5B3BD00B7558E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6527279F18A5B3BD00B7558E /* settings.png */; };
 		652A9DC518A2B78200ED69AD /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 652A9DC418A2B78200ED69AD /* tab.png */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
 		65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E4984B1896DCD400B9A3AA /* FB-72.png */; };
@@ -89,7 +89,6 @@
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		2E302C4F181C361A00396616 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back4.png; path = ../back4.png; sourceTree = "<group>"; };
 		2E302C55181C4A3300396616 /* scroll_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroll_1.png; path = ../scroll_1.png; sourceTree = "<group>"; };
-		2E31ADF8189F2F160011B014 /* tab2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab2.png; sourceTree = "<group>"; };
 		2E3D84411835EE260028C3C4 /* launch_image_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image_960.png; path = ../launch_image_960.png; sourceTree = "<group>"; };
 		2E3D84421835EE410028C3C4 /* launch_image_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image_1136.png; path = ../launch_image_1136.png; sourceTree = "<group>"; };
 		2E3D84431835EE670028C3C4 /* launch-ipad-NONretina-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-ipad-NONretina-portrait.png"; path = "../launch-ipad-NONretina-portrait.png"; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
 		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
+		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		652A9DC418A2B78200ED69AD /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		65E4984B1896DCD400B9A3AA /* FB-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB-72.png"; path = "../FB-72.png"; sourceTree = "<group>"; };
@@ -196,6 +196,7 @@
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
 				2E2104A7151ED7BB00D0B523 /* AppDelegate.h */,
 				2E2104A8151ED7BB00D0B523 /* AppDelegate.m */,
+				2E2104A4151ED7BB00D0B523 /* main.m */,
 				2E21049F151ED7BB00D0B523 /* Supporting Files */,
 				2E27E811177C134C009FBFC7 /* HelpView.h */,
 				2E27E812177C134C009FBFC7 /* HelpView.m */,
@@ -206,7 +207,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E31ADF8189F2F160011B014 /* tab2.png */,
+				6527279F18A5B3BD00B7558E /* settings.png */,
 				65E4984B1896DCD400B9A3AA /* FB-72.png */,
 				2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */,
 				2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */,
@@ -223,7 +224,6 @@
 				2E194E0317E9EE7A0075C651 /* hglass.png */,
 				2E2104A0151ED7BB00D0B523 /* Life Count-Info.plist */,
 				2E2104A1151ED7BB00D0B523 /* InfoPlist.strings */,
-				2E2104A4151ED7BB00D0B523 /* main.m */,
 				2E2104A6151ED7BB00D0B523 /* Life Count-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -349,9 +349,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E71CCAD1834A19F0022C509 /* hglass-ipad_retina-port.png in Resources */,
-				2E31ADF9189F2F160011B014 /* tab2.png in Resources */,
 				2E2104A3151ED7BB00D0B523 /* InfoPlist.strings in Resources */,
 				2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */,
+				652727A018A5B3BD00B7558E /* settings.png in Resources */,
 				2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E302C50181C361A00396616 /* back4.png in Resources */,

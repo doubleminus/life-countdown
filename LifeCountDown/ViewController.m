@@ -46,7 +46,6 @@ UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -62,10 +61,6 @@ DateCalculationUtil *dateUtil;
 
     // Check to see if we already have an age value set in our plist
     [self verifyPlist];
-    
-
-   // if (self.interfaceOrientation == 1) // We have to do this in viewdDidAppear
-    //    [self setUserInfo]; // ToDo: MAKE ROTATION WORK AGAIN
 }
 
 - (void)viewDidLoad {
@@ -103,13 +98,14 @@ DateCalculationUtil *dateUtil;
         [btnLayer setCornerRadius:5.0f];
     }
     */
-    _touchView.userInteractionEnabled = YES;
+
+  //  _touchView.userInteractionEnabled = YES;
     [_touchView addGestureRecognizer:_kTouch];
     [self.view bringSubviewToFront:_touchView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
-- (void)setUserInfo {
+- (IBAction)setUserInfo:(id)sender {
     if (!enterInfo1) {
         enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
@@ -117,7 +113,7 @@ DateCalculationUtil *dateUtil;
         enterInfo1.delegate = self;
 
         self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:enterInfo1 animated:NO completion:nil];
+        [self presentViewController:enterInfo1 animated:YES completion:nil];
     }
 }
 
@@ -343,7 +339,6 @@ DateCalculationUtil *dateUtil;
 }
 
 - (IBAction)toggleComponents:(id)sender {
-    NSLog(@"in toggle");
     if (_currentAgeLabel.hidden && _ageLabel.hidden)
         [self showComponents];
     else
@@ -351,7 +346,6 @@ DateCalculationUtil *dateUtil;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    NSLog(@"DID ROTATE?");
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
 
@@ -359,6 +353,12 @@ DateCalculationUtil *dateUtil;
         [self handlePortrait];
     else if (interfaceOrientation == 3 || interfaceOrientation == 4) // Adjust label locations in landscape right or left orientation
         [self handleLandscape];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self dismissViewControllerAnimated:NO completion:^(void) {
+        [self handleLandscape];
+    }];
 }
 
 - (void)handlePortrait {
@@ -370,24 +370,14 @@ DateCalculationUtil *dateUtil;
     _progressView.hidden = YES;
     _tweetBtn.hidden = YES;
     _facebookBtn.hidden = YES;
-
+    _configBtn.hidden = YES;
+    
     _countdownLabel.frame = CGRectMake(11,20,298,45);
     secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
     backgroundView.hidden = NO;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSLog(@"IN WILL ROTATE?");
-    [self dismissViewControllerAnimated:NO completion:^(void) {
-        [self handleLandscape];
-    }];
-}
-
 - (void)handleLandscape {
-    NSLog(@"in landscape?");
-    
-   // [self dismissViewControllerAnimated:NO completion:^(void) {
-        NSLog(@"in landscape? LOWER");
     backgroundView.hidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
 
@@ -422,7 +412,6 @@ DateCalculationUtil *dateUtil;
         else
             _progressView.progressTintColor = [UIColor redColor];
     }
-  //  }];
 }
 
 - (void)showComponents {
@@ -432,6 +421,7 @@ DateCalculationUtil *dateUtil;
     _ageLabel.hidden = NO;
     _tweetBtn.hidden = NO;
     _facebookBtn.hidden = NO;
+    _configBtn.hidden = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }

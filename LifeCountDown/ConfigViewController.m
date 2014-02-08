@@ -45,7 +45,7 @@ bool firstTime = false;
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,1660)];
+    [scroller setContentSize:CGSizeMake(320,955)];
 
     // border radius
     [contentView.layer setCornerRadius:15.0f];
@@ -53,6 +53,12 @@ bool firstTime = false;
     // border
     [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [contentView.layer setBorderWidth:1.5f];
+    
+    // Adjust iPhone scroll rect based on screen height
+ /*   if ([[UIScreen mainScreen] bounds].size.height == 480)
+        phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
+    else
+        phoneScrollRect = CGRectMake(10, 0, 320, 1275); // 4-inch */
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -74,16 +80,6 @@ bool firstTime = false;
 
     // Setup help view but hide it
     [self setupHelpView];
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSLog(@"IN WILL ROTATE?");
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    NSLog(@"IN HERE?");
-    return YES;
 }
 
 // Method to allow sliding view out from side on iPad
@@ -152,10 +148,10 @@ bool firstTime = false;
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [scroller setFrame:padScrollRect];
-    else if (!firstTime)
-        [scroller setFrame:phoneScrollRect];
-    else // Set for first-time use
-        scroller.frame = CGRectOffset(scroller.frame, 310, 0);
+   // else if (!firstTime)
+   //     [scroller setFrame:phoneScrollRect];
+  //  else // Set for first-time use
+       // scroller.frame = CGRectOffset(scroller.frame, 310, 0);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -176,7 +172,7 @@ bool firstTime = false;
 }
 
 // Determines all age information, via the user-provided birthdate
-- (void)updateAge:(id)sender {
+- (IBAction)updateAge:(id)sender {
     NSNumber *countryIndex = [NSNumber numberWithInteger:[_ctryPicker selectedRowInComponent:0]];
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
@@ -209,6 +205,7 @@ bool firstTime = false;
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
         // ...then send the delegate function with amount entered by the user
         [_delegate displayUserInfo:personInfo];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
