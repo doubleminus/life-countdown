@@ -54,7 +54,6 @@
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)setUserInfo:(id)sender;
-- (IBAction)fbTapGest:(id)sender;
 - (NSString*)getPath;
 - (void)verifyPlist;
 

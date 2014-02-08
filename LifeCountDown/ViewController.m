@@ -250,7 +250,12 @@ DateCalculationUtil *dateUtil;
 }
 
 - (IBAction)tweetTapGest:(id)sender {
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+    //NSLog(@"sender: %@", sender);
+    UIButton *btn = (UIButton *)sender;
+
+    if ((btn != nil &&
+       ([btn tag] == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])) ||
+       ([btn tag] == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             SLComposeViewController *twCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -280,41 +285,6 @@ DateCalculationUtil *dateUtil;
             [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
             [twCtrl setCompletionHandler:completionHandler];
             [self presentViewController:twCtrl animated:YES completion:nil];
-        }];
-    }
-}
-
-- (IBAction)fbTapGest:(id)sender {
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        [self dismissViewControllerAnimated:NO completion:^(void) {
-            SLComposeViewController *fbCtrl = [SLComposeViewController
-                                               composeViewControllerForServiceType:SLServiceTypeFacebook];
-            
-            SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
-                [fbCtrl dismissViewControllerAnimated:YES completion:nil];
-
-                switch(result) {
-                    case SLComposeViewControllerResultCancelled:
-                    default:{
-                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-                        [self presentViewController:enterInfo1 animated:NO completion:nil];
-                    }
-                        break;
-                    case SLComposeViewControllerResultDone: {
-                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-                        [self presentViewController:enterInfo1 animated:NO completion:nil];
-                    }
-                        break;
-                }};
-            
-            NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
-                                    stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
-
-            [fbCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
-            [fbCtrl setInitialText:fullString];
-            [fbCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
-            [fbCtrl setCompletionHandler:completionHandler];
-            [self presentViewController:fbCtrl animated:YES completion:nil];
         }];
     }
 }
@@ -353,8 +323,9 @@ DateCalculationUtil *dateUtil;
     _facebookBtn.hidden = YES;
     _configBtn.hidden = YES;
     
-  //  _countdownLabel.frame = CGRectMake(11,20,298,45);
-  //  secdsLifeRemLabel.frame = CGRectMake(56,65,208,21);
+    _countdownLabel.frame = CGRectMake(11,20,298,85);
+    secdsLifeRemLabel.frame = CGRectMake(56,85,208,21);
+    
     backgroundView.hidden = NO;
 }
 
@@ -405,11 +376,6 @@ DateCalculationUtil *dateUtil;
     _configBtn.hidden = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    NSLog(@"IN Viewcontroller rotate");
-    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
