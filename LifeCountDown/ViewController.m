@@ -322,7 +322,7 @@ DateCalculationUtil *dateUtil;
     _tweetBtn.hidden = YES;
     _facebookBtn.hidden = YES;
     _configBtn.hidden = YES;
-    
+
     _countdownLabel.frame = CGRectMake(11,20,298,85);
     secdsLifeRemLabel.frame = CGRectMake(56,85,208,21);
     
