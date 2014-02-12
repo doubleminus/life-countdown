@@ -35,6 +35,7 @@ NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
+NSArray *ageArray;
 int slideDistance = 300;
 bool firstTime = false;
 
@@ -80,7 +81,7 @@ bool firstTime = false;
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     // Setup help view but hide it
-    [self setupHelpView];
+    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 }
 
 // Method to allow sliding view out from side on iPad
@@ -316,42 +317,40 @@ bool firstTime = false;
 }
 
 - (IBAction)showHelp:(id)sender {
-    int tag = (int)[(UIButton *)sender tag]; // Get button tag value
 
-    NSArray *ageArray = [countryInfo objectForKey:country];
+    if (!_hView || _hView.hidden == YES) {
+        int tag = (int)[(UIButton *)sender tag]; // Get button tag value
+        country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+        ageArray = [countryInfo objectForKey:country];
 
-    NSLog(@"countryInfo: %@", countryInfo);
-    NSLog(@"array: %@", ageArray);
-    
+        if (tag && ageArray && [ageArray count] == 2) {
+            country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+            country = [country stringByAppendingString:@"\n----------------\nMale: "];
+            country = [country stringByAppendingString:[ageArray[0] stringValue]];
+                country = [country stringByAppendingString:@"\nFemale: "];
+            country = [country stringByAppendingString:[ageArray[1] stringValue]];
+        }
 
-    //  NSString *ctrString = [self countryInfo];
-    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-    country = [country stringByAppendingString:@"\n----------------\nMale: "];
-    country = [country stringByAppendingString:ageArray[0]];
-        country = [country stringByAppendingString:@"\n----------------\nFemale: "];
-    country = [country stringByAppendingString:ageArray[1]];
-
-    // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0) btnInt:tag ctryString:country];
-    _hView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_hView];
-    _hView.alpha = 0.9;
-    _hView.hidden = YES;
-    _hView.layer.cornerRadius = 10.0f;
-
-    // Set drop shadow
-    [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [_hView.layer setShadowOpacity:0.8];
-    [_hView.layer setShadowRadius:3.0];
-    [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-
-    if (_hView.hidden == YES)
-        _hView.hidden = NO;
-    else
+        // Initialize view, and hide it
+        _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0) btnInt:tag ctryString:country];
+        _hView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_hView];
+        _hView.alpha = 0.9;
         _hView.hidden = YES;
-}
+        _hView.layer.cornerRadius = 10.0f;
 
-- (void)setupHelpView {}
+        // Set drop shadow
+        [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [_hView.layer setShadowOpacity:0.8];
+        [_hView.layer setShadowRadius:3.0];
+        [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
+        _hView.hidden = NO;
+    }
+    else {
+        _hView.hidden = YES;
+    }
+}
 
 - (void)viewDidUnload {
     scroller = nil;

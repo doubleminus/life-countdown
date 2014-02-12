@@ -36,7 +36,7 @@ NSString *countryNameStr;
     NSString *helpMsg;
 
     if (self) {
-        if (cString != nil)
+        if (cString)
             countryNameStr = cString;
 
         UITapGestureRecognizer *tapGestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
@@ -65,7 +65,7 @@ NSString *countryNameStr;
 
     switch (keyInt) {
         case 1:
-            helpTxt = @"Your country of residence is a strong indicator of life expectancy.\n\n";
+            helpTxt = @"Country of residence is a strong\nindicator of life expectancy.\n\n";
             helpTxt = [helpTxt stringByAppendingString:countryNameStr];
             break;
 
