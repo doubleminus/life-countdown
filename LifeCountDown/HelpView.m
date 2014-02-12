@@ -29,35 +29,42 @@
 #import "HelpView.h"
 
 @implementation HelpView
-NSString *countryNameStr;
+NSString *countryNameStr, *helpMsg;
+UILabel *helpTextLbl;
 
-- (id)initWithFrame:(CGRect)frame btnInt:(int)buttonInt ctryString:(NSString*)cString {
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    NSString *helpMsg;
 
     if (self) {
-        if (cString)
-            countryNameStr = cString;
-
         UITapGestureRecognizer *tapGestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
         tapGestureRec.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGestureRec];
         [self setUserInteractionEnabled:YES];
 
-        UILabel *helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
-        helpMsg = [self getText:buttonInt];
+        helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 20)];
 
         // Heiti SC Light 17.0
         [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
         [helpTextLbl setTextColor:[UIColor blackColor]];
         [helpTextLbl setBackgroundColor:[UIColor clearColor]];
         [helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
-        [helpTextLbl setText:helpMsg];
-        [helpTextLbl sizeToFit];
-        [self addSubview:helpTextLbl];
+
+        [helpTextLbl setLineBreakMode:NSLineBreakByWordWrapping];
     }
 
     return self;
+}
+
+- (void)setText:(NSString*)bodyTxt btnInt:(int)buttonInt {
+    [helpTextLbl setText:@""];
+
+    if (bodyTxt)
+        countryNameStr = bodyTxt;
+
+    [helpTextLbl setText:[self getText:buttonInt]];
+    [helpTextLbl setFrame:CGRectMake(10, 10, 250, 20)];
+    [helpTextLbl sizeToFit];
+    [self addSubview:helpTextLbl];
 }
 
 - (NSString*)getText:(NSInteger)keyInt {
@@ -65,12 +72,12 @@ NSString *countryNameStr;
 
     switch (keyInt) {
         case 1:
-            helpTxt = @"Country of residence is a strong\nindicator of life expectancy.\n\n";
+            helpTxt = @"Country of residence is a strong indicator of life expectancy.\n\n";
             helpTxt = [helpTxt stringByAppendingString:countryNameStr];
             break;
 
         case 2:
-            helpTxt = @"Gender help";
+            helpTxt = @"Gender is one of the most well-known, reliable indicators of life expectancy. \n\nFemales generally live longer than males, but that varies by country.";
             break;
 
         case 3:
@@ -82,7 +89,7 @@ NSString *countryNameStr;
             break;
 
         default:
-            helpTxt = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or used\noutside of the application. \n\nLifeIsShortSoftware.com";
+            helpTxt = @"DISCLAIMER: All life expectancy results are unscientific estimates. This application is for entertainment purposes only.\n\nAll data provided is kept private and never shared or used outside of the application. \n\nLifeIsShortSoftware.com";
             break;
     }
 

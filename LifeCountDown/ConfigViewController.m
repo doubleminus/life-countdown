@@ -81,6 +81,20 @@ bool firstTime = false;
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     // Setup help view but hide it
+    // Initialize view, and hide it
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)]; //btnInt:tag ctryString:country];
+    _hView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_hView];
+    _hView.alpha = 0.9;
+    _hView.hidden = YES;
+    _hView.layer.cornerRadius = 10.0f;
+    
+    // Set drop shadow
+    [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_hView.layer setShadowOpacity:0.8];
+    [_hView.layer setShadowRadius:3.0];
+    [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 }
 
@@ -317,39 +331,47 @@ bool firstTime = false;
 }
 
 - (IBAction)showHelp:(id)sender {
+    
+    country = @"";
 
     if (!_hView || _hView.hidden == YES) {
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
 
-        if (tag && ageArray && [ageArray count] == 2) {
-            country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-            country = [country stringByAppendingString:@"\n----------------\nMale: "];
-            country = [country stringByAppendingString:[ageArray[0] stringValue]];
-                country = [country stringByAppendingString:@"\nFemale: "];
-            country = [country stringByAppendingString:[ageArray[1] stringValue]];
-        }
+        // Build string of Country name information
+        if (tag && tag == 1 && ageArray && [ageArray count] == 2)
+            country = [self buildCountryString:country];
 
-        // Initialize view, and hide it
-        _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0) btnInt:tag ctryString:country];
-        _hView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:_hView];
-        _hView.alpha = 0.9;
-        _hView.hidden = YES;
-        _hView.layer.cornerRadius = 10.0f;
-
-        // Set drop shadow
-        [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
-        [_hView.layer setShadowOpacity:0.8];
-        [_hView.layer setShadowRadius:3.0];
-        [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-
+        [_hView setText:country btnInt:tag];
         _hView.hidden = NO;
     }
     else {
         _hView.hidden = YES;
     }
+}
+
+// Builds a string combining Country name, male & female life expectancies, to display in helpview
+- (NSString *)buildCountryString:(NSString*)cString {
+    NSString *lineStr = @"", *tempCString = @"";
+
+    // Build ---- string to underline our country name within  label
+    if (cString &&  cString.length > 0) {
+        tempCString = cString;
+
+        for (int i=0; i<((country.length)/2)+2; i++)
+            lineStr = [lineStr stringByAppendingString:@"--"];
+
+        cString = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+        cString = [cString stringByAppendingString:@"\n"];
+        cString = [cString stringByAppendingString:lineStr];
+        cString = [cString stringByAppendingString:@"\nMale: "];
+        cString = [cString stringByAppendingString:[ageArray[0] stringValue]];
+        cString = [cString stringByAppendingString:@"\nFemale: "];
+        cString = [cString stringByAppendingString:[ageArray[1] stringValue]];
+    }
+
+    return cString;
 }
 
 - (void)viewDidUnload {
