@@ -33,7 +33,7 @@
 @implementation ConfigViewController
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
-NSDictionary *personInfo;
+NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
 int slideDistance = 300;
 bool firstTime = false;
@@ -45,14 +45,14 @@ bool firstTime = false;
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,955)];
+    [scroller setContentSize:CGSizeMake(320,1055)];
 
     // border radius
     [contentView.layer setCornerRadius:15.0f];
 
     // border
-    [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [contentView.layer setBorderWidth:1.5f];
+   // [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//  [contentView.layer setBorderWidth:1.5f];
     
     // Adjust iPhone scroll rect based on screen height
  /*   if ([[UIScreen mainScreen] bounds].size.height == 480)
@@ -73,9 +73,10 @@ bool firstTime = false;
     // Set gradient image as our background
     [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
 
-    // Get array of countries from Countries.plist via calculation util to populate uipickerview values
+    // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
-    countryArray = [[dateUtil getCountryDict] allKeys];
+    countryInfo = [dateUtil getCountryDict];
+    countryArray = [countryInfo allKeys];
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     // Setup help view but hide it
@@ -315,15 +316,23 @@ bool firstTime = false;
 }
 
 - (IBAction)showHelp:(id)sender {
-    if (_hView.hidden == YES)
-        _hView.hidden = NO;
-    else
-        _hView.hidden = YES;
-}
+    int tag = (int)[(UIButton *)sender tag]; // Get button tag value
 
-- (void)setupHelpView {
+    NSArray *ageArray = [countryInfo objectForKey:country];
+
+    NSLog(@"countryInfo: %@", countryInfo);
+    NSLog(@"array: %@", ageArray);
+    
+
+    //  NSString *ctrString = [self countryInfo];
+    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+    country = [country stringByAppendingString:@"\n----------------\nMale: "];
+    country = [country stringByAppendingString:ageArray[0]];
+        country = [country stringByAppendingString:@"\n----------------\nFemale: "];
+    country = [country stringByAppendingString:ageArray[1]];
+
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0) btnInt:tag ctryString:country];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.9;
@@ -335,7 +344,14 @@ bool firstTime = false;
     [_hView.layer setShadowOpacity:0.8];
     [_hView.layer setShadowRadius:3.0];
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+
+    if (_hView.hidden == YES)
+        _hView.hidden = NO;
+    else
+        _hView.hidden = YES;
 }
+
+- (void)setupHelpView {}
 
 - (void)viewDidUnload {
     scroller = nil;

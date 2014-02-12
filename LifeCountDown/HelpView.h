@@ -30,4 +30,7 @@
 
 @interface HelpView : UIView
 
+// Constructor
+- (id)initWithFrame:(CGRect)frame btnInt:(int)buttonInt ctryString:(NSString*)cString;
+
 @end

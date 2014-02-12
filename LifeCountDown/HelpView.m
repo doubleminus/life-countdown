@@ -29,18 +29,23 @@
 #import "HelpView.h"
 
 @implementation HelpView
+NSString *countryNameStr;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame btnInt:(int)buttonInt ctryString:(NSString*)cString {
     self = [super initWithFrame:frame];
+    NSString *helpMsg;
 
     if (self) {
+        if (cString != nil)
+            countryNameStr = cString;
+
         UITapGestureRecognizer *tapGestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
         tapGestureRec.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGestureRec];
-        self.userInteractionEnabled = YES;
+        [self setUserInteractionEnabled:YES];
 
         UILabel *helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)];
-        NSString *helpMsg = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or used\noutside of the application. \n\nLifeIsShortSoftware.com";
+        helpMsg = [self getText:buttonInt];
 
         // Heiti SC Light 17.0
         [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
@@ -53,6 +58,35 @@
     }
 
     return self;
+}
+
+- (NSString*)getText:(NSInteger)keyInt {
+    NSString *helpTxt = @"";
+
+    switch (keyInt) {
+        case 1:
+            helpTxt = @"Your country of residence is a strong indicator of life expectancy.\n\n";
+            helpTxt = [helpTxt stringByAppendingString:countryNameStr];
+            break;
+
+        case 2:
+            helpTxt = @"Gender help";
+            break;
+
+        case 3:
+            helpTxt = @"Smoker help";
+            break;
+
+        case 4:
+            helpTxt = @"Hours exercise help";
+            break;
+
+        default:
+            helpTxt = @"DISCLAIMER:\n\nAll life expectancy results are \nunscientific estimates. This\napplication is for entertainment\npurposes only.\n\nAll data provided is kept private\nand never shared or used\noutside of the application. \n\nLifeIsShortSoftware.com";
+            break;
+    }
+
+    return helpTxt;
 }
 
 - (IBAction)hideHelp:(id)sender {

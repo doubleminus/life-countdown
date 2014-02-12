@@ -251,11 +251,9 @@ DateCalculationUtil *dateUtil;
 
 - (IBAction)tweetTapGest:(id)sender {
     //NSLog(@"sender: %@", sender);
-    UIButton *btn = (UIButton *)sender;
+    int tag = (int)[(UIButton *)sender tag];
 
-    if ((btn != nil &&
-       ([btn tag] == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])) ||
-       ([btn tag] == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
+    if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             SLComposeViewController *twCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];

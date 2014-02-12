@@ -194,12 +194,12 @@
 				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
+				2E27E811177C134C009FBFC7 /* HelpView.h */,
+				2E27E812177C134C009FBFC7 /* HelpView.m */,
 				2E2104A7151ED7BB00D0B523 /* AppDelegate.h */,
 				2E2104A8151ED7BB00D0B523 /* AppDelegate.m */,
 				2E2104A4151ED7BB00D0B523 /* main.m */,
 				2E21049F151ED7BB00D0B523 /* Supporting Files */,
-				2E27E811177C134C009FBFC7 /* HelpView.h */,
-				2E27E812177C134C009FBFC7 /* HelpView.m */,
 			);
 			path = LifeCountDown;
 			sourceTree = "<group>";
@@ -267,8 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */,
-				2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */,
 				2E2104AD151ED7BB00D0B523 /* ViewController.xib */,
+				2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
