@@ -41,7 +41,7 @@ UILabel *helpTextLbl;
         [self addGestureRecognizer:tapGestureRec];
         [self setUserInteractionEnabled:YES];
 
-        helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 20)];
+        helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 250, 20)];
 
         // Heiti SC Light 17.0
         [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
@@ -62,7 +62,7 @@ UILabel *helpTextLbl;
         countryNameStr = bodyTxt;
 
     [helpTextLbl setText:[self getText:buttonInt]];
-    [helpTextLbl setFrame:CGRectMake(10, 10, 250, 20)];
+  //  [helpTextLbl setFrame:CGRectMake(10, 10, 250, 20)];
     [helpTextLbl sizeToFit];
     [self addSubview:helpTextLbl];
 }
@@ -74,18 +74,19 @@ UILabel *helpTextLbl;
         case 1:
             helpTxt = @"Country of residence is a strong indicator of life expectancy.\n\n";
             helpTxt = [helpTxt stringByAppendingString:countryNameStr];
+            helpTxt = [helpTxt stringByAppendingString:@"\n\nSOURCE: Life expectancy: Life expectancy by country, 2011, World Health Organization"];
             break;
 
         case 2:
-            helpTxt = @"Gender is one of the most well-known, reliable indicators of life expectancy. \n\nFemales generally live longer than males, but that varies by country.";
+            helpTxt = @"Gender is one of the most well-known, reliable indicators of life expectancy. Females generally live longer than males, but that varies by country.\n\nSOURCE: Life expectancy: Life expectancy by country, 2011, World Health Organization.";
             break;
 
         case 3:
-            helpTxt = @"Smoker help";
+            helpTxt = @"Smoking reduces life expectancy roughly 10 years on average.\n\nSOURCE: 21st-Century Hazards of Smoking and Benefits of Cessation in the United States, 2012, The New England Journal of Medicine.";
             break;
 
         case 4:
-            helpTxt = @"Hours exercise help";
+            helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
             break;
 
         default:

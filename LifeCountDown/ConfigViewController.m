@@ -82,7 +82,7 @@ bool firstTime = false;
 
     // Setup help view but hide it
     // Initialize view, and hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)]; //btnInt:tag ctryString:country];
+    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.9;
@@ -331,10 +331,18 @@ bool firstTime = false;
 }
 
 - (IBAction)showHelp:(id)sender {
-    
+    CGRect visibleRect;
     country = @"";
 
     if (!_hView || _hView.hidden == YES) {
+        visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
+        visibleRect.size = scroller.bounds.size;
+        visibleRect.origin.y += 150.0; // Now modify to squash the helpview into the size we want
+        visibleRect.origin.x += 25.0;
+        visibleRect.size.width *= .85;
+        visibleRect.size.height *= .5;
+        [_hView setFrame:visibleRect];
+
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
