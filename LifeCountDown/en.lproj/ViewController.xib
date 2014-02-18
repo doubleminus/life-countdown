@@ -85,8 +85,8 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="dVg-Ak-TSZ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="509"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="515"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="72" customClass="YLProgressBar">
                             <rect key="frame" x="20" y="387" width="280" height="2"/>

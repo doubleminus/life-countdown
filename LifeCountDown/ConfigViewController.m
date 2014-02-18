@@ -96,6 +96,23 @@ bool firstTime = false;
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+
+    // Fade-in our view
+  //  contentView.alpha = 0;
+    self.view.alpha = 0;
+  //  scroller.alpha = 0;
+/*
+    [UIView animateWithDuration:5.0 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.view setAlpha:1.f];
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+    }];
+*/
+    /*
+    [UIView animateWithDuration:5.0 animations:^{contentView.alpha = 1.f; }];
+    [UIView animateWithDuration:5.0 animations:^{scroller.alpha = 1.f; }];*/
+
+    [UIView animateWithDuration:5.0 animations:^{self.view.alpha = 1.f; }];
 }
 
 // Method to allow sliding view out from side on iPad

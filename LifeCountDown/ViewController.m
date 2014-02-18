@@ -54,6 +54,20 @@ DateCalculationUtil *dateUtil;
         [self handleLandscape];
 
     _progressView.hidden = YES;
+
+    // Adjust iPhone scroll rect based on screen height
+    if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
+        _touchView.hidden = NO;
+        _touchView.opaque = NO;
+        _touchView.alpha = 1;
+        _touchView.backgroundColor = [UIColor blueColor];
+       // _touchView.window.frame = CGRectMake(1, 1, 500, 50);
+        _configBtn.frame = CGRectMake(40, 444, 31, 31);
+        _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
+        _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
+    }
+    
+    [self.view bringSubviewToFront:_touchView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,24 +79,16 @@ DateCalculationUtil *dateUtil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    _touchView = [_touchView init];
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
 
-    // Adjust iPhone scroll rect based on screen height
-    if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
-        _touchView.window.frame = CGRectMake(320, 438, self.view.frame.size.width, self.view.frame.size.height);
-        _configBtn.frame = CGRectMake(40, 444, 31, 31);
-        _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
-        _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
-    }
-    
     [_touchView addGestureRecognizer:_kTouch];
-    [self.view bringSubviewToFront:_touchView];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
