@@ -60,13 +60,11 @@ DateCalculationUtil *dateUtil;
         _touchView.hidden = NO;
         _touchView.opaque = NO;
         _touchView.alpha = 1;
-        _touchView.backgroundColor = [UIColor blueColor];
-       // _touchView.window.frame = CGRectMake(1, 1, 500, 50);
         _configBtn.frame = CGRectMake(40, 444, 31, 31);
         _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
         _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
     }
-    
+
     [self.view bringSubviewToFront:_touchView];
 }
 
@@ -80,7 +78,7 @@ DateCalculationUtil *dateUtil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     _touchView = [_touchView init];
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
