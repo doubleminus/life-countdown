@@ -266,8 +266,8 @@
 		2E635E5517796F2E00B85650 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */,
 				2E2104AD151ED7BB00D0B523 /* ViewController.xib */,
+				2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */,
 				2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */,
 			);
 			name = Xibs;

@@ -42,12 +42,14 @@
     IBOutlet UITextField *amountTextField;
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
-    __weak IBOutlet UILabel *plusLbl, *helpLabel;
+    __weak IBOutlet UILabel *plusLbl, *plusLbl2, *helpLabel;
 }
 
 @property (nonatomic, assign) id delegate;
 @property (weak, nonatomic)   IBOutlet UISlider *daySlider;
+@property (weak, nonatomic)   IBOutlet UISlider *sitSlider;
 @property (weak, nonatomic)   IBOutlet UILabel *daysLbl;
+@property (weak, nonatomic)   IBOutlet UILabel *sitLabel;
 @property (strong, nonatomic) IBOutlet UIPickerView *ctryPicker;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;

@@ -243,9 +243,31 @@ bool firstTime = false;
 }
 
 - (IBAction)sliderChanged:(id)sender {
-    _daySlider = (UISlider*)sender;
-    NSInteger val = lround(_daySlider.value);
-    _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
+    NSInteger val = 0;
+    // Cast sender to UISlider so we can get tag #
+    int tagNum = (int)[(UIButton *)sender tag];
+    
+    if (tagNum == 1) {
+        _daySlider = (UISlider*)sender;
+        val = lround(_daySlider.value);
+        _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
+
+        if (val <= 10)
+            plusLbl.hidden = YES;
+        else
+            plusLbl.hidden = NO;
+    }
+    else if (tagNum == 2) {
+        _sitSlider = (UISlider*)sender;
+        val = lround(_sitSlider.value);
+        _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
+        
+        if (val <= 10)
+            plusLbl2.hidden = YES;
+        else
+            plusLbl2.hidden = NO;
+    }
+
     [self togglePlus:val];
 }
 
@@ -341,7 +363,7 @@ bool firstTime = false;
 }
 
 - (void)togglePlus:(NSInteger)fVal {
-    if (fVal <= 20)
+    if (fVal <= 10)
         plusLbl.hidden = YES;
     else
         plusLbl.hidden = NO;
