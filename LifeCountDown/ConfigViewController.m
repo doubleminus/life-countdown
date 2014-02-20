@@ -252,17 +252,17 @@ bool firstTime = false;
         val = lround(_daySlider.value);
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
 
-        if (val <= 10)
-            plusLbl.hidden = NO;
-        else
+        if (val < 10)
             plusLbl.hidden = YES;
+        else
+            plusLbl.hidden = NO;
     }
     else if (tagNum == 2) {
         _sitSlider = (UISlider*)sender;
         val = lround(_sitSlider.value);
         _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
         
-        if (val <= 10)
+        if (val < 12)
             plusLbl2.hidden = YES;
         else
             plusLbl2.hidden = NO;
