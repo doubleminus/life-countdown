@@ -91,15 +91,13 @@ DateCalculationUtil *dateUtil;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    if (!enterInfo1) {
-        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 
-        // Important to set the viewcontroller's delegate to be self
-        enterInfo1.delegate = self;
+    // Important to set the viewcontroller's delegate to be self
+    enterInfo1.delegate = self;
 
-        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:enterInfo1 animated:YES completion:nil];
-    }
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
 
 #pragma mark displayUserInfo Delegate function

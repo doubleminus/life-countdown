@@ -253,9 +253,9 @@ bool firstTime = false;
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
 
         if (val <= 10)
-            plusLbl.hidden = YES;
-        else
             plusLbl.hidden = NO;
+        else
+            plusLbl.hidden = YES;
     }
     else if (tagNum == 2) {
         _sitSlider = (UISlider*)sender;
@@ -268,7 +268,7 @@ bool firstTime = false;
             plusLbl2.hidden = NO;
     }
 
-    [self togglePlus:val];
+   // [self togglePlus:val];
 }
 
 /**** BEGIN PLIST METHODS ****/
