@@ -28,6 +28,7 @@
 
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
+#import "BackgroundLayer.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ConfigViewController
@@ -64,7 +65,11 @@ bool firstTime = false;
     }
 
     // Set gradient image as our background
-    [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
+   // [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
+
+    CAGradientLayer *bgLayer = [BackgroundLayer blueGradient];
+    bgLayer.frame = contentView.bounds;
+    [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
@@ -418,6 +423,15 @@ bool firstTime = false;
 
     [super viewDidUnload];
 }
+
+/* // Make UIPickerView font white - cannot use until we can easily make UIDatePicker font white also
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString *title = countryArray[row];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    return attString;
+    
+} */
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView {
     return 1;
