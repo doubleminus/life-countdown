@@ -48,18 +48,10 @@ bool firstTime = false;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1055)];
 
-    // border radius
+    // Create border around our config view content
     [contentView.layer setCornerRadius:15.0f];
-
-    // border
-   // [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-//  [contentView.layer setBorderWidth:1.5f];
-    
-    // Adjust iPhone scroll rect based on screen height
- /*   if ([[UIScreen mainScreen] bounds].size.height == 480)
-        phoneScrollRect = CGRectMake(310, 0, 320, 1200); // 3.5-inch
-    else
-        phoneScrollRect = CGRectMake(10, 0, 320, 1275); // 4-inch */
+    [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [contentView.layer setBorderWidth:1.5f];
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -81,14 +73,13 @@ bool firstTime = false;
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     // Setup help view but hide it
-    // Initialize view, and hide it
     _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
+    _hView.hidden = YES;
     _hView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_hView];
     _hView.alpha = 0.9;
-    _hView.hidden = YES;
     _hView.layer.cornerRadius = 10.0f;
-    
+
     // Set drop shadow
     [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
     [_hView.layer setShadowOpacity:0.8];
@@ -99,8 +90,8 @@ bool firstTime = false;
 
     // Fade-in our view
   //  contentView.alpha = 0;
-    self.view.alpha = 0;
-  //  scroller.alpha = 0;
+   // self.view.alpha = 0;
+ //   scroller.alpha = 0;
 /*
     [UIView animateWithDuration:5.0 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.view setAlpha:1.f];
@@ -111,8 +102,41 @@ bool firstTime = false;
     /*
     [UIView animateWithDuration:5.0 animations:^{contentView.alpha = 1.f; }];
     [UIView animateWithDuration:5.0 animations:^{scroller.alpha = 1.f; }];*/
+    
+   // NSLog(@"ALPHA: %f", self.view.alpha);
 
-    [UIView animateWithDuration:5.0 animations:^{self.view.alpha = 1.f; }];
+   // [UIView animateWithDuration:5.0 animations:^{NSLog(@"in ANIMATE"); self.view.alpha = 1.f;}];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
+    
+    _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
+    [self readPlist];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [scroller setFrame:padScrollRect];
+    // else if (!firstTime)
+    //     [scroller setFrame:phoneScrollRect];
+    //  else // Set for first-time use
+    // scroller.frame = CGRectOffset(scroller.frame, 310, 0);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 // Method to allow sliding view out from side on iPad
@@ -149,7 +173,7 @@ bool firstTime = false;
         }
     }
 }
-
+/*
 - (void)handleFirstUse {
     _animateTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
                                                      target: self
@@ -158,7 +182,7 @@ bool firstTime = false;
                                                     repeats: YES];
 }
 
-// Encourage user to tap configview and slide it out and provide data
+ // Encourage user to tap configview and slide it out and provide data
 - (void)animateSlideout {
     slideDistance = 30; // Only slide view out slightly, as a hint
 
@@ -166,38 +190,7 @@ bool firstTime = false;
         scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
         scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
     } completion:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
-
-    _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
-    [self readPlist];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [scroller setFrame:padScrollRect];
-   // else if (!firstTime)
-   //     [scroller setFrame:phoneScrollRect];
-  //  else // Set for first-time use
-       // scroller.frame = CGRectOffset(scroller.frame, 310, 0);
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
+} */
 
 // Disable landscape orientation
 - (BOOL)shouldAutorotate {
@@ -246,29 +239,21 @@ bool firstTime = false;
     NSInteger val = 0;
     // Cast sender to UISlider so we can get tag #
     int tagNum = (int)[(UIButton *)sender tag];
-    
+
     if (tagNum == 1) {
         _daySlider = (UISlider*)sender;
         val = lround(_daySlider.value);
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
 
-        if (val < 10)
-            plusLbl.hidden = YES;
-        else
-            plusLbl.hidden = NO;
+        plusLbl.hidden = (val < 10) ? YES : NO;
     }
     else if (tagNum == 2) {
         _sitSlider = (UISlider*)sender;
         val = lround(_sitSlider.value);
         _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
-        
-        if (val < 12)
-            plusLbl2.hidden = YES;
-        else
-            plusLbl2.hidden = NO;
-    }
 
-   // [self togglePlus:val];
+        plusLbl2.hidden = (val < 10) ? YES : NO;
+    }
 }
 
 /**** BEGIN PLIST METHODS ****/
@@ -291,7 +276,7 @@ bool firstTime = false;
         if (!_viewDict || [_viewDict count] == 0) { // No nsdictionary, or it's empty - user needs to provide config data
             //NSLog(@"Error reading plist: %@", errorDesc);
             firstTime = YES;
-            [self handleFirstUse];
+           // [self handleFirstUse];
         }
         else if ([_viewDict objectForKey:@"infoDict"] != nil) {
             // If we have ALL of the values we need, display info to user.
@@ -409,6 +394,7 @@ bool firstTime = false;
         for (int i=0; i<((country.length)/2)+2; i++)
             lineStr = [lineStr stringByAppendingString:@"--"];
 
+        // Now add rest of string to show each life expectancy age for each gender in given country
         cString = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         cString = [cString stringByAppendingString:@"\n"];
         cString = [cString stringByAppendingString:lineStr];

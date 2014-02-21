@@ -57,15 +57,10 @@ DateCalculationUtil *dateUtil;
 
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
-        _touchView.hidden = NO;
-        _touchView.opaque = NO;
-        _touchView.alpha = 1;
         _configBtn.frame = CGRectMake(40, 444, 31, 31);
         _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
         _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
     }
-
-    [self.view bringSubviewToFront:_touchView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

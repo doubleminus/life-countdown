@@ -116,6 +116,7 @@
 		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		652A9DC418A2B78200ED69AD /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		65D53D7218B6C5D5004A8E26 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		65E4984B1896DCD400B9A3AA /* FB-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB-72.png"; path = "../FB-72.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +175,7 @@
 		2E210497151ED7BA00D0B523 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65D53D7218B6C5D5004A8E26 /* CoreImage.framework */,
 				65D304F51891AF3D0023F39A /* CoreText.framework */,
 				2E4C77F1188F999400D0910A /* Social.framework */,
 				2E4C77EF188F998B00D0910A /* Accounts.framework */,
