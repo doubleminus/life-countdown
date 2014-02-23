@@ -64,10 +64,7 @@ bool firstTime = false;
         [viewLayer setCornerRadius:5.0f];
     }
 
-    // Set gradient image as our background
-   // [contentView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"scroll_1.png"]]];
-
-    CAGradientLayer *bgLayer = [BackgroundLayer blueGradient];
+    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
     bgLayer.frame = contentView.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 
@@ -92,25 +89,6 @@ bool firstTime = false;
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-
-    // Fade-in our view
-  //  contentView.alpha = 0;
-   // self.view.alpha = 0;
- //   scroller.alpha = 0;
-/*
-    [UIView animateWithDuration:5.0 delay:0. options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.view setAlpha:1.f];
-    } completion:^(BOOL finished) {
-        [self.view removeFromSuperview];
-    }];
-*/
-    /*
-    [UIView animateWithDuration:5.0 animations:^{contentView.alpha = 1.f; }];
-    [UIView animateWithDuration:5.0 animations:^{scroller.alpha = 1.f; }];*/
-    
-   // NSLog(@"ALPHA: %f", self.view.alpha);
-
-   // [UIView animateWithDuration:5.0 animations:^{NSLog(@"in ANIMATE"); self.view.alpha = 1.f;}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

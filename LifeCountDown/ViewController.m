@@ -30,6 +30,7 @@
 #import "YLProgressBar.h"
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
+#import "BackgroundLayer.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
@@ -326,7 +327,11 @@ DateCalculationUtil *dateUtil;
 
 - (void)handleLandscape {
     backgroundView.hidden = YES;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
+    // self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
+    
+    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
+    bgLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
