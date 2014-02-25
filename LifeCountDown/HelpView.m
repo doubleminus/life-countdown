@@ -30,7 +30,6 @@
 
 @implementation HelpView
 NSString *countryNameStr, *helpMsg;
-UILabel *helpTextLbl;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -41,29 +40,30 @@ UILabel *helpTextLbl;
         [self addGestureRecognizer:tapGestureRec];
         [self setUserInteractionEnabled:YES];
 
-        helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 250, 20)];
+        _helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 250, 20)];
 
         // Heiti SC Light 17.0
-        [helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
-        [helpTextLbl setTextColor:[UIColor blackColor]];
-        [helpTextLbl setBackgroundColor:[UIColor clearColor]];
-        [helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
+        [_helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
+        [_helpTextLbl setTextColor:[UIColor blackColor]];
+        [_helpTextLbl setBackgroundColor:[UIColor clearColor]];
+        [_helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
 
-        [helpTextLbl setLineBreakMode:NSLineBreakByWordWrapping];
+        [_helpTextLbl setLineBreakMode:NSLineBreakByWordWrapping];
     }
 
     return self;
 }
 
 - (void)setText:(NSString*)bodyTxt btnInt:(int)buttonInt {
-    [helpTextLbl setText:@""];
+    [_helpTextLbl setText:@""];
 
-    if (bodyTxt)
+    if (bodyTxt) {
         countryNameStr = bodyTxt;
+    }
 
-    [helpTextLbl setText:[self getText:buttonInt]];
-    [helpTextLbl sizeToFit];
-    [self addSubview:helpTextLbl];
+    [_helpTextLbl setText:[self getText:buttonInt]];
+    [_helpTextLbl sizeToFit];
+    [self addSubview:_helpTextLbl];
 }
 
 - (NSString*)getText:(NSInteger)keyInt {

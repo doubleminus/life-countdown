@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
- LifeCountDownTests.m
+ DateCalculationUtilTest.h
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -26,34 +26,36 @@
  OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "LifeCountDownTests.h"
-#import "ViewController.h"
-#import "FileHandler.h"
-#import <QuartzCore/QuartzCore.h>
+#import <XCTest/XCTest.h>
+#import "ConfigViewController.h"
 
-@implementation LifeCountDownTests
+@interface ConfigViewControllerTests : XCTestCase
+
+@end
+
+@implementation ConfigViewControllerTests
 
 - (void)setUp {
     [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown {
+    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
 - (void)testExample {
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *testPath = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-
-    FileHandler *fh = [[FileHandler alloc] init];
-
-    XCTAssertTrue([fh verifyPlist], @"Make sure plist exists"); // This should also set path
-
-    XCTAssertEqualObjects(testPath, [fh getPath], @"Ensure path is set correctly");
+    ConfigViewController *cvc = [[ConfigViewController alloc] init];
     
-    [fh deletePlist];
+    [cvc.ctryPicker selectedRowInComponent:1];
+    UIButton *testBtn = [[UIButton alloc] init];
+    testBtn.tag = 1;
+    [cvc showHelp:testBtn];
 
-    XCTAssertFalse([fh verifyPlist], @"Make sure plist is now deleted"); // This should also set path
+    NSString *finalCountryString = [cvc buildCountryString:@"Australia"];
+    NSLog(@"**** FINAL COUNTRY STRING: %@", finalCountryString);
+    //XCTAssertEqualObjects(finalCountryString, @"Australia", @"Make sure string is created correctly");
 }
 
 @end

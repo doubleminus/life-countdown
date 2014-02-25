@@ -45,6 +45,7 @@
 		6522B65F18BD16490086824A /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6522B65E18BD16490086824A /* FileHandler.m */; };
 		6522B66118BD1F7E0086824A /* HelpViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6522B66018BD1F7D0086824A /* HelpViewTests.m */; };
 		6522B66418BD27240086824A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6522B66218BD266D0086824A /* XCTest.framework */; };
+		6522B66618BD4A280086824A /* ConfigViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6522B66518BD4A280086824A /* ConfigViewControllerTests.m */; };
 		652727A018A5B3BD00B7558E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6527279F18A5B3BD00B7558E /* settings.png */; };
 		652A9DC518A2B78200ED69AD /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 652A9DC418A2B78200ED69AD /* tab.png */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
@@ -115,6 +116,7 @@
 		6522B65E18BD16490086824A /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHandler.m; sourceTree = "<group>"; };
 		6522B66018BD1F7D0086824A /* HelpViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewTests.m; sourceTree = "<group>"; };
 		6522B66218BD266D0086824A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6522B66518BD4A280086824A /* ConfigViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewControllerTests.m; sourceTree = "<group>"; };
 		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		652A9DC418A2B78200ED69AD /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -240,6 +242,7 @@
 		2E2104BC151ED7BB00D0B523 /* LifeCountDownTests */ = {
 			isa = PBXGroup;
 			children = (
+				6522B66518BD4A280086824A /* ConfigViewControllerTests.m */,
 				2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */,
 				2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */,
 				2E2104C2151ED7BB00D0B523 /* LifeCountDownTests.h */,
@@ -409,6 +412,7 @@
 			files = (
 				2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */,
 				2E2104C4151ED7BB00D0B523 /* LifeCountDownTests.m in Sources */,
+				6522B66618BD4A280086824A /* ConfigViewControllerTests.m in Sources */,
 				2E2104D5151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */,
 				6522B66118BD1F7E0086824A /* HelpViewTests.m in Sources */,

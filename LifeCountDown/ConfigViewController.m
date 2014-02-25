@@ -196,7 +196,6 @@ bool firstTime = false;
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-    
     //NSLog(@"COUNTRY: %@", country);
     
     if ([self.genderToggle selectedSegmentIndex] == 0)
@@ -363,7 +362,7 @@ bool firstTime = false;
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
-        
+
         // Build string of Country name information
         if (tag && tag == 1 && ageArray && [ageArray count] == 2)
             country = [self buildCountryString:country];
@@ -383,10 +382,11 @@ bool firstTime = false;
     // Build ---- string to underline our country name within  label
     if (cString &&  cString.length > 0) {
         tempCString = cString;
-        
-        for (int i=0; i<((country.length)/2)+2; i++)
+
+        for (int i=0; i<((country.length)/2)+2; i++) {
             lineStr = [lineStr stringByAppendingString:@"--"];
-        
+        }
+
         // Now add rest of string to show each life expectancy age for each gender in given country
         cString = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         cString = [cString stringByAppendingString:@"\n"];
@@ -396,7 +396,7 @@ bool firstTime = false;
         cString = [cString stringByAppendingString:@"\nFemale: "];
         cString = [cString stringByAppendingString:[ageArray[1] stringValue]];
     }
-    
+
     return cString;
 }
 

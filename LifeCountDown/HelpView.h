@@ -34,4 +34,6 @@
 - (id)initWithFrame:(CGRect)frame;
 - (void)setText:(NSString*)bodyTxt btnInt:(int)buttonInt;
 
+@property (strong, nonatomic) IBOutlet UILabel *helpTextLbl;
+
 @end

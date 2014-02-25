@@ -61,5 +61,6 @@
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
 - (IBAction)updateAge:(id)sender;
+- (NSString *)buildCountryString:(NSString*)cString;
 
 @end
