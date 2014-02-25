@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2013, Nathan Wisman. All rights reserved.
+ Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
  ConfigViewController.h
  
  Redistribution and use in source and binary forms, with or without modification,

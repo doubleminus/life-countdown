@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
- ViewController.m
+ DateCalculationUtil.m
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -26,27 +26,15 @@
  OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
-#import "ConfigViewController.h"
+#import <Foundation/Foundation.h>
 
-@class YLProgressBar;
-
-@interface IpadControllerViewController : UIViewController <ConfigViewDelegate> {
-    UIImageView *backgroundView1;
-    NSString *path1, *bundle1;
-    double seconds1;
-
-    __weak IBOutlet UIButton *setInfoButton;
-    __weak IBOutlet UILabel *currAgeLbl, *ageTxtLbl, *estTextLbl, *secsRem;
+@interface FileHandler : NSObject {
+    NSDictionary *fileDict;
+    NSString *path, *bundle;
 }
 
-@property (strong, nonatomic) NSDictionary *viewDict1;
-@property (strong, nonatomic) NSTimer *secondTimer1;
-@property (nonatomic) bool timerStarted1;
-@property (strong, nonatomic) IBOutlet UILabel *ageLbl, *cntLbl, *pLabel;
-@property (strong, nonatomic) IBOutlet YLProgressBar *progBar;
-
-- (NSString*)getPath1;
-- (void)verifyPlist1;
+- (NSString*)getPath;
+- (BOOL)verifyPlist;
+- (NSDictionary*)readPlist;
 
 @end

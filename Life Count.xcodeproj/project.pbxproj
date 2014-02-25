@@ -26,8 +26,6 @@
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
-		2E302C50181C361A00396616 /* back4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C4F181C361A00396616 /* back4.png */; };
-		2E302C56181C4A3300396616 /* scroll_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E302C55181C4A3300396616 /* scroll_1.png */; };
 		2E428A611854131A000E79E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
@@ -45,6 +43,7 @@
 		2EF0C792188C9F1C0090176E /* Twitter_logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */; };
 		2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF47CF7181A30DE0006B704 /* Images.xcassets */; };
 		2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E43B2B51612BF26000E984B /* Default-568h@2x.png */; };
+		6522B65F18BD16490086824A /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6522B65E18BD16490086824A /* FileHandler.m */; };
 		652727A018A5B3BD00B7558E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6527279F18A5B3BD00B7558E /* settings.png */; };
 		652A9DC518A2B78200ED69AD /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 652A9DC418A2B78200ED69AD /* tab.png */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
@@ -88,8 +87,6 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
-		2E302C4F181C361A00396616 /* back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back4.png; path = ../back4.png; sourceTree = "<group>"; };
-		2E302C55181C4A3300396616 /* scroll_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scroll_1.png; path = ../scroll_1.png; sourceTree = "<group>"; };
 		2E3D84411835EE260028C3C4 /* launch_image_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image_960.png; path = ../launch_image_960.png; sourceTree = "<group>"; };
 		2E3D84421835EE410028C3C4 /* launch_image_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_image_1136.png; path = ../launch_image_1136.png; sourceTree = "<group>"; };
 		2E3D84431835EE670028C3C4 /* launch-ipad-NONretina-portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launch-ipad-NONretina-portrait.png"; path = "../launch-ipad-NONretina-portrait.png"; sourceTree = "<group>"; };
@@ -114,6 +111,8 @@
 		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
 		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
+		6522B65D18BD16490086824A /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
+		6522B65E18BD16490086824A /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHandler.m; sourceTree = "<group>"; };
 		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		652A9DC418A2B78200ED69AD /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -201,6 +200,8 @@
 				65F94B1318B8043700F75531 /* BackgroundLayer.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
+				6522B65D18BD16490086824A /* FileHandler.h */,
+				6522B65E18BD16490086824A /* FileHandler.m */,
 				2E27E811177C134C009FBFC7 /* HelpView.h */,
 				2E27E812177C134C009FBFC7 /* HelpView.m */,
 				2E2104A7151ED7BB00D0B523 /* AppDelegate.h */,
@@ -223,8 +224,6 @@
 				2E3D84421835EE410028C3C4 /* launch_image_1136.png */,
 				2E3D84411835EE260028C3C4 /* launch_image_960.png */,
 				2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */,
-				2E302C55181C4A3300396616 /* scroll_1.png */,
-				2E302C4F181C361A00396616 /* back4.png */,
 				2EF47CF6181A2EB20006B704 /* black_grad_120.png */,
 				2E47C1A115CF93F1002213C3 /* Data.plist */,
 				2E9DC8CA17EF2D0300AD679B /* Countries.plist */,
@@ -361,7 +360,6 @@
 				652727A018A5B3BD00B7558E /* settings.png in Resources */,
 				2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
-				2E302C50181C361A00396616 /* back4.png in Resources */,
 				652A9DC518A2B78200ED69AD /* tab.png in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
@@ -369,7 +367,6 @@
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
 				2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */,
 				2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */,
-				2E302C56181C4A3300396616 /* scroll_1.png in Resources */,
 				2E194E0417E9EE7A0075C651 /* hglass.png in Resources */,
 				65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */,
 			);
@@ -409,6 +406,7 @@
 			files = (
 				2E2104A5151ED7BB00D0B523 /* main.m in Sources */,
 				2E5B774E183C73CC00CC6510 /* IpadControllerViewController.m in Sources */,
+				6522B65F18BD16490086824A /* FileHandler.m in Sources */,
 				2E2104AC151ED7BB00D0B523 /* ViewController.m in Sources */,
 				2E2104D4151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E428A611854131A000E79E7 /* AppDelegate.m in Sources */,

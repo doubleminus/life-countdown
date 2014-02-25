@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2013, Nathan Wisman. All rights reserved.
+ Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
  ViewController.h
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -35,17 +35,15 @@
 
 @interface ViewController : UIViewController <ConfigViewDelegate> {
     UIImageView *backgroundView;
-    NSString *path, *bundle;
     double seconds;
-
+    
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *tweetBtn, *facebookBtn, *configBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel,
-                                               *countdownLabel, *percentLabel;
+*countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
-@property (strong, nonatomic) NSDictionary *viewDict;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;
 @property (strong, nonatomic) IBOutlet UIView *touchView;
@@ -54,7 +52,6 @@
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)setUserInfo:(id)sender;
-- (NSString*)getPath;
-- (void)verifyPlist;
+- (void)loadUserData;
 
 @end

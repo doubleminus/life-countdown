@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2013, Nathan Wisman. All rights reserved.
+ Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
  DateCalculationUtil.m
  
  Redistribution and use in source and binary forms, with or without modification,

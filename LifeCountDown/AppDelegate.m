@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2013, Nathan Wisman. All rights reserved.
+ Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
  AppDelegate.m
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -38,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
     // Override point for customization after application launch.
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.icvc = [[IpadControllerViewController alloc] initWithNibName:@"IpadControllerViewController" bundle:nil];
@@ -48,7 +48,7 @@
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
         self.window.rootViewController = self.viewController;
     }
-
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -58,7 +58,7 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.icvc.secondTimer1 invalidate];
         self.icvc.timerStarted1 = NO;
@@ -71,10 +71,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.icvc.secondTimer1 invalidate];
         self.icvc.timerStarted1 = NO;
@@ -89,12 +89,12 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.icvc verifyPlist1];
     }
     else {
-        [self.viewController verifyPlist];
+        [self.viewController loadUserData];
     }
 }
 
@@ -102,12 +102,12 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.icvc verifyPlist1];
     }
     else {
-        [self.viewController verifyPlist];
+        [self.viewController loadUserData];
     }
 }
 
@@ -117,7 +117,7 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.icvc.secondTimer1 invalidate];
     }
