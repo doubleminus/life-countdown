@@ -36,5 +36,6 @@
 - (NSString*)getPath;
 - (BOOL)verifyPlist;
 - (NSDictionary*)readPlist;
+- (void)deletePlist;
 
 @end

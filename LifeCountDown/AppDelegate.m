@@ -91,7 +91,7 @@
      */
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.icvc verifyPlist1];
+        [self.icvc loadUserData];
     }
     else {
         [self.viewController loadUserData];
@@ -104,7 +104,7 @@
      */
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.icvc verifyPlist1];
+        [self.icvc loadUserData];
     }
     else {
         [self.viewController loadUserData];

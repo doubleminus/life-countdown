@@ -26,10 +26,10 @@
  OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface DateCalculationUtilTest : SenTestCase
+@interface DateCalculationUtilTest : XCTestCase
 
 -(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(NSInteger)bAge;
 

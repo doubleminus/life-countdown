@@ -27,26 +27,24 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "FileHandler.h"
 #import "ConfigViewController.h"
 
 @class YLProgressBar;
 
 @interface IpadControllerViewController : UIViewController <ConfigViewDelegate> {
     UIImageView *backgroundView1;
-    NSString *path1, *bundle1;
     double seconds1;
 
     __weak IBOutlet UIButton *setInfoButton;
     __weak IBOutlet UILabel *currAgeLbl, *ageTxtLbl, *estTextLbl, *secsRem;
 }
 
-@property (strong, nonatomic) NSDictionary *viewDict1;
 @property (strong, nonatomic) NSTimer *secondTimer1;
 @property (nonatomic) bool timerStarted1;
 @property (strong, nonatomic) IBOutlet UILabel *ageLbl, *cntLbl, *pLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progBar;
 
-- (NSString*)getPath1;
-- (void)verifyPlist1;
+- (void)loadUserData;
 
 @end

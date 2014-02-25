@@ -26,11 +26,11 @@
  OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <QuartzCore/QuartzCore.h>
 
 @class ViewController;
 
-@interface LifeCountDownTests : SenTestCase
+@interface LifeCountDownTests : XCTestCase
 
 @end

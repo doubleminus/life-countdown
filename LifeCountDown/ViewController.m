@@ -51,11 +51,12 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     // If we return from configView in landscape, then adjust UI components accordingly
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
+    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [self handleLandscape];
-    
+    }
+
     _progressView.hidden = YES;
     
     // Adjust iPhone scroll rect based on screen height
@@ -75,16 +76,19 @@ FileHandler *fileHand;
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
     
-    if (nsdict)
+    if (nsdict) {
         [self displayUserInfo:nsdict];
-    else
+    }
+    else {
         [self firstTimeUseSetup];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    fileHand = [[FileHandler alloc] init];
     _touchView = [_touchView init];
     
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
@@ -93,8 +97,6 @@ FileHandler *fileHand;
     [[self view] sendSubviewToBack:backgroundView];
     
     [_touchView addGestureRecognizer:_kTouch];
-    
-    fileHand = [[FileHandler alloc] init];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -129,8 +131,9 @@ FileHandler *fileHand;
         [formatter setGeneratesDecimalNumbers:NO];
         [formatter setMaximumFractionDigits:0];
         
-        if ([dateUtil currentAgeDateComp] != nil)
+        if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
+        }
         
         _currentAgeLabel.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
         
@@ -242,20 +245,24 @@ FileHandler *fileHand;
 }
 
 - (IBAction)toggleComponents:(id)sender {
-    if (_currentAgeLabel.hidden && _ageLabel.hidden)
+    if (_currentAgeLabel.hidden && _ageLabel.hidden) {
         [self showComponents];
-    else
+    }
+    else {
         [self handlePortrait];
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
     
-    if (interfaceOrientation == 1)
+    if (interfaceOrientation == 1) {
         [self handlePortrait];
-    else if (interfaceOrientation == 3 || interfaceOrientation == 4) // Adjust label locations in landscape right or left orientation
+    }
+    else if (interfaceOrientation == 3 || interfaceOrientation == 4) { // Adjust label locations in landscape right or left orientation
         [self handleLandscape];
+    }
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -314,12 +321,15 @@ FileHandler *fileHand;
         _percentLabel.hidden = NO;
         
         // Apply color to progress bar based on lifespan
-        if (progAmount >= .66)
+        if (progAmount >= .66) {
             _progressView.progressTintColor = [UIColor greenColor];
-        else if (progAmount && progAmount > .33)
+        }
+        else if (progAmount && progAmount > .33) {
             _progressView.progressTintColor = [UIColor yellowColor];
-        else
+        }
+        else {
             _progressView.progressTintColor = [UIColor redColor];
+        }
     }
 }
 

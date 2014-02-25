@@ -28,6 +28,7 @@
 
 #import "LifeCountDownTests.h"
 #import "ViewController.h"
+#import "FileHandler.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation LifeCountDownTests
@@ -41,12 +42,18 @@
 }
 
 - (void)testExample {
-    ViewController *vc = [[ViewController alloc] init];
-    [vc verifyPlist];
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *testPath = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
 
-    STAssertEqualObjects(testPath, [vc getPath], @"Ensure path is set correctly");    
+    FileHandler *fh = [[FileHandler alloc] init];
+
+    XCTAssertTrue([fh verifyPlist], @"Make sure plist exists"); // This should also set path
+
+    XCTAssertEqualObjects(testPath, [fh getPath], @"Ensure path is set correctly");
+    
+    [fh deletePlist];
+
+    XCTAssertFalse([fh verifyPlist], @"Make sure plist is now deleted"); // This should also set path
 }
 
 @end

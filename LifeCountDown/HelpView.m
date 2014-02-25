@@ -62,7 +62,6 @@ UILabel *helpTextLbl;
         countryNameStr = bodyTxt;
 
     [helpTextLbl setText:[self getText:buttonInt]];
-  //  [helpTextLbl setFrame:CGRectMake(10, 10, 250, 20)];
     [helpTextLbl sizeToFit];
     [self addSubview:helpTextLbl];
 }

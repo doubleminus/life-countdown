@@ -36,22 +36,20 @@
 NSNumberFormatter *formatter;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp1 = NO;
+FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     // If we return from configView in landscape, then adjust UI components accordingly
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4)
+    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [self handleLandscape1];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    // Check to see if we already have an age value set in our plist
-    //[self deletePlist];
-    [self verifyPlist1];
-
+    [self loadUserData];
     [self setUserInfo1];
 }
 
@@ -75,6 +73,18 @@ bool exceedExp1 = NO;
     [btnLayer setCornerRadius:5.0f];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+- (void)loadUserData {
+    // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
+    NSDictionary *nsdict = [fileHand readPlist];
+    
+    if (nsdict) {
+        [self displayUserInfo:nsdict];
+    }
+    else {
+      //  [self firstTimeUseSetup];
+    }
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -101,8 +111,9 @@ bool exceedExp1 = NO;
         [formatter setGeneratesDecimalNumbers:NO];
         [formatter setMaximumFractionDigits:0];
         
-        if ([dateUtil currentAgeDateComp] != nil)
+        if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
+        }
 
         _ageLbl.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
 
@@ -156,88 +167,16 @@ bool exceedExp1 = NO;
 }
 /****  END USER INFORMATION METHODS  ****/
 
-
-/****  BEGIN PLIST METHODS  ****/
-- (void)verifyPlist1 {
-    NSError *error;
-
-    // Get path to your documents directory from the list.
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    path1 = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-    //NSLog(@"path in createplistpath: %@", path);
-
-    // Our plist exists, just read it.
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path1]) {
-        //NSLog(@"Plist file exists");
-        [self readPlist1];
-    }
-    else { // There is no plist. Have the user provide info then write it to plist.
-        //NSLog(@"no plist!!");
-        bundle1 = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"]; // Get a path to your plist created manually in Xcode
-        [[NSFileManager defaultManager] copyItemAtPath:bundle1 toPath:path1 error:&error]; // Copy this plist to your documents directory.
-        [self setUserInfo1];
-    }
-}
-
-- (void)readPlist1 {
-    NSString *errorDesc = nil;
-    NSPropertyListFormat format;
-
-    if (path1 != nil && path1.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path1]) {
-        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path1];
-        _viewDict1 = (NSDictionary *)[NSPropertyListSerialization
-                                     propertyListFromData:plistXML
-                                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                     format:&format
-                                     errorDescription:&errorDesc];
-        // if (!_viewDict) {
-        //NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
-        // }
-
-        // If we have ALL of the values we need, display info to user.
-        if ([_viewDict1 objectForKey:@"infoDict"] != nil) {
-            DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
-            NSDictionary *nsdict = [_viewDict1 objectForKey:@"infoDict"];
-            [dateUtil setBirthDate:[nsdict objectForKey:@"birthDate"]];
-            [self displayUserInfo:nsdict];
-        }
-        // Otherwise, have the user set this info
-        else {
-            [self setUserInfo1];
-        }
-    }
-}
-
-- (void)deletePlist1 {
-    // For error information
-    NSError *error;
-    
-    // Create file manager
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    
-    // Point to Document directory
-    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
-    
-    // Attempt to delete the file at filePath2
-    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-    
-    // Show contents of Documents directory for debugging purposes
-    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
-}
-
-- (NSString*)getPath1 { return self->path1; }
-/**** END PLIST METHODS ****/
-
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
 
-    if (interfaceOrientation == 1)
+    if (interfaceOrientation == 1) {
         [self handlePortrait1];
-    else if (interfaceOrientation == 3 || interfaceOrientation == 4) // Adjust label locations in landscape right or left orientation
+    }
+    else if (interfaceOrientation == 3 || interfaceOrientation == 4) { // Adjust label locations in landscape right or left orientation
         [self handleLandscape1];
+    }
 }
 
 - (void)showComponents1 {

@@ -93,6 +93,25 @@
      }*/
 }
 
+- (void)deletePlist {
+    // For error information
+    NSError *error;
+    
+    // Create file manager
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    
+    // Point to Document directory
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *filePath2 = [documentsDirectory stringByAppendingPathComponent:@"Data.plist"];
+    
+    // Attempt to delete the file at filePath2
+    if ([fileMgr removeItemAtPath:filePath2 error:&error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    
+    // Show contents of Documents directory for debugging purposes
+    NSLog(@"Documents directory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+}
+
 - (NSString*)getPath {
     return self->path;
 }
