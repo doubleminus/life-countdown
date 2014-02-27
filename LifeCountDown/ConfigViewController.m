@@ -50,9 +50,21 @@ bool firstTime = false;
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)];
-    lineView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:lineView];
+    [self generateLineViews];
+}
+
+- (void)generateLineViews {
+    NSMutableArray *lineArray = [[NSMutableArray alloc] init];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 351, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 648, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 721, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 816, self.view.frame.size.width, 1)]];
+
+    for (UIView *u in lineArray) {
+        u.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:u];
+    }
 }
 
 - (void)setupScrollView {
