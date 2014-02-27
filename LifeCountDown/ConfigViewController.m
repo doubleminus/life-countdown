@@ -44,7 +44,18 @@ bool firstTime = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    [self setupScrollView];
+    [self setupHelpView];
+
+    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)];
+    lineView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineView];
+}
+
+- (void)setupScrollView {
     // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
@@ -75,7 +86,9 @@ bool firstTime = false;
     countryInfo = [dateUtil getCountryDict];
     countryArray = [countryInfo allKeys];
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    
+}
+
+- (void)setupHelpView {
     // Setup help view but hide it
     _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
     _hView.hidden = YES;
@@ -89,8 +102,7 @@ bool firstTime = false;
     [_hView.layer setShadowOpacity:0.8];
     [_hView.layer setShadowRadius:3.0];
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-    
-    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

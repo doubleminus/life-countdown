@@ -53,6 +53,7 @@
     XCTAssertEqual([hv.helpTextLbl textColor], [UIColor blackColor], @"Label text color should be black");
     XCTAssertEqual([hv.helpTextLbl backgroundColor], [UIColor clearColor], @"Label text color should be black");
     XCTAssertEqual([hv.helpTextLbl lineBreakMode], NSLineBreakByWordWrapping);
+    XCTAssertEqual(hv.helpTextLbl.hidden, NO);
 
     [hv setText:@"United States" btnInt:1];
 
