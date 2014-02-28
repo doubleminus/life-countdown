@@ -57,6 +57,7 @@ bool firstTime = false;
     NSMutableArray *lineArray = [[NSMutableArray alloc] init];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 351, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 565, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 648, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 721, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 816, self.view.frame.size.width, 1)]];
@@ -388,10 +389,12 @@ bool firstTime = false;
         ageArray = [countryInfo objectForKey:country];
 
         // Build string of Country name information
-        if (tag && tag == 1 && ageArray && [ageArray count] == 2)
+        if (tag && tag == 1 && ageArray && [ageArray count] == 2) {
             country = [self buildCountryString:country];
-        
+        }
+
         [_hView setText:country btnInt:tag];
+        [self.view bringSubviewToFront:_hView];
         _hView.hidden = NO;
     }
     else {
@@ -402,7 +405,7 @@ bool firstTime = false;
 // Builds a string combining Country name, male & female life expectancies, to display in helpview
 - (NSString *)buildCountryString:(NSString*)cString {
     NSString *lineStr = @"", *tempCString = @"";
-    
+
     // Build ---- string to underline our country name within  label
     if (cString &&  cString.length > 0) {
         tempCString = cString;

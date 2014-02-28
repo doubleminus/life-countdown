@@ -47,7 +47,6 @@ NSString *countryNameStr, *helpMsg;
         [_helpTextLbl setTextColor:[UIColor blackColor]];
         [_helpTextLbl setBackgroundColor:[UIColor clearColor]];
         [_helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
-
         [_helpTextLbl setLineBreakMode:NSLineBreakByWordWrapping];
     }
 
