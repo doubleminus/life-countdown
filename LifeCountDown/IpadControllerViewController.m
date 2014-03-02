@@ -36,6 +36,10 @@
 NSNumberFormatter *formatter;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp1 = NO;
+UIView *shadeView; // Used for first app run only
+UIToolbar *toolbar; // Used for first app run only
+ConfigViewController *enterInfo1;
+DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,30 +77,53 @@ FileHandler *fileHand;
     [btnLayer setCornerRadius:5.0f];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    enterInfo1.view.frame = CGRectMake(0,100,320,2000);
 }
 
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
-    
+
     if (nsdict) {
         [self displayUserInfo:nsdict];
     }
     else {
-      //  [self firstTimeUseSetup];
+        [self firstTimeUseSetup];
     }
+}
+
+- (void)firstTimeUseSetup {
+    _cntLbl.hidden = YES;
+    secsRem.hidden = YES;
+
+    // Mask primary UIView until user data has been entered
+    shadeView = [[UIView alloc] init];
+    shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
+    shadeView.hidden = NO;
+    shadeView.opaque = NO;
+    shadeView.alpha = .6;
+    shadeView.backgroundColor = [UIColor clearColor];
+    [[self view] addSubview:shadeView];
+    
+    // Custom translucent background blurring solution
+    toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
+    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    toolbar.barTintColor = [UIColor clearColor];
+    toolbar.alpha = .8;
+    [self.view.superview insertSubview:toolbar belowSubview:shadeView];
+
+    [self setUserInfo1];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (void)setUserInfo1 {
-    ConfigViewController *enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-
     // Important to set the viewcontroller's delegate to be self
     enterInfo1.delegate = self;
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
-    //enterInfo1.view.frame = CGRectMake(40,40,320,2000);
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -110,7 +137,7 @@ FileHandler *fileHand;
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setGeneratesDecimalNumbers:NO];
         [formatter setMaximumFractionDigits:0];
-        
+
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
         }
@@ -181,7 +208,6 @@ FileHandler *fileHand;
 
 - (void)showComponents1 {
     secsRem.hidden = NO;
-    
     setInfoButton.hidden = NO;
     ageTxtLbl.hidden = NO;
     currAgeLbl.hidden = NO;
@@ -206,8 +232,6 @@ FileHandler *fileHand;
 
 - (void)handleLandscape1 {
     backgroundView1.hidden = YES;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"back4.png"]];
-
     _ageLbl.hidden = YES;
     _pLabel.hidden = NO;
     currAgeLbl.hidden = YES;

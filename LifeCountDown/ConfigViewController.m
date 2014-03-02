@@ -92,9 +92,9 @@ bool firstTime = false;
     _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
     _hView.hidden = YES;
     _hView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_hView];
     _hView.alpha = 0.9;
     _hView.layer.cornerRadius = 10.0f;
+    [self.view addSubview:_hView];
 
     // Set drop shadow
     [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
@@ -110,10 +110,10 @@ bool firstTime = false;
     [self.view insertSubview:bgToolbar belowSubview:_hView];
     bgToolbar.hidden = YES;
     
+    // Create tap gesture for dismissing Help View
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
     tap1.numberOfTapsRequired = 1;
     tap1.numberOfTouchesRequired = 1;
-  //  tap1.delegate = _hView;
     [_hView addGestureRecognizer:tap1];
 }
 
@@ -385,7 +385,6 @@ bool firstTime = false;
     else
         plusLbl.hidden = NO;
 }
-
 
 - (IBAction)showHelp:(id)sender {
     CGRect visibleRect;
