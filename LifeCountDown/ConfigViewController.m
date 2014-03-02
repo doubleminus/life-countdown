@@ -36,6 +36,7 @@
 FileHandler *fileHand;
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
+UIToolbar* bgToolbar;
 NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
 NSArray *ageArray;
@@ -53,33 +54,18 @@ bool firstTime = false;
     [self generateLineViews];
 }
 
-- (void)generateLineViews {
-    NSMutableArray *lineArray = [[NSMutableArray alloc] init];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 351, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 565, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 648, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 721, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 816, self.view.frame.size.width, 1)]];
-
-    for (UIView *u in lineArray) {
-        u.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:u];
-    }
-}
-
 - (void)setupScrollView {
     // Set up scroll view
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1055)];
-    
+
     // Create border around our config view content
     [contentView.layer setCornerRadius:15.0f];
     [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [contentView.layer setBorderWidth:1.5f];
-    
+
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         padScrollRect = CGRectMake(750, 20, 900, 1200);
@@ -109,24 +95,53 @@ bool firstTime = false;
     [self.view addSubview:_hView];
     _hView.alpha = 0.9;
     _hView.layer.cornerRadius = 10.0f;
-    
+
     // Set drop shadow
     [_hView.layer setShadowColor:[UIColor blackColor].CGColor];
     [_hView.layer setShadowOpacity:0.8];
     [_hView.layer setShadowRadius:3.0];
     [_hView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 
+    // Use UIToolBar to blur our background when presenting HelpView (to encourage focus on help view text)
+    bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.bounds];
+    bgToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    bgToolbar.barTintColor = [UIColor clearColor];
+    bgToolbar.alpha = .8;
+    [self.view insertSubview:bgToolbar belowSubview:_hView];
+    bgToolbar.hidden = YES;
+    
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
+    tap1.numberOfTapsRequired = 1;
+    tap1.numberOfTouchesRequired = 1;
+  //  tap1.delegate = _hView;
+    [_hView addGestureRecognizer:tap1];
+}
+
+- (void)generateLineViews {
+    NSMutableArray *lineArray = [[NSMutableArray alloc] init];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 351, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 565, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 648, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 721, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 816, self.view.frame.size.width, 1)]];
+
+    for (UIView *u in lineArray) {
+        u.backgroundColor = [UIColor whiteColor];
+       // [self.view addSubview:u];
+        [self.view insertSubview:u belowSubview:bgToolbar];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
-    
+
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
     //[self readPlist];
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsDict = [fileHand readPlist];
-    
+
     if (nsDict) {
         firstTime = NO;
         [self setupDisplay:nsDict];
@@ -135,7 +150,7 @@ bool firstTime = false;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [scroller setFrame:padScrollRect];
     // else if (!firstTime)
@@ -159,7 +174,7 @@ bool firstTime = false;
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
     [_animateTimer invalidate];
-    
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Config view is not slid out yet
         if (firstTime) {
@@ -277,11 +292,11 @@ bool firstTime = false;
 - (void)readPlist {
     NSPropertyListFormat format;
     NSString *errorDesc = nil;
-    
+
     // Get path to documents directory from the list.
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-    
+
     if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
         _viewDict = (NSDictionary *)[NSPropertyListSerialization
@@ -289,7 +304,7 @@ bool firstTime = false;
                                      mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                      format:&format
                                      errorDescription:&errorDesc];
-        
+
         if (!_viewDict || [_viewDict count] == 0) { // No nsdictionary, or it's empty - user needs to provide config data
             //NSLog(@"Error reading plist: %@", errorDesc);
             firstTime = YES;
@@ -299,7 +314,7 @@ bool firstTime = false;
             // If we have ALL of the values we need, display info to user.
             NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
             firstTime = NO;
-            
+
             if (nsDict != nil)
                 [self setupDisplay:nsDict];
         }
@@ -313,7 +328,7 @@ bool firstTime = false;
     NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: infoDict, nil]
                                                           forKeys:[NSArray arrayWithObjects: @"infoDict", nil]];
     NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
-    
+
     if(plistData) {
         [plistData writeToFile:plistPath atomically:YES];
         //NSLog(@"file written to path: %@", path);
@@ -328,29 +343,29 @@ bool firstTime = false;
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     [myFormatter setDateFormat:@"yyyyMMdd"];
-    
+
     // Birthdate has already been set, so set our datepicker
     if ([infoDctnry objectForKey:@"birthDate"] != nil) {
         //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
         NSString *bdayStr = [myFormatter stringFromDate:[infoDctnry objectForKey:@"birthDate"]];
         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
-        
+
         if ([infoDctnry objectForKey:@"gender"] != nil) {
             // Set Gender switch in UI
             if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"])
                 [_genderToggle setSelectedSegmentIndex:0];
             else
                 [_genderToggle setSelectedSegmentIndex:1];
-            
+
             // Set country in UIPicker
             [self.ctryPicker selectRow:[[infoDctnry objectForKey:@"countryIndex"] integerValue] inComponent:0 animated:NO];
-            
+
             // Set smoker switch in UI
             if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
                 [_smokeSwitch setOn:NO];
             else
                 [_smokeSwitch setOn:YES];
-            
+
             // Set hours of exercise/week
             [_daysLbl setText:[infoDctnry objectForKey:@"hrsExercise"]];
             [_daySlider setValue:[_daysLbl.text floatValue]];
@@ -371,10 +386,11 @@ bool firstTime = false;
         plusLbl.hidden = NO;
 }
 
+
 - (IBAction)showHelp:(id)sender {
     CGRect visibleRect;
     country = @"";
-    
+
     if (!_hView || _hView.hidden == YES) {
         visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
         visibleRect.size = scroller.bounds.size;
@@ -383,7 +399,7 @@ bool firstTime = false;
         visibleRect.size.width *= .85;
         visibleRect.size.height *= .5;
         [_hView setFrame:visibleRect];
-        
+
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
@@ -394,10 +410,12 @@ bool firstTime = false;
         }
 
         [_hView setText:country btnInt:tag];
-        [self.view bringSubviewToFront:_hView];
+
         _hView.hidden = NO;
+        bgToolbar.hidden = NO;
     }
     else {
+        bgToolbar.hidden = YES;
         _hView.hidden = YES;
     }
 }
@@ -406,7 +424,7 @@ bool firstTime = false;
 - (NSString *)buildCountryString:(NSString*)cString {
     NSString *lineStr = @"", *tempCString = @"";
 
-    // Build ---- string to underline our country name within  label
+    // Build ---- string to underline our country name within label
     if (cString &&  cString.length > 0) {
         tempCString = cString;
 
@@ -435,7 +453,8 @@ bool firstTime = false;
     _genderToggle = nil;
     _daysLbl = nil;
     _smokeSwitch = nil;
-    
+    bgToolbar = nil;
+
     [super viewDidUnload];
 }
 
