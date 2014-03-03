@@ -34,8 +34,9 @@
 }
 
 - (NSString*)getPath;
-- (BOOL)verifyPlist;
 - (NSDictionary*)readPlist;
+- (BOOL)verifyPlist;
+- (void)writePlist:(NSDictionary*)infoDict;
 - (void)deletePlist;
 
 @end

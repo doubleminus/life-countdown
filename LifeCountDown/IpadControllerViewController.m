@@ -54,7 +54,7 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-    [self setUserInfo1];
+   // [self setUserInfo1:nil];
 }
 
 - (void)viewDidLoad {
@@ -79,7 +79,6 @@ FileHandler *fileHand;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.view.frame = CGRectMake(0,100,320,2000);
 }
 
 - (void)loadUserData {
@@ -90,7 +89,7 @@ FileHandler *fileHand;
         [self displayUserInfo:nsdict];
     }
     else {
-        [self firstTimeUseSetup];
+      //  [self firstTimeUseSetup];
     }
 }
 
@@ -114,11 +113,11 @@ FileHandler *fileHand;
     toolbar.alpha = .8;
     [self.view.superview insertSubview:toolbar belowSubview:shadeView];
 
-    [self setUserInfo1];
+    [self setUserInfo:nil];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
-- (void)setUserInfo1 {
+- (IBAction)setUserInfo:(id)sender {
     // Important to set the viewcontroller's delegate to be self
     enterInfo1.delegate = self;
 

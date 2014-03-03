@@ -45,7 +45,6 @@ bool firstTime = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setupScrollView];
     [self setupHelpView];
 
@@ -68,18 +67,18 @@ bool firstTime = false;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        padScrollRect = CGRectMake(750, 20, 900, 1200);
+        padScrollRect = CGRectMake(750, 0, 900, 1200);
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
     }
-    
+
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
     bgLayer.frame = contentView.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
-    
+
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
     countryInfo = [dateUtil getCountryDict];
@@ -109,7 +108,7 @@ bool firstTime = false;
     bgToolbar.alpha = .8;
     [self.view insertSubview:bgToolbar belowSubview:_hView];
     bgToolbar.hidden = YES;
-    
+
     // Create tap gesture for dismissing Help View
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
     tap1.numberOfTapsRequired = 1;
@@ -138,7 +137,7 @@ bool firstTime = false;
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
 
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
-    //[self readPlist];
+
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsDict = [fileHand readPlist];
 
@@ -151,12 +150,9 @@ bool firstTime = false;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setFrame:padScrollRect];
-    // else if (!firstTime)
-    //     [scroller setFrame:phoneScrollRect];
-    //  else // Set for first-time use
-    // scroller.frame = CGRectOffset(scroller.frame, 310, 0);
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -181,7 +177,7 @@ bool firstTime = false;
             [scroller setFrame:CGRectMake(0, 0, 320, 1275)];
             firstTime = NO;
         }
-        else if (CGRectEqualToRect(scroller.frame, padScrollRect) || CGRectEqualToRect(scroller.frame, phoneScrollRect)) {
+        else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
             }];
@@ -189,7 +185,7 @@ bool firstTime = false;
         else {
             if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
                 [self updateAge:nil];
-                
+
                 [UIView animateWithDuration:0.5f animations:^{
                     scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
                 }];
@@ -206,24 +202,23 @@ bool firstTime = false;
     }
 }
 
-/*
- - (void)handleFirstUse {
- _animateTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
- target: self
- selector: @selector(animateSlideout)
- userInfo: nil
- repeats: YES];
- }
+- (void)handleFirstUse {
+    _animateTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
+    target: self
+    selector: @selector(animateSlideout)
+    userInfo: nil
+    repeats: YES];
+}
  
- // Encourage user to tap configview and slide it out and provide data
- - (void)animateSlideout {
- slideDistance = 30; // Only slide view out slightly, as a hint
- 
- [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
- scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
- scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
- } completion:nil];
- } */
+// Encourage user to tap configview and slide it out and provide data
+- (void)animateSlideout {
+    slideDistance = 30; // Only slide view out slightly, as a hint
+
+    [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
+        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+    } completion:nil];
+}
 
 // Disable landscape orientation
 - (BOOL)shouldAutorotate {
@@ -237,33 +232,37 @@ bool firstTime = false;
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
     //NSLog(@"COUNTRY: %@", country);
-    
+
     if ([self.genderToggle selectedSegmentIndex] == 0)
         gender = @"f";
     else
         gender = @"m";
-    
+
     if (!self.smokeSwitch.isOn)
         smokeStatus = @"nonsmoker";
     else
         smokeStatus = @"smoker";
-    
+
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
                        gender, smokeStatus, _daysLbl.text, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
                                                            @"gender", @"smokeStatus", @"hrsExercise", nil]];
-        
-        if (personInfo != nil)
-            [self writePlist:personInfo];
+
+        if (personInfo != nil) {
+            [fileHand writePlist:personInfo];
+        }
     }
-    
+
     // Check to see if anyone is listening...
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
         // ...then send the delegate function with amount entered by the user
         [_delegate displayUserInfo:personInfo];
-        [self dismissViewControllerAnimated:YES completion:nil];
+
+        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
@@ -271,73 +270,22 @@ bool firstTime = false;
     NSInteger val = 0;
     // Cast sender to UISlider so we can get tag #
     int tagNum = (int)[(UIButton *)sender tag];
-    
+
     if (tagNum == 1) {
         _daySlider = (UISlider*)sender;
         val = lround(_daySlider.value);
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
-        
+
         plusLbl.hidden = (val < 10) ? YES : NO;
     }
     else if (tagNum == 2) {
         _sitSlider = (UISlider*)sender;
         val = lround(_sitSlider.value);
         _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
-        
+
         plusLbl2.hidden = (val < 10) ? YES : NO;
     }
 }
-
-/**** BEGIN PLIST METHODS ****/
-- (void)readPlist {
-    NSPropertyListFormat format;
-    NSString *errorDesc = nil;
-
-    // Get path to documents directory from the list.
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    path = [rootPath stringByAppendingPathComponent:@"Data.plist"]; // Create a full file path.
-
-    if (path != nil && path.length > 1 && [[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
-        _viewDict = (NSDictionary *)[NSPropertyListSerialization
-                                     propertyListFromData:plistXML
-                                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                     format:&format
-                                     errorDescription:&errorDesc];
-
-        if (!_viewDict || [_viewDict count] == 0) { // No nsdictionary, or it's empty - user needs to provide config data
-            //NSLog(@"Error reading plist: %@", errorDesc);
-            firstTime = YES;
-            // [self handleFirstUse];
-        }
-        else if ([_viewDict objectForKey:@"infoDict"] != nil) {
-            // If we have ALL of the values we need, display info to user.
-            NSDictionary *nsDict = [_viewDict objectForKey:@"infoDict"];
-            firstTime = NO;
-
-            if (nsDict != nil)
-                [self setupDisplay:nsDict];
-        }
-    }
-}
-
-- (void)writePlist:(NSDictionary*)infoDict {
-    NSString *error;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
-    NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects: infoDict, nil]
-                                                          forKeys:[NSArray arrayWithObjects: @"infoDict", nil]];
-    NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:plistDict format:NSPropertyListXMLFormat_v1_0 errorDescription:&error];
-
-    if(plistData) {
-        [plistData writeToFile:plistPath atomically:YES];
-        //NSLog(@"file written to path: %@", path);
-    }
-    /*else {
-     NSLog(@"Error in writing to file: %@", error);
-     }*/
-}
-/**** END PLIST METHODS ****/
 
 // Set our UI component values based on what user entered previously
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
