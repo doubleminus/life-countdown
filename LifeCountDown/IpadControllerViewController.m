@@ -54,7 +54,13 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-   // [self setUserInfo1:nil];
+    
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    // Important to set the viewcontroller's delegate to be self
+    enterInfo1.delegate = self;
+    
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -77,8 +83,6 @@ FileHandler *fileHand;
     [btnLayer setCornerRadius:5.0f];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
 }
 
 - (void)loadUserData {
@@ -113,16 +117,12 @@ FileHandler *fileHand;
     toolbar.alpha = .8;
     [self.view.superview insertSubview:toolbar belowSubview:shadeView];
 
-    [self setUserInfo:nil];
+  //  [self setUserInfo:nil];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    // Important to set the viewcontroller's delegate to be self
-    enterInfo1.delegate = self;
-
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    [enterInfo1 animateConfig:nil];
 }
 
 #pragma mark displayUserInfo Delegate function

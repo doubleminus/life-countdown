@@ -59,7 +59,7 @@
 @property (strong, nonatomic) HelpView *hView;
 
 - (IBAction)showHelp:(id)sender;
-- (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec;
+- (IBAction)animateConfig:(id)sender;
 - (IBAction)updateAge:(id)sender;
 - (NSString *)buildCountryString:(NSString*)cString;
 

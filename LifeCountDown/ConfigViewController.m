@@ -45,7 +45,7 @@ bool firstTime = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupScrollView];
+   // [self setupScrollView];
     [self setupHelpView];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
@@ -151,7 +151,10 @@ bool firstTime = false;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        NSLog(@"HERE BITCHES");
+        [self setupScrollView];
         [scroller setFrame:padScrollRect];
+        [self.view setFrame:padScrollRect];
     }
 }
 
@@ -168,7 +171,7 @@ bool firstTime = false;
 }
 
 // Method to allow sliding view out from side on iPad
-- (IBAction)animateConfig:(UITapGestureRecognizer*)gestRec {
+- (IBAction)animateConfig:(id)sender {
     [_animateTimer invalidate];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -178,6 +181,7 @@ bool firstTime = false;
             firstTime = NO;
         }
         else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
+            NSLog(@"IN HERE");
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
             }];
@@ -218,6 +222,12 @@ bool firstTime = false;
         scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
         scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
     } completion:nil];
+}
+
+- (void)slideBack {
+    [UIView animateWithDuration:0.5f animations:^{
+        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+    }];
 }
 
 // Disable landscape orientation
@@ -262,6 +272,9 @@ bool firstTime = false;
 
         if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
             [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [self slideBack];
         }
     }
 }
