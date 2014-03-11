@@ -55,12 +55,13 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
 @property (strong, nonatomic) IBOutlet UISwitch *smokeSwitch;
 @property (strong, nonatomic) NSDictionary* viewDict;
-@property (strong, nonatomic) NSTimer *animateTimer;
 @property (strong, nonatomic) HelpView *hView;
+@property (nonatomic, assign) bool firstTime;
 
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(id)sender;
 - (IBAction)updateAge:(id)sender;
 - (NSString *)buildCountryString:(NSString*)cString;
+- (void)firstConfig;
 
 @end

@@ -41,11 +41,11 @@ NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
 NSArray *ageArray;
 int slideDistance = 300;
-bool firstTime = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // [self setupScrollView];
+    _firstTime = NO;
+    [self setupScrollView];
     [self setupHelpView];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
@@ -127,7 +127,6 @@ bool firstTime = false;
 
     for (UIView *u in lineArray) {
         u.backgroundColor = [UIColor whiteColor];
-       // [self.view addSubview:u];
         [self.view insertSubview:u belowSubview:bgToolbar];
     }
 }
@@ -142,8 +141,11 @@ bool firstTime = false;
     NSDictionary *nsDict = [fileHand readPlist];
 
     if (nsDict) {
-        firstTime = NO;
+        _firstTime = NO;
         [self setupDisplay:nsDict];
+    }
+    else {
+        _firstTime = YES;
     }
 }
 
@@ -151,10 +153,8 @@ bool firstTime = false;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        NSLog(@"HERE BITCHES");
         [self setupScrollView];
         [scroller setFrame:padScrollRect];
-        [self.view setFrame:padScrollRect];
     }
 }
 
@@ -171,17 +171,43 @@ bool firstTime = false;
 }
 
 // Method to allow sliding view out from side on iPad
-- (IBAction)animateConfig:(id)sender {
-    [_animateTimer invalidate];
-
+- (void)firstConfig {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Config view is not slid out yet
-        if (firstTime) {
-            [scroller setFrame:CGRectMake(0, 0, 320, 1275)];
-            firstTime = NO;
+            NSLog(@"in HERE");
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, slideDistance , 0);
+            }];
+
+            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+                [self updateAge:nil];
+
+                [UIView animateWithDuration:0.5f animations:^{
+                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                }];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                                message:@"Please select a gender to continue."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+}
+
+// Method to allow sliding view out from side on iPad
+- (IBAction)animateConfig:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // Config view is not slid out yet
+        if (_firstTime) {
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, -slideDistance, 0);
+            }];
+            _firstTime = NO;
         }
         else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
-            NSLog(@"IN HERE");
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
             }];
@@ -204,24 +230,6 @@ bool firstTime = false;
             }
         }
     }
-}
-
-- (void)handleFirstUse {
-    _animateTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
-    target: self
-    selector: @selector(animateSlideout)
-    userInfo: nil
-    repeats: YES];
-}
- 
-// Encourage user to tap configview and slide it out and provide data
-- (void)animateSlideout {
-    slideDistance = 30; // Only slide view out slightly, as a hint
-
-    [UIView animateWithDuration:2.0f delay:0.0f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
-        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
-    } completion:nil];
 }
 
 - (void)slideBack {

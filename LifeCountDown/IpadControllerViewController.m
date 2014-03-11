@@ -54,11 +54,11 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-    
+
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
     // Important to set the viewcontroller's delegate to be self
     enterInfo1.delegate = self;
-    
+
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
 }
@@ -93,14 +93,14 @@ FileHandler *fileHand;
         [self displayUserInfo:nsdict];
     }
     else {
-      //  [self firstTimeUseSetup];
+     //   [self firstTimeUseSetup];
     }
 }
 
 - (void)firstTimeUseSetup {
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
-
+    [enterInfo1 firstConfig];
     // Mask primary UIView until user data has been entered
     shadeView = [[UIView alloc] init];
     shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
@@ -109,7 +109,7 @@ FileHandler *fileHand;
     shadeView.alpha = .6;
     shadeView.backgroundColor = [UIColor clearColor];
     [[self view] addSubview:shadeView];
-    
+
     // Custom translucent background blurring solution
     toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -117,18 +117,24 @@ FileHandler *fileHand;
     toolbar.alpha = .8;
     [self.view.superview insertSubview:toolbar belowSubview:shadeView];
 
-  //  [self setUserInfo:nil];
+    NSLog(@"first config next");
+
+    [setInfoButton setUserInteractionEnabled:NO];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
+    [setInfoButton setUserInteractionEnabled:NO];
     [enterInfo1 animateConfig:nil];
+    [setInfoButton setUserInteractionEnabled:NO];
 }
 
 #pragma mark displayUserInfo Delegate function
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
+
+    [setInfoButton setEnabled:YES];
 
     if (infoDictionary != nil) {
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
