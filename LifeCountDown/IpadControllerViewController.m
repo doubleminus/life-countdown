@@ -66,6 +66,7 @@ FileHandler *fileHand;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self handlePortrait1];
+    fileHand = [[FileHandler alloc] init];
 
     backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x.png"]];
     backgroundView1.frame = self.view.bounds;
@@ -89,18 +90,20 @@ FileHandler *fileHand;
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
 
+    NSLog(@"nsdict: %@", nsdict);
+
     if (nsdict) {
         [self displayUserInfo:nsdict];
     }
     else {
-     //   [self firstTimeUseSetup];
+        [self firstTimeUseSetup];
     }
 }
 
 - (void)firstTimeUseSetup {
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
-    [enterInfo1 firstConfig];
+
     // Mask primary UIView until user data has been entered
     shadeView = [[UIView alloc] init];
     shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
@@ -116,17 +119,11 @@ FileHandler *fileHand;
     toolbar.barTintColor = [UIColor clearColor];
     toolbar.alpha = .8;
     [self.view.superview insertSubview:toolbar belowSubview:shadeView];
-
-    NSLog(@"first config next");
-
-    [setInfoButton setUserInteractionEnabled:NO];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    [setInfoButton setUserInteractionEnabled:NO];
     [enterInfo1 animateConfig:nil];
-    [setInfoButton setUserInteractionEnabled:NO];
 }
 
 #pragma mark displayUserInfo Delegate function

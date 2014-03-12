@@ -41,16 +41,16 @@ NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
 NSArray *ageArray;
 int slideDistance = 300;
+NSDictionary *nsDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _firstTime = NO;
     [self setupScrollView];
     [self setupHelpView];
+    [self generateLineViews];
+    fileHand = [[FileHandler alloc] init];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-
-    [self generateLineViews];
 }
 
 - (void)setupScrollView {
@@ -67,12 +67,17 @@ int slideDistance = 300;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        padScrollRect = CGRectMake(750, 0, 900, 1200);
-        [scroller setScrollEnabled:NO];
-        [scroller setContentSize:CGSizeMake(320,2000)];
-        CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
-        [viewLayer setMasksToBounds:YES];
-        [viewLayer setCornerRadius:5.0f];
+        if (nsDict) {
+            padScrollRect = CGRectMake(750, 0, 900, 1200);
+            [scroller setScrollEnabled:NO];
+            [scroller setContentSize:CGSizeMake(320,2000)];
+            CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
+            [viewLayer setMasksToBounds:YES];
+            [viewLayer setCornerRadius:5.0f];
+        }
+        else {
+            [self animateConfig:nil];
+        }
     }
 
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
@@ -138,24 +143,15 @@ int slideDistance = 300;
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
 
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
-    NSDictionary *nsDict = [fileHand readPlist];
+    nsDict = [fileHand readPlist];
 
     if (nsDict) {
-        _firstTime = NO;
         [self setupDisplay:nsDict];
-    }
-    else {
-        _firstTime = YES;
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self setupScrollView];
-        [scroller setFrame:padScrollRect];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -171,41 +167,14 @@ int slideDistance = 300;
 }
 
 // Method to allow sliding view out from side on iPad
-- (void)firstConfig {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        // Config view is not slid out yet
-            NSLog(@"in HERE");
-            [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, slideDistance , 0);
-            }];
-
-            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-                [self updateAge:nil];
-
-                [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
-                }];
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                                message:@"Please select a gender to continue."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }
-}
-
-// Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(id)sender {
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Config view is not slid out yet
-        if (_firstTime) {
+        if (!nsDict) {
             [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, -slideDistance, 0);
+                scroller.frame = CGRectOffset(scroller.frame, slideDistance * 2, 0);
             }];
-            _firstTime = NO;
         }
         else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
             [UIView animateWithDuration:0.5f animations:^{
