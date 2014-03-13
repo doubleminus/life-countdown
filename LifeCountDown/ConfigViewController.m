@@ -45,10 +45,14 @@ NSDictionary *nsDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Get dictionary of user data from our file handler. If dictionary is nil, we will request config data from user
+    fileHand = [[FileHandler alloc] init];
+    nsDict = [fileHand readPlist];
+    
     [self setupScrollView];
     [self setupHelpView];
     [self generateLineViews];
-    fileHand = [[FileHandler alloc] init];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
 }
@@ -67,15 +71,16 @@ NSDictionary *nsDict;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (nsDict) {
-            padScrollRect = CGRectMake(750, 0, 900, 1200);
-            [scroller setScrollEnabled:NO];
-            [scroller setContentSize:CGSizeMake(320,2000)];
-            CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
-            [viewLayer setMasksToBounds:YES];
-            [viewLayer setCornerRadius:5.0f];
-        }
-        else {
+        // padScrollRect = CGRectMake(750, 0, 900, 1200);
+        [scroller setScrollEnabled:NO];
+        [scroller setContentSize:CGSizeMake(320,2000)];
+        CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
+        [viewLayer setMasksToBounds:YES];
+        [viewLayer setCornerRadius:5.0f];
+
+        NSLog(@"in setupscrollview");
+
+        if (!nsDict) {
             [self animateConfig:nil];
         }
     }
@@ -142,16 +147,16 @@ NSDictionary *nsDict;
 
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
 
-    // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
-    nsDict = [fileHand readPlist];
-
-    if (nsDict) {
-        [self setupDisplay:nsDict];
-    }
+ //   if (nsDict) {
+ //       [self setupDisplay:nsDict];
+ //   }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if (nsDict) {
+        [self setupDisplay:nsDict];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -172,9 +177,10 @@ NSDictionary *nsDict;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Config view is not slid out yet
         if (!nsDict) {
-            [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, slideDistance * 2, 0);
-            }];
+          //  [UIView animateWithDuration:0.5f animations:^{
+                NSLog(@"HERE");
+                scroller.frame = CGRectMake(200, 200, 200, 200); //CGRectOffset(scroller.frame, slideDistance * 2, 0);
+          //  }];
         }
         else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
             [UIView animateWithDuration:0.5f animations:^{
@@ -281,6 +287,8 @@ NSDictionary *nsDict;
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     [myFormatter setDateFormat:@"yyyyMMdd"];
+
+    NSLog(@"in setupDisplay");
 
     // Birthdate has already been set, so set our datepicker
     if ([infoDctnry objectForKey:@"birthDate"] != nil) {

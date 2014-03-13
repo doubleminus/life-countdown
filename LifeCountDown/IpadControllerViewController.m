@@ -90,8 +90,6 @@ FileHandler *fileHand;
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
 
-    NSLog(@"nsdict: %@", nsdict);
-
     if (nsdict) {
         [self displayUserInfo:nsdict];
     }
@@ -131,8 +129,6 @@ FileHandler *fileHand;
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
 
-    [setInfoButton setEnabled:YES];
-
     if (infoDictionary != nil) {
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
@@ -166,7 +162,7 @@ FileHandler *fileHand;
             [self startSecondTimer];
         }
     }
-    
+
     [self showComponents1];
 }
 
