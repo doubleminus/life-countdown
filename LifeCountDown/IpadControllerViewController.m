@@ -54,13 +54,6 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    // Important to set the viewcontroller's delegate to be self
-    enterInfo1.delegate = self;
-
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -102,21 +95,18 @@ FileHandler *fileHand;
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
 
-    // Mask primary UIView until user data has been entered
-    shadeView = [[UIView alloc] init];
-    shadeView.frame = CGRectMake(1, 1, self.view.frame.size.width, self.view.frame.size.height);
-    shadeView.hidden = NO;
-    shadeView.opaque = NO;
-    shadeView.alpha = .6;
-    shadeView.backgroundColor = [UIColor clearColor];
-    [[self view] addSubview:shadeView];
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    // Important to set the viewcontroller's delegate to be self
+    enterInfo1.delegate = self;
 
-    // Custom translucent background blurring solution
-    toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    toolbar.barTintColor = [UIColor clearColor];
-    toolbar.alpha = .8;
-    [self.view.superview insertSubview:toolbar belowSubview:shadeView];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
+
+    self.view.backgroundColor = [UIColor clearColor];
+    UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    bgToolbar.barStyle = UIBarStyleDefault;
+ //   bgToolbar.alpha = .95;
+    [self.view.superview insertSubview:bgToolbar belowSubview:enterInfo1.view];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/

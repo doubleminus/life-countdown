@@ -130,7 +130,7 @@ FileHandler *fileHand;
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setGeneratesDecimalNumbers:NO];
         [formatter setMaximumFractionDigits:0];
-        
+
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
         }

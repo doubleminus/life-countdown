@@ -78,8 +78,6 @@ NSDictionary *nsDict;
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
 
-        NSLog(@"in setupscrollview");
-
         if (!nsDict) {
             [self animateConfig:nil];
         }
@@ -147,15 +145,18 @@ NSDictionary *nsDict;
 
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
 
- //   if (nsDict) {
- //       [self setupDisplay:nsDict];
- //   }
+    if (nsDict) {
+        [self setupDisplay:nsDict];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (nsDict) {
         [self setupDisplay:nsDict];
+    }
+    else { // We have to set frame here. I have no idea why.
+        scroller.frame = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
     }
 }
 
@@ -176,32 +177,28 @@ NSDictionary *nsDict;
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // Config view is not slid out yet
-        if (!nsDict) {
-          //  [UIView animateWithDuration:0.5f animations:^{
-                NSLog(@"HERE");
-                scroller.frame = CGRectMake(200, 200, 200, 200); //CGRectOffset(scroller.frame, slideDistance * 2, 0);
-          //  }];
-        }
-        else if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
-            [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
-            }];
-        }
-        else {
-            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-                [self updateAge:nil];
-
+        if (nsDict) {
+            if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
                 [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                    scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
                 }];
             }
             else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                                message:@"Please select a gender to continue."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
+                if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+                    [self updateAge:nil];
+
+                    [UIView animateWithDuration:0.5f animations:^{
+                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                    }];
+                }
+                else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                                    message:@"Please select a gender to continue."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
             }
         }
     }
