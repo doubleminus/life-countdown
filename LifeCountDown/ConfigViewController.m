@@ -71,7 +71,7 @@ NSDictionary *nsDict;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        // padScrollRect = CGRectMake(750, 0, 900, 1200);
+        padScrollRect = CGRectMake(750, 0, 900, 1200);
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
@@ -174,31 +174,32 @@ NSDictionary *nsDict;
 
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(id)sender {
+    NSLog(@"scroller.frame x: %f", scroller.frame.origin.x);
+    NSLog(@"scroller.frame y: %f", scroller.frame.origin.y);
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && nsDict) {
         // Config view is not slid out yet
-        if (nsDict) {
-            if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
+        if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
+            }];
+        }
+        else {
+            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+                [self updateAge:nil];
+                bgToolbar.hidden = YES;
+
                 [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
+                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
                 }];
             }
             else {
-                if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-                    [self updateAge:nil];
-
-                    [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
-                    }];
-                }
-                else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                                    message:@"Please select a gender to continue."
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                }
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                                message:@"Please select a gender to continue."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
         }
     }

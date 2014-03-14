@@ -41,6 +41,7 @@ UIToolbar *toolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
+UIToolbar* bgToolbar;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -103,14 +104,15 @@ FileHandler *fileHand;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
 
     self.view.backgroundColor = [UIColor clearColor];
-    UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     bgToolbar.barStyle = UIBarStyleDefault;
- //   bgToolbar.alpha = .95;
     [self.view.superview insertSubview:bgToolbar belowSubview:enterInfo1.view];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
+    [bgToolbar removeFromSuperview];
+
     [enterInfo1 animateConfig:nil];
 }
 
@@ -120,6 +122,8 @@ FileHandler *fileHand;
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
+        [bgToolbar removeFromSuperview];
+
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
