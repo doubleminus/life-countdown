@@ -51,14 +51,11 @@ NSDictionary *nsDict;
     fileHand = [[FileHandler alloc] init];
     nsDict = [fileHand readPlist];
 
-    scroller.alpha = 0.0; // Make scrollview invisible so we can move it and display it stealthily
     [self setupScrollView];
     [self setupHelpView];
     [self generateLineViews];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-    
-    aboutBtn.frame = CGRectMake(125, 954, 55, 26);
 }
 
 - (void)setupScrollView {
@@ -75,6 +72,8 @@ NSDictionary *nsDict;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        scroller.alpha = 0.0; // Make scrollview invisible so we can move it and display it stealthily
+        aboutBtn.frame = CGRectMake(125, 954, 55, 26);
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
@@ -95,7 +94,7 @@ NSDictionary *nsDict;
 
 - (void)setupHelpView {
     // Setup help view but hide it
-    _hView = [[HelpView alloc] initWithFrame:CGRectMake(30.0, 550.0, 260.0, 260.0)];
+    _hView = [[HelpView alloc] init];
     _hView.hidden = YES;
     _hView.backgroundColor = [UIColor whiteColor];
     _hView.alpha = 0.9;
@@ -121,6 +120,48 @@ NSDictionary *nsDict;
     tap1.numberOfTapsRequired = 1;
     tap1.numberOfTouchesRequired = 1;
     [_hView addGestureRecognizer:tap1];
+}
+
+- (IBAction)showHelp:(id)sender {
+    CGRect visibleRect;
+    country = @"";
+    
+    if (!_hView || _hView.hidden == YES) {
+        visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
+        visibleRect.size = scroller.bounds.size;
+        visibleRect.origin.x += 25.0;
+        visibleRect.origin.y += 150.0;
+
+        // Now modify to squash the helpview into the size we want
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            visibleRect.size.width *= .36;
+            visibleRect.size.height *= .25;
+        }
+        else {
+            visibleRect.size.width *= .85;
+            visibleRect.size.height *= .5;
+        }
+
+        [_hView setFrame:visibleRect];
+
+        int tag = (int)[(UIButton *)sender tag]; // Get button tag value
+        country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+        ageArray = [countryInfo objectForKey:country];
+        
+        // Build string of Country name information
+        if (tag && tag == 1 && ageArray && [ageArray count] == 2) {
+            country = [self buildCountryString:country];
+        }
+        
+        [_hView setText:country btnInt:tag];
+        
+        _hView.hidden = NO;
+        bgToolbar.hidden = NO;
+    }
+    else {
+        bgToolbar.hidden = YES;
+        _hView.hidden = YES;
+    }
 }
 
 - (void)generateLineViews {
@@ -326,39 +367,6 @@ NSDictionary *nsDict;
         plusLbl.hidden = YES;
     else
         plusLbl.hidden = NO;
-}
-
-- (IBAction)showHelp:(id)sender {
-    CGRect visibleRect;
-    country = @"";
-
-    if (!_hView || _hView.hidden == YES) {
-        visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
-        visibleRect.size = scroller.bounds.size;
-        visibleRect.origin.y += 150.0; // Now modify to squash the helpview into the size we want
-        visibleRect.origin.x += 25.0;
-        visibleRect.size.width *= .85;
-        visibleRect.size.height *= .5;
-        [_hView setFrame:visibleRect];
-
-        int tag = (int)[(UIButton *)sender tag]; // Get button tag value
-        country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
-        ageArray = [countryInfo objectForKey:country];
-
-        // Build string of Country name information
-        if (tag && tag == 1 && ageArray && [ageArray count] == 2) {
-            country = [self buildCountryString:country];
-        }
-
-        [_hView setText:country btnInt:tag];
-
-        _hView.hidden = NO;
-        bgToolbar.hidden = NO;
-    }
-    else {
-        bgToolbar.hidden = YES;
-        _hView.hidden = YES;
-    }
 }
 
 // Builds a string combining Country name, male & female life expectancies, to display in helpview
