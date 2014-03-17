@@ -55,6 +55,12 @@ UIToolbar* bgToolbar;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
+    
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    enterInfo1.delegate = self;
+    
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
 
 - (void)viewDidLoad {

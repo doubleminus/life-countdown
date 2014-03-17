@@ -45,16 +45,20 @@ NSDictionary *nsDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [saveBtn setHidden:YES];
+
     // Get dictionary of user data from our file handler. If dictionary is nil, we will request config data from user
     fileHand = [[FileHandler alloc] init];
     nsDict = [fileHand readPlist];
-    
+
+    scroller.alpha = 0.0; // Make scrollview invisible so we can move it and display it stealthily
     [self setupScrollView];
     [self setupHelpView];
     [self generateLineViews];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+    
+    aboutBtn.frame = CGRectMake(125, 954, 55, 26);
 }
 
 - (void)setupScrollView {
@@ -71,16 +75,11 @@ NSDictionary *nsDict;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        padScrollRect = CGRectMake(750, 0, 900, 1200);
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
-
-        if (!nsDict) {
-            [self animateConfig:nil];
-        }
     }
 
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
@@ -152,11 +151,16 @@ NSDictionary *nsDict;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (nsDict) {
-        [self setupDisplay:nsDict];
-    }
-    else { // We have to set frame here. I have no idea why.
-        scroller.frame = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (!nsDict) {
+            padScrollRect = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
+        }
+        else {
+            padScrollRect = CGRectMake(750, 0, scroller.frame.size.width, scroller.frame.size.height);
+        }
+        scroller.frame = padScrollRect;
+        scroller.alpha = 1.0;
     }
 }
 
@@ -174,17 +178,15 @@ NSDictionary *nsDict;
 
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(id)sender {
-    NSLog(@"scroller.frame x: %f", scroller.frame.origin.x);
-    NSLog(@"scroller.frame y: %f", scroller.frame.origin.y);
+    nsDict = [fileHand readPlist];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && nsDict) {
-        // Config view is not slid out yet
-        if (CGRectEqualToRect(scroller.frame, padScrollRect)) {
+        if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
             }];
         }
-        else {
+        else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
             if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
                 [self updateAge:nil];
                 bgToolbar.hidden = YES;
@@ -203,12 +205,6 @@ NSDictionary *nsDict;
             }
         }
     }
-}
-
-- (void)slideBack {
-    [UIView animateWithDuration:0.5f animations:^{
-        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
-    }];
 }
 
 // Disable landscape orientation
@@ -240,7 +236,7 @@ NSDictionary *nsDict;
                        gender, smokeStatus, _daysLbl.text, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
                                                            @"gender", @"smokeStatus", @"hrsExercise", nil]];
-
+        
         if (personInfo != nil) {
             [fileHand writePlist:personInfo];
         }
@@ -255,7 +251,9 @@ NSDictionary *nsDict;
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else {
-            [self slideBack];
+            if (!nsDict) {
+                [self animateConfig:nil];
+            }
         }
     }
 }

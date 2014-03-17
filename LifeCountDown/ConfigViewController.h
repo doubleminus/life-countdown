@@ -43,6 +43,7 @@
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
     __weak IBOutlet UILabel *plusLbl, *plusLbl2, *helpLabel;
+    __weak IBOutlet UIButton *aboutBtn, *saveBtn;
 }
 
 @property (nonatomic, assign) id delegate;
