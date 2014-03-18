@@ -45,7 +45,7 @@ NSDictionary *nsDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [saveBtn setHidden:YES];
+
 
     // Get dictionary of user data from our file handler. If dictionary is nil, we will request config data from user
     fileHand = [[FileHandler alloc] init];
@@ -55,7 +55,7 @@ NSDictionary *nsDict;
     [self setupHelpView];
     [self generateLineViews];
 
-    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
+    country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]]; // Set country picker values
 }
 
 - (void)setupScrollView {
@@ -72,17 +72,18 @@ NSDictionary *nsDict;
 
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        scroller.alpha = 0.0; // Make scrollview invisible so we can move it and display it stealthily
-        aboutBtn.frame = CGRectMake(125, 954, 55, 26);
+        [scroller setAlpha:0.0]; // Make scrollview invisible so we can move it and display it stealthily
+        [aboutBtn setFrame:CGRectMake(125, 954, 55, 26)];
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
+        [saveBtn setHidden:YES];
     }
 
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
-    bgLayer.frame = contentView.bounds;
+    [bgLayer setFrame:contentView.bounds];
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
@@ -147,20 +148,20 @@ NSDictionary *nsDict;
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
-        
+
         // Build string of Country name information
         if (tag && tag == 1 && ageArray && [ageArray count] == 2) {
             country = [self buildCountryString:country];
         }
-        
+
         [_hView setText:country btnInt:tag];
-        
-        _hView.hidden = NO;
-        bgToolbar.hidden = NO;
+
+        [_hView setHidden:NO];
+        [bgToolbar setHidden:NO];
     }
     else {
-        bgToolbar.hidden = YES;
-        _hView.hidden = YES;
+        [_hView setHidden:YES];
+        [bgToolbar setHidden:YES];
     }
 }
 
@@ -324,8 +325,6 @@ NSDictionary *nsDict;
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     [myFormatter setDateFormat:@"yyyyMMdd"];
-
-    NSLog(@"in setupDisplay");
 
     // Birthdate has already been set, so set our datepicker
     if ([infoDctnry objectForKey:@"birthDate"] != nil) {
