@@ -111,8 +111,9 @@ NSDictionary *nsDict;
     // Use UIToolBar to blur our background when presenting HelpView (to encourage focus on help view text)
     bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.bounds];
     bgToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    bgToolbar.barTintColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor clearColor];
     bgToolbar.alpha = .8;
+    bgToolbar.barStyle = UIBarStyleDefault;
     [self.view insertSubview:bgToolbar belowSubview:_hView];
     bgToolbar.hidden = YES;
 
@@ -126,7 +127,7 @@ NSDictionary *nsDict;
 - (IBAction)showHelp:(id)sender {
     CGRect visibleRect;
     country = @"";
-    
+
     if (!_hView || _hView.hidden == YES) {
         visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
         visibleRect.size = scroller.bounds.size;

@@ -37,11 +37,10 @@ NSNumberFormatter *formatter;
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp1 = NO;
 UIView *shadeView; // Used for first app run only
-UIToolbar *toolbar; // Used for first app run only
+UIToolbar* bgToolbar; // Used for first app run only
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
-UIToolbar* bgToolbar;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -118,7 +117,6 @@ UIToolbar* bgToolbar;
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
     [bgToolbar removeFromSuperview];
-
     [enterInfo1 animateConfig:nil];
 }
 
