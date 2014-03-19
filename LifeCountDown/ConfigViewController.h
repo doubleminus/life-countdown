@@ -40,6 +40,7 @@
     NSString *path;
     NSArray *countryArray;
     IBOutlet UITextField *amountTextField;
+    IBOutlet UIButton *exerciseBtn, *smokeBtn, *countryBtn, *genderBtn;
     IBOutlet UIView *contentView;
     __weak IBOutlet UIScrollView *scroller;
     __weak IBOutlet UILabel *plusLbl, *plusLbl2, *helpLabel;

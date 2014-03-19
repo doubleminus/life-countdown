@@ -76,6 +76,7 @@ NSDictionary *nsDict;
         [aboutBtn setFrame:CGRectMake(125, 954, 55, 26)];
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
+
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
@@ -125,6 +126,7 @@ NSDictionary *nsDict;
 }
 
 - (IBAction)showHelp:(id)sender {
+    UIButton *btn;
     CGRect visibleRect;
     country = @"";
 
@@ -134,10 +136,15 @@ NSDictionary *nsDict;
         visibleRect.origin.x += 25.0;
         visibleRect.origin.y += 150.0;
 
-        // Now modify to squash the helpview into the size we want
+        // Now modify to squash the HelpView into the size we want
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             visibleRect.size.width *= .36;
             visibleRect.size.height *= .25;
+
+            if ([sender isKindOfClass:[UIButton class]]) {
+                btn = (UIButton *)sender;
+                visibleRect.origin.y = btn.frame.origin.y - 50;
+            }
         }
         else {
             visibleRect.size.width *= .85;
@@ -146,17 +153,15 @@ NSDictionary *nsDict;
 
         [_hView setFrame:visibleRect];
 
-        int tag = (int)[(UIButton *)sender tag]; // Get button tag value
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
 
         // Build string of Country name information
-        if (tag && tag == 1 && ageArray && [ageArray count] == 2) {
+        if ([sender tag] && [sender tag] == 1 && ageArray && [ageArray count] == 2) {
             country = [self buildCountryString:country];
         }
 
-        [_hView setText:country btnInt:tag];
-
+        [_hView setText:country btnInt:(int)[sender tag]];
         [_hView setHidden:NO];
         [bgToolbar setHidden:NO];
     }
