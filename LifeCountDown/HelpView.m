@@ -32,34 +32,43 @@
 NSString *countryNameStr, *helpMsg;
 
 - (id)initWithFrame:(CGRect)frame {
+    CGRect visibleRect;
     self = [super initWithFrame:frame];
-
+    self.hidden = YES;
+    
     if (self) {
-        UITapGestureRecognizer *tapGestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelp:)];
-        tapGestureRec.numberOfTapsRequired = 1;
-        [self addGestureRecognizer:tapGestureRec];
-        [self setUserInteractionEnabled:YES];
-
+        // Set drop shadow
+        [self.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self.layer setShadowOpacity:0.8];
+        [self.layer setShadowRadius:3.0];
+        [self.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+        
+        self.alpha = 0.9;
+        self.layer.cornerRadius = 10.0f;
+        self.backgroundColor = [UIColor whiteColor];
+        
         _helpTextLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 250, 20)];
-
+        
         // Heiti SC Light 17.0
         [_helpTextLbl setNumberOfLines:0]; // To allow line breaks in label
         [_helpTextLbl setTextColor:[UIColor blackColor]];
         [_helpTextLbl setBackgroundColor:[UIColor clearColor]];
         [_helpTextLbl setFont:[UIFont fontWithName: @"Heiti SC Light" size: 17.0f]];
         [_helpTextLbl setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        [self setFrame:visibleRect];
     }
-
+    
     return self;
 }
 
 - (void)setText:(NSString*)bodyTxt btnInt:(int)buttonInt {
     [_helpTextLbl setText:@""];
-
+    
     if (bodyTxt) {
         countryNameStr = bodyTxt;
     }
-
+    
     [_helpTextLbl setText:[self getText:buttonInt]];
     [_helpTextLbl sizeToFit];
     [self addSubview:_helpTextLbl];
@@ -67,31 +76,31 @@ NSString *countryNameStr, *helpMsg;
 
 - (NSString*)getText:(NSInteger)keyInt {
     NSString *helpTxt = @"";
-
+    
     switch (keyInt) {
         case 1:
             helpTxt = @"Country of residence is a strong indicator of life expectancy.\n\n";
             helpTxt = [helpTxt stringByAppendingString:countryNameStr];
             helpTxt = [helpTxt stringByAppendingString:@"\n\nSOURCE: Life expectancy: Life expectancy by country, 2011, World Health Organization"];
             break;
-
+            
         case 2:
             helpTxt = @"Gender is one of the most well-known, reliable indicators of life expectancy. Females generally live longer than males, but that varies by country.\n\nSOURCE: Life expectancy: Life expectancy by country, 2011, World Health Organization.";
             break;
-
+            
         case 3:
             helpTxt = @"Smoking reduces life expectancy roughly 10 years on average.\n\nSOURCE: 21st-Century Hazards of Smoking and Benefits of Cessation in the United States, 2012, The New England Journal of Medicine.";
             break;
-
+            
         case 4:
             helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
             break;
-
+            
         default:
             helpTxt = @"DISCLAIMER: All life expectancy results are unscientific estimates. This application is for entertainment purposes only.\n\nAll data provided is kept private and never shared or used outside of the application. \n\nLifeIsShortSoftware.com";
             break;
     }
-
+    
     return helpTxt;
 }
 

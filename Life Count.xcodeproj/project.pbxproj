@@ -36,6 +36,7 @@
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
 		2E71CCAD1834A19F0022C509 /* hglass-ipad_retina-port.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */; };
 		2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */; };
+		2E77A1F718DFC063007A14CC /* q_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E77A1F618DFC063007A14CC /* q_icon.png */; };
 		2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E96850C17488A3E005E25F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9DC8CA17EF2D0300AD679B /* Countries.plist */; };
@@ -106,6 +107,7 @@
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
 		2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hglass-ipad_retina-port.png"; path = "../hglass-ipad_retina-port.png"; sourceTree = "<group>"; };
 		2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ret_ipad_hglass@2x.png"; path = "../ret_ipad_hglass@2x.png"; sourceTree = "<group>"; };
+		2E77A1F618DFC063007A14CC /* q_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q_icon.png; sourceTree = "<group>"; };
 		2E83347915E026F800E2A5BB /* DateCalculationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCalculationUtil.h; sourceTree = "<group>"; };
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
 		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E77A1F618DFC063007A14CC /* q_icon.png */,
 				6527279F18A5B3BD00B7558E /* settings.png */,
 				65E4984B1896DCD400B9A3AA /* FB-72.png */,
 				2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */,
@@ -365,6 +368,7 @@
 				652727A018A5B3BD00B7558E /* settings.png in Resources */,
 				2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
+				2E77A1F718DFC063007A14CC /* q_icon.png in Resources */,
 				652A9DC518A2B78200ED69AD /* tab.png in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,

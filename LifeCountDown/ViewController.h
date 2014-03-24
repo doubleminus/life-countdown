@@ -40,7 +40,7 @@
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
-@property (strong, nonatomic) IBOutlet UIButton *tweetBtn, *facebookBtn, *configBtn;
+@property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel,
 *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
@@ -48,10 +48,12 @@
 @property (nonatomic) bool timerStarted;
 @property (strong, nonatomic) IBOutlet UIView *touchView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *kTouch;
+@property (strong, nonatomic) HelpView *helpView;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)setUserInfo:(id)sender;
+- (IBAction)showHelp:(id)sender;
 - (void)loadUserData;
 
 @end
