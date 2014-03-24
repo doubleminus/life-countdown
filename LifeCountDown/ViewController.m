@@ -184,7 +184,6 @@ FileHandler *fileHand;
     _helpView = [[HelpView alloc] init];
     [self.view addSubview:_helpView];
 
-    self.view.backgroundColor = [UIColor clearColor];
     toolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     toolbar.barStyle = UIBarStyleDefault;
     toolbar.alpha = .8;

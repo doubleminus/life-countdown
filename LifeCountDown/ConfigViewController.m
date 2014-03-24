@@ -127,7 +127,7 @@ NSDictionary *nsDict;
     _hView = [[HelpView alloc] init];
     [self.view addSubview:_hView];
 
-    bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.frame];
     bgToolbar.barStyle = UIBarStyleDefault;
     bgToolbar.alpha = .9;
     [self.view insertSubview:bgToolbar belowSubview:_hView];
