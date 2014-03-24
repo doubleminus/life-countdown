@@ -45,24 +45,24 @@ NSDictionary *nsDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Get dictionary of user data from our file handler. If dictionary is nil, we will request config data from user
     fileHand = [[FileHandler alloc] init];
     nsDict = [fileHand readPlist];
-    
+
     [self setupScrollView];
     [self setupHelpView];
     [self generateLineViews];
-    
+
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]]; // Set country picker values
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.ctryPicker selectRow:184 inComponent:0 animated:YES];
-    
+
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
-    
+
     if (nsDict) {
         [self setupDisplay:nsDict];
     }
@@ -70,7 +70,7 @@ NSDictionary *nsDict;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (!nsDict) {
             padScrollRect = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
@@ -78,6 +78,7 @@ NSDictionary *nsDict;
         else {
             padScrollRect = CGRectMake(750, 0, scroller.frame.size.width, scroller.frame.size.height);
         }
+
         scroller.frame = padScrollRect;
         scroller.alpha = 1.0;
     }
@@ -89,29 +90,31 @@ NSDictionary *nsDict;
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
     [scroller setContentSize:CGSizeMake(320,1055)];
-    
+
     // Create border around our config view content
     [contentView.layer setCornerRadius:15.0f];
     [contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [contentView.layer setBorderWidth:1.5f];
-    
+
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setAlpha:0.0]; // Make scrollview invisible so we can move it and display it stealthily
         [aboutBtn setFrame:CGRectMake(125, 954, 55, 26)];
         [scroller setScrollEnabled:NO];
         [scroller setContentSize:CGSizeMake(320,2000)];
+
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
+
         [saveBtn setHidden:YES];
         [aboutBtn setHidden:NO];
     }
-    
+
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
     [bgLayer setFrame:contentView.bounds];
     [self.view.layer insertSublayer:bgLayer atIndex:0];
-    
+
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
     countryInfo = [dateUtil getCountryDict];
@@ -123,15 +126,13 @@ NSDictionary *nsDict;
     // Setup help view but hide it
     _hView = [[HelpView alloc] init];
     [self.view addSubview:_hView];
-    
-    // Use UIToolBar to blur our background when presenting HelpView (to encourage focus on help view text)
-    bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.bounds];
-    bgToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    bgToolbar.barTintColor = [UIColor clearColor];
-    bgToolbar.alpha = .8;
+
+    bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    bgToolbar.barStyle = UIBarStyleDefault;
+    bgToolbar.alpha = .9;
     [self.view insertSubview:bgToolbar belowSubview:_hView];
     bgToolbar.hidden = YES;
-    
+
     // Create tap gesture for dismissing Help View
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
     tap1.numberOfTapsRequired = 1;
@@ -143,7 +144,7 @@ NSDictionary *nsDict;
     UIButton *btn;
     CGRect visibleRect;
     country = @"";
-    
+
     if (!_hView || _hView.hidden == YES) {
         visibleRect.origin = scroller.contentOffset; // Set origin to our uiscrollview's view window
         visibleRect.size = scroller.bounds.size;

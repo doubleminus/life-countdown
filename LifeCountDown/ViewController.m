@@ -183,14 +183,14 @@ FileHandler *fileHand;
     // Setup help view but hide it
     _helpView = [[HelpView alloc] init];
     [self.view addSubview:_helpView];
-    
-    toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
-    toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    toolbar.barTintColor = [UIColor clearColor];
+
+    self.view.backgroundColor = [UIColor clearColor];
+    toolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    toolbar.barStyle = UIBarStyleDefault;
     toolbar.alpha = .8;
     [self.view insertSubview:toolbar belowSubview:_helpView];
     toolbar.hidden = YES;
-    
+
     // Create tap gesture for dismissing Help View
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
     tap1.numberOfTapsRequired = 1;
@@ -200,7 +200,7 @@ FileHandler *fileHand;
 
 - (IBAction)showHelp:(id)sender {
     CGRect visibleRect;
-    
+
     if (_helpView && _helpView.hidden == YES) {
         visibleRect.origin = self.view.frame.origin; // Set origin to our UIScrollView's view window
         visibleRect.size = self.view.bounds.size;
@@ -208,13 +208,11 @@ FileHandler *fileHand;
         visibleRect.origin.y += 150.0;
         visibleRect.size.width *= .85;
         visibleRect.size.height *= .5;
-        
+
         [_helpView setFrame:visibleRect];
-        
         int tag = (int)[(UIButton *)sender tag]; // Get button tag value
-        
         [_helpView setText:nil btnInt:tag];
-        
+
         [_helpView setHidden:NO];
         [toolbar setHidden:NO];
     }
@@ -227,22 +225,22 @@ FileHandler *fileHand;
 - (void)firstTimeUseSetup {
     _countdownLabel.hidden = YES;
     secdsLifeRemLabel.hidden = YES;
-    
+
     [self setUserInfo:nil];
 }
 
 - (IBAction)tweetTapGest:(id)sender {
     //NSLog(@"sender: %@", sender);
     int tag = (int)[(UIButton *)sender tag];
-    
+
     if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
             SLComposeViewController *twCtrl = [SLComposeViewController
                                                composeViewControllerForServiceType:SLServiceTypeTwitter];
-            
+
             SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
                 [twCtrl dismissViewControllerAnimated:YES completion:nil];
-                
+
                 switch(result) {
                     case SLComposeViewControllerResultCancelled:
                     default:{
@@ -259,7 +257,7 @@ FileHandler *fileHand;
             
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
                                     stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
-            
+
             [twCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
             [twCtrl setInitialText:fullString];
             [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
@@ -281,7 +279,7 @@ FileHandler *fileHand;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
-    
+
     if (interfaceOrientation == 1) {
         [self handlePortrait];
     }
