@@ -186,7 +186,7 @@ FileHandler *fileHand;
 
     toolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     toolbar.barStyle = UIBarStyleDefault;
-    toolbar.alpha = .8;
+    toolbar.alpha = .9;
     [self.view insertSubview:toolbar belowSubview:_helpView];
     toolbar.hidden = YES;
 

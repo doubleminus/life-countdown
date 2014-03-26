@@ -158,7 +158,10 @@ NSDictionary *nsDict;
             
             if ([sender isKindOfClass:[UIButton class]]) {
                 btn = (UIButton *)sender;
-                visibleRect.origin.y = btn.frame.origin.y - 50;
+                
+                if ([sender tag] != 0) { // If it's not our "About" button, change location
+                    visibleRect.origin.y = btn.frame.origin.y - 115;
+                }
             }
         }
         else {
