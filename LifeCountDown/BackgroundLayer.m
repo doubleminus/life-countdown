@@ -30,7 +30,7 @@
 
 @implementation BackgroundLayer
 
-// Dark grey gradient background for ConfigView
+// Dark grey gradient background for ConfigViewController.view
 + (CAGradientLayer*) greyGradient {
     UIColor *colorOne   = [UIColor colorWithWhite:0.8 alpha:1.0];
     UIColor *colorTwo   = [UIColor colorWithHue:0.625 saturation:0.0 brightness:0.4 alpha:1.0];

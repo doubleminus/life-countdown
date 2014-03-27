@@ -231,6 +231,8 @@ FileHandler *fileHand;
 - (IBAction)tweetTapGest:(id)sender {
     //NSLog(@"sender: %@", sender);
     int tag = (int)[(UIButton *)sender tag];
+    
+    NSLog(@"available for Twitter? %d", [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]);
 
     if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
         [self dismissViewControllerAnimated:NO completion:^(void) {
