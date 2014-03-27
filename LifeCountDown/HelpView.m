@@ -95,7 +95,11 @@ NSString *countryNameStr, *helpMsg;
         case 4:
             helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
             break;
-            
+
+        case 5:
+            helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
+            break;
+
         default:
             helpTxt = @"DISCLAIMER: All life expectancy results are unscientific estimates. This application is for entertainment purposes only.\n\nAll data provided is kept private and never shared or used outside of the application. \n\nLifeIsShortSoftware.com";
             break;

@@ -155,7 +155,7 @@ NSDictionary *nsDict;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             visibleRect.size.width *= .36;
             visibleRect.size.height *= .25;
-            
+
             if ([sender isKindOfClass:[UIButton class]]) {
                 btn = (UIButton *)sender;
                 
@@ -170,10 +170,10 @@ NSDictionary *nsDict;
         }
 
         [_hView setFrame:visibleRect];
-        
+
         country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         ageArray = [countryInfo objectForKey:country];
-        
+
         // Build string of Country name information
         if ([sender tag] && [sender tag] == 1 && ageArray && [ageArray count] == 2) {
             country = [self buildCountryString:country];
@@ -192,12 +192,13 @@ NSDictionary *nsDict;
 - (void)generateLineViews {
     NSMutableArray *lineArray = [[NSMutableArray alloc] init];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 351, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 565, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 648, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 721, self.view.frame.size.width, 1)]];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 816, self.view.frame.size.width, 1)]];
-    
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 340, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 575, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 640, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 700, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 790, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 890, self.view.frame.size.width, 1)]];
+
     for (UIView *u in lineArray) {
         u.backgroundColor = [UIColor whiteColor];
         [self.view insertSubview:u belowSubview:bgToolbar];
@@ -219,7 +220,7 @@ NSDictionary *nsDict;
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(id)sender {
     nsDict = [fileHand readPlist];
-    
+
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && nsDict) {
         if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
@@ -230,7 +231,7 @@ NSDictionary *nsDict;
             if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
                 [self updateAge:nil];
                 bgToolbar.hidden = YES;
-                
+
                 [UIView animateWithDuration:0.5f animations:^{
                     scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
                 }];
@@ -259,34 +260,38 @@ NSDictionary *nsDict;
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
     //NSLog(@"COUNTRY: %@", country);
-    
-    if ([self.genderToggle selectedSegmentIndex] == 0)
+
+    if ([self.genderToggle selectedSegmentIndex] == 0) {
         gender = @"f";
-    else
+    }
+    else {
         gender = @"m";
-    
-    if (!self.smokeSwitch.isOn)
+    }
+
+    if (!self.smokeSwitch.isOn) {
         smokeStatus = @"nonsmoker";
-    else
+    }
+    else {
         smokeStatus = @"smoker";
-    
+    }
+
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
                        gender, smokeStatus, _daysLbl.text, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
                                                            @"gender", @"smokeStatus", @"hrsExercise", nil]];
-        
+
         if (personInfo != nil) {
             [fileHand writePlist:personInfo];
         }
     }
-    
+
     // Check to see if anyone is listening...
     if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
         // ...then send the delegate function with amount entered by the user
         [_delegate displayUserInfo:personInfo];
-        
+
         if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -302,19 +307,19 @@ NSDictionary *nsDict;
     NSInteger val = 0;
     // Cast sender to UISlider so we can get tag #
     int tagNum = (int)[(UIButton *)sender tag];
-    
+
     if (tagNum == 1) {
         _daySlider = (UISlider*)sender;
         val = lround(_daySlider.value);
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
-        
+
         plusLbl.hidden = (val < 10) ? YES : NO;
     }
     else if (tagNum == 2) {
         _sitSlider = (UISlider*)sender;
         val = lround(_sitSlider.value);
         _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
-        
+
         plusLbl2.hidden = (val < 10) ? YES : NO;
     }
 }
@@ -323,29 +328,33 @@ NSDictionary *nsDict;
 - (void)setupDisplay:(NSDictionary*)infoDctnry {
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     [myFormatter setDateFormat:@"yyyyMMdd"];
-    
+
     // Birthdate has already been set, so set our datepicker
     if ([infoDctnry objectForKey:@"birthDate"] != nil) {
         //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
         NSString *bdayStr = [myFormatter stringFromDate:[infoDctnry objectForKey:@"birthDate"]];
         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
-        
+
         if ([infoDctnry objectForKey:@"gender"] != nil) {
             // Set Gender switch in UI
-            if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"])
+            if ([[infoDctnry objectForKey:@"gender"]isEqualToString:@"f"]) {
                 [_genderToggle setSelectedSegmentIndex:0];
-            else
+            }
+            else {
                 [_genderToggle setSelectedSegmentIndex:1];
-            
+            }
+
             // Set country in UIPicker
             [self.ctryPicker selectRow:[[infoDctnry objectForKey:@"countryIndex"] integerValue] inComponent:0 animated:NO];
-            
+
             // Set smoker switch in UI
-            if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"])
+            if ([[infoDctnry objectForKey:@"smokeStatus"]isEqualToString:@"nonsmoker"]) {
                 [_smokeSwitch setOn:NO];
-            else
+            }
+            else {
                 [_smokeSwitch setOn:YES];
-            
+            }
+
             // Set hours of exercise/week
             [_daysLbl setText:[infoDctnry objectForKey:@"hrsExercise"]];
             [_daySlider setValue:[_daysLbl.text floatValue]];
