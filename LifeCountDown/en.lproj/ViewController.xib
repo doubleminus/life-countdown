@@ -130,7 +130,7 @@
                         <action selector="setUserInfo:" destination="-1" eventType="touchUpInside" id="aWb-Zl-lXr"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
+                <button hidden="YES" opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
                     <rect key="frame" x="142" y="517" width="31" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>

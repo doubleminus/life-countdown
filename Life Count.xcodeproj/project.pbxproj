@@ -50,6 +50,7 @@
 		652727A018A5B3BD00B7558E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6527279F18A5B3BD00B7558E /* settings.png */; };
 		652A9DC518A2B78200ED69AD /* tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 652A9DC418A2B78200ED69AD /* tab.png */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
+		65D3B02218E4E43E00507529 /* PWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3B02118E4E43E00507529 /* PWProgressView.m */; };
 		65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E4984B1896DCD400B9A3AA /* FB-72.png */; };
 		65F94B1418B8043700F75531 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F94B1318B8043700F75531 /* BackgroundLayer.m */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,8 @@
 		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		652A9DC418A2B78200ED69AD /* tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab.png; sourceTree = "<group>"; };
 		65D304F51891AF3D0023F39A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		65D3B02018E4E43E00507529 /* PWProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWProgressView.h; sourceTree = "<group>"; };
+		65D3B02118E4E43E00507529 /* PWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWProgressView.m; sourceTree = "<group>"; };
 		65D53D7218B6C5D5004A8E26 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		65E4984B1896DCD400B9A3AA /* FB-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB-72.png"; path = "../FB-72.png"; sourceTree = "<group>"; };
 		65F94B1218B8043700F75531 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
+				65D3B02018E4E43E00507529 /* PWProgressView.h */,
+				65D3B02118E4E43E00507529 /* PWProgressView.m */,
 				2E635E5517796F2E00B85650 /* Xibs */,
 				2E635E5417796F1F00B85650 /* Controllers */,
 				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
@@ -404,6 +409,7 @@
 				2E2104D4151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E428A611854131A000E79E7 /* AppDelegate.m in Sources */,
 				65F94B1418B8043700F75531 /* BackgroundLayer.m in Sources */,
+				65D3B02218E4E43E00507529 /* PWProgressView.m in Sources */,
 				2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */,
 				2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */,
 				2E27E813177C134C009FBFC7 /* HelpView.m in Sources */,

@@ -30,7 +30,12 @@
 #import "DateCalculationUtil.h"
 #import "BackgroundLayer.h"
 #import "FileHandler.h"
+#import "PWProgressView.h"
 #import <QuartzCore/QuartzCore.h>
+
+static const CGSize PWProgressViewSize      = {100.0f, 100.0f};
+static const CGSize PWProgressSliderSize    = {300.0f, 34.0f};
+static const CGFloat PWVerticalSpacing      = 20.0f;
 
 @implementation ConfigViewController
 FileHandler *fileHand;
@@ -43,6 +48,19 @@ NSArray *ageArray;
 int slideDistance = 300;
 NSDictionary *nsDict;
 
+/*
+- (id)initWithFrame:(CGRect)frame {
+    self.view = [self.view initWithFrame:frame];
+    if (self) {
+        self.progressView = [[PWProgressView alloc] init];
+        self.progressView.layer.cornerRadius = 5.0f;
+        self.progressView.clipsToBounds = YES;
+   //     [scroller addSubview:self.progressView];
+        [scroller insertSubview:self.progressView aboveSubview:contentView];
+    }
+    return self;
+}
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -82,6 +100,15 @@ NSDictionary *nsDict;
         scroller.frame = padScrollRect;
         scroller.alpha = 1.0;
     }
+
+    self.progressView = [[PWProgressView alloc] init];
+    self.progressView.layer.cornerRadius = 5.0f;
+    self.progressView.clipsToBounds = YES;
+    self.progressView.frame = CGRectMake(10.0, 510.0, 50.0, 50.0);
+    //     [scroller addSubview:self.progressView];
+    [scroller insertSubview:self.progressView aboveSubview:contentView];
+
+    [self.progressView setProgress:0.9];
 }
 
 - (void)setupScrollView {

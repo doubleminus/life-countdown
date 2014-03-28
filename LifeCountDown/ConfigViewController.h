@@ -28,6 +28,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HelpView.h"
+#import "YLProgressBar.h"
+
+@class PWProgressView;
 
 // Delegate to return amount entered by the user
 @protocol ConfigViewDelegate <NSObject>
@@ -47,6 +50,8 @@
     __weak IBOutlet UIButton *aboutBtn, *saveBtn;
 }
 
+@property (nonatomic, strong) PWProgressView *progressView;
+@property (strong, nonatomic) IBOutlet YLProgressBar *progView;
 @property (nonatomic, assign) id delegate;
 @property (weak, nonatomic)   IBOutlet UISlider *daySlider;
 @property (weak, nonatomic)   IBOutlet UISlider *sitSlider;
