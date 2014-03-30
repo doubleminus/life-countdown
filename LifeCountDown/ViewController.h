@@ -37,12 +37,12 @@
     UIImageView *backgroundView;
     double seconds;
     
+    IBOutlet UIImageView *bitView;
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
-@property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel,
-*countdownLabel, *percentLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (nonatomic) bool timerStarted;

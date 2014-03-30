@@ -56,13 +56,15 @@ FileHandler *fileHand;
     fileHand = [[FileHandler alloc] init];
     _touchView = [_touchView init];
     
-    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass.png"]];
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-2.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
     
     [_touchView addGestureRecognizer:_kTouch];
     [self setupHelpView];
+    
+    bitView.animationRepeatCount = 100;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,11 +102,27 @@ FileHandler *fileHand;
     }
 }
 
+-(void)animateBit {
+    [UIView animateWithDuration:0.5f animations:^{
+        bitView.frame = CGRectOffset(bitView.frame, 0, -250);
+        bitView.alpha = .8;
+    }];
+
+    bitView.hidden = YES;
+
+    [UIView animateWithDuration:0.5f animations:^{
+        bitView.frame = CGRectOffset(bitView.frame, 0, 250);
+        bitView.alpha = .1;
+    }];
+
+    bitView.hidden = NO;
+}
+
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
     enterInfo1.delegate = self;
-    
+
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
@@ -113,12 +131,12 @@ FileHandler *fileHand;
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
-    
+
     if (infoDictionary != nil) {
         // Undo first time usage setup
         _countdownLabel.hidden = NO;
         secdsLifeRemLabel.hidden = NO;
-        
+
         dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
         formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -174,6 +192,8 @@ FileHandler *fileHand;
         percentRemaining = progAmount * 100.0;
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
+    
+    [self animateBit];
     
     _timerStarted = YES;
 }

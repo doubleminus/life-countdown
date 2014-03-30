@@ -48,19 +48,6 @@ NSArray *ageArray;
 int slideDistance = 300;
 NSDictionary *nsDict;
 
-/*
-- (id)initWithFrame:(CGRect)frame {
-    self.view = [self.view initWithFrame:frame];
-    if (self) {
-        self.progressView = [[PWProgressView alloc] init];
-        self.progressView.layer.cornerRadius = 5.0f;
-        self.progressView.clipsToBounds = YES;
-   //     [scroller addSubview:self.progressView];
-        [scroller insertSubview:self.progressView aboveSubview:contentView];
-    }
-    return self;
-}
- */
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -273,6 +260,11 @@ NSDictionary *nsDict;
             }
         }
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Move our PWProgressView as the user scrolls
+    
 }
 
 // Disable landscape orientation

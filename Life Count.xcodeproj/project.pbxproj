@@ -34,6 +34,8 @@
 		2E5B774E183C73CC00CC6510 /* IpadControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B774C183C73CC00CC6510 /* IpadControllerViewController.m */; };
 		2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
+		2E6FBFA018E7646700B267BC /* bit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6FBF9E18E7646700B267BC /* bit.png */; };
+		2E6FBFA118E7646700B267BC /* hglass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6FBF9F18E7646700B267BC /* hglass-2.png */; };
 		2E71CCAD1834A19F0022C509 /* hglass-ipad_retina-port.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */; };
 		2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */; };
 		2E77A1F718DFC063007A14CC /* q_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E77A1F618DFC063007A14CC /* q_icon.png */; };
@@ -106,6 +108,8 @@
 		2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IpadControllerViewController.xib; sourceTree = "<group>"; };
 		2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateCalculationUtilTest.h; path = LifeCountDownTests/DateCalculationUtilTest.h; sourceTree = SOURCE_ROOT; };
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
+		2E6FBF9E18E7646700B267BC /* bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bit.png; sourceTree = "<group>"; };
+		2E6FBF9F18E7646700B267BC /* hglass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hglass-2.png"; sourceTree = "<group>"; };
 		2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hglass-ipad_retina-port.png"; path = "../hglass-ipad_retina-port.png"; sourceTree = "<group>"; };
 		2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ret_ipad_hglass@2x.png"; path = "../ret_ipad_hglass@2x.png"; sourceTree = "<group>"; };
 		2E77A1F618DFC063007A14CC /* q_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = q_icon.png; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FBF9E18E7646700B267BC /* bit.png */,
+				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
 				65D3B02018E4E43E00507529 /* PWProgressView.h */,
 				65D3B02118E4E43E00507529 /* PWProgressView.m */,
 				2E635E5517796F2E00B85650 /* Xibs */,
@@ -375,11 +381,13 @@
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E77A1F718DFC063007A14CC /* q_icon.png in Resources */,
 				652A9DC518A2B78200ED69AD /* tab.png in Resources */,
+				2E6FBFA118E7646700B267BC /* hglass-2.png in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
 				2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */,
+				2E6FBFA018E7646700B267BC /* bit.png in Resources */,
 				2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */,
 				2E194E0417E9EE7A0075C651 /* hglass.png in Resources */,
 				65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */,

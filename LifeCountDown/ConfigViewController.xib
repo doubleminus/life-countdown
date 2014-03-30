@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfigViewController">
@@ -19,7 +19,6 @@
                 <outlet property="genderToggle" destination="19" id="21"/>
                 <outlet property="plusLbl" destination="80" id="81"/>
                 <outlet property="plusLbl2" destination="AiZ-Jl-Igf" id="KIy-Jv-re4"/>
-                <outlet property="progView" destination="Wkw-KR-sVC" id="58f-1f-N28"/>
                 <outlet property="saveBtn" destination="kut-a7-h7P" id="a0q-Ve-FH9"/>
                 <outlet property="scroller" destination="39" id="40"/>
                 <outlet property="sitLabel" destination="CaT-IB-i10" id="xhy-Ye-ML4"/>
@@ -163,7 +162,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <color key="onTintColor" red="0.17707108915873648" green="0.39156308627795533" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </switch>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="82">
-                    <rect key="frame" x="51" y="933" width="55" height="26"/>
+                    <rect key="frame" x="51" y="928" width="55" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="17"/>
                     <state key="normal" title="About"/>
@@ -272,10 +271,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <action selector="showHelp:" destination="-1" eventType="touchUpInside" id="i6M-bQ-YVE"/>
                     </connections>
                 </button>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="Wkw-KR-sVC">
-                    <rect key="frame" x="18" y="1003" width="295" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </progressView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

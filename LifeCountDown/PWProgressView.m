@@ -40,14 +40,27 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         self.boxShape.fillRule          = kCAFillRuleEvenOdd;
 
         self.progressShape = [CAShapeLayer layer];
-        
         self.progressShape.fillColor   = [UIColor clearColor].CGColor;
         self.progressShape.strokeColor = [UIColor blackColor].CGColor;
 
         [self.layer addSublayer:self.boxShape];
         [self.layer addSublayer:self.progressShape];
+
+        UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(15, -15, 40, 40)];
+        lbl1.text = @"Life";
+        lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:9.0];
+        lbl1.textColor = [UIColor whiteColor];
+        lbl1.alpha = .9;
+        [self addSubview:lbl1];
+
+        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 25, 60, 40)];
+        lbl2.text = @"Remaining";
+        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:8.5];
+        lbl2.textColor = [UIColor whiteColor];
+        lbl2.alpha = .9;
+        [self addSubview:lbl2];
     }
-    
+
     return self;
 }
 
@@ -61,9 +74,9 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
                                  CGPointZero.y,
                                  CGRectGetWidth(self.bounds),
                                  CGRectGetHeight(self.bounds));
-    
+
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:pathRect];
-    
+
     [path appendPath:[UIBezierPath bezierPathWithRoundedRect:CGRectMake(centerHoleInset,
                                                                         centerHoleInset,
                                                                         CGRectGetWidth(self.bounds) - centerHoleInset * 2,

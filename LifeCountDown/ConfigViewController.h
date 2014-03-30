@@ -28,7 +28,6 @@
 
 #import <UIKit/UIKit.h>
 #import "HelpView.h"
-#import "YLProgressBar.h"
 
 @class PWProgressView;
 
@@ -51,7 +50,6 @@
 }
 
 @property (nonatomic, strong) PWProgressView *progressView;
-@property (strong, nonatomic) IBOutlet YLProgressBar *progView;
 @property (nonatomic, assign) id delegate;
 @property (weak, nonatomic)   IBOutlet UISlider *daySlider;
 @property (weak, nonatomic)   IBOutlet UISlider *sitSlider;
