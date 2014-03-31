@@ -101,8 +101,15 @@ double progAmount, percentRemaining;
     [self writeDictionary];
 
     if (personInfo != nil) {
-        progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
+        DateCalculationUtil *dUtil = [[DateCalculationUtil alloc] initWithDict:personInfo];
+        progAmount = [dUtil secondsRemaining] / [dUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
+        
+        // Handle outliving life expectancy
+        if (percentRemaining < 0) {
+            percentRemaining = 0;
+        }
+
         [self.progressView setProgress:progAmount];
         _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
     }
