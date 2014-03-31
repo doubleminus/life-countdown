@@ -65,6 +65,7 @@
 - (IBAction)showHelp:(id)sender;
 - (IBAction)animateConfig:(id)sender;
 - (IBAction)updateAge:(id)sender;
+- (IBAction)updateProgPercentage:(id)sender;
 - (NSString *)buildCountryString:(NSString*)cString;
 
 @end

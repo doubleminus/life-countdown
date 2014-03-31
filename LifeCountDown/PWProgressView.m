@@ -31,9 +31,8 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
     
     if (self) {
         self.alpha = PWDefaultAlpha;
-        
+
         self.boxShape = [CAShapeLayer layer];
-        
         self.boxShape.fillColor         = [UIColor blackColor].CGColor;
         self.boxShape.anchorPoint       = CGPointMake(0.5f, 0.5f);
         self.boxShape.contentsGravity   = kCAGravityCenter;
@@ -53,12 +52,18 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         lbl1.alpha = .9;
         [self addSubview:lbl1];
 
-        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 25, 60, 40)];
+        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(2, 24, 60, 40)];
         lbl2.text = @"Remaining";
-        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:8.5];
+        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:8.3];
         lbl2.textColor = [UIColor whiteColor];
         lbl2.alpha = .9;
         [self addSubview:lbl2];
+
+        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 18, 50, 11)];
+        _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:9.0];
+        _percentLabel.textColor = [UIColor whiteColor];
+        _percentLabel.alpha = .9;
+        [self addSubview:_percentLabel];
     }
 
     return self;

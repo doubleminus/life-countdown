@@ -52,19 +52,24 @@ FileHandler *fileHand;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     fileHand = [[FileHandler alloc] init];
     _touchView = [_touchView init];
-    
+
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-2.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
-    
+
     [_touchView addGestureRecognizer:_kTouch];
     [self setupHelpView];
-    
+
     bitView.animationRepeatCount = 100;
+
+    formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setGeneratesDecimalNumbers:NO];
+    [formatter setMaximumFractionDigits:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,6 +107,7 @@ FileHandler *fileHand;
     }
 }
 
+// Animate sand falling from hourglass - I still can't decide if this is stupid or not
 -(void)animateBit {
     [UIView animateWithDuration:0.5f animations:^{
         bitView.frame = CGRectOffset(bitView.frame, 0, -250);
@@ -138,21 +144,17 @@ FileHandler *fileHand;
         secdsLifeRemLabel.hidden = NO;
 
         dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
-        formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [formatter setGeneratesDecimalNumbers:NO];
-        [formatter setMaximumFractionDigits:0];
-        
+
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
         }
-        
+
         _currentAgeLabel.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
-        
+
         // Calculate estimated total # of seconds to begin counting down
         seconds = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
-        
+
         if ([dateUtil secondsRemaining] > 0) {
             _ageLabel.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
             exceedExp = NO;
@@ -163,7 +165,7 @@ FileHandler *fileHand;
             exceedExp = YES;
             secdsLifeRemLabel.text = @"seconds you've outlived estimates";
         }
-        
+
         if (!_timerStarted) {
             [self updateTimerAndBar];
             [self startSecondTimer];

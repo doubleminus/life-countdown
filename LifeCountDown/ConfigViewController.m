@@ -33,20 +33,18 @@
 #import "PWProgressView.h"
 #import <QuartzCore/QuartzCore.h>
 
-static const CGSize PWProgressViewSize      = {100.0f, 100.0f};
-static const CGSize PWProgressSliderSize    = {300.0f, 34.0f};
-static const CGFloat PWVerticalSpacing      = 20.0f;
-
 @implementation ConfigViewController
 FileHandler *fileHand;
+DateCalculationUtil *dateUtil;
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 UIToolbar* bgToolbar;
 NSDictionary *personInfo, *countryInfo;
 NSDate *birthDate;
 NSArray *ageArray;
-int slideDistance = 300;
 NSDictionary *nsDict;
+int slideDistance = 300;
+double progAmount, percentRemaining;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,14 +86,31 @@ NSDictionary *nsDict;
         scroller.alpha = 1.0;
     }
 
+    // Setup our circular progress view in bottom left corner
     self.progressView = [[PWProgressView alloc] init];
     self.progressView.layer.cornerRadius = 5.0f;
     self.progressView.clipsToBounds = YES;
     self.progressView.frame = CGRectMake(10.0, 510.0, 50.0, 50.0);
-    //     [scroller addSubview:self.progressView];
     [scroller insertSubview:self.progressView aboveSubview:contentView];
 
-    [self.progressView setProgress:0.9];
+    [self updateProgPercentage:nil];
+}
+
+-(IBAction)updateProgPercentage:(id)sender {
+    // Set percentage of life in progress view
+    [self writeDictionary];
+
+    if (personInfo != nil) {
+        progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
+        percentRemaining = progAmount * 100.0;
+        [self.progressView setProgress:progAmount];
+        _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // Move our PWProgressView as the user scrolls
+    [_progressView setFrame:CGRectMake(10.0, (scroller.contentOffset.y + scroller.frame.size.height)-58, 50.0, 50.0)];
 }
 
 - (void)setupScrollView {
@@ -103,7 +118,7 @@ NSDictionary *nsDict;
     [self.view addSubview:self->contentView];
     ((UIScrollView *)self.view).contentSize = self->contentView.frame.size;
     [scroller setScrollEnabled:YES];
-    [scroller setContentSize:CGSizeMake(320,1055)];
+    [scroller setContentSize:CGSizeMake(320,968)];
 
     // Create border around our config view content
     [contentView.layer setCornerRadius:15.0f];
@@ -130,7 +145,7 @@ NSDictionary *nsDict;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
-    DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] init];
+    dateUtil = [[DateCalculationUtil alloc] initWithDict:nsDict];
     countryInfo = [dateUtil getCountryDict];
     countryArray = [countryInfo allKeys];
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -262,61 +277,60 @@ NSDictionary *nsDict;
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Move our PWProgressView as the user scrolls
-    
-}
-
 // Disable landscape orientation
 - (BOOL)shouldAutorotate {
     return NO;
 }
 
-// Determines all age information, via the user-provided birthdate
-- (IBAction)updateAge:(id)sender {
+-(void)writeDictionary {
     NSNumber *countryIndex = [NSNumber numberWithInteger:[_ctryPicker selectedRowInComponent:0]];
     // Obtain an NSDate object built from UIPickerView selections
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
     //NSLog(@"COUNTRY: %@", country);
-
+    
     if ([self.genderToggle selectedSegmentIndex] == 0) {
         gender = @"f";
     }
     else {
         gender = @"m";
     }
-
+    
     if (!self.smokeSwitch.isOn) {
         smokeStatus = @"nonsmoker";
     }
     else {
         smokeStatus = @"smoker";
     }
-
+    
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
                        gender, smokeStatus, _daysLbl.text, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
                                                            @"gender", @"smokeStatus", @"hrsExercise", nil]];
-
-        if (personInfo != nil) {
-            [fileHand writePlist:personInfo];
-        }
     }
+}
 
-    // Check to see if anyone is listening...
-    if([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
-        // ...then send the delegate function with amount entered by the user
-        [_delegate displayUserInfo:personInfo];
+// Determines all age information, via the user-provided birthdate
+- (IBAction)updateAge:(id)sender {
+    [self writeDictionary];
 
-        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-        else {
-            if (!nsDict) {
-                [self animateConfig:nil];
+    if (personInfo != nil) {
+        [fileHand writePlist:personInfo];
+
+        // Check to see if anyone is listening...
+        if ([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
+            // ...then send the delegate function with amount entered by the user
+            [_delegate displayUserInfo:personInfo];
+
+            if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else {
+                if (!nsDict) {
+                    [self animateConfig:nil];
+                }
             }
         }
     }

@@ -205,14 +205,12 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
-				2E6FBF9E18E7646700B267BC /* bit.png */,
-				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
-				65D3B02018E4E43E00507529 /* PWProgressView.h */,
-				65D3B02118E4E43E00507529 /* PWProgressView.m */,
 				2E635E5517796F2E00B85650 /* Xibs */,
 				2E635E5417796F1F00B85650 /* Controllers */,
 				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
 				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
+				65D3B02018E4E43E00507529 /* PWProgressView.h */,
+				65D3B02118E4E43E00507529 /* PWProgressView.m */,
 				65F94B1218B8043700F75531 /* BackgroundLayer.h */,
 				65F94B1318B8043700F75531 /* BackgroundLayer.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
@@ -232,6 +230,8 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E6FBF9E18E7646700B267BC /* bit.png */,
+				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
 				2E77A1F618DFC063007A14CC /* q_icon.png */,
 				6527279F18A5B3BD00B7558E /* settings.png */,
 				65E4984B1896DCD400B9A3AA /* FB-72.png */,
