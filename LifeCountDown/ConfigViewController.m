@@ -39,10 +39,9 @@ DateCalculationUtil *dateUtil;
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 UIToolbar* bgToolbar;
-NSDictionary *personInfo, *countryInfo;
+NSDictionary *personInfo, *countryInfo, *nsDict;
 NSDate *birthDate;
 NSArray *ageArray;
-NSDictionary *nsDict;
 int slideDistance = 300;
 double progAmount, percentRemaining;
 

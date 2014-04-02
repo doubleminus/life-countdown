@@ -34,10 +34,10 @@
 @implementation IpadControllerViewController
 
 NSNumberFormatter *formatter;
-double totalSecondsDub, progAmount, percentRemaining;
-bool exceedExp1 = NO;
 UIView *shadeView; // Used for first app run only
 UIToolbar* bgToolbar; // Used for first app run only
+double totalSecondsDub, progAmount, percentRemaining;
+bool exceedExp1 = NO;
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
@@ -83,8 +83,13 @@ FileHandler *fileHand;
     [btnLayer setCornerRadius:5.0f];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // Set up our formatter, to be used in displayUserInfo:(NSDictionary*)infoDictionary method
+    formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setGeneratesDecimalNumbers:NO];
+    [formatter setMaximumFractionDigits:0];
 }
-
 
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
@@ -131,10 +136,6 @@ FileHandler *fileHand;
         [bgToolbar removeFromSuperview];
         
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
-        formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [formatter setGeneratesDecimalNumbers:NO];
-        [formatter setMaximumFractionDigits:0];
         
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
@@ -218,7 +219,6 @@ FileHandler *fileHand;
 
 - (void)handlePortrait1 {
     secsRem.hidden = YES;
-    _cntLbl.hidden = YES;
     setInfoButton.hidden = YES;
     currAgeLbl.hidden = YES;
     estTextLbl.hidden = YES;
@@ -226,16 +226,17 @@ FileHandler *fileHand;
     _pLabel.hidden = YES;
     _ageLbl.hidden = YES;
     _progBar.hidden = YES;
+    _cntLbl.hidden = YES;
 }
 
 - (void)handleLandscape1 {
     backgroundView1.hidden = YES;
-    _ageLbl.hidden = YES;
-    _pLabel.hidden = NO;
     currAgeLbl.hidden = YES;
     setInfoButton.hidden = YES;
     estTextLbl.hidden = YES;
     ageTxtLbl.hidden = YES;
+    _ageLbl.hidden = YES;
+    _pLabel.hidden = NO;
     
     /*
      CGRect screenRect = [[UIScreen mainScreen] applicationFrame];

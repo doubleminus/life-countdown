@@ -39,12 +39,12 @@
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-double totalSecondsDub, progAmount, percentRemaining;
 CGRect phoneScrollRect;
-int slideDistance2 = 0;
-bool exceedExp = NO, firstTime2 = false;;
 UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
+double totalSecondsDub, progAmount, percentRemaining;
+int slideDistance2 = 0;
+bool exceedExp = NO, firstTime2 = false;;
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
