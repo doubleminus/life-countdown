@@ -35,7 +35,7 @@
 @protocol ConfigViewDelegate <NSObject>
 
 @optional
-- (void)displayUserInfo:(NSDictionary*)personInfo;
+    - (void)displayUserInfo:(NSDictionary*)personInfo;
 @end
 
 @interface ConfigViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource> {

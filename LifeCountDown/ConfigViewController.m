@@ -462,6 +462,10 @@ double progAmount, percentRemaining;
  
  } */
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    [self updateProgPercentage:_ctryPicker.self];
+}
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView {
     return 1;
 }

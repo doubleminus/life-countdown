@@ -45,10 +45,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
 @property (strong, nonatomic) NSTimer *secondTimer;
-@property (nonatomic) bool timerStarted;
 @property (strong, nonatomic) IBOutlet UIView *touchView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *kTouch;
 @property (strong, nonatomic) HelpView *helpView;
+@property (nonatomic) bool timerStarted;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
