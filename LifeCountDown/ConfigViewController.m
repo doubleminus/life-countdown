@@ -36,10 +36,10 @@
 @implementation ConfigViewController
 FileHandler *fileHand;
 DateCalculationUtil *dateUtil;
+NSDictionary *personInfo, *countryInfo, *nsDict;
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 UIToolbar* bgToolbar;
-NSDictionary *personInfo, *countryInfo, *nsDict;
 NSDate *birthDate;
 NSArray *ageArray;
 int slideDistance = 300;
@@ -90,7 +90,7 @@ double progAmount, percentRemaining;
     self.progressView.layer.cornerRadius = 5.0f;
     self.progressView.clipsToBounds = YES;
     self.progressView.frame = CGRectMake(10.0, 510.0, 50.0, 50.0);
-    [scroller insertSubview:self.progressView aboveSubview:contentView];
+    [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
 
     [self updateProgPercentage:nil];
 }
@@ -114,8 +114,8 @@ double progAmount, percentRemaining;
     }
 }
 
+// Move our PWProgressView as the user scrolls
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // Move our PWProgressView as the user scrolls
     [_progressView setFrame:CGRectMake(10.0, (scroller.contentOffset.y + scroller.frame.size.height)-58, 50.0, 50.0)];
 }
 
