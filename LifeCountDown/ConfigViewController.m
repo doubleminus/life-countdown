@@ -91,6 +91,7 @@ double progAmount, percentRemaining;
     self.progressView.clipsToBounds = YES;
     self.progressView.frame = CGRectMake(10.0, 510.0, 50.0, 50.0);
     [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
+    self.progressView.alpha = 1.0;
 
     [self updateProgPercentage:nil];
 }
@@ -103,7 +104,7 @@ double progAmount, percentRemaining;
         DateCalculationUtil *dUtil = [[DateCalculationUtil alloc] initWithDict:personInfo];
         progAmount = [dUtil secondsRemaining] / [dUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
-        
+
         // Handle outliving life expectancy
         if (percentRemaining < 0) {
             percentRemaining = 0;
@@ -193,7 +194,7 @@ double progAmount, percentRemaining;
 
             if ([sender isKindOfClass:[UIButton class]]) {
                 btn = (UIButton *)sender;
-                
+
                 if ([sender tag] != 0) { // If it's not our "About" button, change location
                     visibleRect.origin.y = btn.frame.origin.y - 115;
                 }
@@ -294,21 +295,21 @@ double progAmount, percentRemaining;
     birthDate = [_dobPicker date];
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
     //NSLog(@"COUNTRY: %@", country);
-    
+
     if ([self.genderToggle selectedSegmentIndex] == 0) {
         gender = @"f";
     }
     else {
         gender = @"m";
     }
-    
+
     if (!self.smokeSwitch.isOn) {
         smokeStatus = @"nonsmoker";
     }
     else {
         smokeStatus = @"smoker";
     }
-    
+
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,

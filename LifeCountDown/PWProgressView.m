@@ -28,7 +28,7 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         self.alpha = PWDefaultAlpha;
 
@@ -71,7 +71,7 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     CGFloat centerHoleInset     = PWCenterHoleInsetRatio * CGRectGetWidth(self.bounds);
     CGFloat progressShapeInset  = PWProgressShapeInsetRatio * CGRectGetWidth(self.bounds);
 
@@ -87,22 +87,22 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
                                                                         CGRectGetWidth(self.bounds) - centerHoleInset * 2,
                                                                         CGRectGetHeight(self.bounds) - centerHoleInset * 2)
                                                 cornerRadius:(CGRectGetWidth(self.bounds) - centerHoleInset * 2) / 2.0f]];
-    
+
     [path setUsesEvenOddFillRule:YES];
-    
+
     self.boxShape.path = path.CGPath;
     self.boxShape.bounds = pathRect;
     self.boxShape.position = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMidY(pathRect));
 
     CGFloat diameter = CGRectGetWidth(self.bounds) - (2 * centerHoleInset) - (2 * progressShapeInset);
     CGFloat radius = diameter / 2.0f;
-    
+
     self.progressShape.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake((CGRectGetWidth(self.bounds) / 2.0f) - (radius / 2.0f),
                                                                                  (CGRectGetHeight(self.bounds) / 2.0f) - (radius / 2.0f),
                                                                                  radius,
                                                                                  radius)
                                                          cornerRadius:radius].CGPath;
-    
+
     self.progressShape.lineWidth = radius;
 }
 

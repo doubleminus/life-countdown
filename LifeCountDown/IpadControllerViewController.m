@@ -134,19 +134,19 @@ FileHandler *fileHand;
     
     if (infoDictionary != nil) {
         [bgToolbar removeFromSuperview];
-        
+
         DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
-        
+
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
         }
-        
+
         _ageLbl.text = [NSString stringWithFormat:@"%ld years, %ld months, %ld days old", (long)[currentAgeDateComp year], (long)[currentAgeDateComp month], (long)[currentAgeDateComp day]];
-        
+
         // Calculate estimated total # of seconds to begin counting down
         seconds1 = [dateUtil secondsRemaining];
         totalSecondsDub = [dateUtil totalSecondsInLife]; // Used for calculate percent of life remaining
-        
+
         if ([dateUtil secondsRemaining] > 0) {
             currAgeLbl.text = [NSString stringWithFormat:@"%.0f years old", [dateUtil yearBase]];
             exceedExp1 = NO;
@@ -157,13 +157,13 @@ FileHandler *fileHand;
             exceedExp1 = YES;
             secsRem.text = @"seconds you've outlived estimates";
         }
-        
+
         if (!_timerStarted1) {
             [self updateTimerAndBar];
             [self startSecondTimer];
         }
     }
-    
+
     [self showComponents1];
 }
 
