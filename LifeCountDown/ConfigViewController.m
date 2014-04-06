@@ -85,15 +85,7 @@ double progAmount, percentRemaining;
         scroller.alpha = 1.0;
     }
 
-    // Setup our circular progress view in bottom left corner
-    self.progressView = [[PWProgressView alloc] init];
-    self.progressView.layer.cornerRadius = 5.0f;
-    self.progressView.clipsToBounds = YES;
-    self.progressView.frame = CGRectMake(10.0, 510.0, 50.0, 50.0);
-    [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
-    self.progressView.alpha = 1.0;
-
-    [self updateProgPercentage:nil];
+    [self setupProgView];
 }
 
 -(IBAction)updateProgPercentage:(id)sender {
@@ -105,19 +97,44 @@ double progAmount, percentRemaining;
         progAmount = [dUtil secondsRemaining] / [dUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
 
+        if (percentRemaining < 0) { percentRemaining = 0; }
+
         // Handle outliving life expectancy
-        if (percentRemaining < 0) {
-            percentRemaining = 0;
+        if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+            if (percentRemaining < 10) {
+                [_progressView.percentLabel setFrame:CGRectMake(17, _progressView.percentLabel.frame.origin.y, _progressView.percentLabel.frame.size.width, _progressView.percentLabel.frame.size.height)];
+            }
+            else if (percentRemaining > 10) {
+                [_progressView.percentLabel setFrame:CGRectMake(12, _progressView.percentLabel.frame.origin.y, _progressView.percentLabel.frame.size.width, _progressView.percentLabel.frame.size.height)];
+            }
         }
 
-        [self.progressView setProgress:progAmount];
+        [_progressView setProgress:progAmount];
         _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
     }
 }
 
 // Move our PWProgressView as the user scrolls
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_progressView setFrame:CGRectMake(10.0, (scroller.contentOffset.y + scroller.frame.size.height)-58, 50.0, 50.0)];
+    [_progressView setFrame:CGRectMake(_progressView.frame.origin.x, (scroller.contentOffset.y + scroller.frame.size.height)-65, _progressView.frame.size.width, _progressView.frame.size.height)];
+}
+
+// Setup our circular progress view in bottom left corner
+- (void)setupProgView {
+    self.progressView = [[PWProgressView alloc] init];
+
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
+    }
+    else {
+        self.progressView.frame = CGRectMake(15.0, 910.0, 78.0, 78.0);
+    }
+
+    self.progressView.layer.cornerRadius = 5.0f;
+    self.progressView.clipsToBounds = YES;
+    self.progressView.alpha = 1.0;
+    [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
+    [self updateProgPercentage:nil];
 }
 
 - (void)setupScrollView {
@@ -135,9 +152,9 @@ double progAmount, percentRemaining;
     // Adjust for iPad UI differences
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [scroller setAlpha:0.0]; // Make scrollview invisible so we can move it and display it stealthily
-        [aboutBtn setFrame:CGRectMake(125, 954, 55, 26)];
         [scroller setScrollEnabled:NO];
-        [scroller setContentSize:CGSizeMake(320,2000)];
+        [contentView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, 320, 1010)];
+        [aboutBtn setFrame:CGRectMake(125, 945, 55, 15)];
 
         CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
         [viewLayer setMasksToBounds:YES];

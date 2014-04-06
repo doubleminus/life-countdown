@@ -45,25 +45,35 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         [self.layer addSublayer:self.boxShape];
         [self.layer addSublayer:self.progressShape];
 
-        UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(15, -15, 40, 40)];
+        UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(19, -14, 40, 40)];
         lbl1.text = @"Life";
-        lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:9.0];
+        lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
         lbl1.textColor = [UIColor whiteColor];
         lbl1.alpha = .9;
         [self addSubview:lbl1];
 
-        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(2, 24, 60, 40)];
+        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 24, 50, 11)];
+        _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
+        _percentLabel.textColor = [UIColor whiteColor];
+        _percentLabel.alpha = .9;
+        [self addSubview:_percentLabel];
+
+        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 31, 60, 40)];
         lbl2.text = @"Remaining";
-        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:8.3];
+        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:10.3];
         lbl2.textColor = [UIColor whiteColor];
         lbl2.alpha = .9;
         [self addSubview:lbl2];
 
-        _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 18, 50, 11)];
-        _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:9.0];
-        _percentLabel.textColor = [UIColor whiteColor];
-        _percentLabel.alpha = .9;
-        [self addSubview:_percentLabel];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            lbl1.frame = CGRectMake(25, -17, 50, 50);
+            _percentLabel.frame = CGRectMake(20, 13, 70, 50);
+            lbl2.frame = CGRectMake(6, 43, 75, 50);
+
+            lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:13.0];
+            _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:13.0];
+            lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:12.3];
+        }
     }
 
     return self;
