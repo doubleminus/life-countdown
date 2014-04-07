@@ -45,6 +45,7 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         [self.layer addSublayer:self.boxShape];
         [self.layer addSublayer:self.progressShape];
 
+        // Add three labels: LIFE X% REMAINING
         UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(19, -14, 40, 40)];
         lbl1.text = @"Life";
         lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
@@ -65,6 +66,7 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         lbl2.alpha = .9;
         [self addSubview:lbl2];
 
+        // Reposition and resize labels for iPad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             lbl1.frame = CGRectMake(25, -17, 50, 50);
             _percentLabel.frame = CGRectMake(20, 13, 70, 50);

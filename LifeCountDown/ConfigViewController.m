@@ -75,9 +75,11 @@ double progAmount, percentRemaining;
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (!nsDict) {
+            // Slide out config view, on iPad only, if we have no user info yet
             padScrollRect = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
         }
         else {
+            // Keep config view in if we already have user data
             padScrollRect = CGRectMake(750, 0, scroller.frame.size.width, scroller.frame.size.height);
         }
 
@@ -123,6 +125,7 @@ double progAmount, percentRemaining;
 - (void)setupProgView {
     self.progressView = [[PWProgressView alloc] init];
 
+    // Make progress view larger on iPad (see second clause of below else if statement)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
     }
@@ -209,6 +212,7 @@ double progAmount, percentRemaining;
             visibleRect.size.width *= .36;
             visibleRect.size.height *= .25;
 
+            // We need our button tags so we can determine which help view text to show
             if ([sender isKindOfClass:[UIButton class]]) {
                 btn = (UIButton *)sender;
 
@@ -461,11 +465,11 @@ double progAmount, percentRemaining;
     scroller = nil;
     contentView = nil;
     plusLbl = nil;
+    bgToolbar = nil;
     _dobPicker = nil;
     _genderToggle = nil;
     _daysLbl = nil;
     _smokeSwitch = nil;
-    bgToolbar = nil;
     
     [super viewDidUnload];
 }

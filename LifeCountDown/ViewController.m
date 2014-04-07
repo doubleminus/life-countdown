@@ -107,7 +107,7 @@ FileHandler *fileHand;
     }
 }
 
-// Animate sand falling from hourglass - I still can't decide if this is stupid or not
+// Animate sand falling from hourglass - still can't decide if this is stupid or not. Might just use particle kit.
 -(void)animateBit {
     [UIView animateWithDuration:0.5f animations:^{
         bitView.frame = CGRectOffset(bitView.frame, 0, -250);
@@ -347,16 +347,17 @@ FileHandler *fileHand;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
     
+    // Handle both sizes of iPhone screens
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
-        _countdownLabel.frame = CGRectMake(140,70,298,85);
         secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
+        _countdownLabel.frame = CGRectMake(140,70,298,85);
         _progressView.frame = CGRectMake(92,175,400,25);
         _percentLabel.frame = CGRectMake(82,200,400,25);
     }
     else {
-        _countdownLabel.frame = CGRectMake(85,60,298,85);
         secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
+        _countdownLabel.frame = CGRectMake(85,60,298,85);
         _progressView.frame = CGRectMake(40,165,400,25);
         _percentLabel.frame = CGRectMake(40,190,400,25);
     }
