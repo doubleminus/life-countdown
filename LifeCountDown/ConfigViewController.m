@@ -334,9 +334,9 @@ double progAmount, percentRemaining;
     if (birthDate != nil && gender != nil) {
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
-                       gender, smokeStatus, _daysLbl.text, nil]
+                       gender, smokeStatus, _daysLbl.text, _sitLabel.text, nil]
                                                  forKeys: [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate",
-                                                           @"gender", @"smokeStatus", @"hrsExercise", nil]];
+                                                           @"gender", @"smokeStatus", @"hrsExercise", @"hrsSit", nil]];
     }
 }
 
@@ -420,6 +420,10 @@ double progAmount, percentRemaining;
             [_daysLbl setText:[infoDctnry objectForKey:@"hrsExercise"]];
             [_daySlider setValue:[_daysLbl.text floatValue]];
             [self togglePlus:[_daysLbl.text floatValue]];
+            
+            [_sitLabel setText:[infoDctnry objectForKey:@"hrsSit"]];
+            [_sitSlider setValue:[_sitLabel.text floatValue]];
+            [self togglePlus:[_sitLabel.text floatValue]];
         }
     }
     // Otherwise, fall back on default date of January 1, 1970

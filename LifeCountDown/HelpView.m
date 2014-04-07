@@ -93,11 +93,11 @@ NSString *countryNameStr, *helpMsg;
             break;
             
         case 4:
-            helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
+            helpTxt = @"7 minutes of life is added for every minute of exercise per week. This addition maxes out at 4.5 years. \n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
             break;
 
         case 5:
-            helpTxt = @"7 minutes of life is added for every minute of exercise per week.\n\nSOURCE: Leisure Time Physical Activity of Moderate to Vigorous Intensity and Mortality: A Large Pooled Cohort Analysis, 2012, Public Library of Science.";
+            helpTxt = @"Sitting more than 3 hours per day decreases life expectancy by ~2 years. 6+ hours per day decreases life expectancy by 20%. \n\nSOURCE: Sedentary behaviour and life expectancy in the USA: a cause-deleted life table analysis doi 10.1136/bmjopen-2012-000828.";
             break;
 
         default:

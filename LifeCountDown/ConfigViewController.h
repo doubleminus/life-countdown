@@ -51,10 +51,8 @@
 
 @property (nonatomic, strong) PWProgressView *progressView;
 @property (nonatomic, assign) id delegate;
-@property (weak, nonatomic)   IBOutlet UISlider *daySlider;
-@property (weak, nonatomic)   IBOutlet UISlider *sitSlider;
-@property (weak, nonatomic)   IBOutlet UILabel *daysLbl;
-@property (weak, nonatomic)   IBOutlet UILabel *sitLabel;
+@property (weak, nonatomic)   IBOutlet UISlider *daySlider, *sitSlider;
+@property (weak, nonatomic)   IBOutlet UILabel *daysLbl, *sitLabel;
 @property (strong, nonatomic) IBOutlet UIPickerView *ctryPicker;
 @property (strong, nonatomic) IBOutlet UIDatePicker *dobPicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *genderToggle;
