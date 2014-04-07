@@ -41,7 +41,7 @@ NSArray *keyArray;
 
 + (void)initialize {
     if (self == [DateCalculationUtilTest class]) {
-        keyArray = [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", nil];
+        keyArray = [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", @"hrsSit", nil];
         
         // Create birthdate, setting it 10 years prior to the current date
         birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
@@ -55,10 +55,10 @@ NSArray *keyArray;
     return testDict;
 }
 
-/* Test female age calculation */
+/* Test nonsmoker female age calculation */
 - (void)testFemaleAgeCalc {
-    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -85,7 +85,7 @@ NSArray *keyArray;
     gender = @"m";
 
     // Update dictionary with new gender
-    testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil]
+    testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil]
                                                   forKeys: keyArray];
     // Recalculate our dates via date util
     testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -112,9 +112,9 @@ NSArray *keyArray;
 /* Test female smoker age calculation */
 - (void)testFemaleSmokerAgeCalc {
     float totalYears = 71.0f;
-    NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -138,12 +138,70 @@ NSArray *keyArray;
     XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
+/* Test female smoker who sits too much age calculation */
+- (void)testFemaleSmokerSitterAgeCalc {
+    float totalYears = 71.0f;
+    NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
+
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
+    NSDictionary *testDictionary = [self createDict:arr1];
+
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    XCTAssertEqual([testDateUtil yearBase], 71.0f, @"Base age should be correct");
+
+    // User is 10 years old and female. They should have 60.7 years to live if their expiry age is 70.7.
+    // Let's manually calculate 70.7 years in seconds.
+    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
+    double utilSeconds = [testDateUtil secondsRemaining];
+
+    // Cast to string for easier comparison
+    NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
+    NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
+
+    XCTAssertEqualObjects(strVal1, strVal2, @"Total seconds in life should equal util calculation");
+
+    // Calculate the total seconds in a person's life who lives to 70.7
+    double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+
+    XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
+
+    // Now mark them as sitting 4 hours a day and check that 2 years of life have been removed
+    hrsSit = @"4";
+
+    arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
+    testDictionary = [self createDict:arr1];
+
+    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    XCTAssertEqual([testDateUtil yearBase], 69.0f, @"Base age should now be 71-2 years due to sitting");
+    
+    // Now make sitting higher than 6 hours a day to trigger 20% reduction in life expectancy
+    hrsSit = @"7";
+    
+    arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
+    testDictionary = [self createDict:arr1];
+    
+    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    XCTAssertEqual([testDateUtil yearBase], 56.8f, @"Base age should now be 71-(71*.2) years due to sitting");
+    
+    // Now turn user to nonsmoker and calculate expectancy again
+    smokeStatus = @"nonsmoker";
+    
+    arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
+    testDictionary = [self createDict:arr1];
+
+    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
+    XCTAssertEqual([testDateUtil yearBase], 64.8f, @"Base age should now be 81-(81*.2) years due to sitting");
+}
+
 /* Test age calculation for female smoker in Uganda */
 - (void)testFemaleSmokerAgeCalcUganda {
     float totalYears = 47.0f;
-    NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Uganda", *countryIndex = @"184";
+    NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Uganda", *countryIndex = @"184", *hrsSit = @"1";
     
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -171,9 +229,9 @@ NSArray *keyArray;
 /* Test U.S. female nonsmoker age calculation */
 - (void)testFemaleNonSmokerAgeCalc {
     float totalYears = 81.0f;
-    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -201,9 +259,9 @@ NSArray *keyArray;
 /*Test age calculation for a U.S. male smoker */
 - (void)testMaleSmokerAgeCalc {
     float totalYears = 66.0f;
-    NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
     
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -231,9 +289,9 @@ NSArray *keyArray;
 /*Test age calculation for a male smoker in Chad */
 - (void)testMaleSmokerAgeCalcChad {
     float totalYears = 40.0f;
-    NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Chad", *countryIndex = @"184";
+    NSString *gender = @"m", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"Chad", *countryIndex = @"184", *hrsSit = @"1";
     
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -261,9 +319,9 @@ NSArray *keyArray;
 /*Test male age calculation */
 - (void)testMaleNonSmokerAgeCalc {
     float totalYears = 76.0f;
-    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
     
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -288,11 +346,11 @@ NSArray *keyArray;
     XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
-/*Test male age calculation */
+/* Test male non-smoker age calculation */
 - (void)testMaleNonSmokerAgeCalcExercise {
-    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184";;
+    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -327,11 +385,11 @@ NSArray *keyArray;
     XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
-/*Test male age calculation */
+/* Test male non-smoker age calculation for hitting ceiling of life expectancy from exercise */
 - (void)testMaleNonSmokerAgeCalcExerciseCap {
-    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -367,11 +425,11 @@ NSArray *keyArray;
     XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 }
 
-/*Test male age calculation */
+/* Test female nonsmoker age calculation for hitting ceiling of life expectancy from exercise */
 - (void)testFemaleNonSmokerAgeCalcExerciseCap {
-    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"f", *smokeStatus = @"nonsmoker", *hrsExercise = @"20", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
     
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
@@ -408,9 +466,9 @@ NSArray *keyArray;
 
 /*Test that age calculation shows a different message for users who've outlived their life expectancy */
 - (void)testOutlivedExpectancy {
-    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184";
+    NSString *gender = @"m", *smokeStatus = @"nonsmoker", *hrsExercise = @"5", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
-    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, nil];
+    NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
     DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];

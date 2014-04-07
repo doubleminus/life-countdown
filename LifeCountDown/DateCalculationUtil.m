@@ -86,7 +86,8 @@ NSCalendarUnit unitFlags;
 - (void)updateYearBase {
     NSString *genStr = [diction objectForKey:@"gender"], *smokeStr = [diction objectForKey:@"smokeStatus"];
     NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
-    float hrsAdd = [[diction objectForKey:@"hrsExercise"] floatValue];
+    float hrsExercise = [[diction objectForKey:@"hrsExercise"] floatValue];
+    float hrsSitting = [[diction objectForKey:@"hrsSit"] floatValue];
 
     if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
         if ([genStr isEqualToString:@"m"])
@@ -97,12 +98,19 @@ NSCalendarUnit unitFlags;
         if ([smokeStr isEqualToString:@"smoker"])
             yearBase -= 10.0f; // Remove 10 years from life if they smoke
 
+        if (hrsSitting >= 6) { // 6 or more means 20% less life expectancy
+            yearBase -= yearBase * .20;
+        }
+        else if (hrsSitting >= 3) { // 3 or more hours of sitting/day means 2 less years of life expectancy
+            yearBase -= 2.0f;
+        }
+
         // Find # years remaining to live (diff between base years to live and current age in years
         float yearsToLive = yearBase - [currentAgeDateComp year];
 
         // ~7 minutes added to your life for each MINUTE of exercise/week if you don't smoke
         if (![smokeStr isEqualToString:@"smoker"])
-            minsGainedPerYear = ((hrsAdd * 60) * 7) * 52.1775; // Find hours added for each year of working out...
+            minsGainedPerYear = ((hrsExercise * 60) * 7) * 52.1775; // Find hours added for each year of working out...
 
         float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
 
