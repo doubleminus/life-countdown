@@ -44,7 +44,7 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     // If we return from configView in landscape, then adjust UI components accordingly
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [self handleLandscape1];
@@ -54,10 +54,10 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-    
+
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
     enterInfo1.delegate = self;
-    
+
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
@@ -66,24 +66,24 @@ FileHandler *fileHand;
     [super viewDidLoad];
     [self handlePortrait1];
     fileHand = [[FileHandler alloc] init];
-    
+
     backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x.png"]];
     backgroundView1.frame = self.view.bounds;
     [[self view] addSubview:backgroundView1];
     [[self view] sendSubviewToBack:backgroundView1];
-    
+
     // Set button colors
     [setInfoButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
     [setInfoButton setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
     [setInfoButton setBackgroundColor:[UIColor whiteColor]];
-    
+
     // Round button corners
     CALayer *btnLayer = [setInfoButton layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
-    
+
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     // Set up our formatter, to be used in displayUserInfo:(NSDictionary*)infoDictionary method
     formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -94,7 +94,7 @@ FileHandler *fileHand;
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
-    
+
     if (nsdict) {
         [self displayUserInfo:nsdict];
     }
@@ -106,14 +106,13 @@ FileHandler *fileHand;
 - (void)firstTimeUseSetup {
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
-    
+
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    // Important to set the viewcontroller's delegate to be self
-    enterInfo1.delegate = self;
-    
+    enterInfo1.delegate = self; // Important to set the viewcontroller's delegate to be self
+
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
     bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     bgToolbar.barStyle = UIBarStyleDefault;
@@ -131,7 +130,7 @@ FileHandler *fileHand;
 - (void)displayUserInfo:(NSDictionary*)infoDictionary {
     // Perform some setup prior to setting label values...
     NSDateComponents *currentAgeDateComp;
-    
+
     if (infoDictionary != nil) {
         [bgToolbar removeFromSuperview];
 
@@ -179,11 +178,11 @@ FileHandler *fileHand;
     seconds1 -= 1.0;
     _cntLbl.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds1]];
     progAmount = seconds1 / totalSecondsDub; // Calculate here for coloring progress bar in landscape
-    
+
     // Set our progress bar's value, based on amount of life remaining, but only if in landscape
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [_progBar setProgress:progAmount];
-        
+
         // Calculate percentage of life remaining
         percentRemaining = progAmount * 100.0;
         _pLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
@@ -196,7 +195,7 @@ FileHandler *fileHand;
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
-    
+
     if (interfaceOrientation == 1) {
         [self handlePortrait1];
     }

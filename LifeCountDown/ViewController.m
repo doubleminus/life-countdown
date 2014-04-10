@@ -35,6 +35,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
+#import "MyScene.h"
 
 @implementation ViewController
 
@@ -64,12 +65,24 @@ FileHandler *fileHand;
     [_touchView addGestureRecognizer:_kTouch];
     [self setupHelpView];
 
-    bitView.animationRepeatCount = 100;
-
     formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setGeneratesDecimalNumbers:NO];
     [formatter setMaximumFractionDigits:0];
+    
+    // Configure the SKView
+    _skView = [[SKView alloc] init];
+    // _skView.showsFPS = YES; _skView.showsNodeCount = YES;
+    //_skView.alpha = 1.0;
+    _skView.frame = CGRectMake(100, 100, 200, 300);
+    [self.view addSubview:_skView];
+
+    // Create and configure the scene.
+    SKScene *scene = [MyScene sceneWithSize:_skView.bounds.size];
+    scene.scaleMode = SKSceneScaleModeResizeFill;
+
+    // Present the scene.
+    [_skView presentScene:scene];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -194,9 +207,9 @@ FileHandler *fileHand;
         percentRemaining = progAmount * 100.0;
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
-    
-    [self animateBit];
-    
+
+    //[self animateBit];
+
     _timerStarted = YES;
 }
 /****  END USER INFORMATION METHODS  ****/

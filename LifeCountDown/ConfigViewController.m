@@ -371,6 +371,7 @@ double progAmount, percentRemaining;
 
     if (tagNum == 1) {
         _daySlider = (UISlider*)sender;
+
         val = lround(_daySlider.value);
         _daysLbl.text = [NSString stringWithFormat:@"%ld", (long)val];
 
@@ -420,7 +421,7 @@ double progAmount, percentRemaining;
             [_daysLbl setText:[infoDctnry objectForKey:@"hrsExercise"]];
             [_daySlider setValue:[_daysLbl.text floatValue]];
             [self togglePlus:[_daysLbl.text floatValue]];
-            
+
             [_sitLabel setText:[infoDctnry objectForKey:@"hrsSit"]];
             [_sitSlider setValue:[_sitLabel.text floatValue]];
             [self togglePlus:[_sitLabel.text floatValue]];
@@ -443,15 +444,15 @@ double progAmount, percentRemaining;
 // Builds a string combining Country name, male & female life expectancies, to display in helpview
 - (NSString *)buildCountryString:(NSString*)cString {
     NSString *lineStr = @"", *tempCString = @"";
-    
+
     // Build ---- string to underline our country name within label
     if (cString &&  cString.length > 0) {
         tempCString = cString;
-        
+
         for (int i=0; i<((country.length)/2)+2; i++) {
             lineStr = [lineStr stringByAppendingString:@"--"];
         }
-        
+
         // Now add rest of string to show each life expectancy age for each gender in given country
         cString = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]];
         cString = [cString stringByAppendingString:@"\n"];
@@ -461,7 +462,7 @@ double progAmount, percentRemaining;
         cString = [cString stringByAppendingString:@"\nFemale: "];
         cString = [cString stringByAppendingString:[ageArray[1] stringValue]];
     }
-    
+
     return cString;
 }
 

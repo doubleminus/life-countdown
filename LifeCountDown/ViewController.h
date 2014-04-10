@@ -30,6 +30,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "ConfigViewController.h"
+#import <SpriteKit/SpriteKit.h>
 
 @class YLProgressBar;
 
@@ -40,6 +41,8 @@
     IBOutlet UIImageView *bitView;
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
+
+@property IBOutlet SKView *skView;
 
 @property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
