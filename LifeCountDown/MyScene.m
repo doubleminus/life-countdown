@@ -16,7 +16,7 @@ CGPoint location;
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup scene here */
-        self.backgroundColor = [SKColor grayColor]; //[SKColor clearColor];
+        self.backgroundColor = [SKColor clearColor];
     }
 
     location = CGPointMake(0, 0);
@@ -28,7 +28,7 @@ CGPoint location;
 }
 
 - (void)startSecondTimer {
-    timey = [NSTimer scheduledTimerWithTimeInterval: 20.0
+    timey = [NSTimer scheduledTimerWithTimeInterval: 10.0
                                              target: self
                                            selector: @selector(runAnimation)
                                            userInfo: nil
@@ -36,7 +36,6 @@ CGPoint location;
 }
 
 - (void)runAnimation {
-    NSLog(@"HERE");
     // Add effect at touch location
     [self addChild:[self newExplosion:location.x : location.y]];
 }

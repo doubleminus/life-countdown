@@ -213,10 +213,6 @@
 		2E21049E151ED7BB00D0B523 /* LifeCountDown */ = {
 			isa = PBXGroup;
 			children = (
-				65BBA71518F5D00B00DE7CDC /* MyScene.h */,
-				65BBA71618F5D00B00DE7CDC /* MyScene.m */,
-				65BBA71118F5CF7600DE7CDC /* RainParticle.sks */,
-				65BBA71218F5CF7600DE7CDC /* spark.png */,
 				2E635E5517796F2E00B85650 /* Xibs */,
 				2E635E5417796F1F00B85650 /* Controllers */,
 				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
@@ -242,6 +238,10 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65BBA71518F5D00B00DE7CDC /* MyScene.h */,
+				65BBA71618F5D00B00DE7CDC /* MyScene.m */,
+				65BBA71118F5CF7600DE7CDC /* RainParticle.sks */,
+				65BBA71218F5CF7600DE7CDC /* spark.png */,
 				2E6FBF9E18E7646700B267BC /* bit.png */,
 				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
 				2E77A1F618DFC063007A14CC /* q_icon.png */,

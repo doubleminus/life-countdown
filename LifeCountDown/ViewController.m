@@ -69,12 +69,14 @@ FileHandler *fileHand;
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setGeneratesDecimalNumbers:NO];
     [formatter setMaximumFractionDigits:0];
-    
+
     // Configure the SKView
     _skView = [[SKView alloc] init];
-    // _skView.showsFPS = YES; _skView.showsNodeCount = YES;
-    //_skView.alpha = 1.0;
-    _skView.frame = CGRectMake(100, 100, 200, 300);
+    // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
+    _skView.frame = CGRectMake(190, 250, 65, 215);
+    
+    [_skView.layer setCornerRadius:15.0f];
+
     [self.view addSubview:_skView];
 
     // Create and configure the scene.
