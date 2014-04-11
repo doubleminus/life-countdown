@@ -10,7 +10,6 @@
 
 @implementation MyScene
 
-NSTimer *timey;
 CGPoint location;
 
 - (id)initWithSize:(CGSize)size {
@@ -28,7 +27,7 @@ CGPoint location;
 }
 
 - (void)startSecondTimer {
-    timey = [NSTimer scheduledTimerWithTimeInterval: 10.0
+    _timey = [NSTimer scheduledTimerWithTimeInterval: 10.0
                                              target: self
                                            selector: @selector(runAnimation)
                                            userInfo: nil
@@ -47,7 +46,7 @@ CGPoint location;
     emitter.name = @"explosion";
     emitter.targetNode = self.scene;
     emitter.numParticlesToEmit = 1000;
-    emitter.zPosition=2.0;
+    emitter.zPosition = 2.0;
     return emitter;
 }
 

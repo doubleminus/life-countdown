@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="ageLabel" destination="28" id="32"/>
-                <outlet property="bitView" destination="2N8-0H-eww" id="3cl-3b-z55"/>
                 <outlet property="configBtn" destination="5nE-Qa-zCA" id="gDQ-yu-OKn"/>
                 <outlet property="countdownLabel" destination="42" id="43"/>
                 <outlet property="currAgeTxtLbl" destination="101" id="103"/>
@@ -94,10 +93,6 @@
                             <rect key="frame" x="20" y="387" width="280" height="2"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </progressView>
-                        <imageView hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bit.png" id="2N8-0H-eww">
-                            <rect key="frame" x="229" y="473" width="23" height="16"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -161,7 +156,6 @@
     <resources>
         <image name="FB-72.png" width="72" height="72"/>
         <image name="Twitter_logo_white.png" width="120" height="98"/>
-        <image name="bit.png" width="100" height="100"/>
         <image name="q_icon.png" width="512" height="512"/>
         <image name="settings.png" width="128" height="128"/>
     </resources>

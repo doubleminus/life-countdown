@@ -10,4 +10,8 @@
 
 @interface MyScene : SKScene
 
+@property (strong, nonatomic) NSTimer *timey;
+
+- (void)startSecondTimer;
+
 @end

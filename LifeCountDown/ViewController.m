@@ -35,7 +35,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
-#import "MyScene.h"
+//#import "MyScene.h"
 
 @implementation ViewController
 
@@ -70,31 +70,37 @@ FileHandler *fileHand;
     [formatter setGeneratesDecimalNumbers:NO];
     [formatter setMaximumFractionDigits:0];
 
+    [self setupParticleView];
+}
+
+- (void)setupParticleView {
     // Configure the SKView
     _skView = [[SKView alloc] init];
+
+    // Diagnostics if needed
     // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
     _skView.frame = CGRectMake(190, 250, 65, 215);
 
     [self.view addSubview:_skView];
 
     // Create and configure the scene.
-    SKScene *scene = [MyScene sceneWithSize:_skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeResizeFill;
+    _scene = [MyScene sceneWithSize:_skView.bounds.size];
+    _scene.scaleMode = SKSceneScaleModeResizeFill;
 
     // Present the scene.
-    [_skView presentScene:scene];
+    [_skView presentScene:_scene];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     // If we return from configView in landscape, then adjust UI components accordingly
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [self handleLandscape];
     }
-    
+
     _progressView.hidden = YES;
-    
+
     // Adjust iPhone scroll rect based on screen height
     if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
         _configBtn.frame = CGRectMake(40, 444, 31, 31);
@@ -111,7 +117,7 @@ FileHandler *fileHand;
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
     NSDictionary *nsdict = [fileHand readPlist];
-    
+
     if (nsdict) {
         [self displayUserInfo:nsdict];
     }
@@ -181,11 +187,11 @@ FileHandler *fileHand;
     seconds -= 1.0;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
     progAmount = seconds / totalSecondsDub; // Calculate here for coloring progress bar in landscape
-    
+
     // Set our progress bar's value, based on amount of life remaining, but only if in landscape
     if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [_progressView setProgress:progAmount];
-        
+
         // Calculate percentage of life remaining
         percentRemaining = progAmount * 100.0;
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
@@ -247,7 +253,7 @@ FileHandler *fileHand;
 - (IBAction)tweetTapGest:(id)sender {
     //NSLog(@"sender: %@", sender);
     int tag = (int)[(UIButton *)sender tag];
-    
+
     NSLog(@"available for Twitter? %d", [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]);
 
     if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
@@ -323,24 +329,28 @@ FileHandler *fileHand;
     _facebookBtn.hidden = YES;
     _configBtn.hidden = YES;
     _helpBtn.hidden = YES;
-    
+    _skView.hidden = NO;
+    [self.scene startSecondTimer];
+
     _countdownLabel.frame = CGRectMake(11,20,298,85);
     secdsLifeRemLabel.frame = CGRectMake(56,85,208,21);
 }
 
 - (void)handleLandscape {
     backgroundView.hidden = YES;
-    
+    _skView.hidden = YES;
+    [self.scene.timey invalidate];
+
     // Set gradient background
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient2];
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
-    
+
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
-    
+
     // Handle both sizes of iPhone screens
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {

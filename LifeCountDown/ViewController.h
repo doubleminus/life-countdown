@@ -30,20 +30,21 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "ConfigViewController.h"
+#import "MyScene.h"
 #import <SpriteKit/SpriteKit.h>
+
 
 @class YLProgressBar;
 
 @interface ViewController : UIViewController <ConfigViewDelegate> {
     UIImageView *backgroundView;
     double seconds;
-    
-    IBOutlet UIImageView *bitView;
+
     __weak IBOutlet UILabel *secdsLifeRemLabel, *currAgeTxtLbl, *estTxtLbl;
 }
 
 @property IBOutlet SKView *skView;
-
+@property IBOutlet MyScene *scene;
 @property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
