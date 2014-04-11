@@ -74,8 +74,6 @@ FileHandler *fileHand;
     _skView = [[SKView alloc] init];
     // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
     _skView.frame = CGRectMake(190, 250, 65, 215);
-    
-    [_skView.layer setCornerRadius:15.0f];
 
     [self.view addSubview:_skView];
 
@@ -120,23 +118,6 @@ FileHandler *fileHand;
     else {
         [self firstTimeUseSetup];
     }
-}
-
-// Animate sand falling from hourglass - still can't decide if this is stupid or not. Might just use particle kit.
--(void)animateBit {
-    [UIView animateWithDuration:0.5f animations:^{
-        bitView.frame = CGRectOffset(bitView.frame, 0, -250);
-        bitView.alpha = .8;
-    }];
-
-    bitView.hidden = YES;
-
-    [UIView animateWithDuration:0.5f animations:^{
-        bitView.frame = CGRectOffset(bitView.frame, 0, 250);
-        bitView.alpha = .1;
-    }];
-
-    bitView.hidden = NO;
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
@@ -209,8 +190,6 @@ FileHandler *fileHand;
         percentRemaining = progAmount * 100.0;
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
-
-    //[self animateBit];
 
     _timerStarted = YES;
 }
