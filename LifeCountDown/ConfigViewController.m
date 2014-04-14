@@ -159,7 +159,7 @@ double progAmount, percentRemaining;
         [contentView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, 320, 1010)];
         [aboutBtn setFrame:CGRectMake(125, 945, 55, 15)];
 
-        CALayer *viewLayer = [scroller layer]; // Round uiview's corners a bit
+        CALayer *viewLayer = [scroller layer]; // Round UIView's corners a bit
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
 
