@@ -26,12 +26,12 @@
  OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <QuartzCore/QuartzCore.h>
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
 #import "BackgroundLayer.h"
 #import "FileHandler.h"
 #import "PWProgressView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation ConfigViewController
 FileHandler *fileHand;

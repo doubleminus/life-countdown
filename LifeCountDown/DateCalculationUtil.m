@@ -123,6 +123,7 @@ NSCalendarUnit unitFlags;
     }
 }
 
+// Obtain NSDictionary of all country data to use in age calculation
 - (NSDictionary*)getCountryDict {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
@@ -150,6 +151,7 @@ NSCalendarUnit unitFlags;
     return cDict;
 }
 
+// Calculate's only the user's base age, based on DOB. We then adjust accordingly based on other input.
 - (void)calcBaseAgeInSeconds:(float)baseAgeFloat {
     totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
 }

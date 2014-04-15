@@ -28,11 +28,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import <SpriteKit/SpriteKit.h>
 #import <Accounts/Accounts.h>
 #import "ConfigViewController.h"
 #import "MyScene.h"
-#import <SpriteKit/SpriteKit.h>
-
 
 @class YLProgressBar;
 
