@@ -80,8 +80,7 @@ FileHandler *fileHand;
     // Diagnostics if needed
     // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
     _skView.frame = CGRectMake(190, 250, 65, 215);
-
-    [self.view addSubview:_skView];
+    [self.view insertSubview:_skView aboveSubview:backgroundView];
 
     // Create and configure the scene.
     _scene = [MyScene sceneWithSize:_skView.bounds.size];
