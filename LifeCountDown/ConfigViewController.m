@@ -94,22 +94,19 @@ double progAmount, percentRemaining;
 }
 
 -(IBAction)updateProgPercentage:(id)sender {
-    // Set percentage of life in progress view
-    [self writeDictionary];
-    
-    [dateUtil beginAgeProcess:personInfo];
+    [self writeDictionary]; // Set percentage of life in progress view
 
     if (personInfo != nil) {
-        NSLog(@"personInfo: %@", personInfo);
-
         [dateUtil beginAgeProcess:personInfo];
 
-        progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
+        progAmount = [dateUtil secondsLived] / [dateUtil totalSecondsInLife];
 
-        NSLog(@"[dUtil secondsRemaining]: %f", [dateUtil secondsRemaining]);
+        NSLog(@"[dUtil secondsRemaining]: %f", [dateUtil secondsLived]);
         NSLog(@"[dUtil totalSecondsInLife]: %f", [dateUtil totalSecondsInLife]);
 
         percentRemaining = progAmount * 100.0;
+        
+        NSLog(@"percentRemaining: %f", percentRemaining);
 
         if (percentRemaining < 0) { percentRemaining = 0; }
 
