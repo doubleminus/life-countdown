@@ -36,7 +36,7 @@
 
 @implementation DateCalculationUtil
 
-float yearBase;
+float yearBase, extraSeconds;
 NSString *currentAgeStr;
 NSDate *birthDate;
 NSCalendar *calendar;
@@ -58,8 +58,6 @@ NSCalendarUnit unitFlags;
         if (_countryDict != nil) {
             diction = myDict;
             self.birthDate = [diction objectForKey:@"birthDate"];
-            
-            NSLog(@"birthDate: %@", birthDate);
 
             [self calculateCurrentAge:birthDate]; // 1. Calculate difference between the current date and user's birthdate to get age
             [self updateYearBase]; // 2. Adjust base expected years to live
@@ -78,8 +76,8 @@ NSCalendarUnit unitFlags;
         //NSLog(@"currentAgeDateComp: %@", currentAgeDateComp);
     }
 
+    /*
     // Calculate total seconds lived
-
     // Get years in seconds, first
     _secondsLived = ((((365.25 * [currentAgeDateComp year]) * 24) * 60) * 60);
 
@@ -90,7 +88,7 @@ NSCalendarUnit unitFlags;
     _secondsLived += (((([currentAgeDateComp day]) * 24) * 60) * 60);
 
     // Add seconds
-    _secondsLived += [currentAgeDateComp second];
+    _secondsLived += [currentAgeDateComp second]; */
 }
 
 // Updates base number of years to live based on user-entered criteria
@@ -143,8 +141,9 @@ NSCalendarUnit unitFlags;
 
             yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
-            double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
-            totalSecondsInLife += secondsToAdd;
+            extraSeconds = ((((yearsToAdd * 365.25) * 24) * 60) *60); //(minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
+            //totalSecondsInLife += secondsToAdd;
+            
         }
     }
 
@@ -168,8 +167,9 @@ NSCalendarUnit unitFlags;
 
         // Now obtain the number of seconds from our static starting point, comps, and now
         secondsRemaining = [[calendar dateFromComponents:comps] timeIntervalSinceNow];
+        secondsRemaining += extraSeconds;
 
-        NSLog(@"****SECONDS LIVED****: %@", currentAgeDateComp);
+        NSLog(@"****secondsRemaining****: %f", secondsRemaining);
     }
 }
 

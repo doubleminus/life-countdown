@@ -99,12 +99,10 @@ double progAmount, percentRemaining;
     if (personInfo != nil) {
         [dateUtil beginAgeProcess:personInfo];
 
-        progAmount = [dateUtil secondsLived] / [dateUtil totalSecondsInLife];
-
-        NSLog(@"[dUtil secondsRemaining]: %f", [dateUtil secondsLived]);
-        NSLog(@"[dUtil totalSecondsInLife]: %f", [dateUtil totalSecondsInLife]);
-
+        progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
+
+        percentRemaining = 100 * ([dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]);
         
         NSLog(@"percentRemaining: %f", percentRemaining);
 
