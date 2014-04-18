@@ -49,27 +49,21 @@ NSCalendarUnit unitFlags;
 @synthesize currentAgeDateComp;
 @synthesize yearBase;
 
-- (DateCalculationUtil*)initWithDict:(NSDictionary*)myDict {
-    self = [super init];
+- (void)beginAgeProcess:(NSDictionary*)myDict {
+    NSLog(@"mMYDICT: %@", myDict);
 
     // Make sure we have our dictionary and crucial birthday value
     if (myDict != nil && [myDict objectForKey:@"birthDate"] != nil && [myDict objectForKey:@"country"] != nil) {
         _countryDict = [self getCountryDict];
-
+        
         if (_countryDict != nil) {
             diction = myDict;
             self.birthDate = [diction objectForKey:@"birthDate"];
-
+            
             [self calculateAge:birthDate]; // 1. Calculate difference between the current date and user's birthdate to get age
             [self updateYearBase]; // 2. Adjust base expected years to live
-            [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
-
-            if (currentAgeDateComp != nil)
-                [self calculateSeconds:birthDate];
         }
     }
-
-    return self;
 }
 
 // Determines all age information, via the user-provided birthdate
@@ -78,8 +72,9 @@ NSCalendarUnit unitFlags;
     unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
 
     // Calculate difference between current date and user's birth date to get their age
-    if (birthDate != nil)
+    if (birthDate != nil) {
         currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg toDate:[NSDate date] options:0];
+    }
 }
 
 // Updates base number of years to live based on user-entered criteria
@@ -88,38 +83,59 @@ NSCalendarUnit unitFlags;
     NSArray *ageArray = [_countryDict objectForKey:[diction objectForKey:@"country"]];
     float hrsExercise = [[diction objectForKey:@"hrsExercise"] floatValue];
     float hrsSitting = [[diction objectForKey:@"hrsSit"] floatValue];
+    float yearsToAdd = 0;
+    totalSecondsInLife = 0;
 
     if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
-        if ([genStr isEqualToString:@"m"])
+        if ([genStr isEqualToString:@"m"]) {
             yearBase = [[ageArray objectAtIndex:0] floatValue];
-        else if ([genStr isEqualToString:@"f"])
+            NSLog(@"yearBase MALE: %f", yearBase);
+        }
+        else if ([genStr isEqualToString:@"f"]) {
             yearBase = [[ageArray objectAtIndex:1] floatValue];
+                        NSLog(@"yearBase FEMALE: %f", yearBase);
+        }
 
-        if ([smokeStr isEqualToString:@"smoker"])
+        if ([smokeStr isEqualToString:@"smoker"]) {
+            NSLog(@"IS SMOKER");
             yearBase -= 10.0f; // Remove 10 years from life if they smoke
+                   //     NSLog(@"yearBase SMOKER: %f", yearBase);
+        }
 
         if (hrsSitting >= 6) { // 6 or more means 20% less life expectancy
-            yearBase -= yearBase * .20;
+            yearBase -= (yearBase * .20);
+                 //       NSLog(@"yearBase SITTING 6+ HOURS: %f", yearBase);
         }
         else if (hrsSitting >= 3) { // 3 or more hours of sitting/day means 2 less years of life expectancy
             yearBase -= 2.0f;
+               //         NSLog(@"yearBase SITTING 3+ HOURS: %f", yearBase);
         }
 
         // Find # years remaining to live (diff between base years to live and current age in years
         float yearsToLive = yearBase - [currentAgeDateComp year];
 
-        // ~7 minutes added to your life for each MINUTE of exercise/week if you don't smoke
-        if (![smokeStr isEqualToString:@"smoker"])
+        // ~7 minutes added to your life for each MINUTE of exercise/week if you DO NOT smoke
+        if (![smokeStr isEqualToString:@"smoker"]) {
             minsGainedPerYear = ((hrsExercise * 60) * 7) * 52.1775; // Find hours added for each year of working out...
 
-        float yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
+            yearsToAdd = (minsGainedPerYear * yearsToLive) / 525949.0f; // Divide by # of minutes in year
+            if (yearsToAdd > 4.5) {
+                yearsToAdd = 4.5; // Ceiling of 4.5 additional years due to exercise, per research
+            }
+            
+            NSLog(@"YEARS TO ADD: %f", yearsToAdd);
+            
+            yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
 
-        if (yearsToAdd > 4.5) yearsToAdd = 4.5; // Ceiling of 4.5 additional years due to exercise, per research
+            double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
+            totalSecondsInLife += secondsToAdd;
+        }
+    }
 
-        yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
+    [self calcBaseAgeInSeconds:yearBase]; // 3. Get this # of years in seconds
 
-        double secondsToAdd = (minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
-        totalSecondsInLife += secondsToAdd;
+    if (currentAgeDateComp != nil) {
+        [self calculateSeconds:birthDate];
     }
 }
 
@@ -128,13 +144,12 @@ NSCalendarUnit unitFlags;
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                              NSUserDomainMask, YES) objectAtIndex:0];
-
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     plistPath = [rootPath stringByAppendingPathComponent:@"Countries"];
 
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath])
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         plistPath = [[NSBundle mainBundle] pathForResource:@"Countries" ofType:@"plist"];
+    }
 
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     NSDictionary *cDict = (NSDictionary *)[NSPropertyListSerialization
@@ -142,8 +157,10 @@ NSCalendarUnit unitFlags;
                                           mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                           format:&format
                                           errorDescription:&errorDesc];
-/*    if (!cDict)
+
+/*  if (!cDict) {
         NSLog(@"Error reading plist: %@, format%ulu", errorDesc, format);
+    }
 
     NSArray *maleAge = [temp objectForKey:@"USA"];
     NSLog(@"USA male age: %@", maleAge[0]); */
@@ -153,12 +170,18 @@ NSCalendarUnit unitFlags;
 
 // Calculate's only the user's base age, based on DOB. We then adjust accordingly based on other input.
 - (void)calcBaseAgeInSeconds:(float)baseAgeFloat {
-    totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
+    if (totalSecondsInLife > 0) {
+     //   NSLog(@"total seconds ABOVE, %f", totalSecondsInLife);
+        totalSecondsInLife += ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
+    }
+    else if (totalSecondsInLife == 0) {
+     //   NSLog(@"total seconds BELOW, %f", totalSecondsInLife);
+        totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
+    }
 }
 
 // Calculate the user's remaining seconds left to live
 - (void)calculateSeconds:(NSDate*)dateArg {
-
     if (calendar != nil) {
         // Obtain date components representing the difference from the user's birthday until now
         NSDateComponents *bdayComp = [calendar components:unitFlags fromDate:dateArg];

@@ -41,9 +41,10 @@
 @property float yearBase;
 
 // Constructor
-- (DateCalculationUtil*) initWithDict:(NSDictionary*)myDict;
+//- (DateCalculationUtil*) initWithDict:(NSDictionary*)myDict;
 
 // Other methods
+- (void)beginAgeProcess:(NSDictionary*)myDict;
 - (void)calculateSeconds:(NSDate*)dateArg;
 - (NSDictionary*)getCountryDict;
 

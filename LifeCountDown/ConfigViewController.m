@@ -36,7 +36,7 @@
 @implementation ConfigViewController
 FileHandler *fileHand;
 DateCalculationUtil *dateUtil;
-NSDictionary *personInfo, *countryInfo, *nsDict;
+NSDictionary *personInfo, *countryInfo;
 NSString *country, *gender, *smokeStatus;
 CGRect padScrollRect, phoneScrollRect;
 UIToolbar* bgToolbar;
@@ -50,7 +50,10 @@ double progAmount, percentRemaining;
 
     // Get dictionary of user data from our file handler. If dictionary is nil, we will request config data from user
     fileHand = [[FileHandler alloc] init];
-    nsDict = [fileHand readPlist];
+    personInfo = [fileHand readPlist];
+
+    dateUtil = [[DateCalculationUtil alloc] init];
+    [dateUtil beginAgeProcess:personInfo];
 
     [self setupScrollView];
     [self setupHelpView];
@@ -65,8 +68,8 @@ double progAmount, percentRemaining;
 
     _dobPicker.maximumDate = [NSDate date]; // Set our date picker's max date to today
 
-    if (nsDict) {
-        [self setupDisplay:nsDict];
+    if (personInfo) {
+        [self setupDisplay:personInfo];
     }
 }
 
@@ -74,7 +77,7 @@ double progAmount, percentRemaining;
     [super viewDidAppear:animated];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (!nsDict) {
+        if (!personInfo) {
             // Slide out config view, on iPad only, if we have no user info yet
             padScrollRect = CGRectMake(450, 0, scroller.frame.size.width, scroller.frame.size.height);
         }
@@ -93,10 +96,19 @@ double progAmount, percentRemaining;
 -(IBAction)updateProgPercentage:(id)sender {
     // Set percentage of life in progress view
     [self writeDictionary];
+    
+    [dateUtil beginAgeProcess:personInfo];
 
     if (personInfo != nil) {
-        DateCalculationUtil *dUtil = [[DateCalculationUtil alloc] initWithDict:personInfo];
-        progAmount = [dUtil secondsRemaining] / [dUtil totalSecondsInLife];
+        NSLog(@"personInfo: %@", personInfo);
+
+        [dateUtil beginAgeProcess:personInfo];
+
+        progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
+
+        NSLog(@"[dUtil secondsRemaining]: %f", [dateUtil secondsRemaining]);
+        NSLog(@"[dUtil totalSecondsInLife]: %f", [dateUtil totalSecondsInLife]);
+
         percentRemaining = progAmount * 100.0;
 
         if (percentRemaining < 0) { percentRemaining = 0; }
@@ -114,6 +126,7 @@ double progAmount, percentRemaining;
         [_progressView setProgress:progAmount];
         _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
     }
+   // NSLog(@"PERCENT REMAINING: %f", percentRemaining);
 }
 
 // Move our PWProgressView as the user scrolls
@@ -172,7 +185,6 @@ double progAmount, percentRemaining;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
-    dateUtil = [[DateCalculationUtil alloc] initWithDict:nsDict];
     countryInfo = [dateUtil getCountryDict];
     countryArray = [countryInfo allKeys];
     countryArray = [countryArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -276,9 +288,9 @@ double progAmount, percentRemaining;
 
 // Method to allow sliding view out from side on iPad
 - (IBAction)animateConfig:(id)sender {
-    nsDict = [fileHand readPlist];
+    personInfo = [fileHand readPlist];
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && nsDict) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && personInfo) {
         if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
@@ -332,6 +344,7 @@ double progAmount, percentRemaining;
     }
 
     if (birthDate != nil && gender != nil) {
+        NSLog(@"IN WRITE DICTIONARY");
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
                        gender, smokeStatus, _daysLbl.text, _sitLabel.text, nil]
@@ -356,7 +369,7 @@ double progAmount, percentRemaining;
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
             else {
-                if (!nsDict) {
+                if (!personInfo) {
                     [self animateConfig:nil];
                 }
             }
@@ -393,7 +406,7 @@ double progAmount, percentRemaining;
 
     // Birthdate has already been set, so set our datepicker
     if ([infoDctnry objectForKey:@"birthDate"] != nil) {
-        //NSLog(@"birthday key: %@", [nsDict objectForKey:@"birthDate"]);
+        //NSLog(@"birthday key: %@", [personInfo objectForKey:@"birthDate"]);
         NSString *bdayStr = [myFormatter stringFromDate:[infoDctnry objectForKey:@"birthDate"]];
         [_dobPicker setDate:[myFormatter dateFromString:bdayStr]];
 

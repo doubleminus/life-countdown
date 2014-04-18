@@ -66,6 +66,7 @@ FileHandler *fileHand;
     [super viewDidLoad];
     [self handlePortrait1];
     fileHand = [[FileHandler alloc] init];
+    dateUtil = [[DateCalculationUtil alloc] init];
 
     backgroundView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ret_ipad_hglass@2x.png"]];
     backgroundView1.frame = self.view.bounds;
@@ -134,7 +135,7 @@ FileHandler *fileHand;
     if (infoDictionary != nil) {
         [bgToolbar removeFromSuperview];
 
-        DateCalculationUtil *dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
+        [dateUtil beginAgeProcess:infoDictionary];
 
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];

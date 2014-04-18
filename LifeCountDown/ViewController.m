@@ -35,7 +35,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
-//#import "MyScene.h"
 
 @implementation ViewController
 
@@ -56,6 +55,8 @@ FileHandler *fileHand;
 
     fileHand = [[FileHandler alloc] init];
     _touchView = [_touchView init];
+    
+    dateUtil = [[DateCalculationUtil alloc] init];
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-2.png"]];
     backgroundView.frame = self.view.bounds;
@@ -144,7 +145,7 @@ FileHandler *fileHand;
         _countdownLabel.hidden = NO;
         secdsLifeRemLabel.hidden = NO;
 
-        dateUtil = [[DateCalculationUtil alloc] initWithDict:infoDictionary];
+        [dateUtil beginAgeProcess:infoDictionary];
 
         if ([dateUtil currentAgeDateComp] != nil) {
             currentAgeDateComp = [dateUtil currentAgeDateComp];
