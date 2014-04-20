@@ -102,11 +102,8 @@ double progAmount, percentRemaining;
         progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
 
-        percentRemaining = 100 * ([dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]);
-        
-        NSLog(@"percentRemaining: %f", percentRemaining);
-
         if (percentRemaining < 0) { percentRemaining = 0; }
+        if (percentRemaining > 100) { percentRemaining = 100; }
 
         // Handle outliving life expectancy
         if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
@@ -118,8 +115,10 @@ double progAmount, percentRemaining;
             }
         }
 
-        [_progressView setProgress:progAmount];
-        _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
+        if (percentRemaining != 100) {
+            [_progressView setProgress:progAmount];
+            _progressView.percentLabel.text = [NSString stringWithFormat:@"%.1f%%", percentRemaining];
+        }
     }
    // NSLog(@"PERCENT REMAINING: %f", percentRemaining);
 }
@@ -143,7 +142,7 @@ double progAmount, percentRemaining;
 
     self.progressView.layer.cornerRadius = 5.0f;
     self.progressView.clipsToBounds = YES;
-    self.progressView.alpha = 1.0;
+  //  self.progressView.alpha = 1.0;
     [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
     [self updateProgPercentage:nil];
 }
@@ -339,7 +338,6 @@ double progAmount, percentRemaining;
     }
 
     if (birthDate != nil && gender != nil) {
-        NSLog(@"IN WRITE DICTIONARY");
         personInfo = [NSDictionary dictionaryWithObjects:
                       [NSArray arrayWithObjects: country, countryIndex, birthDate,
                        gender, smokeStatus, _daysLbl.text, _sitLabel.text, nil]

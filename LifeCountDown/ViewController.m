@@ -194,6 +194,10 @@ FileHandler *fileHand;
 
         // Calculate percentage of life remaining
         percentRemaining = progAmount * 100.0;
+
+        if (percentRemaining < 0)   { percentRemaining = 0; }
+        if (percentRemaining > 100) { percentRemaining = 100; }
+        
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
 

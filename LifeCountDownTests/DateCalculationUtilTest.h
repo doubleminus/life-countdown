@@ -31,6 +31,6 @@
 
 @interface DateCalculationUtilTest : XCTestCase
 
--(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(NSInteger)bAge;
+-(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(float)bAge;
 
 @end

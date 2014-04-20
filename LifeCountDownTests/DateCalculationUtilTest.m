@@ -42,11 +42,10 @@ NSArray *keyArray;
 + (void)initialize {
     if (self == [DateCalculationUtilTest class]) {
         keyArray = [NSArray arrayWithObjects: @"country", @"countryIndex", @"birthDate", @"gender", @"smokeStatus", @"hrsExercise", @"hrsSit", nil];
-        
+
         // Create birthdate, setting it 10 years prior to the current date
         birthDate = [NSDate dateWithTimeIntervalSinceNow:SEC_CONST];
     }
-    // Initialization for this class and any subclasses
 }
 
 - (NSDictionary*)createDict:(NSArray*)testArr  {
@@ -61,7 +60,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual([testDateUtil birthDate], birthDate, @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 81.0f, @"Base age should be correct");
 
@@ -88,7 +88,7 @@ NSArray *keyArray;
     testDictionary = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil]
                                                   forKeys: keyArray];
     // Recalculate our dates via date util
-    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual([testDateUtil birthDate], birthDate, @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 76.0f, @"Base age should be correct");
@@ -111,25 +111,29 @@ NSArray *keyArray;
 
 /* Test female smoker age calculation */
 - (void)testFemaleSmokerAgeCalc {
-    float totalYears = 71.0f;
+    float totalYears = 71;
     NSString *gender = @"f", *smokeStatus = @"smoker", *hrsExercise = @"0", *country = @"United States", *countryIndex = @"184", *hrsSit = @"1";
 
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
-    
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 71.0f, @"Base age should be correct");
 
-    // User is 10 years old and female. They should have 60.7 years to live if their expiry age is 70.7.
-    // Let's manually calculate 70.7 years in seconds.
-    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
-    double utilSeconds = [testDateUtil secondsRemaining];
-    
+    // User is 10 years old and female and smokes (yes, you read that right). They should have 61 years to live if their expiry age is 71.
+    // Let's manually calculate 71 years in seconds.
+    float remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
+    float utilSeconds = [testDateUtil secondsRemaining];
+
+    // Get seconds in 71 years
+    float secondsToLive = ((((71 * 365.25) * 24) * 60) * 60);
+
     // Cast to string for easier comparison
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
     NSString *strVal2 = [NSString stringWithFormat:@"%.1f", utilSeconds];
-    
+
     XCTAssertEqualObjects(strVal1, strVal2, @"Total seconds in life should equal util calculation");
 
     // Calculate the total seconds in a person's life who lives to 70.7
@@ -146,14 +150,15 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 71.0f, @"Base age should be correct");
 
     // User is 10 years old and female. They should have 60.7 years to live if their expiry age is 70.7.
     // Let's manually calculate 70.7 years in seconds.
-    double remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
-    double utilSeconds = [testDateUtil secondsRemaining];
+    float remSeconds = [self calcCorrectRemainingSeconds:birthDate baseAge:totalYears];
+    float utilSeconds = [testDateUtil secondsRemaining];
 
     // Cast to string for easier comparison
     NSString *strVal1 = [NSString stringWithFormat:@"%.1f", remSeconds];
@@ -162,7 +167,7 @@ NSArray *keyArray;
     XCTAssertEqualObjects(strVal1, strVal2, @"Total seconds in life should equal util calculation");
 
     // Calculate the total seconds in a person's life who lives to 70.7
-    double totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
+    float totalSecondsInLife = ((((daysInAYear * totalYears) * 24) * 60) * 60); // Days->Hours->Minutes->Seconds
 
     XCTAssertEqual(totalSecondsInLife, [testDateUtil totalSecondsInLife], @"Total seconds in life should equal util calculation");
 
@@ -172,7 +177,7 @@ NSArray *keyArray;
     arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     testDictionary = [self createDict:arr1];
 
-    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual([testDateUtil yearBase], 69.0f, @"Base age should now be 71-2 years due to sitting");
     
     // Now make sitting higher than 6 hours a day to trigger 20% reduction in life expectancy
@@ -181,7 +186,7 @@ NSArray *keyArray;
     arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     testDictionary = [self createDict:arr1];
     
-    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 56.8f, @"Base age should now be 71-(71*.2) years due to sitting");
     
@@ -191,7 +196,7 @@ NSArray *keyArray;
     arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     testDictionary = [self createDict:arr1];
 
-    testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 64.8f, @"Base age should now be 81-(81*.2) years due to sitting");
 }
@@ -204,7 +209,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 47.0f, @"Base age should be correct");
@@ -234,7 +240,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 81.0f, @"Base age should be correct");
@@ -264,7 +271,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 66.0f, @"Base age should be correct");
@@ -294,7 +302,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 40.0f, @"Base age should be correct");
@@ -324,7 +333,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     XCTAssertEqual([testDateUtil yearBase], 76.0f, @"Base age should be correct");
@@ -353,7 +363,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
@@ -362,9 +373,6 @@ NSArray *keyArray;
 
     // Use this to perform math later on number of seconds left in life
     float finalAgeFloat = [testDateUtil yearBase];
-
-    // 68 years to live, so add 6 minutes of life for every minute of exercise/week. 8765 hours in a year.
-    // weeks remaining in life * hrs exercise/week = total hours of exercise in life. multiply this by 6 to get total minutes to add
 
     XCTAssertEqual([testDateUtil yearBase], 80.5f, @"Base age should be correct");
 
@@ -392,7 +400,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
     // Estimated final age should be 80.5
@@ -432,7 +441,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
     
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
     
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
     
@@ -471,7 +481,8 @@ NSArray *keyArray;
     NSArray *arr1 = [NSArray arrayWithObjects: country, countryIndex, birthDate, gender, smokeStatus, hrsExercise, hrsSit, nil];
     NSDictionary *testDictionary = [self createDict:arr1];
 
-    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] initWithDict:testDictionary];
+    DateCalculationUtil *testDateUtil = [[DateCalculationUtil alloc] init];
+    [testDateUtil beginAgeProcess:testDictionary];
 
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
 
@@ -498,17 +509,19 @@ NSArray *keyArray;
 }
 
 /* Helper method to calculate remaining seconds to test against */
--(double) calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(NSInteger)bAge {
+- (double)calcCorrectRemainingSeconds:(NSDate*)bDate baseAge:(float)bAge {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit |
     NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *newComp = [calendar components:unitFlags fromDate:bDate];
-   
+    
+    NSLog(@"bAge: %f", bAge);
+
     NSDateComponents *comps = [[NSDateComponents alloc] init]; // Obtain empty date components to set, so we have a static starting point
     comps.calendar = calendar; // Set its calendar to our Gregorian calendar
-    [comps setDay:[newComp day]];
+    [comps setDay:  [newComp day]];
     [comps setMonth:[newComp month]];
-    [comps setYear:[newComp year] + bAge];
+    [comps setYear: [newComp year] + bAge];
     
     return [[calendar dateFromComponents:comps] timeIntervalSinceNow];
 }

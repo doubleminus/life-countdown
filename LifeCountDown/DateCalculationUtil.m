@@ -75,20 +75,6 @@ NSCalendarUnit unitFlags;
         currentAgeDateComp = [calendar components:unitFlags fromDate:dateArg toDate:[NSDate date] options:0];
         //NSLog(@"currentAgeDateComp: %@", currentAgeDateComp);
     }
-
-    /*
-    // Calculate total seconds lived
-    // Get years in seconds, first
-    _secondsLived = ((((365.25 * [currentAgeDateComp year]) * 24) * 60) * 60);
-
-    // Add months
-    _secondsLived += ((((30.436 * [currentAgeDateComp month]) * 24) * 60) * 60);
-
-    // Add days
-    _secondsLived += (((([currentAgeDateComp day]) * 24) * 60) * 60);
-
-    // Add seconds
-    _secondsLived += [currentAgeDateComp second]; */
 }
 
 // Updates base number of years to live based on user-entered criteria
@@ -103,26 +89,16 @@ NSCalendarUnit unitFlags;
     if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
         if ([genStr isEqualToString:@"m"]) {
             yearBase = [[ageArray objectAtIndex:0] floatValue];
-            NSLog(@"yearBase MALE: %f", yearBase);
         }
         else if ([genStr isEqualToString:@"f"]) {
             yearBase = [[ageArray objectAtIndex:1] floatValue];
-                        NSLog(@"yearBase FEMALE: %f", yearBase);
-        }
-
-        if ([smokeStr isEqualToString:@"smoker"]) {
-            NSLog(@"IS SMOKER");
-            yearBase -= 10.0f; // Remove 10 years from life if they smoke
-                   //     NSLog(@"yearBase SMOKER: %f", yearBase);
         }
 
         if (hrsSitting >= 6) { // 6 or more means 20% less life expectancy
             yearBase -= (yearBase * .20);
-                 //       NSLog(@"yearBase SITTING 6+ HOURS: %f", yearBase);
         }
         else if (hrsSitting >= 3) { // 3 or more hours of sitting/day means 2 less years of life expectancy
             yearBase -= 2.0f;
-               //         NSLog(@"yearBase SITTING 3+ HOURS: %f", yearBase);
         }
 
         // Find # years remaining to live (diff between base years to live and current age in years
@@ -137,13 +113,12 @@ NSCalendarUnit unitFlags;
                 yearsToAdd = 4.5; // Ceiling of 4.5 additional years due to exercise, per research
             }
 
-            NSLog(@"YEARS TO ADD: %f", yearsToAdd);
-
             yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
+            extraSeconds = ((((yearsToAdd * 365.25) * 24) * 60) *60);
+        }
 
-            extraSeconds = ((((yearsToAdd * 365.25) * 24) * 60) *60); //(minsGainedPerYear * (yearBase - [currentAgeDateComp year])) * 60;
-            //totalSecondsInLife += secondsToAdd;
-            
+        if ([smokeStr isEqualToString:@"smoker"]) {
+            yearBase -= 10.0f; // Remove 10 years from life if they smoke
         }
     }
 
@@ -156,6 +131,7 @@ NSCalendarUnit unitFlags;
 
 // Calculate the user's remaining seconds left to live
 - (void)calculateSecondsRemaining:(NSDate*)dateArg {
+    NSLog(@"yearBase: %f", yearBase);
     if (calendar != nil) {
         // Obtain date components representing the difference from the user's birthday until now
         NSDateComponents *bdayComp = [calendar components:unitFlags fromDate:dateArg];
@@ -169,7 +145,7 @@ NSCalendarUnit unitFlags;
         secondsRemaining = [[calendar dateFromComponents:comps] timeIntervalSinceNow];
         secondsRemaining += extraSeconds;
 
-        NSLog(@"****secondsRemaining****: %f", secondsRemaining);
+        //NSLog(@"****secondsRemaining****: %f", secondsRemaining);
     }
 }
 
