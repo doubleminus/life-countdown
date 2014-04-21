@@ -339,6 +339,7 @@ FileHandler *fileHand;
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient2];
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
+    _percentLabel.frame = CGRectMake(40,190,400,25);
 
     _tweetBtn.hidden = YES;
     _facebookBtn.hidden = YES;
@@ -357,13 +358,12 @@ FileHandler *fileHand;
         secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
         _countdownLabel.frame = CGRectMake(140,70,298,85);
         _progressView.frame = CGRectMake(92,175,400,25);
-        _percentLabel.frame = CGRectMake(82,200,400,25);
     }
     else {
         secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
         _countdownLabel.frame = CGRectMake(85,60,298,85);
         _progressView.frame = CGRectMake(40,165,400,25);
-        _percentLabel.frame = CGRectMake(40,190,400,25);
+
     }
 
     // Handle use-case of exceeding life expectancy
