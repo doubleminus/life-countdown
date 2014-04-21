@@ -59,7 +59,7 @@ NSCalendarUnit unitFlags;
             diction = myDict;
             self.birthDate = [diction objectForKey:@"birthDate"];
 
-            [self calculateCurrentAge:birthDate]; // 1. Calculate difference between the current date and user's birthdate to get age
+            [self calculateCurrentAge:birthDate]; // 1. Calculate difference between current date and user's birthdate to get age
             [self updateYearBase]; // 2. Adjust base expected years to live
         }
     }
@@ -151,11 +151,9 @@ NSCalendarUnit unitFlags;
 // Calculate's only the user's base age, based on DOB. We then adjust accordingly based on other input.
 - (void)calcBaseAgeInSeconds:(float)baseAgeFloat {
     if (totalSecondsInLife > 0) {
-        //   NSLog(@"total seconds ABOVE, %f", totalSecondsInLife);
         totalSecondsInLife += ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
     }
     else if (totalSecondsInLife == 0) {
-        //   NSLog(@"total seconds BELOW, %f", totalSecondsInLife);
         totalSecondsInLife = ((((365.25 * baseAgeFloat) * 24) * 60) * 60);
     }
 }

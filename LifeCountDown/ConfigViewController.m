@@ -253,7 +253,7 @@ double progAmount, percentRemaining;
 
 - (void)generateLineViews {
     NSMutableArray *lineArray = [[NSMutableArray alloc] init];
-    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 1)]];
+    [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 070, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 340, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 575, self.view.frame.size.width, 1)]];
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 640, self.view.frame.size.width, 1)]];

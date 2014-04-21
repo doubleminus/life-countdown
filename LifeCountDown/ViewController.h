@@ -47,9 +47,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progressView;
-@property (strong, nonatomic) NSTimer *secondTimer;
 @property (strong, nonatomic) IBOutlet UIView *touchView;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *kTouch;
+@property (strong, nonatomic) NSTimer *secondTimer;
 @property (strong, nonatomic) HelpView *helpView;
 @property (nonatomic) bool timerStarted;
 

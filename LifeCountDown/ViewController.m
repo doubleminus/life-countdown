@@ -54,9 +54,8 @@ FileHandler *fileHand;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     fileHand = [[FileHandler alloc] init];
-    _touchView = [_touchView init];
-    
     dateUtil = [[DateCalculationUtil alloc] init];
+    _touchView = [_touchView init];
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-2.png"]];
     backgroundView.frame = self.view.bounds;
@@ -100,13 +99,6 @@ FileHandler *fileHand;
     }
 
     _progressView.hidden = YES;
-
-    // Adjust iPhone scroll rect based on screen height
-    if ([[UIScreen mainScreen] bounds].size.height == 480) { // 3.5-inch
-        _configBtn.frame = CGRectMake(40, 444, 31, 31);
-        _tweetBtn.frame = CGRectMake(84, 448, 24, 22);
-        _facebookBtn.frame = CGRectMake(123, 446, 27, 26);
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -197,7 +189,7 @@ FileHandler *fileHand;
 
         if (percentRemaining < 0)   { percentRemaining = 0; }
         if (percentRemaining > 100) { percentRemaining = 100; }
-        
+
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
     }
 
@@ -334,10 +326,8 @@ FileHandler *fileHand;
     _configBtn.hidden = YES;
     _helpBtn.hidden = YES;
     _skView.hidden = NO;
+    _kTouch.enabled = YES;
     [self.scene startSecondTimer];
-
-    _countdownLabel.frame = CGRectMake(11,20,298,85);
-    secdsLifeRemLabel.frame = CGRectMake(56,85,208,21);
 }
 
 - (void)handleLandscape {
@@ -350,10 +340,16 @@ FileHandler *fileHand;
     bgLayer.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
 
+    _tweetBtn.hidden = YES;
+    _facebookBtn.hidden = YES;
+    _configBtn.hidden = YES;
+    _helpBtn.hidden = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden = YES;
     estTxtLbl.hidden = YES;
     currAgeTxtLbl.hidden = YES;
+
+    _kTouch.enabled = NO;
 
     // Handle both sizes of iPhone screens
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -369,12 +365,12 @@ FileHandler *fileHand;
         _progressView.frame = CGRectMake(40,165,400,25);
         _percentLabel.frame = CGRectMake(40,190,400,25);
     }
-    
+
     // Handle use-case of exceeding life expectancy
     if (!exceedExp) {
         _progressView.hidden = NO;
         _percentLabel.hidden = NO;
-        
+
         // Apply color to progress bar based on lifespan
         if (progAmount >= .66) {
             _progressView.progressTintColor = [UIColor greenColor];
