@@ -142,7 +142,6 @@ double progAmount, percentRemaining;
 
     self.progressView.layer.cornerRadius = 5.0f;
     self.progressView.clipsToBounds = YES;
-  //  self.progressView.alpha = 1.0;
     [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
     [self updateProgPercentage:nil];
 }

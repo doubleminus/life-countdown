@@ -85,6 +85,7 @@ NSCalendarUnit unitFlags;
     float hrsSitting = [[diction objectForKey:@"hrsSit"] floatValue];
     float yearsToAdd = 0;
     totalSecondsInLife = 0;
+    yearBase = 0;
 
     if (genStr != nil && smokeStr != nil && ageArray != nil && [ageArray count] > 1) {
         if ([genStr isEqualToString:@"m"]) {
@@ -114,6 +115,7 @@ NSCalendarUnit unitFlags;
             }
 
             yearBase += yearsToAdd; // We now know how many years user has to live, add yrs based on weekly exercise
+
             extraSeconds = ((((yearsToAdd * 365.25) * 24) * 60) *60);
         }
 
@@ -131,7 +133,6 @@ NSCalendarUnit unitFlags;
 
 // Calculate the user's remaining seconds left to live
 - (void)calculateSecondsRemaining:(NSDate*)dateArg {
-    NSLog(@"yearBase: %f", yearBase);
     if (calendar != nil) {
         // Obtain date components representing the difference from the user's birthday until now
         NSDateComponents *bdayComp = [calendar components:unitFlags fromDate:dateArg];
@@ -143,8 +144,6 @@ NSCalendarUnit unitFlags;
 
         // Now obtain the number of seconds from our static starting point, comps, and now
         secondsRemaining = [[calendar dateFromComponents:comps] timeIntervalSinceNow];
-        secondsRemaining += extraSeconds;
-
         //NSLog(@"****secondsRemaining****: %f", secondsRemaining);
     }
 }
