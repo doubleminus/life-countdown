@@ -219,11 +219,11 @@ FileHandler *fileHand;
     CGRect visibleRect;
 
     if (_helpView && _helpView.hidden == YES) {
-        visibleRect.origin = self.view.frame.origin; // Set origin to our UIScrollView's view window
-        visibleRect.size = self.view.bounds.size;
-        visibleRect.origin.x += 25.0;
-        visibleRect.origin.y += 150.0;
-        visibleRect.size.width *= .85;
+        visibleRect.origin      = self.view.frame.origin; // Set origin to our UIScrollView's view window
+        visibleRect.size        = self.view.bounds.size;
+        visibleRect.origin.x    += 25.0;
+        visibleRect.origin.y    += 150.0;
+        visibleRect.size.width  *= .85;
         visibleRect.size.height *= .5;
 
         [_helpView setFrame:visibleRect];
@@ -332,24 +332,23 @@ FileHandler *fileHand;
 }
 
 - (void)handleLandscape {
-    backgroundView.hidden = YES;
-    _skView.hidden = YES;
     [self.scene.timey invalidate];
 
-    // Set gradient background
-    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient2];
-    bgLayer.frame = self.view.bounds;
-    [self.view.layer insertSublayer:bgLayer atIndex:0];
-    _percentLabel.frame = CGRectMake(40,190,400,25);
-
+    _skView.hidden          = YES;
     _tweetBtn.hidden        = YES;
     _facebookBtn.hidden     = YES;
     _configBtn.hidden       = YES;
     _helpBtn.hidden         = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden        = YES;
+    backgroundView.hidden   = YES;
     estTxtLbl.hidden        = YES;
     currAgeTxtLbl.hidden    = YES;
+
+    // Set gradient background
+    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient2];
+    bgLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     _kTouch.enabled = NO;
 
@@ -364,14 +363,11 @@ FileHandler *fileHand;
         secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
         _countdownLabel.frame   = CGRectMake(85,60,298,85);
         _progressView.frame     = CGRectMake(40,165,400,25);
-
+        _percentLabel.frame     = CGRectMake(30,190,400,25);
     }
 
     // Handle use-case of exceeding life expectancy
     if (!exceedExp) {
-        _progressView.hidden = NO;
-        _percentLabel.hidden = NO;
-
         // Apply color to progress bar based on lifespan
         if (progAmount >= .66) {
             _progressView.progressTintColor = [UIColor greenColor];
@@ -382,6 +378,9 @@ FileHandler *fileHand;
         else {
             _progressView.progressTintColor = [UIColor redColor];
         }
+
+        _progressView.hidden = NO;
+        _percentLabel.hidden = NO;
     }
 }
 
@@ -393,7 +392,7 @@ FileHandler *fileHand;
     _tweetBtn.hidden        = NO;
     _facebookBtn.hidden     = NO;
     _configBtn.hidden       = NO;
-    _helpBtn.hidden        = NO;
+    _helpBtn.hidden         = NO;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
