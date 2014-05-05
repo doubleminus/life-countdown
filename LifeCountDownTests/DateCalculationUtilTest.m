@@ -185,7 +185,7 @@ NSArray *keyArray;
     
     [testDateUtil beginAgeProcess:testDictionary];
     XCTAssertEqual(birthDate, [testDateUtil birthDate], @"Ensure birthdate was assigned correctly.");
-    XCTAssertEqual((int)[testDateUtil yearBase], (int)54, @"Base age should now be 71-(71*.2) years due to sitting"); // Round numbers
+    XCTAssertEqual((int)[testDateUtil yearBase], (int)56, @"Base age should now be 71-(71*.2) years rounded down, due to sitting"); // Round numbers
 
     // Now turn user to nonsmoker and calculate expectancy again
     smokeStatus = @"nonsmoker";

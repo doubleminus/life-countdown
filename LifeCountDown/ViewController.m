@@ -314,19 +314,20 @@ FileHandler *fileHand;
 }
 
 - (void)handlePortrait {
-    backgroundView.hidden = NO;
-    currAgeTxtLbl.hidden = YES;
-    estTxtLbl.hidden = YES;
-    _percentLabel.hidden = YES;
+    currAgeTxtLbl.hidden    = YES;
+    estTxtLbl.hidden        = YES;
+    backgroundView.hidden   = NO;
+    _skView.hidden          = NO;
+    _percentLabel.hidden    = YES;
     _currentAgeLabel.hidden = YES;
-    _ageLabel.hidden = YES;
-    _progressView.hidden = YES;
-    _tweetBtn.hidden = YES;
-    _facebookBtn.hidden = YES;
-    _configBtn.hidden = YES;
-    _helpBtn.hidden = YES;
-    _skView.hidden = NO;
-    _kTouch.enabled = YES;
+    _ageLabel.hidden        = YES;
+    _progressView.hidden    = YES;
+    _tweetBtn.hidden        = YES;
+    _facebookBtn.hidden     = YES;
+    _configBtn.hidden       = YES;
+    _helpBtn.hidden         = YES;
+
+    _kTouch.enabled         = YES;
     [self.scene startSecondTimer];
 }
 
@@ -341,14 +342,14 @@ FileHandler *fileHand;
     [self.view.layer insertSublayer:bgLayer atIndex:0];
     _percentLabel.frame = CGRectMake(40,190,400,25);
 
-    _tweetBtn.hidden = YES;
-    _facebookBtn.hidden = YES;
-    _configBtn.hidden = YES;
-    _helpBtn.hidden = YES;
+    _tweetBtn.hidden        = YES;
+    _facebookBtn.hidden     = YES;
+    _configBtn.hidden       = YES;
+    _helpBtn.hidden         = YES;
     _currentAgeLabel.hidden = YES;
-    _ageLabel.hidden = YES;
-    estTxtLbl.hidden = YES;
-    currAgeTxtLbl.hidden = YES;
+    _ageLabel.hidden        = YES;
+    estTxtLbl.hidden        = YES;
+    currAgeTxtLbl.hidden    = YES;
 
     _kTouch.enabled = NO;
 
@@ -356,13 +357,13 @@ FileHandler *fileHand;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     if (screenRect.size.height == 568) {
         secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
-        _countdownLabel.frame = CGRectMake(140,70,298,85);
-        _progressView.frame = CGRectMake(92,175,400,25);
+        _countdownLabel.frame   = CGRectMake(140,70,298,85);
+        _progressView.frame     = CGRectMake(92,175,400,25);
     }
     else {
         secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
-        _countdownLabel.frame = CGRectMake(85,60,298,85);
-        _progressView.frame = CGRectMake(40,165,400,25);
+        _countdownLabel.frame   = CGRectMake(85,60,298,85);
+        _progressView.frame     = CGRectMake(40,165,400,25);
 
     }
 
@@ -385,16 +386,15 @@ FileHandler *fileHand;
 }
 
 - (void)showComponents {
-    currAgeTxtLbl.hidden = NO;
-    estTxtLbl.hidden = NO;
+    currAgeTxtLbl.hidden    = NO;
+    estTxtLbl.hidden        = NO;
     _currentAgeLabel.hidden = NO;
-    _ageLabel.hidden = NO;
-    _tweetBtn.hidden = NO;
-    _facebookBtn.hidden = NO;
-    _configBtn.hidden = NO;
-    _helpBtn.hidden = NO;
-    
-    
+    _ageLabel.hidden        = NO;
+    _tweetBtn.hidden        = NO;
+    _facebookBtn.hidden     = NO;
+    _configBtn.hidden       = NO;
+    _helpBtn.hidden        = NO;
+
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
 
@@ -403,13 +403,13 @@ FileHandler *fileHand;
 }
 
 - (void)viewDidUnload {
-    secdsLifeRemLabel = nil;
-    shadeView = nil;
-    toolbar = nil;
-    self.progressView = nil;
-    self.percentLabel = nil;
-    self.countdownLabel = nil;
-    self.ageLabel = nil;
+    secdsLifeRemLabel    = nil;
+    shadeView            = nil;
+    toolbar              = nil;
+    self.progressView    = nil;
+    self.percentLabel    = nil;
+    self.countdownLabel  = nil;
+    self.ageLabel        = nil;
     self.currentAgeLabel = nil;
 }
 /* END  UI METHODS */

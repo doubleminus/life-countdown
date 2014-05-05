@@ -95,13 +95,6 @@ NSCalendarUnit unitFlags;
             yearBase = [[ageArray objectAtIndex:1] floatValue];
         }
 
-        if (hrsSitting >= 6) { // 6 or more means 20% less life expectancy
-            yearBase -= (yearBase * .20);
-        }
-        else if (hrsSitting >= 3) { // 3 or more hours of sitting/day means 2 less years of life expectancy
-            yearBase -= 2.0f;
-        }
-
         // Find # years remaining to live (diff between base years to live and current age in years
         float yearsToLive = yearBase - [currentAgeDateComp year];
 
@@ -121,6 +114,13 @@ NSCalendarUnit unitFlags;
 
         if ([smokeStr isEqualToString:@"smoker"]) {
             yearBase -= 10.0f; // Remove 10 years from life if they smoke
+        }
+
+        if (hrsSitting >= 6) { // 6 or more means 20% less life expectancy
+            yearBase -= (yearBase * .20);
+        }
+        else if (hrsSitting >= 3) { // 3 or more hours of sitting/day means 2 less years of life expectancy
+            yearBase -= 2.0f;
         }
     }
 

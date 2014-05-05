@@ -387,7 +387,7 @@ double progAmount, percentRemaining;
         val = lround(_sitSlider.value);
         _sitLabel.text = [NSString stringWithFormat:@"%ld", (long)val];
 
-        plusLbl2.hidden = (val < 10) ? YES : NO;
+        plusLbl2.hidden = (val < 6) ? YES : NO;
     }
 }
 

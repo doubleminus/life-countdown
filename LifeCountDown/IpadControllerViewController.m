@@ -206,37 +206,37 @@ FileHandler *fileHand;
 }
 
 - (void)showComponents1 {
-    secsRem.hidden = NO;
+    secsRem.hidden       = NO;
     setInfoButton.hidden = NO;
-    ageTxtLbl.hidden = NO;
-    currAgeLbl.hidden = NO;
-    estTextLbl.hidden = NO;
-    _ageLbl.hidden = NO;
-    _cntLbl.hidden = NO;
+    ageTxtLbl.hidden     = NO;
+    currAgeLbl.hidden    = NO;
+    estTextLbl.hidden    = NO;
+    _ageLbl.hidden       = NO;
+    _cntLbl.hidden       = NO;
     
     //NSLog(exceedExp1 ? @"Yes" : @"No");
 }
 
 - (void)handlePortrait1 {
-    secsRem.hidden = YES;
+    secsRem.hidden       = YES;
     setInfoButton.hidden = YES;
-    currAgeLbl.hidden = YES;
-    estTextLbl.hidden = YES;
-    ageTxtLbl.hidden = YES;
-    _pLabel.hidden = YES;
-    _ageLbl.hidden = YES;
-    _progBar.hidden = YES;
-    _cntLbl.hidden = YES;
+    currAgeLbl.hidden    = YES;
+    estTextLbl.hidden    = YES;
+    ageTxtLbl.hidden     = YES;
+    _pLabel.hidden       = YES;
+    _ageLbl.hidden       = YES;
+    _progBar.hidden      = YES;
+    _cntLbl.hidden       = YES;
 }
 
 - (void)handleLandscape1 {
     backgroundView1.hidden = YES;
-    currAgeLbl.hidden = YES;
-    setInfoButton.hidden = YES;
-    estTextLbl.hidden = YES;
-    ageTxtLbl.hidden = YES;
-    _ageLbl.hidden = YES;
-    _pLabel.hidden = NO;
+    currAgeLbl.hidden      = YES;
+    setInfoButton.hidden   = YES;
+    estTextLbl.hidden      = YES;
+    ageTxtLbl.hidden       = YES;
+    _ageLbl.hidden         = YES;
+    _pLabel.hidden         = NO;
     
     /*
      CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
@@ -271,15 +271,15 @@ FileHandler *fileHand;
 }
 
 - (void)viewDidUnload {
-    secsRem = nil;
+    secsRem       = nil;
     setInfoButton = nil;
-    currAgeLbl = nil;
-    ageTxtLbl = nil;
-    estTextLbl = nil;
-    _progBar = nil;
-    _pLabel = nil;
-    _cntLbl = nil;
-    _ageLbl = nil;
+    currAgeLbl    = nil;
+    ageTxtLbl     = nil;
+    estTextLbl    = nil;
+    _progBar      = nil;
+    _pLabel       = nil;
+    _cntLbl       = nil;
+    _ageLbl       = nil;
 }
 /* END  UI METHODS */
 
