@@ -169,8 +169,8 @@ double progAmount, percentRemaining;
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
 
-        [saveBtn setHidden:YES];
-        [aboutBtn setHidden:NO];
+       // [saveBtn setHidden:YES];
+        [aboutBtn setHidden:YES];
     }
 
     CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
@@ -290,6 +290,7 @@ double progAmount, percentRemaining;
             }];
         }
         else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
+            NSLog(@"here with personinfo 450");
             if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
                 [self updateAge:nil];
                 bgToolbar.hidden = YES;
@@ -363,6 +364,14 @@ double progAmount, percentRemaining;
             else {
                 if (!personInfo) {
                     [self animateConfig:nil];
+                    [UIView animateWithDuration:0.5f animations:^{
+                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                    }];
+                }
+                else {
+                    [UIView animateWithDuration:0.5f animations:^{
+                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                    }];
                 }
             }
         }
@@ -472,14 +481,14 @@ double progAmount, percentRemaining;
 }
 
 - (void)viewDidUnload {
-    scroller = nil;
-    contentView = nil;
-    plusLbl = nil;
-    bgToolbar = nil;
-    _dobPicker = nil;
+    scroller      = nil;
+    contentView   = nil;
+    plusLbl       = nil;
+    bgToolbar     = nil;
+    _dobPicker    = nil;
     _genderToggle = nil;
-    _daysLbl = nil;
-    _smokeSwitch = nil;
+    _daysLbl      = nil;
+    _smokeSwitch  = nil;
     
     [super viewDidUnload];
 }

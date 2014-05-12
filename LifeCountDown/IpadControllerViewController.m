@@ -35,7 +35,7 @@
 
 NSNumberFormatter *formatter;
 UIView *shadeView; // Used for first app run only
-UIToolbar* bgToolbar; // Used for first app run only
+UIToolbar* mainToolbar; // Used for first app run only
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp1 = NO;
 ConfigViewController *enterInfo1;
@@ -115,15 +115,15 @@ FileHandler *fileHand;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
 
     self.view.backgroundColor = [UIColor clearColor];
-    bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    bgToolbar.barStyle = UIBarStyleDefault;
-    [self.view.superview insertSubview:bgToolbar belowSubview:enterInfo1.view];
+    mainToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
+    mainToolbar.barStyle = UIBarStyleDefault;
+    [self.view.superview insertSubview:mainToolbar belowSubview:enterInfo1.view];
 }
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    [bgToolbar removeFromSuperview];
-    
+    [mainToolbar removeFromSuperview];
+
     [enterInfo1 animateConfig:nil];
 }
 
@@ -133,7 +133,7 @@ FileHandler *fileHand;
     NSDateComponents *currentAgeDateComp;
 
     if (infoDictionary != nil) {
-        [bgToolbar removeFromSuperview];
+        [mainToolbar removeFromSuperview];
 
         [dateUtil beginAgeProcess:infoDictionary];
 
@@ -213,7 +213,7 @@ FileHandler *fileHand;
     estTextLbl.hidden    = NO;
     _ageLbl.hidden       = NO;
     _cntLbl.hidden       = NO;
-    
+
     //NSLog(exceedExp1 ? @"Yes" : @"No");
 }
 
@@ -237,7 +237,7 @@ FileHandler *fileHand;
     ageTxtLbl.hidden       = YES;
     _ageLbl.hidden         = YES;
     _pLabel.hidden         = NO;
-    
+
     /*
      CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
      if (screenRect.size.height == 568) {
