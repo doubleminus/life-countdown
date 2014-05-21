@@ -34,7 +34,6 @@
 		2E5B774E183C73CC00CC6510 /* IpadControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E5B774C183C73CC00CC6510 /* IpadControllerViewController.m */; };
 		2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */; };
 		2E645E3F1617B2260083699A /* DateCalculationUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */; };
-		2E6FBFA018E7646700B267BC /* bit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6FBF9E18E7646700B267BC /* bit.png */; };
 		2E6FBFA118E7646700B267BC /* hglass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E6FBF9F18E7646700B267BC /* hglass-2.png */; };
 		2E71CCAD1834A19F0022C509 /* hglass-ipad_retina-port.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */; };
 		2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */; };
@@ -111,7 +110,6 @@
 		2E5B774D183C73CC00CC6510 /* IpadControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IpadControllerViewController.xib; sourceTree = "<group>"; };
 		2E645E3D1617B2260083699A /* DateCalculationUtilTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateCalculationUtilTest.h; path = LifeCountDownTests/DateCalculationUtilTest.h; sourceTree = SOURCE_ROOT; };
 		2E645E3E1617B2260083699A /* DateCalculationUtilTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateCalculationUtilTest.m; path = LifeCountDownTests/DateCalculationUtilTest.m; sourceTree = SOURCE_ROOT; };
-		2E6FBF9E18E7646700B267BC /* bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bit.png; sourceTree = "<group>"; };
 		2E6FBF9F18E7646700B267BC /* hglass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hglass-2.png"; sourceTree = "<group>"; };
 		2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hglass-ipad_retina-port.png"; path = "../hglass-ipad_retina-port.png"; sourceTree = "<group>"; };
 		2E73E1A01839B525004B3A33 /* ret_ipad_hglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ret_ipad_hglass@2x.png"; path = "../ret_ipad_hglass@2x.png"; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 		2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCalculationUtil.m; sourceTree = "<group>"; };
 		2E9DC8CA17EF2D0300AD679B /* Countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Countries.plist; sourceTree = "<group>"; };
 		2EF0C791188C9F1C0090176E /* Twitter_logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter_logo_white.png; sourceTree = "<group>"; };
-		2EF47CF6181A2EB20006B704 /* black_grad_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black_grad_120.png; path = ../black_grad_120.png; sourceTree = "<group>"; };
 		2EF47CF7181A30DE0006B704 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Life Count/Images.xcassets"; sourceTree = "<group>"; };
 		6522B65D18BD16490086824A /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHandler.h; sourceTree = "<group>"; };
 		6522B65E18BD16490086824A /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHandler.m; sourceTree = "<group>"; };
@@ -242,7 +239,6 @@
 				65BBA71618F5D00B00DE7CDC /* MyScene.m */,
 				65BBA71118F5CF7600DE7CDC /* RainParticle.sks */,
 				65BBA71218F5CF7600DE7CDC /* spark.png */,
-				2E6FBF9E18E7646700B267BC /* bit.png */,
 				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
 				2E77A1F618DFC063007A14CC /* q_icon.png */,
 				6527279F18A5B3BD00B7558E /* settings.png */,
@@ -254,7 +250,6 @@
 				2E3D84421835EE410028C3C4 /* launch_image_1136.png */,
 				2E3D84411835EE260028C3C4 /* launch_image_960.png */,
 				2E71CCAC1834A19F0022C509 /* hglass-ipad_retina-port.png */,
-				2EF47CF6181A2EB20006B704 /* black_grad_120.png */,
 				2E47C1A115CF93F1002213C3 /* Data.plist */,
 				2E9DC8CA17EF2D0300AD679B /* Countries.plist */,
 				2E194E0317E9EE7A0075C651 /* hglass.png */,
@@ -400,7 +395,6 @@
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,
 				2E5B774F183C73CC00CC6510 /* IpadControllerViewController.xib in Resources */,
-				2E6FBFA018E7646700B267BC /* bit.png in Resources */,
 				2EF47CF8181A30DE0006B704 /* Images.xcassets in Resources */,
 				2E194E0417E9EE7A0075C651 /* hglass.png in Resources */,
 				65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */,
