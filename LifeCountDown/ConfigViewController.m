@@ -42,7 +42,7 @@ CGRect padScrollRect, phoneScrollRect;
 UIToolbar* bgToolbar;
 NSDate *birthDate;
 NSArray *ageArray;
-int slideDistance = 300;
+int phoneSlideDistance = 750, padSlideDistance = 300;
 double progAmount, percentRemaining;
 
 - (void)viewDidLoad {
@@ -286,7 +286,7 @@ double progAmount, percentRemaining;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && personInfo) {
         if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
-                scroller.frame = CGRectOffset(scroller.frame, slideDistance * -1, 0);
+                scroller.frame = CGRectOffset(scroller.frame, padSlideDistance * -1, 0);
             }];
         }
         else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
@@ -296,7 +296,33 @@ double progAmount, percentRemaining;
                 bgToolbar.hidden = YES;
 
                 [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                    scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
+                }];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
+                                                                message:@"Please select a gender to continue."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    }
+    else {
+        if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance * -1, 0);
+            }];
+        }
+        else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
+            NSLog(@"here with personinfo 450");
+            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
+                [self updateAge:nil];
+                bgToolbar.hidden = YES;
+                
+                [UIView animateWithDuration:0.5f animations:^{
+                    scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
                 }];
             }
             else {
@@ -359,18 +385,30 @@ double progAmount, percentRemaining;
             [_delegate displayUserInfo:personInfo];
 
             if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-                [self dismissViewControllerAnimated:YES completion:nil];
+                //[self dismissViewControllerAnimated:YES completion:nil];
+                
+                if (!personInfo) {
+                    [self animateConfig:nil];
+                    [UIView animateWithDuration:0.5f animations:^{
+                        scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
+                    }];
+                }
+                else {
+                    [UIView animateWithDuration:0.5f animations:^{
+                        scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
+                    }];
+                }
             }
             else {
                 if (!personInfo) {
                     [self animateConfig:nil];
                     [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                        scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
                     }];
                 }
                 else {
                     [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, slideDistance, 0);
+                        scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
                     }];
                 }
             }

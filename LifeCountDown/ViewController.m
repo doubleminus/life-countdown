@@ -79,7 +79,7 @@ FileHandler *fileHand;
 
     // Diagnostics if needed
     // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
-    _skView.frame = CGRectMake(190, 250, 65, 215);
+    _skView.frame = CGRectMake(190, 240, 70, 230);
     [self.view insertSubview:_skView aboveSubview:backgroundView];
 
     // Create and configure the scene.
@@ -104,6 +104,17 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
+    
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    enterInfo1.delegate = self;
+    
+    enterInfo1.view.hidden = YES;
+
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    
+    enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+    enterInfo1.view.hidden = NO;
 }
 
 - (void)loadUserData {
@@ -120,11 +131,12 @@ FileHandler *fileHand;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.delegate = self;
+    [enterInfo1 animateConfig:nil];
+   // enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+   // enterInfo1.delegate = self;
 
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:YES completion:nil];
+  //  self.modalPresentationStyle = UIModalPresentationCurrentContext;
+  //  [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
 
 #pragma mark displayUserInfo Delegate function

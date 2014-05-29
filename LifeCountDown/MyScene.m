@@ -27,7 +27,7 @@ CGPoint location;
 }
 
 - (void)startSecondTimer {
-    _timey = [NSTimer scheduledTimerWithTimeInterval: 35.0
+    _timey = [NSTimer scheduledTimerWithTimeInterval: 23.0
                                              target: self
                                            selector: @selector(runAnimation)
                                            userInfo: nil
@@ -35,18 +35,17 @@ CGPoint location;
 }
 
 - (void)runAnimation {
-    // Add effect at touch location
     [self addChild:[self newExplosion:location.x : location.y]];
 }
 
 // Particle explosion - uses MyParticle.sks
 - (SKEmitterNode *)newExplosion: (float)posX : (float) posy {
-    SKEmitterNode *emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"RainParticle" ofType:@"sks"]];
+    SKEmitterNode *emitter =  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"SnowParticle" ofType:@"sks"]];
     emitter.position = CGPointMake(50,200);
     emitter.name = @"explosion";
     emitter.targetNode = self.scene;
-    emitter.numParticlesToEmit = 200;
-  //  emitter.zPosition = 200.0;
+    emitter.numParticlesToEmit = 4000;
+    //emitter.zPosition = 200.0;
     return emitter;
 }
 
