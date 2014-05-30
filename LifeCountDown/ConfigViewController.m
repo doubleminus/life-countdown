@@ -60,6 +60,9 @@ double progAmount, percentRemaining;
     [self generateLineViews];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]]; // Set country picker values
+    
+    self.view.alpha = .95;
+   // bgToolbar.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,7 +105,7 @@ double progAmount, percentRemaining;
         progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
 
-        if (percentRemaining < 0) { percentRemaining = 0; }
+        if (percentRemaining < 0)   { percentRemaining = 0; }
         if (percentRemaining > 100) { percentRemaining = 100; }
 
         // Handle outliving life expectancy
@@ -173,9 +176,9 @@ double progAmount, percentRemaining;
         [aboutBtn setHidden:YES];
     }
 
-    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
-    [bgLayer setFrame:contentView.bounds];
-    [self.view.layer insertSublayer:bgLayer atIndex:0];
+ //   CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
+  //  [bgLayer setFrame:contentView.bounds];
+ //   [self.view.layer insertSublayer:bgLayer atIndex:0];
 
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     countryInfo = [dateUtil getCountryDict];
@@ -191,6 +194,7 @@ double progAmount, percentRemaining;
     bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.frame];
     bgToolbar.barStyle = UIBarStyleDefault;
     bgToolbar.alpha = .9;
+    //bgToolbar.backgroundColor = [UIColor blackColor];
     [self.view insertSubview:bgToolbar belowSubview:_hView];
     bgToolbar.hidden = YES;
 
@@ -262,7 +266,7 @@ double progAmount, percentRemaining;
     [lineArray addObject:[[UIView alloc] initWithFrame:CGRectMake(0, 890, self.view.frame.size.width, 1)]];
 
     for (UIView *u in lineArray) {
-        u.backgroundColor = [UIColor whiteColor];
+        u.backgroundColor = [UIColor blackColor];
         [self.view insertSubview:u belowSubview:bgToolbar];
     }
 }

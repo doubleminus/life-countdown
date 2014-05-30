@@ -104,15 +104,15 @@ FileHandler *fileHand;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self loadUserData];
-    
+
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
     enterInfo1.delegate = self;
-    
+
     enterInfo1.view.hidden = YES;
 
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
-    
+
     enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
     enterInfo1.view.hidden = NO;
 }

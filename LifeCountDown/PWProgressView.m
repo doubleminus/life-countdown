@@ -11,7 +11,7 @@
 
 static const CGFloat PWCenterHoleInsetRatio             = 0.2f;
 static const CGFloat PWProgressShapeInsetRatio          = 0.03f;
-static const CGFloat PWDefaultAlpha                     = 0.45f;
+static const CGFloat PWDefaultAlpha                     = 0.9f;
 static const CGFloat PWScaleAnimationScaleFactor        = 2.3f;
 static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
 
@@ -55,7 +55,7 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
 
         _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 24, 50, 11)];
         _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
-        _percentLabel.textColor = [UIColor whiteColor];
+        _percentLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:128.0/255.0 blue:255.0/255.0 alpha: 1.0];
         _percentLabel.alpha = .9;
         [self addSubview:_percentLabel];
 
