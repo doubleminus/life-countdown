@@ -105,6 +105,14 @@ FileHandler *fileHand;
     [super viewDidAppear:animated];
     [self loadUserData];
 
+    if (enterInfo1 != nil) {
+        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+        enterInfo1.delegate = self;
+    }
+    
+    enterInfo1.view.hidden = YES;
+    
+/*
     enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
     enterInfo1.delegate = self;
 
@@ -114,7 +122,7 @@ FileHandler *fileHand;
     [self presentViewController:enterInfo1 animated:NO completion:nil];
 
     enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
-    enterInfo1.view.hidden = NO;
+    enterInfo1.view.hidden = NO; */
 }
 
 - (void)loadUserData {
@@ -131,6 +139,17 @@ FileHandler *fileHand;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
+    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    enterInfo1.delegate = self;
+    
+    enterInfo1.view.hidden = YES;
+    
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    
+    enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+    enterInfo1.view.hidden = NO;
+    
     [enterInfo1 animateConfig:nil];
    // enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
    // enterInfo1.delegate = self;
@@ -177,6 +196,8 @@ FileHandler *fileHand;
             [self startSecondTimer];
         }
     }
+    
+  //  [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)startSecondTimer {
@@ -261,13 +282,21 @@ FileHandler *fileHand;
 - (IBAction)tweetTapGest:(id)sender {
     //NSLog(@"sender: %@", sender);
     int tag = (int)[(UIButton *)sender tag];
+    NSString *serviceType;
 
     NSLog(@"available for Twitter? %d", [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]);
 
     if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
+
+        if (tag == 1) {
+            serviceType = SLServiceTypeTwitter;
+        }
+        else {
+            serviceType = SLServiceTypeFacebook;
+        }
+
         [self dismissViewControllerAnimated:NO completion:^(void) {
-            SLComposeViewController *twCtrl = [SLComposeViewController
-                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+            SLComposeViewController *twCtrl = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
 
             SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
                 [twCtrl dismissViewControllerAnimated:YES completion:nil];
@@ -285,7 +314,7 @@ FileHandler *fileHand;
                     }
                         break;
                 }};
-            
+
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
                                     stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
 

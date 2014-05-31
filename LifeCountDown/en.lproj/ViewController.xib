@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -96,9 +96,12 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="a6M-dn-E9g" appends="YES" id="rQL-bv-Fu4"/>
+                    </connections>
                 </view>
                 <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCg-i1-Hrv">
-                    <rect key="frame" x="64" y="521" width="24" height="22"/>
+                    <rect key="frame" x="68" y="517" width="26" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="Twitter_logo_white.png">
@@ -109,7 +112,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvC-lU-1w3">
-                    <rect key="frame" x="103" y="519" width="27" height="26"/>
+                    <rect key="frame" x="113" y="518" width="27" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="FB-72.png">
@@ -120,7 +123,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nE-Qa-zCA">
-                    <rect key="frame" x="20" y="517" width="31" height="31"/>
+                    <rect key="frame" x="15" y="513" width="36" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="settings.png">
@@ -131,7 +134,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" tag="14" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oze-pt-4lc">
-                    <rect key="frame" x="142" y="517" width="31" height="31"/>
+                    <rect key="frame" x="164" y="515" width="33" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Button" image="q_icon.png">
@@ -152,6 +155,11 @@
                 <action selector="toggleComponents:" destination="-1" id="yA0-BP-tlf"/>
             </connections>
         </tapGestureRecognizer>
+        <swipeGestureRecognizer direction="left" id="a6M-dn-E9g">
+            <connections>
+                <action selector="setUserInfo:" destination="-1" id="UOm-bm-iKR"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="FB-72.png" width="72" height="72"/>
