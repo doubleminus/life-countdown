@@ -60,9 +60,6 @@ double progAmount, percentRemaining;
     [self generateLineViews];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]]; // Set country picker values
-    
-    self.view.alpha = .95;
-   // bgToolbar.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -133,7 +130,13 @@ double progAmount, percentRemaining;
 
 // Setup our circular progress view in bottom left corner
 - (void)setupProgView {
-    self.progressView = [[PWProgressView alloc] init];
+    
+    if (_progressView == nil) {
+        self.progressView = [[PWProgressView alloc] init];
+        self.progressView.layer.cornerRadius = 5.0f;
+        self.progressView.clipsToBounds = YES;
+        [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
+    }
 
     // Make progress view larger on iPad (see second clause of below else if statement)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
@@ -143,9 +146,6 @@ double progAmount, percentRemaining;
         self.progressView.frame = CGRectMake(15.0, 910.0, 78.0, 78.0);
     }
 
-    self.progressView.layer.cornerRadius = 5.0f;
-    self.progressView.clipsToBounds = YES;
-    [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
     [self updateProgPercentage:nil];
 }
 
@@ -176,10 +176,6 @@ double progAmount, percentRemaining;
         [aboutBtn setHidden:YES];
     }
 
- //   CAGradientLayer *bgLayer = [BackgroundLayer greyGradient];
-  //  [bgLayer setFrame:contentView.bounds];
- //   [self.view.layer insertSublayer:bgLayer atIndex:0];
-
     // Get array of countries from Countries.plist via calculation util to populate UIPickerView values
     countryInfo = [dateUtil getCountryDict];
     countryArray = [countryInfo allKeys];
@@ -188,21 +184,23 @@ double progAmount, percentRemaining;
 
 - (void)setupHelpView {
     // Setup help view but hide it
-    _hView = [[HelpView alloc] init];
-    [self.view addSubview:_hView];
+    
+    if (_hView == nil) {
+        _hView = [[HelpView alloc] init];
+        [self.view addSubview:_hView];
 
-    bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.frame];
-    bgToolbar.barStyle = UIBarStyleDefault;
-    bgToolbar.alpha = .9;
-    //bgToolbar.backgroundColor = [UIColor blackColor];
-    [self.view insertSubview:bgToolbar belowSubview:_hView];
-    bgToolbar.hidden = YES;
+        bgToolbar = [[UIToolbar alloc] initWithFrame:contentView.frame];
+        bgToolbar.barStyle = UIBarStyleDefault;
+        bgToolbar.alpha = .9;
+        [self.view insertSubview:bgToolbar belowSubview:_hView];
+        bgToolbar.hidden = YES;
 
-    // Create tap gesture for dismissing Help View
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
-    tap1.numberOfTapsRequired = 1;
-    tap1.numberOfTouchesRequired = 1;
-    [_hView addGestureRecognizer:tap1];
+        // Create tap gesture for dismissing Help View
+        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelp:)];
+        tap1.numberOfTapsRequired = 1;
+        tap1.numberOfTouchesRequired = 1;
+        [_hView addGestureRecognizer:tap1];
+    }
 }
 
 - (IBAction)showHelp:(id)sender {

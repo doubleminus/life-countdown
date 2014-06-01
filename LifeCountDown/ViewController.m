@@ -105,24 +105,17 @@ FileHandler *fileHand;
     [super viewDidAppear:animated];
     [self loadUserData];
 
-    if (enterInfo1 != nil) {
+    if (enterInfo1 == nil) {
         enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
         enterInfo1.delegate = self;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:enterInfo1 animated:NO completion:nil];
     }
-    
+
+    // Hide config view, move into place off-screen, then display
     enterInfo1.view.hidden = YES;
-    
-/*
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.delegate = self;
-
-    enterInfo1.view.hidden = YES;
-
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
-
     enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
-    enterInfo1.view.hidden = NO; */
+    enterInfo1.view.hidden = NO;
 }
 
 - (void)loadUserData {
@@ -139,23 +132,7 @@ FileHandler *fileHand;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.delegate = self;
-    
-    enterInfo1.view.hidden = YES;
-    
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
-    
-    enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
-    enterInfo1.view.hidden = NO;
-    
     [enterInfo1 animateConfig:nil];
-   // enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-   // enterInfo1.delegate = self;
-
-  //  self.modalPresentationStyle = UIModalPresentationCurrentContext;
-  //  [self presentViewController:enterInfo1 animated:YES completion:nil];
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -196,8 +173,6 @@ FileHandler *fileHand;
             [self startSecondTimer];
         }
     }
-    
-  //  [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)startSecondTimer {
@@ -296,7 +271,7 @@ FileHandler *fileHand;
         }
 
         [self dismissViewControllerAnimated:NO completion:^(void) {
-            SLComposeViewController *twCtrl = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            SLComposeViewController *twCtrl = [SLComposeViewController composeViewControllerForServiceType:serviceType];
 
             SLComposeViewControllerCompletionHandler __block completionHandler=^(SLComposeViewControllerResult result) {
                 [twCtrl dismissViewControllerAnimated:YES completion:nil];
