@@ -34,7 +34,6 @@
 @implementation IpadControllerViewController
 
 NSNumberFormatter *formatter;
-UIView *shadeView; // Used for first app run only
 UIToolbar* mainToolbar; // Used for first app run only
 double totalSecondsDub, progAmount, percentRemaining;
 bool exceedExp1 = NO;
@@ -44,11 +43,6 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    // If we return from configView in landscape, then adjust UI components accordingly
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
-        [self handleLandscape1];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,16 +68,6 @@ FileHandler *fileHand;
     [[self view] addSubview:backgroundView1];
     [[self view] sendSubviewToBack:backgroundView1];
 
-    // Set button colors
-    [setInfoButton setTitleColor:[UIColor colorWithRed:0.0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-    [setInfoButton setTitleColor:[UIColor colorWithRed:90.0/255.0 green:200.0/255.0 blue:250.0/255.0 alpha:1] forState:UIControlStateHighlighted];
-    [setInfoButton setBackgroundColor:[UIColor whiteColor]];
-
-    // Round button corners
-    CALayer *btnLayer = [setInfoButton layer];
-    [btnLayer setMasksToBounds:YES];
-    [btnLayer setCornerRadius:5.0f];
-
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     // Set up our formatter, to be used in displayUserInfo:(NSDictionary*)infoDictionary method
@@ -95,7 +79,11 @@ FileHandler *fileHand;
 
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
-    NSDictionary *nsdict = [fileHand readPlist];
+    NSDictionary *nsdict;
+
+    if (nsdict == nil) {
+        nsdict = [fileHand readPlist];
+    }
 
     if (nsdict) {
         [self displayUserInfo:nsdict];
@@ -123,7 +111,10 @@ FileHandler *fileHand;
 
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
-    [mainToolbar removeFromSuperview];
+    if (mainToolbar.superview) {
+        [mainToolbar removeFromSuperview];
+    }
+
     [enterInfo1 animateConfig:nil];
 }
 
@@ -180,30 +171,9 @@ FileHandler *fileHand;
     _cntLbl.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds1]];
     progAmount = seconds1 / totalSecondsDub; // Calculate here for coloring progress bar in landscape
 
-    // Set our progress bar's value, based on amount of life remaining, but only if in landscape
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
-        [_progBar setProgress:progAmount];
-
-        // Calculate percentage of life remaining
-        percentRemaining = progAmount * 100.0;
-        _pLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
-    }
-    
     _timerStarted1 = YES;
 }
 /****  END USER INFORMATION METHODS  ****/
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
-
-    if (interfaceOrientation == 1) {
-        [self handlePortrait1];
-    }
-    else if (interfaceOrientation == 3 || interfaceOrientation == 4) { // Adjust label locations in landscape right or left orientation
-        [self handleLandscape1];
-    }
-}
 
 - (void)showComponents1 {
     secsRem.hidden       = NO;
@@ -229,15 +199,6 @@ FileHandler *fileHand;
     _cntLbl.hidden       = YES;
 }
 
-- (void)handleLandscape1 {
-    backgroundView1.hidden = YES;
-    currAgeLbl.hidden      = YES;
-    setInfoButton.hidden   = YES;
-    estTextLbl.hidden      = YES;
-    ageTxtLbl.hidden       = YES;
-    _ageLbl.hidden         = YES;
-    _pLabel.hidden         = NO;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

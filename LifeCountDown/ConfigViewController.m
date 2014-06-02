@@ -29,7 +29,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
-#import "BackgroundLayer.h"
 #import "FileHandler.h"
 #import "PWProgressView.h"
 
@@ -130,7 +129,6 @@ double progAmount, percentRemaining;
 
 // Setup our circular progress view in bottom left corner
 - (void)setupProgView {
-    
     if (_progressView == nil) {
         self.progressView = [[PWProgressView alloc] init];
         self.progressView.layer.cornerRadius = 5.0f;
@@ -143,7 +141,8 @@ double progAmount, percentRemaining;
         self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
     }
     else {
-        self.progressView.frame = CGRectMake(15.0, 910.0, 78.0, 78.0);
+        self.progressView.frame = CGRectMake(125.0, 910.0, 78.0, 78.0);
+        saveBtn.hidden = YES;
     }
 
     [self updateProgPercentage:nil];
@@ -183,7 +182,6 @@ double progAmount, percentRemaining;
 
 - (void)setupHelpView {
     // Setup help view but hide it
-    
     if (_hView == nil) {
         _hView = [[HelpView alloc] init];
         [self.view addSubview:_hView];
@@ -285,62 +283,35 @@ double progAmount, percentRemaining;
     personInfo = [fileHand readPlist];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && personInfo) {
-        if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
+        if (scroller.frame.origin.x == 750.0) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, padSlideDistance * -1, 0);
             }];
         }
-        else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
-            NSLog(@"here with personinfo 450");
-            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-                [self updateAge:nil];
-                bgToolbar.hidden = YES;
+        else if (scroller.frame.origin.x == 450.0) { // SLIDE CONFIG VIEW IN
+            [self updateAge:nil];
+            bgToolbar.hidden = YES;
 
-                [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
-                }];
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                                message:@"Please select a gender to continue."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
+            }];
         }
     }
     else {
-        if (scroller.frame.origin.x == 750) { // SLIDE CONFIG VIEW OUT
+        if (scroller.frame.origin.x == 750.0) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance * -1, 0);
             }];
         }
-        else if (scroller.frame.origin.x == 450) { // SLIDE CONFIG VIEW BACK IN
-            NSLog(@"here with personinfo 450");
-            if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
-                [self updateAge:nil];
-                bgToolbar.hidden = YES;
+        else if (scroller.frame.origin.x == 0) { // SLIDE CONFIG VIEW IN
+            [self updateAge:nil];
+            bgToolbar.hidden = YES;
 
-                [UIView animateWithDuration:0.5f animations:^{
-                    scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
-                }];
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Missing gender"
-                                                                message:@"Please select a gender to continue."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+            [UIView animateWithDuration:0.5f animations:^{
+                scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
+            }];
         }
     }
-}
-
-// Disable landscape orientation
-- (BOOL)shouldAutorotate {
-    return NO;
 }
 
 -(void)writeDictionary {
@@ -384,33 +355,6 @@ double progAmount, percentRemaining;
         if ([_delegate respondsToSelector:@selector(displayUserInfo:)]) {
             // ...then send the delegate function with amount entered by the user
             [_delegate displayUserInfo:personInfo];
-
-            if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-                if (!personInfo) {
-                    [self animateConfig:nil];
-                    [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
-                    }];
-                }
-                else {
-                    [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
-                    }];
-                }
-            }
-            else {
-                if (!personInfo) {
-                    [self animateConfig:nil];
-                    [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
-                    }];
-                }
-                else {
-                    [UIView animateWithDuration:0.5f animations:^{
-                        scroller.frame = CGRectOffset(scroller.frame, padSlideDistance, 0);
-                    }];
-                }
-            }
         }
     }
 }
@@ -492,6 +436,11 @@ double progAmount, percentRemaining;
         plusLbl.hidden = NO;
 }
 
+// Disable landscape orientation
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
 // Builds a string combining Country name, male & female life expectancies, to display in helpview
 - (NSString *)buildCountryString:(NSString*)cString {
     NSString *lineStr = @"", *tempCString = @"";
@@ -529,15 +478,6 @@ double progAmount, percentRemaining;
     
     [super viewDidUnload];
 }
-
-/* // Make UIPickerView font white - cannot use until we can easily make UIDatePicker font white also
- - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
- NSString *title = countryArray[row];
- NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
- 
- return attString;
- 
- } */
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [self updateProgPercentage:_ctryPicker.self];

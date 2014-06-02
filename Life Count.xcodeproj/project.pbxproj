@@ -51,13 +51,11 @@
 		652727A018A5B3BD00B7558E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6527279F18A5B3BD00B7558E /* settings.png */; };
 		65BBA71018F5CF2A00DE7CDC /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BBA70F18F5CF2A00DE7CDC /* SpriteKit.framework */; };
 		65BBA71318F5CF7600DE7CDC /* RainParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65BBA71118F5CF7600DE7CDC /* RainParticle.sks */; };
-		65BBA71418F5CF7600DE7CDC /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BBA71218F5CF7600DE7CDC /* spark.png */; };
 		65BBA71718F5D00B00DE7CDC /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BBA71618F5D00B00DE7CDC /* MyScene.m */; };
 		65CD199F1936982A00C0CA0D /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65CD199E1936982A00C0CA0D /* SnowParticle.sks */; };
 		65D304F81891B0C30023F39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E21049C151ED7BB00D0B523 /* CoreGraphics.framework */; };
 		65D3B02218E4E43E00507529 /* PWProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3B02118E4E43E00507529 /* PWProgressView.m */; };
 		65E4984C1896DCD400B9A3AA /* FB-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 65E4984B1896DCD400B9A3AA /* FB-72.png */; };
-		65F94B1418B8043700F75531 /* BackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F94B1318B8043700F75531 /* BackgroundLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +126,6 @@
 		6527279F18A5B3BD00B7558E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		65BBA70F18F5CF2A00DE7CDC /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		65BBA71118F5CF7600DE7CDC /* RainParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = RainParticle.sks; path = ../RainParticle.sks; sourceTree = "<group>"; };
-		65BBA71218F5CF7600DE7CDC /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = ../spark.png; sourceTree = "<group>"; };
 		65BBA71518F5D00B00DE7CDC /* MyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		65BBA71618F5D00B00DE7CDC /* MyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
 		65CD199E1936982A00C0CA0D /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SnowParticle.sks; path = ../SnowParticle.sks; sourceTree = "<group>"; };
@@ -137,8 +134,6 @@
 		65D3B02118E4E43E00507529 /* PWProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWProgressView.m; sourceTree = "<group>"; };
 		65D53D7218B6C5D5004A8E26 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		65E4984B1896DCD400B9A3AA /* FB-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "FB-72.png"; path = "../FB-72.png"; sourceTree = "<group>"; };
-		65F94B1218B8043700F75531 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
-		65F94B1318B8043700F75531 /* BackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,8 +213,6 @@
 				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
 				65D3B02018E4E43E00507529 /* PWProgressView.h */,
 				65D3B02118E4E43E00507529 /* PWProgressView.m */,
-				65F94B1218B8043700F75531 /* BackgroundLayer.h */,
-				65F94B1318B8043700F75531 /* BackgroundLayer.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
 				2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */,
 				6522B65D18BD16490086824A /* FileHandler.h */,
@@ -241,7 +234,6 @@
 				65BBA71618F5D00B00DE7CDC /* MyScene.m */,
 				65CD199E1936982A00C0CA0D /* SnowParticle.sks */,
 				65BBA71118F5CF7600DE7CDC /* RainParticle.sks */,
-				65BBA71218F5CF7600DE7CDC /* spark.png */,
 				2E6FBF9F18E7646700B267BC /* hglass-2.png */,
 				2E77A1F618DFC063007A14CC /* q_icon.png */,
 				6527279F18A5B3BD00B7558E /* settings.png */,
@@ -389,7 +381,6 @@
 				652727A018A5B3BD00B7558E /* settings.png in Resources */,
 				2E73E1A11839B525004B3A33 /* ret_ipad_hglass@2x.png in Resources */,
 				65BBA71318F5CF7600DE7CDC /* RainParticle.sks in Resources */,
-				65BBA71418F5CF7600DE7CDC /* spark.png in Resources */,
 				2E2104AF151ED7BB00D0B523 /* ViewController.xib in Resources */,
 				2E77A1F718DFC063007A14CC /* q_icon.png in Resources */,
 				2E6FBFA118E7646700B267BC /* hglass-2.png in Resources */,
@@ -428,7 +419,6 @@
 				2E2104AC151ED7BB00D0B523 /* ViewController.m in Sources */,
 				2E2104D4151ED8A400D0B523 /* ConfigViewController.m in Sources */,
 				2E428A611854131A000E79E7 /* AppDelegate.m in Sources */,
-				65F94B1418B8043700F75531 /* BackgroundLayer.m in Sources */,
 				65D3B02218E4E43E00507529 /* PWProgressView.m in Sources */,
 				2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */,
 				2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */,

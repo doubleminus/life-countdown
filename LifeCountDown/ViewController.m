@@ -30,7 +30,6 @@
 #import "YLProgressBar.h"
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
-#import "BackgroundLayer.h"
 #import "FileHandler.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Social/Social.h>
@@ -40,11 +39,10 @@
 
 NSNumberFormatter *formatter;
 CGRect phoneScrollRect;
-UIView *shadeView; // Used for first app run only
 UIToolbar *toolbar; // Used for first app run only
 double totalSecondsDub, progAmount, percentRemaining;
 int slideDistance2 = 0;
-bool exceedExp = NO, firstTime2 = false;;
+bool exceedExp = NO, firstTime2 = false;
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
@@ -79,12 +77,13 @@ FileHandler *fileHand;
 
     // Diagnostics if needed
     // _skView.showsFPS = YES; _skView.showsNodeCount = YES; _skView.alpha = 1.0;
-    _skView.frame = CGRectMake(190, 240, 70, 230);
+    _skView.frame = CGRectMake(210, 237, 42, 233);
     [self.view insertSubview:_skView aboveSubview:backgroundView];
 
     // Create and configure the scene.
     _scene = [MyScene sceneWithSize:_skView.bounds.size];
     _scene.scaleMode = SKSceneScaleModeResizeFill;
+    //_scene.backgroundColor = [UIColor blueColor]; // Makes actual view visible
 
     // Present the scene.
     [_skView presentScene:_scene];
@@ -92,11 +91,6 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    // If we return from configView in landscape, then adjust UI components accordingly
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
-        [self handleLandscape];
-    }
 
     _progressView.hidden = YES;
 }
@@ -120,7 +114,11 @@ FileHandler *fileHand;
 
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
-    NSDictionary *nsdict = [fileHand readPlist];
+    NSDictionary *nsdict;
+
+    if (nsdict == nil) {
+        nsdict = [fileHand readPlist];
+    }
 
     if (nsdict) {
         [self displayUserInfo:nsdict];
@@ -188,8 +186,6 @@ FileHandler *fileHand;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
     progAmount = seconds / totalSecondsDub; // Calculate here for coloring progress bar in landscape
 
-    // Set our progress bar's value, based on amount of life remaining, but only if in landscape
-    if (self.interfaceOrientation == 3 || self.interfaceOrientation == 4) {
         [_progressView setProgress:progAmount];
 
         // Calculate percentage of life remaining
@@ -199,7 +195,6 @@ FileHandler *fileHand;
         if (percentRemaining > 100) { percentRemaining = 100; }
 
         _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
-    }
 
     _timerStarted = YES;
 }
@@ -311,24 +306,6 @@ FileHandler *fileHand;
     }
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    UIInterfaceOrientation interfaceOrientation = self.interfaceOrientation;
-
-    if (interfaceOrientation == 1) {
-        [self handlePortrait];
-    }
-    else if (interfaceOrientation == 3 || interfaceOrientation == 4) { // Adjust label locations in landscape right or left orientation
-        [self handleLandscape];
-    }
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self dismissViewControllerAnimated:NO completion:^(void) {
-        [self handleLandscape];
-    }];
-}
-
 - (void)handlePortrait {
     currAgeTxtLbl.hidden    = YES;
     estTxtLbl.hidden        = YES;
@@ -345,59 +322,6 @@ FileHandler *fileHand;
 
     _kTouch.enabled         = YES;
     [self.scene startSecondTimer];
-}
-
-- (void)handleLandscape {
-    [self.scene.timey invalidate];
-
-    _skView.hidden          = YES;
-    _tweetBtn.hidden        = YES;
-    _facebookBtn.hidden     = YES;
-    _configBtn.hidden       = YES;
-    _helpBtn.hidden         = YES;
-    _currentAgeLabel.hidden = YES;
-    _ageLabel.hidden        = YES;
-    backgroundView.hidden   = YES;
-    estTxtLbl.hidden        = YES;
-    currAgeTxtLbl.hidden    = YES;
-
-    // Set gradient background
-    CAGradientLayer *bgLayer = [BackgroundLayer greyGradient2];
-    bgLayer.frame = self.view.bounds;
-    [self.view.layer insertSublayer:bgLayer atIndex:0];
-
-    _kTouch.enabled = NO;
-
-    // Handle both sizes of iPhone screens
-    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-    if (screenRect.size.height == 568) {
-        secdsLifeRemLabel.frame = CGRectMake(185,135,208,21);
-        _countdownLabel.frame   = CGRectMake(140,70,298,85);
-        _progressView.frame     = CGRectMake(92,175,400,25);
-    }
-    else {
-        secdsLifeRemLabel.frame = CGRectMake(130,125,208,21);
-        _countdownLabel.frame   = CGRectMake(85,60,298,85);
-        _progressView.frame     = CGRectMake(40,165,400,25);
-        _percentLabel.frame     = CGRectMake(30,190,400,25);
-    }
-
-    // Handle use-case of exceeding life expectancy
-    if (!exceedExp) {
-        // Apply color to progress bar based on lifespan
-        if (progAmount >= .66) {
-            _progressView.progressTintColor = [UIColor greenColor];
-        }
-        else if (progAmount && progAmount > .33) {
-            _progressView.progressTintColor = [UIColor yellowColor];
-        }
-        else {
-            _progressView.progressTintColor = [UIColor redColor];
-        }
-
-        _progressView.hidden = NO;
-        _percentLabel.hidden = NO;
-    }
 }
 
 - (void)showComponents {
@@ -419,7 +343,6 @@ FileHandler *fileHand;
 
 - (void)viewDidUnload {
     secdsLifeRemLabel    = nil;
-    shadeView            = nil;
     toolbar              = nil;
     self.progressView    = nil;
     self.percentLabel    = nil;
