@@ -172,7 +172,6 @@ double progAmount, percentRemaining;
         [viewLayer setMasksToBounds:YES];
         [viewLayer setCornerRadius:5.0f];
 
-       // [saveBtn setHidden:YES];
         [aboutBtn setHidden:YES];
     }
 
@@ -322,7 +321,7 @@ double progAmount, percentRemaining;
             if (_genderToggle.selectedSegmentIndex != UISegmentedControlNoSegment) { // Force user to supply gender field value
                 [self updateAge:nil];
                 bgToolbar.hidden = YES;
-                
+
                 [UIView animateWithDuration:0.5f animations:^{
                     scroller.frame = CGRectOffset(scroller.frame, phoneSlideDistance, 0);
                 }];
@@ -387,8 +386,6 @@ double progAmount, percentRemaining;
             [_delegate displayUserInfo:personInfo];
 
             if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-                //[self dismissViewControllerAnimated:YES completion:nil];
-                
                 if (!personInfo) {
                     [self animateConfig:nil];
                     [UIView animateWithDuration:0.5f animations:^{

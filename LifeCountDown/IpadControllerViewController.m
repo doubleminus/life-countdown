@@ -55,11 +55,12 @@ FileHandler *fileHand;
     [super viewDidAppear:animated];
     [self loadUserData];
 
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.delegate = self;
-
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:YES completion:nil];
+    if (enterInfo1 == nil) {
+        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+        enterInfo1.delegate = self;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:enterInfo1 animated:YES completion:nil];
+    }
 }
 
 - (void)viewDidLoad {
@@ -123,7 +124,6 @@ FileHandler *fileHand;
 /****  BEGIN USER INFORMATION METHODS  ****/
 - (IBAction)setUserInfo:(id)sender {
     [mainToolbar removeFromSuperview];
-
     [enterInfo1 animateConfig:nil];
 }
 
@@ -237,33 +237,6 @@ FileHandler *fileHand;
     ageTxtLbl.hidden       = YES;
     _ageLbl.hidden         = YES;
     _pLabel.hidden         = NO;
-
-    /*
-     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-     if (screenRect.size.height == 568) {
-     _cntLbl.frame = CGRectMake(140,70,298,85);
-     // secsRem.frame = CGRectMake(185,135,208,21);
-     // _progressView1.frame = CGRectMake(92,175,400,25);
-     // _percentLabel1.frame = CGRectMake(82,200,400,25);
-     }
-     else {
-     _cntLbl.frame = CGRectMake(85,60,298,85);
-     //  secsRem.frame = CGRectMake(130,125,208,21);
-     //  _progressView1.frame = CGRectMake(40,165,400,25);
-     // _percentLabel1.frame = CGRectMake(40,190,400,25);
-     } */
-    /*
-     if (!exceedExp1) {
-     _progressView1.hidden = NO;
-     _percentLabel1.hidden = NO;
-     // Apply color to progress bar based on lifespan
-     if (progAmount >= .66)
-     _progressView1.progressTintColor = [UIColor greenColor];
-     else if (progAmount && progAmount > .33)
-     _progressView1.progressTintColor = [UIColor yellowColor];
-     else
-     _progressView1.progressTintColor = [UIColor redColor];
-     } */
 }
 
 - (void)didReceiveMemoryWarning {
