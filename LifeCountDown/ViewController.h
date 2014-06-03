@@ -57,6 +57,7 @@
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)setUserInfo:(id)sender;
 - (IBAction)showHelp:(id)sender;
+- (IBAction)slideBtns:(id)sender;
 - (void)loadUserData;
 
 @end

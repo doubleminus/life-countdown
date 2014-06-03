@@ -47,15 +47,41 @@ ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
 
+- (IBAction)slideBtns:(id)sender {
+    if (_helpBtn.alpha == 0.0) {
+        [UIView animateWithDuration:0.3f animations:^{
+            _facebookBtn.alpha = 1.0;
+            _tweetBtn.alpha    = 1.0;
+            _helpBtn.alpha     = 1.0;
+
+            _facebookBtn.frame = CGRectMake(65.0, 515.0, 27.0, 29.0);
+            _tweetBtn.frame    = CGRectMake(115.0, 518.0, 26.0, 26.0);
+            _helpBtn.frame     = CGRectMake(160.0, 512.0, 33.0, 35.0);
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.3f animations:^{
+            _facebookBtn.alpha = 0.0;
+            _tweetBtn.alpha    = 0.0;
+            _helpBtn.alpha     = 0.0;
+            
+            _facebookBtn.frame = CGRectMake(32.0, 515.0, 27.0, 29.0);
+            _tweetBtn.frame    = CGRectMake(31.0, 518.0, 26.0, 26.0);
+            _helpBtn.frame     = CGRectMake(32.0, 512.0, 33.0, 35.0);
+        }];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     fileHand = [[FileHandler alloc] init];
     dateUtil = [[DateCalculationUtil alloc] init];
     _touchView = [_touchView init];
 
-    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hglass-2.png"]];
+    backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default-568h@2x.png"]];
     backgroundView.frame = self.view.bounds;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
@@ -322,7 +348,6 @@ FileHandler *fileHand;
     _configBtn.hidden       = YES;
     _helpBtn.hidden         = YES;
 
-    _kTouch.enabled         = YES;
     [self.scene startSecondTimer];
 }
 
