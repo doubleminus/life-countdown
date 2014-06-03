@@ -66,12 +66,12 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         [self.layer addSublayer:self.progressShape];
 
         // Add three labels: LIFE X% REMAINING
-        UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(19, -14, 40, 40)];
-        lbl1.text = @"Life";
-        lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
-        lbl1.textColor = [UIColor whiteColor];
-        lbl1.alpha = .9;
-        [self addSubview:lbl1];
+        _lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(19, -14, 40, 40)];
+        _lbl1.text = @"Life";
+        _lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
+        _lbl1.textColor = [UIColor whiteColor];
+        _lbl1.alpha = .9;
+        [self addSubview:_lbl1];
 
         _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 24, 50, 11)];
         _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
@@ -79,22 +79,22 @@ static const CFTimeInterval PWScaleAnimationDuration    = 0.5;
         _percentLabel.alpha = .9;
         [self addSubview:_percentLabel];
 
-        UILabel *lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 31, 60, 40)];
-        lbl2.text = @"Remaining";
-        lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:10.3];
-        lbl2.textColor = [UIColor whiteColor];
-        lbl2.alpha = .9;
-        [self addSubview:lbl2];
+        _lbl2 = [[UILabel alloc] initWithFrame:CGRectMake(1, 31, 60, 40)];
+        _lbl2.text = @"Remaining";
+        _lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:10.3];
+        _lbl2.textColor = [UIColor whiteColor];
+        _lbl2.alpha = .9;
+        [self addSubview:_lbl2];
 
         // Reposition and resize labels for iPad
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            lbl1.frame = CGRectMake(25, -17, 50, 50);
+            _lbl1.frame = CGRectMake(25, -17, 50, 50);
             _percentLabel.frame = CGRectMake(20, 13, 70, 50);
-            lbl2.frame = CGRectMake(6, 43, 75, 50);
+            _lbl2.frame = CGRectMake(6, 43, 75, 50);
 
-            lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:13.0];
+            _lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:13.0];
             _percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:13.0];
-            lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:12.3];
+            _lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:12.3];
         }
     }
 

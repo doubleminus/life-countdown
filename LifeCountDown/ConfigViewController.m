@@ -59,6 +59,10 @@ double progAmount, percentRemaining;
     [self generateLineViews];
 
     country = [countryArray objectAtIndex:[_ctryPicker selectedRowInComponent:0]]; // Set country picker values
+
+    tappy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandProg)];
+    tappy.numberOfTapsRequired = 1;
+    tappy.numberOfTouchesRequired = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -127,6 +131,49 @@ double progAmount, percentRemaining;
     [_progressView setFrame:CGRectMake(_progressView.frame.origin.x, (scroller.contentOffset.y + scroller.frame.size.height)-65, _progressView.frame.size.width, _progressView.frame.size.height)];
 }
 
+- (void)expandProg {
+    visibleRect.origin = scroller.contentOffset; // Use to center expanded view
+
+    // ProgressView animating to center of user focus
+    if (self.progressView.frame.origin.x == 8.0) {
+        backupRect = self.progressView.frame; // Save current location of minimized corner progress view
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            scroller.scrollEnabled = NO;
+            [bgToolbar setHidden:NO];
+
+            self.progressView.lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:20.0];
+            self.progressView.lbl1.frame = CGRectMake(54, -25, 100, 80);
+
+            self.progressView.percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:18.0];
+            self.progressView.percentLabel.frame = CGRectMake(48, 31, 100, 80);
+
+            self.progressView.lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:20.0];
+            self.progressView.lbl2.frame = CGRectMake(22, 93, 125, 80);
+
+            self.progressView.frame = CGRectMake(visibleRect.origin.x+85, visibleRect.origin.y+200, 150.0, 150.0);
+        }];
+    }
+    else {
+        // ProgressView transitioning to corner
+        [UIView animateWithDuration:0.3f animations:^{
+            scroller.scrollEnabled = YES;
+            [bgToolbar setHidden:YES];
+
+            self.progressView.lbl1.frame = CGRectMake(19, -14, 40, 40);
+            self.progressView.lbl1.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
+
+            self.progressView.percentLabel.frame = CGRectMake(12, 24, 50, 11);
+            self.progressView.percentLabel.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:11.0];
+
+            self.progressView.lbl2.frame = CGRectMake(1, 31, 60, 40);
+            self.progressView.lbl2.font = [UIFont fontWithName:@"AmericanTypewriter-Bold" size:10.3];
+
+            self.progressView.frame = backupRect; // Reset our minimized prog view location
+        }];
+    }
+}
+
 // Setup our circular progress view in bottom left corner
 - (void)setupProgView {
     if (_progressView == nil) {
@@ -139,6 +186,7 @@ double progAmount, percentRemaining;
     // Make progress view larger on iPad (see second clause of below else if statement)
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
+        [self.progressView addGestureRecognizer:tappy];
     }
     else {
         self.progressView.frame = CGRectMake(125.0, 910.0, 78.0, 78.0);
@@ -202,7 +250,6 @@ double progAmount, percentRemaining;
 
 - (IBAction)showHelp:(id)sender {
     UIButton *btn;
-    CGRect visibleRect;
     country = @"";
 
     if (!_hView || _hView.hidden == YES) {
@@ -282,7 +329,7 @@ double progAmount, percentRemaining;
 - (IBAction)animateConfig:(id)sender {
     personInfo = [fileHand readPlist];
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && personInfo) {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (scroller.frame.origin.x == 750.0) { // SLIDE CONFIG VIEW OUT
             [UIView animateWithDuration:0.5f animations:^{
                 scroller.frame = CGRectOffset(scroller.frame, padSlideDistance * -1, 0);

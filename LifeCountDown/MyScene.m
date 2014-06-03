@@ -64,7 +64,7 @@ CGPoint location;
     emitter.position = CGPointMake(21,200);
     emitter.name = @"explosion";
     emitter.targetNode = self.scene;
-    emitter.numParticlesToEmit = 4000;
+    emitter.numParticlesToEmit = 3000;
     //emitter.zPosition = 200.0;
     return emitter;
 }

@@ -97,11 +97,11 @@ FileHandler *fileHand;
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
 
-    enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    enterInfo1.delegate = self; // Important to set the viewcontroller's delegate to be self
+   // enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+    //enterInfo1.delegate = self; // Important to set the viewcontroller's delegate to be self
 
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:enterInfo1 animated:NO completion:nil];
+    //self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //[self presentViewController:enterInfo1 animated:NO completion:nil];
 
     self.view.backgroundColor = [UIColor clearColor];
     mainToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
@@ -180,11 +180,13 @@ FileHandler *fileHand;
     setInfoButton.hidden = NO;
     ageTxtLbl.hidden     = NO;
     currAgeLbl.hidden    = NO;
-    estTextLbl.hidden    = NO;
     _ageLbl.hidden       = NO;
     _cntLbl.hidden       = NO;
 
-    //NSLog(exceedExp1 ? @"Yes" : @"No");
+    if ([dateUtil secondsRemaining] > 0)
+        estTextLbl.hidden = NO;
+    else
+        estTextLbl.hidden = YES;
 }
 
 - (void)handlePortrait1 {

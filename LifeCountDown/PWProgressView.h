@@ -31,6 +31,6 @@
 @interface PWProgressView : UIView
 
 @property (nonatomic, assign) float progress;
-@property (strong, nonatomic) IBOutlet UILabel *percentLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentLabel, *lbl1, *lbl2;
 
 @end

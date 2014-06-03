@@ -39,8 +39,10 @@
 @end
 
 @interface ConfigViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource> {
+    UITapGestureRecognizer *tappy;
     NSString *path;
     NSArray *countryArray;
+    CGRect visibleRect, backupRect;
     IBOutlet UITextField *amountTextField;
     IBOutlet UIButton *exerciseBtn, *smokeBtn, *countryBtn, *genderBtn;
     IBOutlet UIView *contentView;

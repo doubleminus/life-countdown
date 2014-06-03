@@ -80,19 +80,18 @@ FileHandler *fileHand;
     _skView.frame = CGRectMake(210, 237, 42, 233);
     [self.view insertSubview:_skView aboveSubview:backgroundView];
 
-    // Create and configure the scene.
+    // Create and configure scene
     _scene = [MyScene sceneWithSize:_skView.bounds.size];
     _scene.scaleMode = SKSceneScaleModeResizeFill;
     //_scene.backgroundColor = [UIColor blueColor]; // Makes actual view visible
 
-    // Present the scene.
     [_skView presentScene:_scene];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    _progressView.hidden = YES;
+    _progressView.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -163,6 +162,7 @@ FileHandler *fileHand;
         else { // Handle situation where user has exceeded maximum life expectancy
             _ageLabel.text = @"";
             exceedExp = YES;
+            estTxtLbl.hidden = YES;
             secdsLifeRemLabel.text = @"seconds you've outlived estimates";
         }
 
@@ -171,6 +171,8 @@ FileHandler *fileHand;
             [self startSecondTimer];
         }
     }
+
+    [self showComponents];
 }
 
 - (void)startSecondTimer {
@@ -314,7 +316,7 @@ FileHandler *fileHand;
     _percentLabel.hidden    = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden        = YES;
-    _progressView.hidden    = YES;
+    _progressView.hidden    = NO;
     _tweetBtn.hidden        = YES;
     _facebookBtn.hidden     = YES;
     _configBtn.hidden       = YES;
@@ -326,13 +328,17 @@ FileHandler *fileHand;
 
 - (void)showComponents {
     currAgeTxtLbl.hidden    = NO;
-    estTxtLbl.hidden        = NO;
     _currentAgeLabel.hidden = NO;
     _ageLabel.hidden        = NO;
     _tweetBtn.hidden        = NO;
     _facebookBtn.hidden     = NO;
     _configBtn.hidden       = NO;
     _helpBtn.hidden         = NO;
+    
+    if ([dateUtil secondsRemaining] > 0)
+        estTxtLbl.hidden    = NO;
+    else
+        estTxtLbl.hidden    = YES;
 
     //NSLog(exceedExp ? @"Yes" : @"No");
 }
