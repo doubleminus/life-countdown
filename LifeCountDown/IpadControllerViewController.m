@@ -29,7 +29,6 @@
 #import "IpadControllerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DateCalculationUtil.h"
-#import "YLProgressBar.h"
 
 @implementation IpadControllerViewController
 
@@ -197,7 +196,6 @@ FileHandler *fileHand;
     ageTxtLbl.hidden     = YES;
     _pLabel.hidden       = YES;
     _ageLbl.hidden       = YES;
-    _progBar.hidden      = YES;
     _cntLbl.hidden       = YES;
 }
 

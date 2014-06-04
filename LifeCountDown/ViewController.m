@@ -27,7 +27,6 @@
  */
 
 #import "ViewController.h"
-#import "YLProgressBar.h"
 #import "ConfigViewController.h"
 #import "DateCalculationUtil.h"
 #import "FileHandler.h"
@@ -64,7 +63,7 @@ FileHandler *fileHand;
             _facebookBtn.alpha = 0.0;
             _tweetBtn.alpha    = 0.0;
             _helpBtn.alpha     = 0.0;
-            
+
             _facebookBtn.frame = CGRectMake(32.0, 515.0, 27.0, 29.0);
             _tweetBtn.frame    = CGRectMake(31.0, 518.0, 26.0, 26.0);
             _helpBtn.frame     = CGRectMake(32.0, 512.0, 33.0, 35.0);
@@ -86,7 +85,6 @@ FileHandler *fileHand;
     [[self view] addSubview:backgroundView];
     [[self view] sendSubviewToBack:backgroundView];
 
-    [_touchView addGestureRecognizer:_kTouch];
     [self setupHelpView];
 
     formatter = [[NSNumberFormatter alloc] init];
@@ -95,6 +93,29 @@ FileHandler *fileHand;
     [formatter setMaximumFractionDigits:0];
 
     [self setupParticleView];
+
+    tapShowPercent = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleView)];
+    tapShowPercent.numberOfTapsRequired = 1;
+    tapShowPercent.numberOfTouchesRequired = 1;
+    
+    [_touchView addGestureRecognizer:tapShowPercent];
+}
+
+- (void)toggleView {
+    if (_percentLabel.alpha == 0) {
+        [UIView animateWithDuration:0.5f animations:^{
+            _countdownLabel.alpha = 0;
+            _percentLabel.alpha = 1;
+            secdsLifeRemLabel.text = @"percent of your life remaining";
+        }];
+    }
+    else if (_percentLabel.alpha == 1) {
+        [UIView animateWithDuration:0.5f animations:^{
+            _percentLabel.alpha = 0;
+            _countdownLabel.alpha = 1;
+            secdsLifeRemLabel.text = @"seconds of your life remaining";
+        }];
+    }
 }
 
 - (void)setupParticleView {
@@ -116,8 +137,6 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    _progressView.hidden = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -214,16 +233,13 @@ FileHandler *fileHand;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
     progAmount = seconds / totalSecondsDub; // Calculate here for coloring progress bar in landscape
 
-        [_progressView setProgress:progAmount];
+    // Calculate percentage of life remaining
+    percentRemaining = progAmount * 100.0;
 
-        // Calculate percentage of life remaining
-        percentRemaining = progAmount * 100.0;
+    if (percentRemaining < 0)   { percentRemaining = 0; }
+    if (percentRemaining > 100) { percentRemaining = 100; }
 
-        if (percentRemaining < 0)   { percentRemaining = 0; }
-        if (percentRemaining > 100) { percentRemaining = 100; }
-
-        _percentLabel.text = [NSString stringWithFormat:@"(%.8f%%)", percentRemaining];
-
+    _percentLabel.text = [NSString stringWithFormat:@"%.8f%%", percentRemaining];
     _timerStarted = YES;
 }
 /****  END USER INFORMATION METHODS  ****/
@@ -339,10 +355,8 @@ FileHandler *fileHand;
     estTxtLbl.hidden        = YES;
     backgroundView.hidden   = NO;
     _skView.hidden          = NO;
-    _percentLabel.hidden    = YES;
     _currentAgeLabel.hidden = YES;
     _ageLabel.hidden        = YES;
-    _progressView.hidden    = NO;
     _tweetBtn.hidden        = YES;
     _facebookBtn.hidden     = YES;
     _configBtn.hidden       = YES;
@@ -375,7 +389,6 @@ FileHandler *fileHand;
 - (void)viewDidUnload {
     secdsLifeRemLabel    = nil;
     toolbar              = nil;
-    self.progressView    = nil;
     self.percentLabel    = nil;
     self.countdownLabel  = nil;
     self.ageLabel        = nil;

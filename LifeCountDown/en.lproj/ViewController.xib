@@ -15,9 +15,7 @@
                 <outlet property="estTxtLbl" destination="102" id="104"/>
                 <outlet property="facebookBtn" destination="VvC-lU-1w3" id="TiC-M6-h0c"/>
                 <outlet property="helpBtn" destination="Oze-pt-4lc" id="ITu-Iw-QBv"/>
-                <outlet property="kTouch" destination="t6t-Yo-ghs" id="IKe-4e-saS"/>
                 <outlet property="percentLabel" destination="48" id="49"/>
-                <outlet property="progressView" destination="72" id="73"/>
                 <outlet property="secdsLifeRemLabel" destination="46" id="66"/>
                 <outlet property="touchView" destination="dVg-Ak-TSZ" id="aLo-XU-smd"/>
                 <outlet property="tweetBtn" destination="mCg-i1-Hrv" id="Ogl-Jm-73c"/>
@@ -77,23 +75,17 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" fixedFrame="YES" text="Percent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48">
+                    <rect key="frame" x="6" y="43" width="309" height="42"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="46"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dVg-Ak-TSZ">
-                    <rect key="frame" x="0.0" y="2" width="320" height="507"/>
+                    <rect key="frame" x="20" y="21" width="289" height="60"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="72" customClass="YLProgressBar">
-                            <rect key="frame" x="20" y="258" width="280" height="2"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </progressView>
-                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Percent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48">
-                            <rect key="frame" x="166" y="198" width="230" height="36"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </label>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <connections>
@@ -150,16 +142,19 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
-        <tapGestureRecognizer id="t6t-Yo-ghs">
-            <connections>
-                <action selector="toggleComponents:" destination="-1" id="yA0-BP-tlf"/>
-            </connections>
-        </tapGestureRecognizer>
         <swipeGestureRecognizer direction="left" id="a6M-dn-E9g">
             <connections>
                 <action selector="setUserInfo:" destination="-1" id="UOm-bm-iKR"/>
             </connections>
         </swipeGestureRecognizer>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VEh-js-SPd">
+            <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+            <state key="normal" title="Button">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+        </button>
     </objects>
     <resources>
         <image name="FB-72.png" width="72" height="72"/>

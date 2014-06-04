@@ -27,7 +27,6 @@
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
 		2E428A611854131A000E79E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
-		2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E47E28B1768004000D81B13 /* YLProgressBar.m */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
 		2E4C77F0188F998B00D0910A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4C77EF188F998B00D0910A /* Accounts.framework */; };
 		2E4C77F2188F999400D0910A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4C77F1188F999400D0910A /* Social.framework */; };
@@ -95,8 +94,6 @@
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
-		2E47E28A1768004000D81B13 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
-		2E47E28B1768004000D81B13 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2E4C77EF188F998B00D0910A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		2E4C77F1188F999400D0910A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -205,8 +202,6 @@
 			children = (
 				2E635E5517796F2E00B85650 /* Xibs */,
 				2E635E5417796F1F00B85650 /* Controllers */,
-				2E47E28A1768004000D81B13 /* YLProgressBar.h */,
-				2E47E28B1768004000D81B13 /* YLProgressBar.m */,
 				65D3B02018E4E43E00507529 /* PWProgressView.h */,
 				65D3B02118E4E43E00507529 /* PWProgressView.m */,
 				2E83347915E026F800E2A5BB /* DateCalculationUtil.h */,
@@ -413,7 +408,6 @@
 				2E428A611854131A000E79E7 /* AppDelegate.m in Sources */,
 				65D3B02218E4E43E00507529 /* PWProgressView.m in Sources */,
 				2E83347B15E026F800E2A5BB /* DateCalculationUtil.m in Sources */,
-				2E47E28C1768004000D81B13 /* YLProgressBar.m in Sources */,
 				2E27E813177C134C009FBFC7 /* HelpView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
