@@ -199,7 +199,6 @@ FileHandler *fileHand;
     _cntLbl.hidden       = YES;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

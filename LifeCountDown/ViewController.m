@@ -37,7 +37,7 @@
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-CGRect phoneScrollRect;
+CGRect phoneScrollRect, screenBounds;
 UIToolbar *toolbar; // Used for first app run only
 double totalSecondsDub, progAmount, percentRemaining;
 int slideDistance2 = 0;
@@ -45,31 +45,6 @@ bool exceedExp = NO, firstTime2 = false;
 ConfigViewController *enterInfo1;
 DateCalculationUtil *dateUtil;
 FileHandler *fileHand;
-
-- (IBAction)slideBtns:(id)sender {
-    if (_helpBtn.alpha == 0.0) {
-        [UIView animateWithDuration:0.3f animations:^{
-            _facebookBtn.alpha = 1.0;
-            _tweetBtn.alpha    = 1.0;
-            _helpBtn.alpha     = 1.0;
-
-            _facebookBtn.frame = CGRectMake(65.0, 515.0, 27.0, 29.0);
-            _tweetBtn.frame    = CGRectMake(115.0, 518.0, 26.0, 26.0);
-            _helpBtn.frame     = CGRectMake(160.0, 512.0, 33.0, 35.0);
-        }];
-    }
-    else {
-        [UIView animateWithDuration:0.3f animations:^{
-            _facebookBtn.alpha = 0.0;
-            _tweetBtn.alpha    = 0.0;
-            _helpBtn.alpha     = 0.0;
-
-            _facebookBtn.frame = CGRectMake(32.0, 515.0, 27.0, 29.0);
-            _tweetBtn.frame    = CGRectMake(31.0, 518.0, 26.0, 26.0);
-            _helpBtn.frame     = CGRectMake(32.0, 512.0, 33.0, 35.0);
-        }];
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,10 +72,13 @@ FileHandler *fileHand;
     tapShowPercent = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleView)];
     tapShowPercent.numberOfTapsRequired = 1;
     tapShowPercent.numberOfTouchesRequired = 1;
-    
+
     [_touchView addGestureRecognizer:tapShowPercent];
+
+    screenBounds = [[UIScreen mainScreen] bounds];
 }
 
+// Toggles life view between percentage and seconds countdown
 - (void)toggleView {
     if (_percentLabel.alpha == 0) {
         [UIView animateWithDuration:0.5f animations:^{
@@ -117,6 +95,33 @@ FileHandler *fileHand;
         }];
     }
 }
+
+// Animates sliding out of buttons, and then back in
+- (IBAction)slideBtns:(id)sender {
+    if (_helpBtn.alpha == 0.0) {
+        [UIView animateWithDuration:0.3f animations:^{
+            _facebookBtn.alpha = 1.0;
+            _tweetBtn.alpha    = 1.0;
+            _helpBtn.alpha     = 1.0;
+            
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 50, 0);
+            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    100, 0);
+            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     150, 0);
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.3f animations:^{
+            _facebookBtn.alpha = 0.0;
+            _tweetBtn.alpha    = 0.0;
+            _helpBtn.alpha     = 0.0;
+            
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -50, 0);
+            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,   -100, 0);
+            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,    -150, 0);
+        }];
+    }
+}
+
 
 - (void)setupParticleView {
     // Configure the SKView
@@ -137,6 +142,10 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+   // if (screenBounds.size.height == 480) {
+   //     _configBtn.frame = CGRectOffset(_configBtn.frame, -12, 0);
+   // }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
