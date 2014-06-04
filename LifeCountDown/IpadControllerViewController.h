@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
- ViewController.m
+ IPadControllerViewController.h
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -41,9 +41,9 @@
 }
 
 @property (strong, nonatomic) NSTimer *secondTimer1;
-@property (nonatomic) bool timerStarted1;
 @property (strong, nonatomic) IBOutlet UILabel *ageLbl, *cntLbl, *pLabel;
 @property (strong, nonatomic) IBOutlet YLProgressBar *progBar;
+@property         (nonatomic) bool timerStarted1;
 
 - (void)loadUserData;
 - (IBAction)setUserInfo:(id)sender;

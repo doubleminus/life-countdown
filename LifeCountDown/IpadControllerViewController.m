@@ -1,6 +1,6 @@
 /*
  Copyright (c) 2013-2014, Nathan Wisman. All rights reserved.
- ViewController.m
+ IPadControllerViewController.m
  
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
@@ -95,12 +95,6 @@ FileHandler *fileHand;
 - (void)firstTimeUseSetup {
     _cntLbl.hidden = YES;
     secsRem.hidden = YES;
-
-   // enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-    //enterInfo1.delegate = self; // Important to set the viewcontroller's delegate to be self
-
-    //self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    //[self presentViewController:enterInfo1 animated:NO completion:nil];
 
     self.view.backgroundColor = [UIColor clearColor];
     mainToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];

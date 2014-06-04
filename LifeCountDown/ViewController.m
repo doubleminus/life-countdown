@@ -142,10 +142,6 @@ FileHandler *fileHand;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-   // if (screenBounds.size.height == 480) {
-   //     _configBtn.frame = CGRectOffset(_configBtn.frame, -12, 0);
-   // }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -48,7 +48,7 @@
 @property (strong, nonatomic) IBOutlet UIView *touchView;
 @property (strong, nonatomic) NSTimer *secondTimer;
 @property (strong, nonatomic) HelpView *helpView;
-@property (nonatomic) bool timerStarted;
+@property         (nonatomic) bool timerStarted;
 
 - (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
