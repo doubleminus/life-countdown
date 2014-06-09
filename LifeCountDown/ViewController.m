@@ -100,24 +100,28 @@ FileHandler *fileHand;
 - (IBAction)slideBtns:(id)sender {
     if (_helpBtn.alpha == 0.0) {
         [UIView animateWithDuration:0.3f animations:^{
+            _persBtn.alpha     = 1.0;
             _facebookBtn.alpha = 1.0;
             _tweetBtn.alpha    = 1.0;
             _helpBtn.alpha     = 1.0;
-            
-            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 50, 0);
-            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    100, 0);
-            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     150, 0);
+
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     60, 0);
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 127, 0);
+            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    190, 0);
+            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     250, 0);
         }];
     }
     else {
         [UIView animateWithDuration:0.3f animations:^{
+            _persBtn.alpha     = 0.0;
             _facebookBtn.alpha = 0.0;
             _tweetBtn.alpha    = 0.0;
             _helpBtn.alpha     = 0.0;
-            
-            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -50, 0);
-            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,   -100, 0);
-            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,    -150, 0);
+
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     -60, 0);
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -127, 0);
+            _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    -190, 0);
+            _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     -250, 0);
         }];
     }
 }

@@ -25,6 +25,7 @@
 		2E2104D7151ED8A400D0B523 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */; };
 		2E27E813177C134C009FBFC7 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E27E812177C134C009FBFC7 /* HelpView.m */; };
 		2E2C23A31799E676003551F6 /* DateCalculationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E83347A15E026F800E2A5BB /* DateCalculationUtil.m */; };
+		2E3E5EF61944DF8E006C76B6 /* pers.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3E5EF51944DF8E006C76B6 /* pers.png */; };
 		2E428A611854131A000E79E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2104A8151ED7BB00D0B523 /* AppDelegate.m */; };
 		2E47C1A215CF93F1002213C3 /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E47C1A115CF93F1002213C3 /* Data.plist */; };
 		2E4A0348173DF88E00C23B8B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E4A0347173DF88E00C23B8B /* QuartzCore.framework */; };
@@ -92,6 +93,7 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		2E3E5EF51944DF8E006C76B6 /* pers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pers.png; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -162,6 +164,7 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
+				2E3E5EF51944DF8E006C76B6 /* pers.png */,
 				2EF47CF7181A30DE0006B704 /* Images.xcassets */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
@@ -374,6 +377,7 @@
 				2E6FBFA118E7646700B267BC /* hglass-2.png in Resources */,
 				65CD199F1936982A00C0CA0D /* SnowParticle.sks in Resources */,
 				2E2104D6151ED8A400D0B523 /* ConfigViewController.xib in Resources */,
+				2E3E5EF61944DF8E006C76B6 /* pers.png in Resources */,
 				2E47C1A215CF93F1002213C3 /* Data.plist in Resources */,
 				2E9DC8CB17EF2D0300AD679B /* Countries.plist in Resources */,
 				2EF7236717CAD99C00D17FFE /* Default-568h@2x.png in Resources */,

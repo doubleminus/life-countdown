@@ -44,6 +44,7 @@
 @property IBOutlet SKView *skView;
 @property IBOutlet MyScene *scene;
 @property (strong, nonatomic) IBOutlet UIButton *helpBtn, *tweetBtn, *facebookBtn, *configBtn;
+@property (strong, nonatomic) IBOutlet UIButton *persBtn;
 @property (strong, nonatomic) IBOutlet UILabel *currentAgeLabel, *ageLabel, *countdownLabel, *percentLabel;
 @property (strong, nonatomic) IBOutlet UIView *touchView;
 @property (strong, nonatomic) NSTimer *secondTimer;
