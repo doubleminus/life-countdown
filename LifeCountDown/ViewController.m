@@ -48,8 +48,8 @@ FileHandler *fileHand;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+ //   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     fileHand = [[FileHandler alloc] init];
     dateUtil = [[DateCalculationUtil alloc] init];
