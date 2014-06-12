@@ -117,8 +117,8 @@
         </swipeGestureRecognizer>
     </objects>
     <resources>
-        <image name="FB-72.png" width="72" height="72"/>
+        <image name="FB-72.png" width="287" height="264"/>
         <image name="Twitter_logo_white.png" width="220" height="198"/>
-        <image name="settings.png" width="128" height="128"/>
+        <image name="settings.png" width="215" height="190"/>
     </resources>
 </document>

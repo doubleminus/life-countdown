@@ -93,7 +93,7 @@
 		2E2104D3151ED8A400D0B523 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		2E27E811177C134C009FBFC7 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		2E27E812177C134C009FBFC7 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
-		2E3E5EF51944DF8E006C76B6 /* pers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pers.png; sourceTree = "<group>"; };
+		2E3E5EF51944DF8E006C76B6 /* pers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pers.png; path = ../pers.png; sourceTree = "<group>"; };
 		2E43B2B51612BF26000E984B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2E47C1A115CF93F1002213C3 /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Data.plist; sourceTree = "<group>"; };
 		2E4A0347173DF88E00C23B8B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -164,7 +164,6 @@
 		2E210489151ED7BA00D0B523 = {
 			isa = PBXGroup;
 			children = (
-				2E3E5EF51944DF8E006C76B6 /* pers.png */,
 				2EF47CF7181A30DE0006B704 /* Images.xcassets */,
 				2E4A0347173DF88E00C23B8B /* QuartzCore.framework */,
 				2E43B2B51612BF26000E984B /* Default-568h@2x.png */,
@@ -224,6 +223,7 @@
 		2E21049F151ED7BB00D0B523 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E3E5EF51944DF8E006C76B6 /* pers.png */,
 				6562DE4B193E309F00208DEA /* FB-72.png */,
 				65BBA71518F5D00B00DE7CDC /* MyScene.h */,
 				65BBA71618F5D00B00DE7CDC /* MyScene.m */,
