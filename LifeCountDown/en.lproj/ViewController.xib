@@ -94,7 +94,7 @@
                     </connections>
                 </view>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
-                    <rect key="frame" x="18" y="524" width="26" height="26"/>
+                    <rect key="frame" x="3" y="511" width="60" height="53"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="Twitter_logo_white.png">
@@ -105,7 +105,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
-                    <rect key="frame" x="15" y="519" width="33" height="35"/>
+                    <rect key="frame" x="0.0" y="503" width="72" height="67"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="q_icon.png">
@@ -116,7 +116,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="VvC-lU-1w3">
-                    <rect key="frame" x="18" y="523" width="27" height="29"/>
+                    <rect key="frame" x="3" y="508" width="61" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="FB-72.png">
@@ -127,7 +127,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5nE-Qa-zCA">
-                    <rect key="frame" x="17" y="521" width="36" height="35"/>
+                    <rect key="frame" x="0.0" y="507" width="65" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="settings.png">
@@ -168,10 +168,10 @@
         </button>
     </objects>
     <resources>
-        <image name="FB-72.png" width="72" height="72"/>
-        <image name="Twitter_logo_white.png" width="120" height="98"/>
+        <image name="FB-72.png" width="287" height="264"/>
+        <image name="Twitter_logo_white.png" width="220" height="198"/>
         <image name="pers.png" width="292" height="285"/>
-        <image name="q_icon.png" width="512" height="512"/>
-        <image name="settings.png" width="128" height="128"/>
+        <image name="q_icon.png" width="1030" height="1008"/>
+        <image name="settings.png" width="215" height="190"/>
     </resources>
 </document>
