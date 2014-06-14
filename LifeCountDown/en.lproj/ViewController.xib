@@ -94,7 +94,7 @@
                     </connections>
                 </view>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
-                    <rect key="frame" x="3" y="511" width="60" height="53"/>
+                    <rect key="frame" x="1" y="507" width="69" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="Twitter_logo_white.png">
@@ -105,7 +105,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
-                    <rect key="frame" x="0.0" y="501" width="72" height="70"/>
+                    <rect key="frame" x="0.0" y="498" width="70" height="73"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="q_icon.png">
@@ -158,14 +158,6 @@
                 <action selector="setUserInfo:" destination="-1" id="UOm-bm-iKR"/>
             </connections>
         </swipeGestureRecognizer>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VEh-js-SPd">
-            <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-            <state key="normal" title="Button">
-                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-            </state>
-        </button>
     </objects>
     <resources>
         <image name="FB-72.png" width="287" height="264"/>
