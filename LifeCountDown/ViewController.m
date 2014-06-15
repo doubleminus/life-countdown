@@ -49,10 +49,9 @@ FileHandler *fileHand;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
- //   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    fileHand = [[FileHandler alloc] init];
-    dateUtil = [[DateCalculationUtil alloc] init];
+    fileHand   = [[FileHandler alloc] init];
+    dateUtil   = [[DateCalculationUtil alloc] init];
     _touchView = [_touchView init];
 
     backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default-568h@2x.png"]];
@@ -105,7 +104,7 @@ FileHandler *fileHand;
             _tweetBtn.alpha    = 1.0;
             _helpBtn.alpha     = 1.0;
 
-            _persBtn.frame     = CGRectOffset(_persBtn.frame,     60, 0);
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     63, 0);
             _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 127, 0);
             _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    190, 0);
             _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     250, 0);
@@ -118,7 +117,7 @@ FileHandler *fileHand;
             _tweetBtn.alpha    = 0.0;
             _helpBtn.alpha     = 0.0;
 
-            _persBtn.frame     = CGRectOffset(_persBtn.frame,     -60, 0);
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     -63, 0);
             _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -127, 0);
             _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    -190, 0);
             _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     -250, 0);
@@ -307,8 +306,6 @@ FileHandler *fileHand;
     int tag = (int)[(UIButton *)sender tag];
     NSString *serviceType;
 
-    NSLog(@"available for Twitter? %d", [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]);
-
     if ((tag == 1 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) || (tag == 2 && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])) {
 
         if (tag == 1) {
@@ -327,13 +324,21 @@ FileHandler *fileHand;
                 switch(result) {
                     case SLComposeViewControllerResultCancelled:
                     default:{
-                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                       // self.modalPresentationStyle = UIModalPresentationCurrentContext;
                         [self presentViewController:enterInfo1 animated:NO completion:nil];
+                        // Hide config view, move into place off-screen, then display
+                        enterInfo1.view.hidden = YES;
+                        enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+                        enterInfo1.view.hidden = NO;
                     }
                         break;
                     case SLComposeViewControllerResultDone: {
-                        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+                       // self.modalPresentationStyle = UIModalPresentationCurrentContext;
                         [self presentViewController:enterInfo1 animated:NO completion:nil];
+                        // Hide config view, move into place off-screen, then display
+                        enterInfo1.view.hidden = YES;
+                        enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+                        enterInfo1.view.hidden = NO;
                     }
                         break;
                 }};

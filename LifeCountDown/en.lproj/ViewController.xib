@@ -94,7 +94,7 @@
                     </connections>
                 </view>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
-                    <rect key="frame" x="1" y="507" width="69" height="58"/>
+                    <rect key="frame" x="-22" y="483" width="109" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="Twitter_logo_white.png">
@@ -105,7 +105,7 @@
                     </connections>
                 </button>
                 <button hidden="YES" opaque="NO" alpha="0.0" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
-                    <rect key="frame" x="0.0" y="498" width="70" height="73"/>
+                    <rect key="frame" x="0.0" y="500" width="72" height="72"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" image="q_icon.png">
@@ -138,7 +138,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="zbx-uK-zWn">
-                    <rect key="frame" x="9" y="514" width="47" height="45"/>
+                    <rect key="frame" x="1" y="508" width="64" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="pers.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,8 +161,8 @@
     </objects>
     <resources>
         <image name="FB-72.png" width="287" height="264"/>
-        <image name="Twitter_logo_white.png" width="220" height="198"/>
-        <image name="pers.png" width="385" height="368"/>
+        <image name="Twitter_logo_white.png" width="381" height="343"/>
+        <image name="pers.png" width="497" height="465"/>
         <image name="q_icon.png" width="1030" height="1008"/>
         <image name="settings.png" width="215" height="190"/>
     </resources>
