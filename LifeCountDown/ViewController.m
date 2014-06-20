@@ -39,6 +39,7 @@
 NSNumberFormatter *formatter;
 CGRect phoneScrollRect, screenBounds;
 UIToolbar *toolbar; // Used for first app run only
+NSDictionary *nsdict;
 double totalSecondsDub, progAmount, percentRemaining;
 int slideDistance2 = 0;
 bool exceedExp = NO, firstTime2 = false;
@@ -75,6 +76,44 @@ FileHandler *fileHand;
     [_touchView addGestureRecognizer:tapShowPercent];
 
     screenBounds = [[UIScreen mainScreen] bounds];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self loadUserData];
+
+    if (enterInfo1 == nil) {
+        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
+        enterInfo1.delegate = self;
+        self.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:enterInfo1 animated:NO completion:nil];
+    }
+
+    // Hide config view, move into place off-screen, then display
+    if (nsdict != nil) {
+        [self setBackgroundImage];
+        
+        enterInfo1.view.hidden = YES;
+        enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+        enterInfo1.view.hidden = NO;
+    }
+    else {
+        enterInfo1.view.frame = CGRectMake(0,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
+        enterInfo1.view.hidden = NO;
+    }
+}
+
+- (void)setBackgroundImage {
+    if (percentRemaining <= 33.333) {
+        backgroundView.image = [UIImage imageNamed:@"hglass-low.png"];
+    }
+    else if (percentRemaining <= 66.666) {
+        backgroundView.image = [UIImage imageNamed:@"hglass-medium.png"];
+    }
 }
 
 // Toggles life view between percentage and seconds countdown
@@ -143,31 +182,8 @@ FileHandler *fileHand;
     [_skView presentScene:_scene];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self loadUserData];
-
-    if (enterInfo1 == nil) {
-        enterInfo1 = [[ConfigViewController alloc]initWithNibName:@"ConfigViewController" bundle:nil];
-        enterInfo1.delegate = self;
-        self.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:enterInfo1 animated:NO completion:nil];
-    }
-
-    // Hide config view, move into place off-screen, then display
-    enterInfo1.view.hidden = YES;
-    enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
-    enterInfo1.view.hidden = NO;
-}
-
 - (void)loadUserData {
     // Get dictionary of user data from our file handler. If dictionary is nil, request config data from user
-    NSDictionary *nsdict;
-
     if (nsdict == nil) {
         nsdict = [fileHand readPlist];
     }
@@ -223,9 +239,9 @@ FileHandler *fileHand;
             [self updateTimerAndBar];
             [self startSecondTimer];
         }
+        
+        [self setBackgroundImage];
     }
-
-    [self showComponents];
 }
 
 - (void)startSecondTimer {
@@ -353,47 +369,6 @@ FileHandler *fileHand;
             [self presentViewController:twCtrl animated:YES completion:nil];
         }];
     }
-}
-
-- (IBAction)toggleComponents:(id)sender {
-    if (_currentAgeLabel.hidden && _ageLabel.hidden) {
-        [self showComponents];
-    }
-    else {
-        [self handlePortrait];
-    }
-}
-
-- (void)handlePortrait {
-    currAgeTxtLbl.hidden    = YES;
-    estTxtLbl.hidden        = YES;
-    backgroundView.hidden   = NO;
-    _skView.hidden          = NO;
-    _currentAgeLabel.hidden = YES;
-    _ageLabel.hidden        = YES;
-    _tweetBtn.hidden        = YES;
-    _facebookBtn.hidden     = YES;
-    _configBtn.hidden       = YES;
-    _helpBtn.hidden         = YES;
-
-    [self.scene startSecondTimer];
-}
-
-- (void)showComponents {
-    currAgeTxtLbl.hidden    = NO;
-    _currentAgeLabel.hidden = NO;
-    _ageLabel.hidden        = NO;
-    _tweetBtn.hidden        = NO;
-    _facebookBtn.hidden     = NO;
-    _configBtn.hidden       = NO;
-    _helpBtn.hidden         = NO;
-    
-    if ([dateUtil secondsRemaining] > 0)
-        estTxtLbl.hidden    = NO;
-    else
-        estTxtLbl.hidden    = YES;
-
-    //NSLog(exceedExp ? @"Yes" : @"No");
 }
 
 - (void)didReceiveMemoryWarning {

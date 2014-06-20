@@ -93,7 +93,7 @@
                         <outletCollection property="gestureRecognizers" destination="a6M-dn-E9g" appends="YES" id="rQL-bv-Fu4"/>
                     </connections>
                 </view>
-                <button hidden="YES" opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
+                <button opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="mCg-i1-Hrv">
                     <rect key="frame" x="-22" y="483" width="109" height="109"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -104,7 +104,7 @@
                         <action selector="tweetTapGest:" destination="-1" eventType="touchUpInside" id="LS2-tU-drK"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" alpha="0.0" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
+                <button opaque="NO" alpha="0.0" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Oze-pt-4lc">
                     <rect key="frame" x="0.0" y="500" width="72" height="72"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -115,7 +115,7 @@
                         <action selector="showHelp:" destination="-1" eventType="touchUpInside" id="OPX-rl-vQL"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" alpha="0.0" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="VvC-lU-1w3">
+                <button opaque="NO" alpha="0.0" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="VvC-lU-1w3">
                     <rect key="frame" x="3" y="508" width="61" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>

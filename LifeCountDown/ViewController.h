@@ -51,7 +51,6 @@
 @property (strong, nonatomic) HelpView *helpView;
 @property         (nonatomic) bool timerStarted;
 
-- (IBAction)toggleComponents:(id)sender;
 - (IBAction)tweetTapGest:(id)sender;
 - (IBAction)setUserInfo:(id)sender;
 - (IBAction)showHelp:(id)sender;
