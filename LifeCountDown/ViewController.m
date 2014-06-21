@@ -95,8 +95,6 @@ FileHandler *fileHand;
 
     // Hide config view, move into place off-screen, then display
     if (nsdict != nil) {
-        [self setBackgroundImage];
-        
         enterInfo1.view.hidden = YES;
         enterInfo1.view.frame = CGRectMake(750,0,enterInfo1.view.frame.size.width,enterInfo1.view.frame.size.height);
         enterInfo1.view.hidden = NO;
@@ -108,11 +106,20 @@ FileHandler *fileHand;
 }
 
 - (void)setBackgroundImage {
-    if (percentRemaining <= 33.333) {
+    if (percentRemaining > 66.666) {
+        NSLog(@"low");
         backgroundView.image = [UIImage imageNamed:@"hglass-low.png"];
+        _skView.frame = CGRectMake(210, 237, 42, 300);
     }
-    else if (percentRemaining <= 66.666) {
+    else if (percentRemaining > 33.333 && percentRemaining <= 66.666) {
+        NSLog(@"medium");
         backgroundView.image = [UIImage imageNamed:@"hglass-medium.png"];
+        _skView.frame = CGRectMake(210, 237, 42, 265);
+    }
+    else {
+        NSLog(@"high");
+        backgroundView.image = [UIImage imageNamed:@"Default-568h@2x.png"];
+        _skView.frame = CGRectMake(210, 237, 42, 233);
     }
 }
 
@@ -163,7 +170,6 @@ FileHandler *fileHand;
         }];
     }
 }
-
 
 - (void)setupParticleView {
     // Configure the SKView
@@ -239,7 +245,9 @@ FileHandler *fileHand;
             [self updateTimerAndBar];
             [self startSecondTimer];
         }
-        
+
+        NSLog(@"percentRemaining: %f", percentRemaining);
+        percentRemaining = (seconds / totalSecondsDub) * 100;
         [self setBackgroundImage];
     }
 }
@@ -255,11 +263,9 @@ FileHandler *fileHand;
 - (void)updateTimerAndBar {
     seconds -= 1.0;
     _countdownLabel.text = [formatter stringFromNumber:[NSNumber numberWithDouble:seconds]];
-    progAmount = seconds / totalSecondsDub; // Calculate here for coloring progress bar in landscape
 
-    // Calculate percentage of life remaining
-    percentRemaining = progAmount * 100.0;
-
+    percentRemaining = (seconds / totalSecondsDub) * 100;
+    
     if (percentRemaining < 0)   { percentRemaining = 0; }
     if (percentRemaining > 100) { percentRemaining = 100; }
 
