@@ -368,7 +368,13 @@ FileHandler *fileHand;
             NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
                                     stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
 
-            [twCtrl addImage:[UIImage imageNamed:@"FB-72.jpg"]];
+            if (tag == 1) {
+                [twCtrl addImage:[UIImage imageNamed:@"FB-72.png"]];
+            }
+            else {
+                [twCtrl addImage:[UIImage imageNamed:@"Twitter_logo_white.png"]];
+            }
+
             [twCtrl setInitialText:fullString];
             [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];
             [twCtrl setCompletionHandler:completionHandler];

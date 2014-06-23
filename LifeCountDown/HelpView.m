@@ -101,7 +101,7 @@ NSString *countryNameStr, *helpMsg;
             break;
 
         default:
-            helpTxt = @"DISCLAIMER: All life expectancy results are unscientific estimates. This application is for entertainment purposes only.\n\nAll data provided is kept private and never shared or used outside of the application. \n\nLifeIsShortSoftware.com";
+            helpTxt = @"DISCLAIMER: All life expectancy results are unscientific estimates. This application is for entertainment purposes only.\n\nAll data provided is kept private and never shared or used outside of the application.";
             break;
     }
     
