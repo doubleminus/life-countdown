@@ -47,7 +47,7 @@ CGPoint location;
 }
 
 - (void)startSecondTimer {
-    _timey = [NSTimer scheduledTimerWithTimeInterval: 22.0
+    _timey = [NSTimer scheduledTimerWithTimeInterval: 20.0
                                              target: self
                                            selector: @selector(runAnimation)
                                            userInfo: nil
@@ -64,7 +64,7 @@ CGPoint location;
     emitter.position = CGPointMake(21,200);
     emitter.name = @"explosion";
     emitter.targetNode = self.scene;
-    emitter.numParticlesToEmit = 3000;
+    emitter.numParticlesToEmit = 1500;
     //emitter.zPosition = 200.0;
     return emitter;
 }
