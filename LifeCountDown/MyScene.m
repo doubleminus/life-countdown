@@ -47,7 +47,7 @@ CGPoint location;
 }
 
 - (void)startSecondTimer {
-    _timey = [NSTimer scheduledTimerWithTimeInterval: 20.0
+    _timey = [NSTimer scheduledTimerWithTimeInterval: 22.0
                                              target: self
                                            selector: @selector(runAnimation)
                                            userInfo: nil

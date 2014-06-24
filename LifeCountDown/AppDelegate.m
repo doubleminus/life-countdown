@@ -91,6 +91,7 @@
     }
     else {
         [self.viewController loadUserData];
+        [self.viewController.scene startSecondTimer];
     }
 }
 
@@ -102,6 +103,7 @@
     }
     else {
         [self.viewController loadUserData];
+        [self.viewController.scene startSecondTimer];
     }
 }
 

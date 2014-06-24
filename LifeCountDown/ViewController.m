@@ -107,17 +107,14 @@ FileHandler *fileHand;
 
 - (void)setBackgroundImage {
     if (percentRemaining > 66.666) {
-        NSLog(@"low");
         backgroundView.image = [UIImage imageNamed:@"hglass-low.png"];
         _skView.frame = CGRectMake(210, 237, 42, 300);
     }
     else if (percentRemaining > 33.333 && percentRemaining <= 66.666) {
-        NSLog(@"medium");
         backgroundView.image = [UIImage imageNamed:@"hglass-medium.png"];
         _skView.frame = CGRectMake(210, 237, 42, 265);
     }
     else {
-        NSLog(@"high");
         backgroundView.image = [UIImage imageNamed:@"Default-568h@2x.png"];
         _skView.frame = CGRectMake(210, 237, 42, 233);
     }
@@ -246,7 +243,6 @@ FileHandler *fileHand;
             [self startSecondTimer];
         }
 
-        NSLog(@"percentRemaining: %f", percentRemaining);
         percentRemaining = (seconds / totalSecondsDub) * 100;
         [self setBackgroundImage];
     }
@@ -365,15 +361,10 @@ FileHandler *fileHand;
                         break;
                 }};
 
-            NSString *fullString = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
-                                    stringByAppendingString:@" seconds of my life are estimated to be remaining by the iOS Every Moment app."];
+            NSString *string2 = [[formatter stringFromNumber:[NSNumber numberWithDouble:seconds]]
+                                    stringByAppendingString:@" seconds of life expectancy remaining. How about you?"];
 
-            if (tag == 1) {
-                [twCtrl addImage:[UIImage imageNamed:@"FB-72.png"]];
-            }
-            else {
-                [twCtrl addImage:[UIImage imageNamed:@"Twitter_logo_white.png"]];
-            }
+            NSString *fullString = [@"The iOS Every Moment app estimates I have " stringByAppendingString:string2];
 
             [twCtrl setInitialText:fullString];
             [twCtrl addURL:[NSURL URLWithString:@"http://myappurl.com"]];

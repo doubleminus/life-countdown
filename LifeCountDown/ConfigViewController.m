@@ -260,7 +260,7 @@ double progAmount, percentRemaining;
 
         // Now modify to squash the HelpView into the size we want
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            visibleRect.size.width *= .36;
+            visibleRect.size.width  *= .36;
             visibleRect.size.height *= .25;
 
             // We need our button tags so we can determine which help view text to show
