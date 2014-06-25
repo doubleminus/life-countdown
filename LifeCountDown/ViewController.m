@@ -37,7 +37,6 @@
 @implementation ViewController
 
 NSNumberFormatter *formatter;
-CGRect phoneScrollRect, screenBounds;
 UIToolbar *toolbar; // Used for first app run only
 NSDictionary *nsdict;
 double totalSecondsDub, progAmount, percentRemaining;
@@ -74,8 +73,6 @@ FileHandler *fileHand;
     tapShowPercent.numberOfTouchesRequired = 1;
 
     [_touchView addGestureRecognizer:tapShowPercent];
-
-    screenBounds = [[UIScreen mainScreen] bounds];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
