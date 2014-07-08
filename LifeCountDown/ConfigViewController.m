@@ -43,6 +43,7 @@ NSDate *birthDate;
 NSArray *ageArray;
 int phoneSlideDistance = 750, padSlideDistance = 300;
 double progAmount, percentRemaining;
+UIView *shadeView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -101,6 +102,20 @@ double progAmount, percentRemaining;
 
     if (personInfo != nil) {
         [dateUtil beginAgeProcess:personInfo];
+        
+        if (progAmount) {
+            if (progAmount > [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]) {
+                shadeView.backgroundColor = [UIColor redColor];
+            }
+            else {
+                shadeView.backgroundColor = [UIColor greenColor];
+            }
+            
+            [UIView animateWithDuration:1.5f animations:^{
+                shadeView.alpha = .70;
+                shadeView.alpha = 0.0;
+            }];
+        }
 
         progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
         percentRemaining = progAmount * 100.0;
@@ -129,6 +144,8 @@ double progAmount, percentRemaining;
 // Move our PWProgressView as the user scrolls
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_progressView setFrame:CGRectMake(_progressView.frame.origin.x, (scroller.contentOffset.y + scroller.frame.size.height)-65, _progressView.frame.size.width, _progressView.frame.size.height)];
+    
+    [shadeView setFrame:CGRectMake(shadeView.frame.origin.x, (scroller.contentOffset.y + scroller.frame.size.height)-65, shadeView.frame.size.width, shadeView.frame.size.height)];
 }
 
 - (void)expandProg {
@@ -181,6 +198,13 @@ double progAmount, percentRemaining;
         self.progressView.layer.cornerRadius = 5.0f;
         self.progressView.clipsToBounds = YES;
         [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
+
+        shadeView = [[UIView alloc] init];
+        shadeView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
+        shadeView.layer.cornerRadius = 5.0f;
+        [scroller insertSubview:shadeView aboveSubview:_progressView];
+        shadeView.backgroundColor = [UIColor greenColor];
+        shadeView.alpha = 0.0;
     }
 
     // Make progress view larger on iPad (see second clause of below else if statement)
