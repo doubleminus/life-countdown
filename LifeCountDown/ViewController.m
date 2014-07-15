@@ -144,8 +144,8 @@ FileHandler *fileHand;
             _tweetBtn.alpha    = 1.0;
             _helpBtn.alpha     = 1.0;
 
-            _persBtn.frame     = CGRectOffset(_persBtn.frame,     63, 0);
-            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 127, 0);
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     55, 0);
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, 123, 0);
             _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    190, 0);
             _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     250, 0);
         }];
@@ -157,8 +157,8 @@ FileHandler *fileHand;
             _tweetBtn.alpha    = 0.0;
             _helpBtn.alpha     = 0.0;
 
-            _persBtn.frame     = CGRectOffset(_persBtn.frame,     -63, 0);
-            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -127, 0);
+            _persBtn.frame     = CGRectOffset(_persBtn.frame,     -55, 0);
+            _facebookBtn.frame = CGRectOffset(_facebookBtn.frame, -123, 0);
             _tweetBtn.frame    = CGRectOffset(_tweetBtn.frame,    -190, 0);
             _helpBtn.frame     = CGRectOffset(_helpBtn.frame,     -250, 0);
         }];

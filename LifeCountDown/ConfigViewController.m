@@ -45,6 +45,15 @@ int phoneSlideDistance = 750, padSlideDistance = 300;
 double progAmount, percentRemaining;
 UIView *shadeView;
 
+#define kVerySmallValue (0.000001)
+- (BOOL)firstDouble:(double)first isEqualTo:(double)second {
+    
+    if(fabsf(first - second) < kVerySmallValue)
+        return YES;
+    else
+        return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -102,19 +111,28 @@ UIView *shadeView;
 
     if (personInfo != nil) {
         [dateUtil beginAgeProcess:personInfo];
-        
+
         if (progAmount) {
-            if (progAmount > [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]) {
+            if ([self firstDouble:progAmount isEqualTo:[dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]]) {
+                // Do nothing
+            }
+            else if (progAmount < [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]) {
+                shadeView.backgroundColor = [UIColor greenColor];
+                [UIView animateWithDuration:1.5f animations:^{
+                    shadeView.alpha = .70;
+                    shadeView.alpha = 0.0;
+                }];
+            }
+            else if (progAmount > [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife]) {
                 shadeView.backgroundColor = [UIColor redColor];
+                [UIView animateWithDuration:1.5f animations:^{
+                    shadeView.alpha = .70;
+                    shadeView.alpha = 0.0;
+                }];
             }
             else {
-                shadeView.backgroundColor = [UIColor greenColor];
+                // Do nothing
             }
-            
-            [UIView animateWithDuration:1.5f animations:^{
-                shadeView.alpha = .70;
-                shadeView.alpha = 0.0;
-            }];
         }
 
         progAmount = [dateUtil secondsRemaining] / [dateUtil totalSecondsInLife];
@@ -198,6 +216,12 @@ UIView *shadeView;
         self.progressView.layer.cornerRadius = 5.0f;
         self.progressView.clipsToBounds = YES;
         [scroller insertSubview:self.progressView aboveSubview:bgToolbar];
+    }
+
+    // Make progress view larger on iPad (see second clause of below else if statement)
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
+        [self.progressView addGestureRecognizer:tappy];
 
         shadeView = [[UIView alloc] init];
         shadeView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
@@ -205,12 +229,6 @@ UIView *shadeView;
         [scroller insertSubview:shadeView aboveSubview:_progressView];
         shadeView.backgroundColor = [UIColor greenColor];
         shadeView.alpha = 0.0;
-    }
-
-    // Make progress view larger on iPad (see second clause of below else if statement)
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        self.progressView.frame = CGRectMake(8.0, 503.0, 60.0, 60.0);
-        [self.progressView addGestureRecognizer:tappy];
     }
     else {
         self.progressView.frame = CGRectMake(125.0, 910.0, 78.0, 78.0);
