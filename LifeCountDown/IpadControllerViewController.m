@@ -58,7 +58,7 @@ FileHandler *fileHand;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self handlePortrait1];
+
     fileHand = [[FileHandler alloc] init];
     dateUtil = [[DateCalculationUtil alloc] init];
 
@@ -74,6 +74,8 @@ FileHandler *fileHand;
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setGeneratesDecimalNumbers:NO];
     [formatter setMaximumFractionDigits:0];
+
+    [self setupHelpView];
 }
 
 - (void)loadUserData {
@@ -109,6 +111,42 @@ FileHandler *fileHand;
     }
 
     [enterInfo1 animateConfig:nil];
+}
+
+- (void)setupHelpView {
+    // Setup help view but hide it
+    _helpViewPad = [[HelpView alloc] init];
+    [self.view addSubview:_helpViewPad];
+
+    // Create tap gesture for dismissing Help View
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHelpPad:)];
+    tap1.numberOfTapsRequired = 1;
+    tap1.numberOfTouchesRequired = 1;
+    [_helpViewPad addGestureRecognizer:tap1];
+}
+
+- (IBAction)showHelpPad:(id)sender {
+    CGRect visibleRect;
+
+    if (_helpViewPad && _helpViewPad.hidden == YES) {
+        visibleRect.origin      = self.view.frame.origin; // Set origin to our UIScrollView's view window
+        visibleRect.size        = self.view.bounds.size;
+        visibleRect.origin.x    += 175.0;
+        visibleRect.origin.y    += 775.0;
+        visibleRect.size.width  *= .35;
+        visibleRect.size.height *= .20;
+
+        [_helpViewPad setFrame:visibleRect];
+        int tag = (int)[(UIButton *)sender tag]; // Get button tag value
+        [_helpViewPad setText:nil btnInt:tag];
+
+        [_helpViewPad setHidden:NO];
+        [mainToolbar setHidden:NO];
+    }
+    else {
+        [_helpViewPad setHidden:YES];
+        [mainToolbar setHidden:YES];
+    }
 }
 
 #pragma mark displayUserInfo Delegate function
@@ -182,17 +220,6 @@ FileHandler *fileHand;
         estTextLbl.hidden = YES;
 }
 
-- (void)handlePortrait1 {
-    secsRem.hidden       = YES;
-    setInfoButton.hidden = YES;
-    currAgeLbl.hidden    = YES;
-    estTextLbl.hidden    = YES;
-    ageTxtLbl.hidden     = YES;
-    _pLabel.hidden       = YES;
-    _ageLbl.hidden       = YES;
-    _cntLbl.hidden       = YES;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -203,7 +230,6 @@ FileHandler *fileHand;
     currAgeLbl    = nil;
     ageTxtLbl     = nil;
     estTextLbl    = nil;
-    _progBar      = nil;
     _pLabel       = nil;
     _cntLbl       = nil;
     _ageLbl       = nil;

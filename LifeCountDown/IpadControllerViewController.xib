@@ -12,7 +12,6 @@
                 <outlet property="currAgeLbl" destination="Mcb-l7-ybl" id="XHU-UD-8Y3"/>
                 <outlet property="estTextLbl" destination="Eag-oU-wGG" id="Sxu-Rc-jOf"/>
                 <outlet property="pLabel" destination="eRw-Ho-ZwR" id="fmz-6i-3Y9"/>
-                <outlet property="progBar" destination="eAs-jB-OjJ" id="hjz-sk-lGv"/>
                 <outlet property="secsRem" destination="drx-8U-43E" id="PgV-gC-Bi8"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
@@ -43,10 +42,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eAs-jB-OjJ">
-                    <rect key="frame" x="268" y="591" width="243" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </progressView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="currAge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcb-l7-ybl">
                     <rect key="frame" x="242" y="331" width="248" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -90,6 +85,16 @@
                     <rect key="frame" x="58" y="924" width="89" height="90"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="q_icon.png"/>
+                    <connections>
+                        <action selector="showHelpPad:" destination="-1" eventType="touchUpInside" id="TEg-Cz-bb1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euY-No-xIl">
+                    <rect key="frame" x="98" y="903" width="146" height="132"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Twitter_logo_white.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,6 +111,7 @@
         </swipeGestureRecognizer>
     </objects>
     <resources>
+        <image name="Twitter_logo_white.png" width="381" height="343"/>
         <image name="q_icon.png" width="1030" height="1008"/>
         <image name="settings.png" width="215" height="190"/>
     </resources>
