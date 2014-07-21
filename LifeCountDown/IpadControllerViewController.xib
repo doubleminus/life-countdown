@@ -71,7 +71,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxo-1V-Q6o">
-                    <rect key="frame" x="-2" y="933" width="79" height="70"/>
+                    <rect key="frame" x="20" y="933" width="79" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" backgroundImage="settings.png">
@@ -82,19 +82,12 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCH-KC-tSw">
-                    <rect key="frame" x="58" y="924" width="89" height="90"/>
+                    <rect key="frame" x="90" y="923" width="89" height="90"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="q_icon.png"/>
                     <connections>
                         <action selector="showHelpPad:" destination="-1" eventType="touchUpInside" id="TEg-Cz-bb1"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euY-No-xIl">
-                    <rect key="frame" x="98" y="903" width="146" height="132"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="Twitter_logo_white.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,7 +104,6 @@
         </swipeGestureRecognizer>
     </objects>
     <resources>
-        <image name="Twitter_logo_white.png" width="381" height="343"/>
         <image name="q_icon.png" width="1030" height="1008"/>
         <image name="settings.png" width="215" height="190"/>
     </resources>
